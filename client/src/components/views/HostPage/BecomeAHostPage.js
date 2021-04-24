@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { Alert, Row, Col, Typography, Input, Select, Form, Button } from "antd";
 import BottomPages from "./Sections/BottomPages";
+import Axios from "axios";
 const { Title } = Typography;
+const { Option } = Select;
+
+
 
 function BecomeAHostPage() {
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
+  const [Kitchen_Ex, setKitchen_Ex] = useState("");
 
   const onNameChange = (e) => {
     // 의문 1: target 대신 currentTarget하면 왜 툭툭 끊기지? - 찾아보기!
@@ -14,6 +19,28 @@ function BecomeAHostPage() {
 
   const onEmailChange = (e) => {
     setEmail(e.target.value);
+  };
+
+  const onKitchen_ExChange = (label) => {
+    console.log(label.key);
+    setKitchen_Ex(label.key);
+  };
+
+  const onSubmit = () => {
+    const variables = {
+      writer: localStorage.getItem("userId"),
+      name: Name,
+      email: Email,
+      kitchen_experience: Kitchen_Ex,
+    };
+
+    Axios.post("/api/hosts/become-a-host", variables).then((response) => {
+      if (response.data.success) {
+        console.log(response.data);
+      } else {
+        alert("Failed to become a host");
+      }
+    });
   };
 
   return (
@@ -73,7 +100,7 @@ function BecomeAHostPage() {
             <Title level={4} style={{ color: "gray", paddingTop: "10px" }}>
               Tell us a little about yourself
             </Title>
-            <Form>
+            <Form onSubmit={onSubmit}>
               {/* Name */}
               <Input placeholder="Name" size="large" onChange={onNameChange} />
               <br />
@@ -89,23 +116,26 @@ function BecomeAHostPage() {
 
               {/* Select Box */}
               <Select
+                labelInValue
                 noStyle
                 size="large"
                 placeholder="Previous industrial kitchen experience"
+                onChange={onKitchen_ExChange}
               >
-                <Select.Option value="None">None</Select.Option>
-                <Select.Option value="Less than a year">
-                  Less than a year
-                </Select.Option>
-                <Select.Option value="More than a year">
-                  More than a year
-                </Select.Option>
+                <Option value="None">None</Option>
+                <Option value="Less than a year">Less than a year</Option>
+                <Option value="More than a year">More than a year</Option>
               </Select>
 
               <br />
               <br />
 
-              <Button size="large" type="primary" style={{ width: "100%" }}>
+              <Button
+                onClick={onSubmit}
+                size="large"
+                type="primary"
+                style={{ width: "100%" }}
+              >
                 I'm intersted
               </Button>
             </Form>

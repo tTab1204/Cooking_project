@@ -25,7 +25,43 @@ body {
   flex-direction: column;
   display: flex;
   justify-content: center;
+  padding-top: 20px;
+  width: 100%;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.ant-card-body {
+  max-width: 350px;
+  margin: 0px auto;
+}
+
+.host-bottom-card {
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  width: 100%;
+  max-width: 200px;
+}
+
+.host-bottom-card-piece {
+  display: flex;
+  flex-direction: column;
+  -webkit-box-align: center;
   align-items: center;
+}
+
+.ant-statistic-content {
+  display: flex;
+  justify-content: center;
+  font-size: 14px !important;
+}
+
+.ant-statistic-title {
+  display: flex;
+  justify-content: center;
 }
 
 input.error {

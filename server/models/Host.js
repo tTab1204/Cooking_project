@@ -9,9 +9,14 @@ const hostSchema = mongoose.Schema(
     },
     name: {
       type: String,
-      maxlength: 50,
+    },
+    email: {
+      type: String,
     },
     kitchen_experience: {
+      type: String,
+    },
+    image: {
       type: String,
     },
   },
