@@ -66,9 +66,18 @@ function RightMenu(props) {
   } else {
     return (
       <Menu mode={props.mode}>
+        {/* <SubMenu title={<span>Admin</span>} style={{ borderBottom: "none" }}>
+          <MenuItemGroup>
+            <Menu.Item key="hosts-list">
+              <Link to="/hosts-list">Hosts-List</Link>
+            </Menu.Item>
+          </MenuItemGroup>
+        </SubMenu> */}
+
         <Menu.Item key="app" style={{ borderBottom: "none" }}>
           <Link to="/">Event</Link>
         </Menu.Item>
+
         <SubMenu title={<span>Kitchen</span>} style={{ borderBottom: "none" }}>
           <MenuItemGroup>
             <Menu.Item key="setting:1">Kitchens</Menu.Item>

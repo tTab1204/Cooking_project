@@ -9,6 +9,8 @@ const hostSchema = mongoose.Schema(
     },
     name: {
       type: String,
+      // 문자열 사이에 공백을 제거하는 mongoDB의 기능
+      trim: true,
     },
     email: {
       type: String,
@@ -16,8 +18,27 @@ const hostSchema = mongoose.Schema(
     kitchen_experience: {
       type: String,
     },
-    image: {
+
+    // 음식 종류(ex: 한식, 양식, 일식 등)
+    food_nation: {
       type: String,
+    },
+
+    // 대표 이미지
+    image: {
+      type: Array,
+      default: [],
+    },
+
+    // 간단한 설명
+    description: {
+      type: String,
+    },
+
+    // 계좌번호
+    deposit: {
+      type: String,
+      maxlength: 50,
     },
   },
   { timestamps: true }

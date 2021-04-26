@@ -8,6 +8,7 @@ import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import NavBar from "./views/NavBar/NavBar";
 import HostPage from "./views/HostPage/HostPage";
 import BecomeAHostPage from "./views/HostPage/BecomeAHostPage";
+import HostDetailPage from "./views/HostDetailPage/HostDetailPage";
 import Footer from "./views/Footer/Footer";
 import { Layout, Button } from "antd";
 // import { Magenta } from "@ant-design/colors";
@@ -37,6 +38,11 @@ function App() {
               exact
               path="/become-a-host"
               component={Auth(BecomeAHostPage, true)}
+            />
+            <Route
+              exact
+              path="/hosts/:hostsId"
+              component={Auth(HostDetailPage, null)}
             />
           </Switch>
         </div>
