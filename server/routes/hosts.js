@@ -65,4 +65,17 @@ router.get("/showHosts", (req, res) => {
     });
 });
 
+// --------------- get Host's Detail ----------------//
+router.get("/hosts_by_id", (req, res) => {
+  let type = req.query.type;
+  let hostId = req.query.id;
+
+  Host.find({ _id: hostId })
+    .populate("writer")
+    .exec((err, host) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).json({ success: true, host });
+    });
+});
+
 module.exports = router;

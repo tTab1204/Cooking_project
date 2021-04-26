@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Typography, Card, Avatar, Divider, Statistic } from "antd";
 import { Link } from "react-router-dom";
 import Axios from "axios";
-import { LikeOutlined } from "@ant-design/icons";
+import Follow from "../HostDetailPage/Sections/Follow";
+import Ratings from "../HostDetailPage/Sections/Ratings";
 
 const { Title } = Typography;
 
@@ -57,17 +58,11 @@ function HostPage() {
           <Divider />
           <Row>
             <div className="host-bottom-card ">
-              <div className="host-bottom-card-piece">
-                <Col span={12}>
-                  <Statistic title="Followers" value={"336"} />
-                </Col>
-              </div>
+              {/* Follow */}
+              <Follow />
 
-              <div className="host-bottom-card-piece">
-                <Col span={12}>
-                  <Statistic title="Ratings" value={"4.95(180)"} />
-                </Col>
-              </div>
+              {/* Ratings */}
+              <Ratings />
             </div>
           </Row>
           <Row style={{ paddingTop: "10px" }}>{host.description}</Row>
