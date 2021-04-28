@@ -13,7 +13,6 @@ function HostPage() {
   useEffect(() => {
     Axios.get("/api/hosts/showHosts").then((response) => {
       if (response.data.success) {
-        console.log(response.data);
         setHosts(response.data.hosts);
       } else {
         alert("호스트 정보를 가져오는데 실패하였습니다.");
@@ -59,10 +58,10 @@ function HostPage() {
           <Row>
             <div className="host-bottom-card ">
               {/* Follow */}
-              <Follow />
+              {/* <Follow /> */}
 
               {/* Ratings */}
-              <Ratings />
+              {/* <Ratings /> */}
             </div>
           </Row>
           <Row style={{ paddingTop: "10px" }}>{host.description}</Row>
@@ -73,10 +72,25 @@ function HostPage() {
 
   return (
     <div className="app">
-      <Title level={1}>Hosts</Title>
-      <Row gutter={[32, 32]} type="flex">
-        {renderHosts}
-      </Row>
+      {Hosts.length === 0 ? (
+        <div
+          style={{
+            display: "flex",
+            height: "300px",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h2>Loading...</h2>
+        </div>
+      ) : (
+        <div>
+          <Title level={1}>Hosts</Title>
+          <Row gutter={[32, 32]} type="flex">
+            {renderHosts}
+          </Row>
+        </div>
+      )}
     </div>
   );
 }

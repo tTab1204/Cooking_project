@@ -7,10 +7,10 @@ const { Title } = Typography;
 
 function HostCard(props) {
   return (
-    <div>
-      <Row gutter={24}>
+    <>
+      {props.detail ? (
         <Col className="gutter-row" xs={24} md={7}>
-          <Card hoverable style={{ border: "none" }}>
+          <Card hoverable bordered={false}>
             <Row>
               <Col xs={10} md={24}>
                 <div style={{ textAlign: "center" }}>
@@ -46,8 +46,19 @@ function HostCard(props) {
             />
           </Card>
         </Col>
-      </Row>
-    </div>
+      ) : (
+        <div
+          style={{
+            display: "flex",
+            height: "300px",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h2>Loading...</h2>
+        </div>
+      )}
+    </>
   );
 }
 

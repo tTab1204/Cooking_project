@@ -7,6 +7,10 @@ const hostSchema = mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
+    // follow: {
+    //   type: Number,
+    //   default: 0,
+    // },
     name: {
       type: String,
       // 문자열 사이에 공백을 제거하는 mongoDB의 기능

@@ -19,30 +19,69 @@ function Follow(props) {
 
   useEffect(() => {
     Axios.post("/api/follow/followNumber", variables).then((response) => {
-      console.log(response.data);
       setFollowNumber(response.data.followNumber);
     });
-  }, []);
+
+    Axios.post("/api/follow/followed", variables).then((response) => {
+      if (response.data.success) {
+        setFollowed(response.data.followed);
+      } else alert("정보를 가져오는 데 실패했습니다.");
+    });
+  }, [props.detail]);
+
+  const onClickFollow = () => {
+    if (Followed) {
+      Axios.post("/api/follow/removeFollow", variables).then((response) => {
+        if (response.data.success) {
+          setFollowNumber(FollowNumber - 1);
+
+          setFollowed(!Followed);
+        } else {
+          alert("Follow 리스트에서 지우는걸 실패했습니다.");
+        }
+      });
+    } else {
+      Axios.post("/api/follow/addFollow", variables).then((response) => {
+        if (response.data.success) {
+          setFollowNumber(FollowNumber + 1);
+
+          setFollowed(!Followed);
+        } else {
+          alert("Favorite 리스트에서 추가하는데에 실패했습니다.");
+        }
+      });
+    }
+  };
 
   return (
-    <div className="host-bottom-card-piece">
-      <Row style={{ width: "100%" }}>
-        <div className="host-bottom-card ">
-          {/* Follow */}
-          <Col span={12}>
-            <Statistic title="Followers" value={FollowNumber} />
-          </Col>
+    <>
+      {props.detail && (
+        <div className="host-bottom-card-piece">
+          <Row style={{ width: "100%" }}>
+            <div className="host-bottom-card ">
+              {/* Follow */}
+              <Col span={12}>
+                <Statistic title="Followers" value={FollowNumber} />
+              </Col>
 
-          {/* Ratings */}
-          <Ratings />
+              {/* Ratings */}
+              <Ratings />
+            </div>
+          </Row>
+          <Row
+            style={{ paddingTop: "10px", textAlign: "center", width: "100%" }}
+          >
+            <Button
+              onClick={onClickFollow}
+              type={Followed ? "none" : "primary"}
+              style={{ width: "100%" }}
+            >
+              {Followed ? "Unfollow" : "Follow"}
+            </Button>
+          </Row>
         </div>
-      </Row>
-      <Row style={{ paddingTop: "10px", textAlign: "center", width: "100%" }}>
-        <Button type="primary" style={{ width: "100%" }}>
-          Follow
-        </Button>
-      </Row>
-    </div>
+      )}
+    </>
   );
 }
 

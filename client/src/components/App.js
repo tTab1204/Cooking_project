@@ -9,8 +9,10 @@ import NavBar from "./views/NavBar/NavBar";
 import HostPage from "./views/HostPage/HostPage";
 import BecomeAHostPage from "./views/HostPage/BecomeAHostPage";
 import HostDetailPage from "./views/HostDetailPage/HostDetailPage";
+import HostTabs from "./views/HostDetailPage/Sections/HostTabs";
 import Footer from "./views/Footer/Footer";
 import { Layout, Button } from "antd";
+
 // import { Magenta } from "@ant-design/colors";
 const { Header, Content } = Layout;
 
@@ -25,6 +27,8 @@ function App() {
 
       <Content>
         <div style={{ paddingTop: "69px", minHeight: "calc(100vh - 80px)" }}>
+          {/* <Switch> 는 첫번째로 매칭되는 path 를 가진 컴포넌트를 렌더링 시킨다. 
+          이것이 exact path 와 다른 점은 첫번째 매칭만 본다는 것이다. */}
           <Switch>
             <Route exact path="/" component={Auth(LandingPage, null)} />
             <Route exact path="/login" component={Auth(LoginPage, false)} />
@@ -43,6 +47,11 @@ function App() {
               exact
               path="/hosts/:hostsId"
               component={Auth(HostDetailPage, null)}
+            />
+            <Route
+              exact
+              path="/hosts/:hostsId/:tab"
+              component={Auth(HostTabs, null)}
             />
           </Switch>
         </div>
