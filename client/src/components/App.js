@@ -10,6 +10,10 @@ import HostPage from "./views/HostPage/HostPage";
 import BecomeAHostPage from "./views/HostPage/BecomeAHostPage";
 import HostDetailPage from "./views/HostDetailPage/HostDetailPage";
 import HostTabs from "./views/HostDetailPage/Sections/HostTabs";
+import ListYourKitchenPage from "./views/KitchenPage/ListYourKitchenPage";
+import Events from "./views/HostDetailPage/Sections/Events";
+import Reviews from "./views/HostDetailPage/Sections/Reviews";
+import Followers from "./views/HostDetailPage/Sections/Followers";
 import Footer from "./views/Footer/Footer";
 import { Layout, Button } from "antd";
 
@@ -48,10 +52,11 @@ function App() {
               path="/hosts/:hostsId"
               component={Auth(HostDetailPage, null)}
             />
+
             <Route
               exact
-              path="/hosts/:hostsId/:tab"
-              component={Auth(HostTabs, null)}
+              path="/list-your-kitchen"
+              component={Auth(ListYourKitchenPage, null)}
             />
           </Switch>
         </div>

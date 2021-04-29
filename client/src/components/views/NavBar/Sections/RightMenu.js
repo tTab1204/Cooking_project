@@ -80,8 +80,12 @@ function RightMenu(props) {
 
         <SubMenu title={<span>Kitchen</span>} style={{ borderBottom: "none" }}>
           <MenuItemGroup>
-            <Menu.Item key="setting:1">Kitchens</Menu.Item>
-            <Menu.Item key="setting:2">List Your Kitchen</Menu.Item>
+            <Menu.Item key="kitchens">
+              <Link to="/kitchens">Kitchen</Link>
+            </Menu.Item>
+            <Menu.Item key="list-your-kitchen">
+              <Link to="/list-your-kitchen">List Your Kitchen</Link>
+            </Menu.Item>
           </MenuItemGroup>
         </SubMenu>
         <SubMenu title={<span>Hosts</span>} style={{ borderBottom: "none" }}>

@@ -7,35 +7,34 @@ import { Row, Col, Tabs } from "antd";
 import { Switch, Link } from "react-router-dom";
 const { TabPane } = Tabs;
 
-function HostTabs(props) {
-  const hostsId = props.hostsId;
+function HostTabs({ match, history }) {
+  const onHandleTab = (key) => {
+    // history.push(`/hosts/${hostsId}/${key}`);
+  };
 
   return (
     <>
       <Col className="gutter-row" xs={24} md={17}>
-        <Tabs defaultActiveKey="events">
+        <Tabs defaultActiveKey="events" onChange={onHandleTab}>
           {/* Events */}
-          <TabPane
-            tab={<Link to={`/hosts/${hostsId}/`}>Events</Link>}
-            key="events"
-          >
-            <Events />
+          <TabPane tab="Events" key="events">
+            {/* <Events /> */}
+            <p>Events</p>
+            <p>Events</p>
+            <p>Events</p>
           </TabPane>
 
           {/* Reviews */}
-          <TabPane
-            tab={<Link to={`/hosts/${hostsId}/`}>Reviews</Link>}
-            key="reviews"
-          >
-            <Reviews />
+          <TabPane tab="Reviews" key="reviews">
+            {/* <Reviews /> */}
+            <p>Reviews</p>
+            <p>Reviews</p>
+            <p>Reviews</p>
           </TabPane>
 
           {/* Followers */}
-          <TabPane
-            tab={<Link to={`/hosts/${hostsId}/`}>Followers</Link>}
-            key="followers"
-          >
-            <Followers />
+          <TabPane tab="Followers" key="followers">
+            {/* <Followers /> */}
           </TabPane>
         </Tabs>
       </Col>

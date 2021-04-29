@@ -31,7 +31,7 @@ function Followers() {
                 <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
               }
               title={<a href="https://ant.design">{item.title}</a>}
-              description={[<Link>@byron</Link>]}
+              description={[<Link to>@byron</Link>]}
             />
           </List.Item>
         )}
