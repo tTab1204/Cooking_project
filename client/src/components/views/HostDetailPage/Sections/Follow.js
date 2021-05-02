@@ -3,13 +3,13 @@ import { Col, Statistic, Row, Button } from "antd";
 import Ratings from "./Ratings";
 import Axios from "axios";
 
-function Follow(props) {
+function Follow({ detail }) {
   const [FollowNumber, setFollowNumber] = useState(0);
   const [Followed, setFollowed] = useState(false);
 
-  const userFrom = props.userFrom;
-  const hostId = props.detail._id;
-  const hostName = props.detail.name;
+  const userFrom = detail.userFrom;
+  const hostId = detail._id;
+  const hostName = detail.name;
 
   const variables = {
     userFrom: userFrom,
@@ -27,7 +27,7 @@ function Follow(props) {
         setFollowed(response.data.followed);
       } else alert("정보를 가져오는 데 실패했습니다.");
     });
-  }, [props.detail]);
+  }, [detail]);
 
   const onClickFollow = () => {
     if (Followed) {
@@ -55,7 +55,7 @@ function Follow(props) {
 
   return (
     <>
-      {props.detail && (
+      {detail && (
         <div className="host-bottom-card-piece">
           <Row style={{ width: "100%" }}>
             <div className="host-bottom-card ">
@@ -85,4 +85,4 @@ function Follow(props) {
   );
 }
 
-export default Follow;
+export default React.memo(Follow);
