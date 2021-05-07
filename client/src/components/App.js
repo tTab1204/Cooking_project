@@ -15,6 +15,9 @@ import { Layout, Button } from "antd";
 import UploadKitchenPage from "./admin/UploadKitchenPage";
 import UploadHostPage from "./admin/UploadHostPage";
 import KitchenPage from "./views/KitchenPage/KitchenPage";
+import KitchenDetailPage from "./views/KitchenDetailPage/KitchenDetailPage";
+import EventPage from "./views/EventPage/EventPage";
+import UploadEventPage from "./views/UploadEventPage/UploadEventPage";
 
 const { Content } = Layout;
 
@@ -55,6 +58,12 @@ function App() {
             <Route exact path="/kitchens" component={Auth(KitchenPage, null)} />
             <Route
               exact
+              path="/kitchens/:kitchensId"
+              component={Auth(KitchenDetailPage, null)}
+            />
+            <Route exact path="/events" component={Auth(EventPage, null)} />
+            <Route
+              exact
               path="/upload-kitchen"
               component={Auth(UploadKitchenPage, true)}
             />
@@ -62,6 +71,11 @@ function App() {
               exact
               path="/upload-host"
               component={Auth(UploadHostPage, true)}
+            />
+            <Route
+              exact
+              path="/upload-event"
+              component={Auth(UploadEventPage, true)}
             />
           </Switch>
         </div>

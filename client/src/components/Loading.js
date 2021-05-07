@@ -1,13 +1,18 @@
 import React from "react";
-import { Spin } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
 
 function Loading() {
   return (
     <>
-      <div className="app">
-        <Spin style={{ fontSize: "4rem" }} />
-        <br />
-        <span style={{ fontSize: "2rem" }}>Loading...</span>
+      <div
+        style={{
+          display: "flex",
+          height: "300px",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <LoadingOutlined style={{ fontSize: "100px" }} />
       </div>
     </>
   );

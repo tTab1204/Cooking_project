@@ -65,4 +65,17 @@ router.get("/showKitchens", (req, res) => {
     });
 });
 
+// --------------- get Kitchen's Detail ----------------//
+router.get("/kitchens_by_id", (req, res) => {
+  let type = req.query.type;
+  let kitchenId = req.query.id;
+
+  Kitchen.find({ _id: kitchenId })
+    .populate("writer")
+    .exec((err, kitchen) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).json({ success: true, kitchen });
+    });
+});
+
 module.exports = router;

@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Typography, Card, Avatar, Divider } from "antd";
+import { Row, Col, Typography, Card, Avatar, Divider, Skeleton } from "antd";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import Follow from "../HostDetailPage/Sections/Follow";
 import Ratings from "../HostDetailPage/Sections/Ratings";
 import Mini_Korea from "../food_nation/mini_korea.png";
-import { hostDetailState } from "../../../atoms/atoms";
-import { useRecoilValue } from "recoil";
+import Loading from "../../Loading";
 
+const { Meta } = Card;
 const { Title } = Typography;
 
 const removeLinkColor = { color: "inherit", textDecoration: "none" };
 
 function HostPage({ match }) {
   const [Hosts, setHosts] = useState([]);
-  const hostState = useRecoilValue(hostDetailState);
 
   useEffect(() => {
     Axios.get("/api/hosts/showHosts").then((response) => {
@@ -56,7 +55,7 @@ function HostPage({ match }) {
                 </div>
                 <div style={{ textAlign: "center" }}>
                   <img
-                    src={host.food_nation === "Korean" && Mini_Korea}
+                    src={Mini_Korea}
                     width="50px"
                     height="50px"
                     alt="nation"
@@ -76,7 +75,7 @@ function HostPage({ match }) {
               />
 
               {/* Ratings */}
-              {/* <Ratings /> */}
+              <Ratings />
             </div>
           </Row>
           <Row style={{ paddingTop: "10px" }}>{host.description}</Row>
@@ -88,16 +87,7 @@ function HostPage({ match }) {
   return (
     <div className="app">
       {Hosts.length === 0 ? (
-        <div
-          style={{
-            display: "flex",
-            height: "300px",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <h2>Loading...</h2>
-        </div>
+        <Loading />
       ) : (
         <div>
           <Title level={1}>Hosts</Title>

@@ -5,17 +5,33 @@ const eventSchema = mongoose.Schema(
   {
     writer: {
       type: Schema.Types.ObjectId,
-      ref: "Host",
+      ref: "User",
     },
-
-    date: {
+    name: {
+      type: String,
+      required: true,
+    },
+    time: {
+      type: String,
+      required: true,
+    },
+    location: {
+      type: String,
+      required: true,
+    },
+    price: {
+      type: Number,
+      required: true,
+    },
+    description: {
       type: String,
     },
-    day: {
+    state: {
       type: String,
     },
-    image: {
-      type: String,
+    images: {
+      type: Array,
+      default: [],
     },
   },
   { timestamps: true }

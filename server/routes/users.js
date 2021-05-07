@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const { User } = require("../models/User");
-
 const { auth } = require("../middleware/auth");
 
 //=================================
@@ -18,6 +17,7 @@ router.get("/auth", auth, (req, res) => {
     lastname: req.user.lastname,
     role: req.user.role,
     image: req.user.image,
+    isHost: req.user.host === 0 ? false : true,
   });
 });
 

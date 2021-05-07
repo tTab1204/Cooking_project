@@ -33,6 +33,10 @@ const userSchema = mongoose.Schema({
   tokenExp: {
     type: Number,
   },
+  host: {
+    type: Number,
+    default: 0,
+  },
 });
 
 userSchema.pre("save", function (next) {

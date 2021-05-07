@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   Result,
-  Alert,
   Row,
   Col,
   Typography,
@@ -11,11 +10,10 @@ import {
   message,
 } from "antd";
 import Axios from "axios";
-import ImageUpload from "../views/HostPage/Sections/ImageUpload";
-
+import ImageUpload from "../HostPage/Sections/ImageUpload";
 const { Title } = Typography;
-const { TextArea } = Input;
 
+const { TextArea } = Input;
 // -------------- style --------------- //
 const upload_middleBox_style = {
   maxWidth: "600px",
@@ -28,43 +26,33 @@ const upload_middleBox_style = {
   paddingTop: "20px",
 };
 // ------------------------------------ //
-
-function UploadKitchenPage({ match }) {
+function UploadEvent({ match }) {
   const [Name, setName] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Address, setAddress] = useState("");
-  const [Capacity, setCapacity] = useState(0);
+  const [Time, setTime] = useState("");
+  const [Location, setLocation] = useState("");
+  const [Price, setPrice] = useState(0);
   const [Description, setDescription] = useState("");
-  const [RentPrice, setRentPrice] = useState(0);
   const [Images, setImages] = useState([]);
   const [ShowSuccess, setShowSuccess] = useState(false);
 
   const onNameChange = (e) => {
     setName(e.target.value);
   };
-
-  const onEmailChange = (e) => {
-    setEmail(e.target.value);
+  const onTimeChange = (e) => {
+    setTime(e.target.value);
   };
-
-  const onAddressChange = (e) => {
-    setAddress(e.target.value);
+  const onLocationChange = (e) => {
+    setLocation(e.target.value);
   };
-
+  const onPriceChange = (e) => {
+    setPrice(e.target.value);
+  };
   const onDescriptionChange = (e) => {
     setDescription(e.target.value);
   };
 
   const refreshImages = (updatedImages) => {
     setImages(updatedImages);
-  };
-
-  const onCapacityChange = (e) => {
-    setCapacity(e.target.value);
-  };
-
-  const onRentPriceChange = (e) => {
-    setRentPrice(e.target.value);
   };
 
   const successMessage = () => {
@@ -85,20 +73,20 @@ function UploadKitchenPage({ match }) {
     const variables = {
       writer: localStorage.getItem("userId"),
       name: Name,
-      email: Email,
-      images: Images,
-      address: Address,
-      capacity: Capacity,
-      rent_price: RentPrice,
+      time: Time,
+      location: Location,
+      price: Price,
       description: Description,
+      state: "pre",
+      images: Images,
     };
 
-    Axios.post(`/api/kitchens/upload-kitchen`, variables).then((response) => {
+    Axios.post("/api/event/upload-event", variables).then((response) => {
       if (response.data.success) {
-        console.log(response.data);
         successMessage();
+        console.log(response.data);
       } else {
-        alert("Failed to send Info to DB");
+        console.error(response.data);
       }
     });
   };
@@ -130,14 +118,8 @@ function UploadKitchenPage({ match }) {
             style={{ display: "flex", justifyContent: "center" }}
           >
             <div style={upload_middleBox_style}>
-              <Alert
-                message="Invite Only"
-                description="Currently, we are operating on invite-only. Feel free to leave your contact information to be contacted in the future."
-                type="info"
-                showIcon
-              />
               <Title level={4} style={{ color: "gray", paddingTop: "10px" }}>
-                Tell us a little about yourself
+                Information
               </Title>
               <Form onSubmit={onSubmit}>
                 {/* Name */}
@@ -148,46 +130,36 @@ function UploadKitchenPage({ match }) {
                 />
                 <br />
                 <br />
-                {/* Email */}
+                {/* Time */}
                 <Input
-                  placeholder="Email"
+                  placeholder="Time"
                   size="large"
-                  onChange={onEmailChange}
+                  onChange={onTimeChange}
                 />
                 <br />
                 <br />
-                {/* address */}
+                {/* Location */}
                 <Input
-                  placeholder="address"
+                  placeholder="Location"
                   size="large"
-                  onChange={onAddressChange}
-                />
-                <br />
-                <br />
-
-                {/* capacity */}
-                <Input
-                  placeholder="capacity"
-                  size="large"
-                  suffix="명"
-                  onChange={onCapacityChange}
+                  onChange={onLocationChange}
                 />
                 <br />
                 <br />
 
-                {/* Rent_Price */}
+                {/* Price */}
                 <Input
-                  placeholder="Rental Price"
+                  placeholder="Price"
                   size="large"
                   suffix="원"
-                  onChange={onRentPriceChange}
+                  onChange={onPriceChange}
                 />
                 <br />
                 <br />
 
                 {/* Description */}
                 <TextArea
-                  placeholder="Please write down short description about yourself"
+                  placeholder="Please write down short description"
                   onChange={onDescriptionChange}
                   value={Description}
                 />
@@ -195,7 +167,7 @@ function UploadKitchenPage({ match }) {
                 <br />
                 {/* Image Upload */}
                 <Title level={4} style={{ color: "gray" }}>
-                  Put your Images
+                  Images
                 </Title>
                 <ImageUpload refreshFunction={refreshImages} url={match.url} />
                 <br />
@@ -214,9 +186,8 @@ function UploadKitchenPage({ match }) {
           </Col>
         )}
       </Row>
-      {/*--------------------------------------------------*/}
     </>
   );
 }
 
-export default UploadKitchenPage;
+export default UploadEvent;

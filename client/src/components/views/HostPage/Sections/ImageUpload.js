@@ -3,8 +3,13 @@ import Dropzone from "react-dropzone";
 import { Icon } from "antd";
 import Axios from "axios";
 
-function ImageUpload(props) {
+function ImageUpload({ refreshFunction, url }) {
   const [Images, setImages] = useState([]);
+  let urlType = "";
+
+  // urlType이라는 변수를 지정해 줌으로써 upload-event인지 / upload-kitchen인지 구분한다.
+  if (url === "/upload-event") urlType = "event";
+  else urlType = "kitchens";
 
   const onDrop = (files) => {
     // files: 이 파라미터는 업로드한 파일의 정보가 담겨있는 파라미터이다.
@@ -20,7 +25,7 @@ function ImageUpload(props) {
     // '첫번째' 파일을 가져오기 위함임.
     formData.append("file", files[0]);
 
-    Axios.post("/api/kitchens/uploadImage", formData, config).then(
+    Axios.post(`/api/${urlType}/uploadImage`, formData, config).then(
       (response) => {
         if (response.data.success) {
           // 이렇게 하면 하나의 이미지만 넣을 수 있기 때문에
@@ -28,7 +33,7 @@ function ImageUpload(props) {
           console.log(response.data);
           // 전개 연산자를 사용해 다음과 같은 방식으로 이전, 이후의 이미지(여러개)를 저장할 수 있게 한다.
           setImages([...Images, response.data.image]);
-          props.refreshFunction([...Images, response.data.image]);
+          refreshFunction([...Images, response.data.image]);
         } else {
           // Error: ENOENT: no such file or directory,
           //  파일 또는 디렉토리가 없을 경우 나오는 에러
@@ -50,7 +55,7 @@ function ImageUpload(props) {
 
     setImages(newImages);
 
-    props.refreshFunction(newImages);
+    refreshFunction(newImages);
   };
 
   return (

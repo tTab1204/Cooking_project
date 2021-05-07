@@ -7,6 +7,7 @@ import { Route } from "react-router-dom";
 import Auth from "../../../hoc/auth";
 import { useRecoilState } from "recoil";
 import { hostDetailState } from "../../../atoms/atoms";
+import Loading from "../../Loading";
 
 const { TabPane } = Tabs;
 
@@ -15,11 +16,13 @@ function HostDetailPage({ match, history }) {
 
   // const [DetailHost, setDetailHost] = useState({});
   const [DetailHost, setDetailHost] = useRecoilState(hostDetailState);
+  const [loading, setloading] = useState(true);
 
   useEffect(() => {
     Axios.get(`/api/hosts/hosts_by_id?id=${hostsId}&type=single`)
       .then((response) => {
         setDetailHost(response.data.host[0]);
+        setloading(false);
       })
       .catch((err) => alert(err));
   }, []);
@@ -31,35 +34,41 @@ function HostDetailPage({ match, history }) {
   return (
     <>
       <div className="app">
-        <Row gutter={24}>
-          {/* ---------------- Show Main Card ------------------ */}
-          <HostCard detail={DetailHost} />
-          {/* ---------------- Show Main Card ------------------ */}
-          <Col className="gutter-row" xs={24} md={17}>
-            <Tabs defaultActiveKey="events" onChange={onHandleTab}>
-              {/* Events */}
-              <TabPane tab="Events" key="events"></TabPane>
+        {/* Loading... */}
+        {loading && <Loading />}
 
-              {/* Reviews */}
-              <TabPane tab="Reviews" key="reviews"></TabPane>
+        {/* HostDetailPage */}
+        {!loading && (
+          <Row gutter={24}>
+            {/* ---------------- Show Main Card ------------------ */}
+            <HostCard detail={DetailHost} />
+            {/* ---------------- Show Main Card ------------------ */}
+            <Col className="gutter-row" xs={24} md={17}>
+              <Tabs defaultActiveKey="events" onChange={onHandleTab}>
+                {/* Events */}
+                <TabPane tab="Events" key="events"></TabPane>
 
-              {/* Followers */}
-              <TabPane tab="Followers" key="followers">
-                {/* <Followers /> */}
-              </TabPane>
-            </Tabs>
-          </Col>
-          <Route
-            exact
-            path={`${match.url}/:tab`}
-            component={Auth(HostTabs, null)}
-          />
-          <Route
-            exact
-            path={match.url} // match.url === rooms
-            render={() => <h3>탭을 선택해주세오.</h3>}
-          />
-        </Row>
+                {/* Reviews */}
+                <TabPane tab="Reviews" key="reviews"></TabPane>
+
+                {/* Followers */}
+                <TabPane tab="Followers" key="followers">
+                  {/* <Followers /> */}
+                </TabPane>
+              </Tabs>
+            </Col>
+            <Route
+              exact
+              path={`${match.url}/:tab`}
+              component={Auth(HostTabs, null)}
+            />
+            <Route
+              exact
+              path={match.url} // match.url === rooms
+              render={() => <h3>탭을 선택해주세오.</h3>}
+            />
+          </Row>
+        )}
       </div>
     </>
   );

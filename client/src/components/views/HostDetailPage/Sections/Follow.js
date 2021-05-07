@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Col, Statistic, Row, Button } from "antd";
-import Ratings from "./Ratings";
+import Loading from "../../../Loading";
+//import Ratings from "./Ratings";
 import Axios from "axios";
+import { LoadingOutlined } from "@ant-design/icons";
 
 function Follow({ detail, url }) {
   const [FollowNumber, setFollowNumber] = useState(0);
   const [Followed, setFollowed] = useState(false);
+  const [loading, setloading] = useState(true);
 
   const userFrom = detail.userFrom;
   const hostId = detail._id;
@@ -20,11 +23,13 @@ function Follow({ detail, url }) {
   useEffect(() => {
     Axios.post("/api/follow/followNumber", variables).then((response) => {
       setFollowNumber(response.data.followNumber);
+      setloading(false);
     });
 
     Axios.post("/api/follow/followed", variables).then((response) => {
       if (response.data.success) {
         setFollowed(response.data.followed);
+        setloading(false);
       } else alert("정보를 가져오는 데 실패했습니다.");
     });
   }, [detail]);
@@ -34,7 +39,6 @@ function Follow({ detail, url }) {
       Axios.post("/api/follow/removeFollow", variables).then((response) => {
         if (response.data.success) {
           setFollowNumber(FollowNumber - 1);
-
           setFollowed(!Followed);
         } else {
           alert("Follow 리스트에서 지우는걸 실패했습니다.");
@@ -44,7 +48,6 @@ function Follow({ detail, url }) {
       Axios.post("/api/follow/addFollow", variables).then((response) => {
         if (response.data.success) {
           setFollowNumber(FollowNumber + 1);
-
           setFollowed(!Followed);
         } else {
           alert("Favorite 리스트에서 추가하는데에 실패했습니다.");
@@ -61,11 +64,13 @@ function Follow({ detail, url }) {
             <div className="host-bottom-card ">
               {/* Follow */}
               <Col span={12}>
-                <Statistic title="Followers" value={FollowNumber} />
+                {loading && <LoadingOutlined />}
+                {!loading && (
+                  <Statistic title="Followers" value={FollowNumber} />
+                )}
               </Col>
 
               {/* Ratings */}
-              <Ratings />
             </div>
           </Row>
           {url !== "/hosts" && (

@@ -1,7 +1,6 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
-import { Menu, Button, Modal } from "antd";
-import LoginPage from "../../LoginPage/LoginPage";
+import { Menu, Button } from "antd";
+// import LoginPage from "../../LoginPage/LoginPage";
 import axios from "axios";
 import { USER_SERVER } from "../../../Config";
 import { withRouter, Link } from "react-router-dom";
@@ -13,22 +12,6 @@ const MenuItemGroup = Menu.ItemGroup;
 
 function RightMenu(props) {
   const user = useSelector((state) => state.user);
-
-  //----------------- Modal 관련된 부분 --------------------//
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-  //----------------- Modal 관련된 부분 --------------------//
 
   const logoutHandler = () => {
     axios.get(`${USER_SERVER}/logout`).then((response) => {
@@ -43,21 +26,9 @@ function RightMenu(props) {
   if (user.userData && !user.userData.isAuth) {
     return (
       <Menu mode={props.mode}>
-        {/* <Menu.Item key="mail">
+        <Menu.Item key="mail">
           <Link to="/login">Signin</Link>
-        </Menu.Item> */}
-        <Menu.Item disabled="true">
-          <Button onClick={showModal}>Login</Button>
         </Menu.Item>
-        <Modal
-          title="Login"
-          visible={isModalVisible}
-          onOk={handleOk}
-          onCancel={handleCancel}
-          footer={null}
-        >
-          <LoginPage />
-        </Modal>
         <Menu.Item key="app">
           <Link to="/register">Signup</Link>
         </Menu.Item>
@@ -67,7 +38,7 @@ function RightMenu(props) {
     return (
       <Menu mode={props.mode}>
         <Menu.Item key="app" style={{ borderBottom: "none" }}>
-          <Link to="/">Event</Link>
+          <Link to="/events">Event</Link>
         </Menu.Item>
 
         <SubMenu title={<span>Kitchen</span>} style={{ borderBottom: "none" }}>
@@ -101,8 +72,13 @@ function RightMenu(props) {
           }
         >
           <MenuItemGroup>
-            <Menu.Item key="setting:1">My Profile</Menu.Item>
-            <Menu.Item key="setting:2">My Tickets</Menu.Item>
+            {user.userData && user.userData.isHost && (
+              <Menu.Item key="upload-event">
+                <Link to="/upload-event">Upload Event</Link>
+              </Menu.Item>
+            )}
+            <Menu.Item key="my-profile">My Profile</Menu.Item>
+            <Menu.Item key="my-ticket">My Tickets</Menu.Item>
             <Menu.Item key="logout">
               <Link style={{ color: "#1890ff" }} to="/" onClick={logoutHandler}>
                 Logout
