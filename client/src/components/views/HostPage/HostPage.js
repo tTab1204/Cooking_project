@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Typography, Card, Avatar, Divider, Statistic } from "antd";
+import { Row, Col, Typography, Card, Avatar, Divider } from "antd";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import Follow from "../HostDetailPage/Sections/Follow";
 import Ratings from "../HostDetailPage/Sections/Ratings";
+import Mini_Korea from "../food_nation/mini_korea.png";
+import { hostDetailState } from "../../../atoms/atoms";
+import { useRecoilValue } from "recoil";
 
 const { Title } = Typography;
 
-function HostPage() {
+const removeLinkColor = { color: "inherit", textDecoration: "none" };
+
+function HostPage({ match }) {
   const [Hosts, setHosts] = useState([]);
+  const hostState = useRecoilValue(hostDetailState);
 
   useEffect(() => {
     Axios.get("/api/hosts/showHosts").then((response) => {
@@ -23,7 +29,7 @@ function HostPage() {
   const renderHosts = Hosts.map((host, index) => (
     <Col xl={8} md={12} xs={24} key={index} className="gutter-row">
       <Card hoverable={true} style={{ border: "none" }}>
-        <Link to={`/hosts/${host._id}`}>
+        <Link to={`/hosts/${host._id}`} style={removeLinkColor}>
           <Row type="flex">
             <Col xs={10} md={24}>
               <div style={{ textAlign: "center" }}>
@@ -32,7 +38,7 @@ function HostPage() {
                     width: "150px",
                     height: "150px",
                   }}
-                  src={`http://localhost:5000/${host.image[0]}`}
+                  src={`http://localhost:5000/${host.image}`}
                   alt="host-main-image"
                 />
               </div>
@@ -49,7 +55,12 @@ function HostPage() {
                   </Title>
                 </div>
                 <div style={{ textAlign: "center" }}>
-                  <img src="" alt="nation" />
+                  <img
+                    src={host.food_nation === "Korean" && Mini_Korea}
+                    width="50px"
+                    height="50px"
+                    alt="nation"
+                  />
                 </div>
               </Col>
             </Col>
@@ -58,7 +69,11 @@ function HostPage() {
           <Row>
             <div className="host-bottom-card ">
               {/* Follow */}
-              {/* <Follow /> */}
+              <Follow
+                userFrom={localStorage.getItem("userId")}
+                detail={host}
+                url={match.url}
+              />
 
               {/* Ratings */}
               {/* <Ratings /> */}

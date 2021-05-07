@@ -3,7 +3,7 @@ import { Col, Statistic, Row, Button } from "antd";
 import Ratings from "./Ratings";
 import Axios from "axios";
 
-function Follow({ detail }) {
+function Follow({ detail, url }) {
   const [FollowNumber, setFollowNumber] = useState(0);
   const [Followed, setFollowed] = useState(false);
 
@@ -68,17 +68,19 @@ function Follow({ detail }) {
               <Ratings />
             </div>
           </Row>
-          <Row
-            style={{ paddingTop: "10px", textAlign: "center", width: "100%" }}
-          >
-            <Button
-              onClick={onClickFollow}
-              type={Followed ? "none" : "primary"}
-              style={{ width: "100%" }}
+          {url !== "/hosts" && (
+            <Row
+              style={{ paddingTop: "10px", textAlign: "center", width: "100%" }}
             >
-              {Followed ? "Unfollow" : "Follow"}
-            </Button>
-          </Row>
+              <Button
+                onClick={onClickFollow}
+                type={Followed ? "none" : "primary"}
+                style={{ width: "100%" }}
+              >
+                {Followed ? "Unfollow" : "Follow"}
+              </Button>
+            </Row>
+          )}
         </div>
       )}
     </>

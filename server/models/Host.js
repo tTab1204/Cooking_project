@@ -18,6 +18,7 @@ const hostSchema = mongoose.Schema(
     },
     email: {
       type: String,
+      required: true,
     },
     kitchen_experience: {
       type: String,
@@ -26,12 +27,13 @@ const hostSchema = mongoose.Schema(
     // 음식 종류(ex: 한식, 양식, 일식 등)
     food_nation: {
       type: String,
+      required: true,
     },
 
     // 대표 이미지
     image: {
-      type: Array,
-      default: [],
+      type: String,
+      required: true,
     },
 
     // 간단한 설명

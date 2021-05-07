@@ -1,7 +1,7 @@
 import React, { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 import Auth from "../hoc/auth";
-// pages for this product
+// pages
 import LandingPage from "./views/LandingPage/LandingPage.js";
 import LoginPage from "./views/LoginPage/LoginPage.js";
 import RegisterPage from "./views/RegisterPage/RegisterPage.js";
@@ -9,20 +9,14 @@ import NavBar from "./views/NavBar/NavBar";
 import HostPage from "./views/HostPage/HostPage";
 import BecomeAHostPage from "./views/HostPage/BecomeAHostPage";
 import HostDetailPage from "./views/HostDetailPage/HostDetailPage";
-import HostTabs from "./views/HostDetailPage/Sections/HostTabs";
 import ListYourKitchenPage from "./views/KitchenPage/ListYourKitchenPage";
-import Events from "./views/HostDetailPage/Sections/Events";
-import Reviews from "./views/HostDetailPage/Sections/Reviews";
-import Followers from "./views/HostDetailPage/Sections/Followers";
 import Footer from "./views/Footer/Footer";
 import { Layout, Button } from "antd";
+import UploadKitchenPage from "./admin/UploadKitchenPage";
+import UploadHostPage from "./admin/UploadHostPage";
+import KitchenPage from "./views/KitchenPage/KitchenPage";
 
-// import { Magenta } from "@ant-design/colors";
-const { Header, Content } = Layout;
-
-//null   Anyone Can go inside
-//true   only logged in user can go inside
-//false  logged in user can't go inside
+const { Content } = Layout;
 
 function App() {
   return (
@@ -57,6 +51,17 @@ function App() {
               exact
               path="/list-your-kitchen"
               component={Auth(ListYourKitchenPage, null)}
+            />
+            <Route exact path="/kitchens" component={Auth(KitchenPage, null)} />
+            <Route
+              exact
+              path="/upload-kitchen"
+              component={Auth(UploadKitchenPage, true)}
+            />
+            <Route
+              exact
+              path="/upload-host"
+              component={Auth(UploadHostPage, true)}
             />
           </Switch>
         </div>

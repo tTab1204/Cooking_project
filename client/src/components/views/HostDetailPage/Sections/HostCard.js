@@ -6,6 +6,8 @@ import { Row, Col, Card, Avatar, Typography, Divider, Button } from "antd";
 const { Title } = Typography;
 
 function HostCard({ detail }) {
+  const { name, image } = detail;
+
   return (
     <>
       <Col className="gutter-row" xs={24} md={7}>
@@ -18,7 +20,7 @@ function HostCard({ detail }) {
                     width: "150px",
                     height: "150px",
                   }}
-                  src=""
+                  src={`http://localhost:5000/${image}`}
                   alt="host-main-image"
                 />
               </div>
@@ -31,7 +33,7 @@ function HostCard({ detail }) {
             }}
           >
             <Title level={2} style={{ marginBottom: "0px" }}>
-              {detail.name}
+              {name}
             </Title>
             <div>
               <img src="" alt="nation" />

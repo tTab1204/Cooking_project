@@ -11,20 +11,15 @@ const kitchenSchema = mongoose.Schema(
     name: {
       type: String,
       trim: true,
+      required: true,
     },
     email: {
       type: String,
-    },
-    email: {
-      type: String,
-    },
-
-    shareOrRent: {
-      type: String,
+      required: true,
     },
 
     // 대표 이미지
-    image: {
+    images: {
       type: Array,
       default: [],
     },
@@ -32,6 +27,19 @@ const kitchenSchema = mongoose.Schema(
     // 주소
     address: {
       type: String,
+      required: true,
+      trim: true,
+    },
+
+    // 수용인원
+    capacity: {
+      type: Number,
+      required: true,
+    },
+    // 대여 가격
+    rent_price: {
+      type: Number,
+      required: true,
     },
 
     // 간단한 설명

@@ -6,35 +6,17 @@ import {
   Col,
   Typography,
   Input,
-  Select,
   Form,
   Button,
   message,
 } from "antd";
-import BottomPages from "./Sections/BottomPages";
+import Axios from "axios";
+import ImageUpload from "../views/HostPage/Sections/ImageUpload";
 
 const { Title } = Typography;
-const { Option } = Select;
+const { TextArea } = Input;
 
 // -------------- style --------------- //
-const breadCrumb_style = {
-  background: `linear-gradient(to bottom, rgba(0,0,0,0)
-                39%, rgba(0,0,0,0)
-                41%, rgba(0,0,0,0.65)
-                100%),
-                url('https://source.unsplash.com/1600x900/?cooking'), #1c1c1c`,
-  height: "400px",
-  backgroundSize: "cover",
-  backgroundPosition: "center, center",
-  width: "100%",
-  position: "relative",
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "flex-end",
-  paddingLeft: "24px",
-  paddingRight: "24px",
-};
-
 const upload_middleBox_style = {
   maxWidth: "600px",
   paddingLeft: "24px",
@@ -47,15 +29,17 @@ const upload_middleBox_style = {
 };
 // ------------------------------------ //
 
-function BecomeAHostPage() {
+function UploadKitchenPage() {
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
-  const [Kitchen_Ex, setKitchen_Ex] = useState("");
-
+  const [Address, setAddress] = useState("");
+  const [Capacity, setCapacity] = useState(0);
+  const [Description, setDescription] = useState("");
+  const [RentPrice, setRentPrice] = useState(0);
+  const [Images, setImages] = useState([]);
   const [ShowSuccess, setShowSuccess] = useState(false);
 
   const onNameChange = (e) => {
-    // 의문 1: target 대신 currentTarget하면 왜 툭툭 끊기지? - 찾아보기!
     setName(e.target.value);
   };
 
@@ -63,9 +47,24 @@ function BecomeAHostPage() {
     setEmail(e.target.value);
   };
 
-  const onKitchen_ExChange = (label) => {
-    console.log(label.key);
-    setKitchen_Ex(label.key);
+  const onAddressChange = (e) => {
+    setAddress(e.target.value);
+  };
+
+  const onDescriptionChange = (e) => {
+    setDescription(e.target.value);
+  };
+
+  const refreshImages = (updatedImages) => {
+    setImages(updatedImages);
+  };
+
+  const onCapacityChange = (e) => {
+    setCapacity(e.target.value);
+  };
+
+  const onRentPriceChange = (e) => {
+    setRentPrice(e.target.value);
   };
 
   const successMessage = () => {
@@ -83,20 +82,30 @@ function BecomeAHostPage() {
   };
 
   const onSubmit = () => {
-    successMessage();
+    const variables = {
+      writer: localStorage.getItem("userId"),
+      name: Name,
+      email: Email,
+      images: Images,
+      address: Address,
+      capacity: Capacity,
+      rent_price: RentPrice,
+      description: Description,
+    };
+
+    Axios.post("/api/kitchens/upload-kitchen", variables).then((response) => {
+      if (response.data.success) {
+        console.log(response.data);
+        successMessage();
+      } else {
+        alert("Failed to send Info to DB");
+      }
+    });
   };
 
   return (
     <>
       <Row type="flex">
-        {/*------------------- Image -----------------------*/}
-        <div style={breadCrumb_style}>
-          <Title level={1} style={{ color: "white" }}>
-            Become a Host
-          </Title>
-        </div>
-        {/*--------------------------------------------------*/}
-
         {/*------------------- Inputs -----------------------*/}
 
         {ShowSuccess ? (
@@ -109,8 +118,7 @@ function BecomeAHostPage() {
             <div style={upload_middleBox_style}>
               <Result
                 status="success"
-                title="Successfully send the information"
-                subTitle="It will take a few days to answer. Thank you for your decision!"
+                title="Successfully upload the information in DB"
               />
             </div>
           </Col>
@@ -148,22 +156,50 @@ function BecomeAHostPage() {
                 />
                 <br />
                 <br />
-
-                {/* Kitchen_Experience */}
-                <Select
-                  labelInValue
-                  noStyle
+                {/* address */}
+                <Input
+                  placeholder="address"
                   size="large"
-                  placeholder="Previous industrial kitchen experience"
-                  onChange={onKitchen_ExChange}
-                >
-                  <Option value="None">None</Option>
-                  <Option value="Less than a year">Less than a year</Option>
-                  <Option value="More than a year">More than a year</Option>
-                </Select>
+                  onChange={onAddressChange}
+                />
                 <br />
                 <br />
 
+                {/* capacity */}
+                <Input
+                  placeholder="capacity"
+                  size="large"
+                  suffix="명"
+                  onChange={onCapacityChange}
+                />
+                <br />
+                <br />
+
+                {/* Rent_Price */}
+                <Input
+                  placeholder="Rental Price"
+                  size="large"
+                  suffix="원"
+                  onChange={onRentPriceChange}
+                />
+                <br />
+                <br />
+
+                {/* Description */}
+                <TextArea
+                  placeholder="Please write down short description about yourself"
+                  onChange={onDescriptionChange}
+                  value={Description}
+                />
+                <br />
+                <br />
+                {/* Image Upload */}
+                <Title level={4} style={{ color: "gray" }}>
+                  Put your Images
+                </Title>
+                <ImageUpload refreshFunction={refreshImages} />
+                <br />
+                <br />
                 {/* Submit Button */}
                 <Button
                   onClick={onSubmit}
@@ -179,12 +215,8 @@ function BecomeAHostPage() {
         )}
       </Row>
       {/*--------------------------------------------------*/}
-
-      {/*-------------------BottomPages-------------------*/}
-      <BottomPages />
-      {/*--------------------------------------------------*/}
     </>
   );
 }
 
-export default React.memo(BecomeAHostPage);
+export default UploadKitchenPage;

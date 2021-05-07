@@ -14,6 +14,7 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import promiseMiddleware from "redux-promise";
 import ReduxThunk from "redux-thunk";
+import { RecoilRoot } from "recoil";
 
 const createStoreWithMiddleware = applyMiddleware(
   promiseMiddleware,
@@ -28,9 +29,11 @@ ReactDOM.render(
         window.__REDUX_DEVTOOLS_EXTENSION__()
     )}
   >
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <RecoilRoot>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </RecoilRoot>
   </Provider>,
   document.getElementById("root")
 );
