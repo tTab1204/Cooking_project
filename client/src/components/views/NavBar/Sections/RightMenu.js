@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Menu, Button } from "antd";
+import React from "react";
+import { Menu } from "antd";
 // import LoginPage from "../../LoginPage/LoginPage";
 import axios from "axios";
 import { USER_SERVER } from "../../../Config";
@@ -72,11 +72,6 @@ function RightMenu(props) {
           }
         >
           <MenuItemGroup>
-            {user.userData && user.userData.isHost && (
-              <Menu.Item key="upload-event">
-                <Link to="/upload-event">Upload Event</Link>
-              </Menu.Item>
-            )}
             <Menu.Item key="my-profile">My Profile</Menu.Item>
             <Menu.Item key="my-ticket">My Tickets</Menu.Item>
             <Menu.Item key="logout">

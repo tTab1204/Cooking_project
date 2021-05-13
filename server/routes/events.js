@@ -29,7 +29,7 @@ let storage = multer.diskStorage({
 // 나중에 해보자(5/7-금)
 const upload = multer({ storage: storage }).single("file");
 
-router.post("/uploadImage", auth, (req, res) => {
+router.post("/upload-image", auth, (req, res) => {
   // 노드서버에 파일을 저장하기 위한 dependency를 설치한다.(multer)
   // npm install multer --save
 
@@ -55,6 +55,37 @@ router.post("/upload-event", auth, (req, res) => {
     if (err) return res.json({ success: false, err });
     res.status(200).json({ success: true, doc });
   });
+});
+
+router.get("/show-events", (req, res) => {
+  Event.find()
+    .populate("hostId")
+    .exec((err, events) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).json({ success: true, events });
+    });
+});
+
+// --------------- get Event's Detail ----------------//
+router.get("/events_by_id", (req, res) => {
+  let type = req.query.type;
+  let eventId = req.query.id;
+
+  Event.find({ _id: eventId })
+    .populate("hostId")
+    .exec((err, event) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).json({ success: true, event });
+    });
+});
+
+router.post("/show-host-events", auth, (req, res) => {
+  Event.find({ partyHost: req.body.hostId })
+    .populate("hostId")
+    .exec((err, events) => {
+      if (err) res.status(400).send(err);
+      res.status(200).json({ success: true, events });
+    });
 });
 
 module.exports = router;

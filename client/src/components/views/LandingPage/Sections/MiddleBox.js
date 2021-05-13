@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Card, Avatar, Button, Typography } from "antd";
+import { Row, Col, Button, Typography } from "antd";
 const { Title, Paragraph } = Typography;
 function MiddleBox() {
   return (

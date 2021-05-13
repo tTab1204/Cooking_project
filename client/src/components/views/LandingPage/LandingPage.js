@@ -1,5 +1,5 @@
 import React from "react";
-import BottomBox from "./Sections/BottomBox";
+// import BottomBox from "./Sections/BottomBox";
 import MiddleBox from "./Sections/MiddleBox";
 import { Typography } from "antd";
 

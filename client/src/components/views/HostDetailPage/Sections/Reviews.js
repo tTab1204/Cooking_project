@@ -1,45 +1,85 @@
-import React, { useState, useEffect } from "react";
-import { Comment, Avatar, Button, Input, Rate, Form } from "antd";
-
+import React, { useState } from "react";
+import { Form, Input, Button } from "antd";
+import Axios from "axios";
+import SingleReview from "./SingleReview";
+import ReplyReview from "./ReplyReview";
 const { TextArea } = Input;
 
-function Reviews() {
-  const [CommentValue, setCommentValue] = useState("");
+function Reviews({ hostId, reviewList, refreshFunction, showReviews }) {
+  const [ReviewValue, setReviewValue] = useState("");
+
+  // 개선할 부분 - 나중에 api요청하는거 다 한 군데 모아서 export해주자
+  const API_REIVEWS = "/api/reviews";
+
   const handleClick = (e) => {
-    setCommentValue(e.target.value);
+    setReviewValue(e.target.value);
   };
 
-  const actions = [<span>수정</span>, <span>삭제</span>, <Rate />];
+  // 실제 프로젝트에서는 처음 써 본 async await
+  // 코드 리팩토링 - 전부 async await 쓰자
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    const variables = {
+      writer: localStorage.getItem("userId"),
+      hostId: hostId,
+      content: ReviewValue,
+    };
+
+    try {
+      const response = await Axios.post(
+        `${API_REIVEWS}/save-review`,
+        variables
+      );
+
+      setReviewValue("");
+      refreshFunction(response.data.review);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   return (
     <>
-      {/* 댓글 작성 공간 */}
-      <Form>
+      {/* Root Review Form */}
+      <Form style={{ display: "flex" }} onSubmit={onSubmit}>
         <TextArea
           style={{ width: "100%", borderRadius: "5px" }}
-          placeholder="댓글을 작성해주세요."
-          value={CommentValue}
           onChange={handleClick}
+          value={ReviewValue}
+          placeholder="Please write down your review"
         />
+        <br />
+        <Button style={{ width: "20%", height: "52px" }} onClick={onSubmit}>
+          Submit
+        </Button>
       </Form>
-
-      <Comment
-        actions={actions}
-        author={"Han Solo"}
-        avatar={
-          <Avatar
-            src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-            alt="han solo"
-          />
-        }
-        content={
-          <p>
-            We supply a series of design principles, practical patterns and high
-            quality design resources (Sketch and Axure), to help people create
-            their product prototypes beautifully and efficiently.
-          </p>
-        }
-      ></Comment>
+      {/* Review List */}
+      {reviewList &&
+        reviewList
+          .map(
+            (review, index) =>
+              !review.responseTo && (
+                <div key={index}>
+                  <SingleReview
+                    refreshFunction={refreshFunction}
+                    review={review}
+                    hostId={hostId}
+                    showReviews={showReviews}
+                  />
+                  <ReplyReview
+                    refreshFunction={refreshFunction}
+                    hostId={hostId}
+                    parentReviewId={review._id}
+                    reviewList={reviewList}
+                    showReviews={showReviews}
+                  />
+                </div>
+              )
+          )
+          .reverse()}
+      {/* 최신순으로 정렬하기 위해 reverse() 사용 */}
+      {/* 추후에 좋아요가 높은 순서대로 정렬하는 기능 필요 */}
     </>
   );
 }

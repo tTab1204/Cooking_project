@@ -41,7 +41,7 @@ function KitchenPage() {
       <Link to={`/kitchens/${kitchen._id}`} style={removeLinkColor}>
         <Card
           hoverable={true}
-          style={{ border: "none" }}
+          style={{ border: "none", height: "450px" }}
           cover={
             <img
               alt="kitchen"

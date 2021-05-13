@@ -1,14 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Axios from "axios";
 import { Col, Card, Row } from "antd";
 const { Meta } = Card;
 
-function Events() {
-  // 따로 Host인 사람들은 Event Upload 페이지를 만들어야겠다!
+function Events({ hostId }) {
+  const API_EVENTS = "/api/events";
+  const variable = { partyHost: hostId };
+
+  const [HostEvents, setHostEvents] = useState([]);
+
+  const showHostEvent = async () => {
+    try {
+      const response = await Axios.post(
+        `${API_EVENTS}/show-host-events`,
+        variable
+      );
+      console.log(response.data);
+    } catch {
+      console.error();
+    }
+  };
+
+  useEffect(() => {
+    showHostEvent();
+  }, []);
 
   return (
     <>
       <div className="site-card-wrapper">
         <Row gutter={[16, 16]}>
+          {/*-------------- 반복되는부분--------------- */}
           <Col lg={8} md={12} xs={24}>
             <Card
               hoverable
@@ -25,6 +46,7 @@ function Events() {
               />
             </Card>
           </Col>
+          {/*-------------- 반복되는부분--------------- */}
           <Col lg={8} md={12} xs={24}>
             <Card
               hoverable

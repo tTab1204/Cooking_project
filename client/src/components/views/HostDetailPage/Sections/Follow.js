@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Col, Statistic, Row, Button } from "antd";
-import Loading from "../../../Loading";
+// import Loading from "../../../Loading";
 //import Ratings from "./Ratings";
 import Axios from "axios";
 import { LoadingOutlined } from "@ant-design/icons";

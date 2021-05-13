@@ -10,7 +10,7 @@ import {
   message,
 } from "antd";
 import Axios from "axios";
-import ImageUpload from "../HostPage/Sections/ImageUpload";
+import ImageUpload from "../views/HostPage/Sections/ImageUpload";
 const { Title } = Typography;
 
 const { TextArea } = Input;

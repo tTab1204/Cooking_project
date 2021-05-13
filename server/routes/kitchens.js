@@ -27,7 +27,7 @@ let storage = multer.diskStorage({
 
 const upload = multer({ storage: storage }).single("file");
 
-router.post("/uploadImage", auth, (req, res) => {
+router.post("/upload-image", auth, (req, res) => {
   // 노드서버에 파일을 저장하기 위한 dependency를 설치한다.(multer)
   // npm install multer --save
 

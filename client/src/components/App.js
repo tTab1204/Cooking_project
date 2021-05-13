@@ -17,7 +17,8 @@ import UploadHostPage from "./admin/UploadHostPage";
 import KitchenPage from "./views/KitchenPage/KitchenPage";
 import KitchenDetailPage from "./views/KitchenDetailPage/KitchenDetailPage";
 import EventPage from "./views/EventPage/EventPage";
-import UploadEventPage from "./views/UploadEventPage/UploadEventPage";
+import UploadEventPage from "./admin/UploadEventPage";
+import EventDetailPage from "../EventDetailPage/EventDetailPage";
 
 const { Content } = Layout;
 
@@ -27,7 +28,14 @@ function App() {
       <NavBar />
 
       <Content>
-        <div style={{ paddingTop: "69px", minHeight: "calc(100vh - 80px)" }}>
+        <div
+          style={{
+            paddingTop: "69px",
+            minHeight: "calc(100vh - 80px)",
+            paddingLeft: "5%",
+            paddingRight: "5%",
+          }}
+        >
           {/* <Switch> 는 첫번째로 매칭되는 path 를 가진 컴포넌트를 렌더링 시킨다. 
           이것이 exact path 와 다른 점은 첫번째 매칭만 본다는 것이다. */}
           <Switch>
@@ -45,7 +53,6 @@ function App() {
               component={Auth(BecomeAHostPage, true)}
             />
             <Route
-              exact
               path="/hosts/:hostsId"
               component={Auth(HostDetailPage, null)}
             />
@@ -62,6 +69,11 @@ function App() {
               component={Auth(KitchenDetailPage, null)}
             />
             <Route exact path="/events" component={Auth(EventPage, null)} />
+            <Route
+              exact
+              path="/events/:eventId"
+              component={Auth(EventDetailPage, null)}
+            />
             <Route
               exact
               path="/upload-kitchen"

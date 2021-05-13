@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Typography, Card, Avatar, Divider, Skeleton } from "antd";
+import { Row, Col, Typography, Card, Avatar, Divider } from "antd";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import Follow from "../HostDetailPage/Sections/Follow";
@@ -7,7 +7,6 @@ import Ratings from "../HostDetailPage/Sections/Ratings";
 import Mini_Korea from "../food_nation/mini_korea.png";
 import Loading from "../../Loading";
 
-const { Meta } = Card;
 const { Title } = Typography;
 
 const removeLinkColor = { color: "inherit", textDecoration: "none" };

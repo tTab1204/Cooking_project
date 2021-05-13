@@ -3,12 +3,11 @@ import { withRouter, Link } from "react-router-dom";
 import { loginUser } from "../../../_actions/user_actions";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { Form, Icon, Input, Button, Typography, Spin } from "antd";
+import { Form, Icon, Input, Button } from "antd";
 import { useDispatch } from "react-redux";
+import { useRecoilState } from "recoil";
 
-import { LoadingOutlined } from "@ant-design/icons";
-
-const { Title } = Typography;
+// import { LoadingOutlined } from "@ant-design/icons";
 
 function LoginPage(props) {
   const dispatch = useDispatch();
@@ -50,6 +49,10 @@ function LoginPage(props) {
             .then((response) => {
               if (response.payload.loginSuccess) {
                 window.localStorage.setItem("userId", response.payload.userId);
+                console.log(
+                  "로그인에 대한 action.payload 보기: ",
+                  response.payload
+                );
                 if (rememberMe === true) {
                   window.localStorage.setItem("rememberMe", values.id);
                 } else {
@@ -75,12 +78,12 @@ function LoginPage(props) {
           values,
           touched,
           errors,
-          dirty,
+          //  dirty,
           isSubmitting,
           handleChange,
           handleBlur,
           handleSubmit,
-          handleReset,
+          //   handleReset,
         } = props;
         return (
           <div className="app">

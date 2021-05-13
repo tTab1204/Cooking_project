@@ -5,7 +5,11 @@ const eventSchema = mongoose.Schema(
   {
     writer: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: "Host",
+    },
+    partyHost: {
+      type: Schema.Types.ObjectId,
+      ref: "Host",
     },
     name: {
       type: String,

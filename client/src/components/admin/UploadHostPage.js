@@ -34,6 +34,8 @@ const upload_middleBox_style = {
 // ------------------------------------ //
 
 function UploadHostPage() {
+  const userId = localStorage.getItem("userId");
+
   const [Name, setName] = useState("");
   const [Email, setEmail] = useState("");
   const [Kitchen_Ex, setKitchen_Ex] = useState("");
@@ -55,7 +57,7 @@ function UploadHostPage() {
 
     formData.append("file", files[0]);
 
-    Axios.post("/api/hosts/uploadImage", formData, config).then((response) => {
+    Axios.post("/api/hosts/upload-image", formData, config).then((response) => {
       if (response.data.success) {
         console.log(response.data);
         setImage(response.data.image);
@@ -112,7 +114,7 @@ function UploadHostPage() {
 
   const onSubmit = () => {
     const variables = {
-      writer: localStorage.getItem("userId"),
+      writer: userId,
       name: Name,
       email: Email,
       kitchen_experience: Kitchen_Ex,

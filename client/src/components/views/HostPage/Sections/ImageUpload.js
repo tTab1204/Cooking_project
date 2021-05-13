@@ -8,7 +8,7 @@ function ImageUpload({ refreshFunction, url }) {
   let urlType = "";
 
   // urlType이라는 변수를 지정해 줌으로써 upload-event인지 / upload-kitchen인지 구분한다.
-  if (url === "/upload-event") urlType = "event";
+  if (url === "/upload-event") urlType = "events";
   else urlType = "kitchens";
 
   const onDrop = (files) => {
@@ -25,7 +25,7 @@ function ImageUpload({ refreshFunction, url }) {
     // '첫번째' 파일을 가져오기 위함임.
     formData.append("file", files[0]);
 
-    Axios.post(`/api/${urlType}/uploadImage`, formData, config).then(
+    Axios.post(`/api/${urlType}/upload-image`, formData, config).then(
       (response) => {
         if (response.data.success) {
           // 이렇게 하면 하나의 이미지만 넣을 수 있기 때문에

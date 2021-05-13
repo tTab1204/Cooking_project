@@ -2,7 +2,7 @@ import React from "react";
 import Follow from "./Follow";
 // import Ratings from "./Ratings";
 
-import { Row, Col, Card, Avatar, Typography, Divider, Button } from "antd";
+import { Row, Col, Card, Avatar, Typography, Divider } from "antd";
 
 const { Title } = Typography;
 
