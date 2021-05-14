@@ -72,6 +72,7 @@ function UploadEvent({ match }) {
   const onSubmit = () => {
     const variables = {
       writer: localStorage.getItem("userId"),
+      host: "609ce5949d64244f2c79cc53", // dopa
       name: Name,
       time: Time,
       location: Location,
@@ -81,7 +82,7 @@ function UploadEvent({ match }) {
       images: Images,
     };
 
-    Axios.post("/api/event/upload-event", variables).then((response) => {
+    Axios.post("/api/events/upload-event", variables).then((response) => {
       if (response.data.success) {
         successMessage();
         console.log(response.data);

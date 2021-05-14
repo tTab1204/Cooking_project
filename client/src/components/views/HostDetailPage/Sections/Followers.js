@@ -1,50 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { List, Avatar } from "antd";
 import { Link } from "react-router-dom";
+import Axios from "axios";
 
-const data = [
-  {
-    id: 1,
-    title: "Ant Design Title 1",
-  },
-  {
-    id: 2,
-    title: "Ant Design Title 2",
-  },
-  {
-    id: 3,
-    title: "Ant Design Title 3",
-  },
-  {
-    id: 4,
-    title: "Ant Design Title 4",
-  },
-  {
-    id: 5,
-    title: "Ant Design Title 5",
-  },
-];
+function Followers({ hostId }) {
+  const API_FOLLOWERS = "/api/follow";
+  const variable = { hostId: hostId };
 
-function Followers() {
+  const [HostFollowers, setHostFollowers] = useState([]);
+
+  const showFollowers = async () => {
+    try {
+      const response = await Axios.post(
+        `${API_FOLLOWERS}/show-host-followers`,
+        variable
+      );
+      setHostFollowers(response.data.followers);
+    } catch {
+      console.error();
+    }
+  };
+
+  useEffect(() => {
+    showFollowers();
+  }, []);
+
   return (
     <>
-      <List
-        header={<div>336 followers</div>}
-        itemLayout="horizontal"
-        dataSource={data}
-        renderItem={(item) => (
-          <List.Item key={item.id}>
-            <List.Item.Meta
-              key={item.id}
-              avatar={
-                <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-              }
-              title={<a href="https://ant.design">{item.title}</a>}
-              description={[<Link to="/">@byron</Link>]}
-            />
-          </List.Item>
-        )}
-      />
+      {HostFollowers && (
+        <List
+          header={<div>{HostFollowers.length} followers</div>}
+          itemLayout="horizontal"
+          dataSource={HostFollowers}
+          renderItem={(follower, index) => (
+            <List.Item key={index}>
+              <List.Item.Meta
+                avatar={<Avatar src={follower.userFrom.image} />}
+                title={
+                  <a href="https://ant.design">{follower.userFrom.name}</a>
+                }
+                description={[<Link to="/">@{follower.userFrom.name}</Link>]}
+              />
+            </List.Item>
+          )}
+        />
+      )}
     </>
   );
 }

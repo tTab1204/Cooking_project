@@ -59,7 +59,7 @@ router.post("/upload-event", auth, (req, res) => {
 
 router.get("/show-events", (req, res) => {
   Event.find()
-    .populate("hostId")
+    .populate("host")
     .exec((err, events) => {
       if (err) return res.status(400).send(err);
       res.status(200).json({ success: true, events });
@@ -72,7 +72,7 @@ router.get("/events_by_id", (req, res) => {
   let eventId = req.query.id;
 
   Event.find({ _id: eventId })
-    .populate("hostId")
+    .populate("host")
     .exec((err, event) => {
       if (err) return res.status(400).send(err);
       res.status(200).json({ success: true, event });
@@ -80,8 +80,8 @@ router.get("/events_by_id", (req, res) => {
 });
 
 router.post("/show-host-events", auth, (req, res) => {
-  Event.find({ partyHost: req.body.hostId })
-    .populate("hostId")
+  Event.find({ host: { $in: req.body.host } })
+    .populate("host")
     .exec((err, events) => {
       if (err) res.status(400).send(err);
       res.status(200).json({ success: true, events });

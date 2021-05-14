@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Events from "./Events";
 import Reviews from "./Reviews";
-// import Followers from "./Followers";
+import Followers from "./Followers";
 import Axios from "axios";
 import { Tabs, Col } from "antd";
 
@@ -60,7 +60,7 @@ function HostTabs({ url, history, hostId }) {
 
           {/* Followers */}
           <TabPane tab="Followers" key="followers">
-            {/* <Followers url={url} /> */}
+            <Followers hostId={hostId} />
           </TabPane>
         </Tabs>
       </Col>

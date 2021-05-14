@@ -63,7 +63,7 @@ function EventPage() {
             <span style={{ marginRight: "5px" }}>
               <TeamOutlined />
             </span>
-            <span>이름</span>
+            <span>{event.host.name}</span>
           </span>
         </Card>
       </Link>

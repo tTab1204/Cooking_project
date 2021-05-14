@@ -5,7 +5,6 @@ import { Formik } from "formik";
 import * as Yup from "yup";
 import { Form, Icon, Input, Button } from "antd";
 import { useDispatch } from "react-redux";
-import { useRecoilState } from "recoil";
 
 // import { LoadingOutlined } from "@ant-design/icons";
 

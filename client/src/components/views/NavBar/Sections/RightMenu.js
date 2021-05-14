@@ -72,8 +72,15 @@ function RightMenu(props) {
           }
         >
           <MenuItemGroup>
-            <Menu.Item key="my-profile">My Profile</Menu.Item>
-            <Menu.Item key="my-ticket">My Tickets</Menu.Item>
+            <Menu.Item key="upload-event">
+              <Link to="/upload-event">Upload Event</Link>
+            </Menu.Item>
+            <Menu.Item key="my-profile">
+              <Link to="/my-profile">My Profile</Link>
+            </Menu.Item>
+            <Menu.Item key="my-tickets">
+              <Link to="/my-tickets">My Tickets</Link>
+            </Menu.Item>
             <Menu.Item key="logout">
               <Link style={{ color: "#1890ff" }} to="/" onClick={logoutHandler}>
                 Logout

@@ -10,7 +10,7 @@ function Follow({ detail, url }) {
   const [Followed, setFollowed] = useState(false);
   const [loading, setloading] = useState(true);
 
-  const userFrom = detail.userFrom;
+  const userFrom = localStorage.getItem("userId");
   const hostId = detail._id;
   const hostName = detail.name;
 

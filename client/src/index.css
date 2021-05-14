@@ -54,7 +54,7 @@ body {
 .app {
   display: flex;
   flex-direction: column;
-  padding-top: 12px;
+  padding-top: 20px;
   width: 100%;
   padding-left: 24px;
   padding-right: 24px;

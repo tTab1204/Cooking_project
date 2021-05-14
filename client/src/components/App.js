@@ -19,6 +19,8 @@ import KitchenDetailPage from "./views/KitchenDetailPage/KitchenDetailPage";
 import EventPage from "./views/EventPage/EventPage";
 import UploadEventPage from "./admin/UploadEventPage";
 import EventDetailPage from "../EventDetailPage/EventDetailPage";
+import MyProfilePage from "./views/MyPage/MyProfilePage";
+import MyTicketPage from "./views/MyPage/MyTicketPage";
 
 const { Content } = Layout;
 
@@ -69,6 +71,21 @@ function App() {
               component={Auth(KitchenDetailPage, null)}
             />
             <Route exact path="/events" component={Auth(EventPage, null)} />
+
+            {/* My Page */}
+            <Route
+              exact
+              path="/my-profile"
+              component={Auth(MyProfilePage, null)}
+            />
+
+            <Route
+              exact
+              path="/my-tickets"
+              component={Auth(MyTicketPage, null)}
+            />
+
+            {/* Admin Page */}
             <Route
               exact
               path="/events/:eventId"

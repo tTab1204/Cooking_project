@@ -27,6 +27,17 @@ router.post("/followed", auth, (req, res) => {
   });
 });
 
+router.post("/show-host-followers", auth, (req, res) => {
+  Follow.find({
+    hostId: req.body.hostId,
+  })
+    .populate("userFrom")
+    .exec((err, followers) => {
+      if (err) return res.status(400).send(err);
+      res.status(200).json({ success: true, followers });
+    });
+});
+
 router.post("/removeFollow", auth, (req, res) => {
   Follow.findOneAndDelete({
     hostId: req.body.hostId,

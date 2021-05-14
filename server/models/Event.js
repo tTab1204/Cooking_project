@@ -7,7 +7,7 @@ const eventSchema = mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: "Host",
     },
-    partyHost: {
+    host: {
       type: Schema.Types.ObjectId,
       ref: "Host",
     },
