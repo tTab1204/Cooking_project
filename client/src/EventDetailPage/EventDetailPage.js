@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
 import { Row, Col, Card, Typography, Divider, Descriptions } from "antd";
-const { Title } = Typography;
+import {
+  CardBody,
+  InnerCardBody,
+  CardSection,
+  Menu,
+  CardImageStyle,
+} from "../styles/EventDetailStyle";
+
+const { Title, Paragraph } = Typography;
 
 // import ImageSlider from "../components/utils/ImageSlider";
 
@@ -39,6 +47,21 @@ const imgStyle = {
 const descriptionStyle = {
   display: "grid",
   gridTemplateColumns: "1fr 3fr",
+};
+
+const cardImageWrapper = {
+  minWidth: "200px",
+  width: "100%",
+  height: "100%",
+  position: "relative",
+  paddingTop: "75%",
+  display: "flex",
+};
+
+const menuDescriptionStyle = {
+  whiteSpace: "pre-wrap", //연속 공백은 그대로 유지됩니다. 행(行)의 줄 바꿈은 행의 박스를 채우기 위해 필요한 경우에 실행합니다.
+  wordBreak: "break-word", // 글이 길어질 때 줄바꿈을 어떻게 해야 하는지 보여주는 속성, 이 경우에선 단어별로 줄바꿈
+  lineHeight: "1.5", // line-height값은 상속을 고려하여 단위를 빼고 쓰자. (줄 간격 나타내는 속성)
 };
 
 function EventDetailPage({ match }) {
@@ -103,16 +126,42 @@ function EventDetailPage({ match }) {
           <div className="app">
             <Title level={3}>Menu</Title>
             <Row gutter={[16, 16]}>
-              <Col
-                xs={24}
-                sm={12}
-                style={{ padding: "8px", border: "1px solid black" }}
-              >
-                <div></div>
+              {/* 반복 시작되는 부분 */}
+              <Col xs={24} sm={12} style={{ padding: "8px" }}>
+                {/* styled component 적용 */}
+                <CardBody>
+                  <InnerCardBody>
+                    <CardSection>
+                      <Menu>DIY Ramen</Menu>
+                      <span style={{ marginBottom: "16px" }}>16000 (원)</span>
+                      <Paragraph type="secondary" style={menuDescriptionStyle}>
+                        Make Yume at Home
+                      </Paragraph>
+                    </CardSection>
+                    <section style={{ marginBottom: "8px" }}>
+                      <div style={{ width: "100%" }}>
+                        <Row>
+                          <Col span={24}>
+                            <Card
+                              hoverable={true}
+                              bodyStyle={{ padding: "0px" }}
+                              cover={
+                                <div style={cardImageWrapper}>
+                                  <CardImageStyle
+                                    alt="example"
+                                    src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
+                                  />
+                                </div>
+                              }
+                            ></Card>
+                          </Col>
+                        </Row>
+                      </div>
+                    </section>
+                  </InnerCardBody>
+                </CardBody>
               </Col>
-              <Col>
-                <div></div>
-              </Col>
+              {/* 반복 끝나는 부분 */}
             </Row>
           </div>
         </div>
@@ -120,5 +169,6 @@ function EventDetailPage({ match }) {
     </>
   );
 }
+// border: "1px solid black"
 
 export default EventDetailPage;

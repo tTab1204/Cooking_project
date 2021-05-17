@@ -63,6 +63,10 @@ body {
   border: 1px solid black;
 }
 
+.ant-card-cover img {
+  border-radius: 2px 2px 0 0;
+}
+
 .ant-card-body {
   max-width: 450px;
   margin: 0px auto;
