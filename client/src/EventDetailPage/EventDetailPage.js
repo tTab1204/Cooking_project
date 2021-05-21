@@ -1,13 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Axios from "axios";
-import { Row, Col, Card, Typography, Divider, Descriptions } from "antd";
+import {
+  Row,
+  Col,
+  Card,
+  Typography,
+  Divider,
+  Descriptions,
+  Tag,
+  Button,
+  message,
+} from "antd";
 import {
   CardBody,
   InnerCardBody,
   CardSection,
   Menu,
   CardImageStyle,
+  MenuFooter,
 } from "../styles/EventDetailStyle";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../_actions/user_actions";
 
 const { Title, Paragraph } = Typography;
 
@@ -49,6 +62,10 @@ const descriptionStyle = {
   gridTemplateColumns: "1fr 3fr",
 };
 
+const tagStyle = {
+  margin: "auto 0px",
+};
+
 const cardImageWrapper = {
   minWidth: "200px",
   width: "100%",
@@ -67,8 +84,10 @@ const menuDescriptionStyle = {
 function EventDetailPage({ match }) {
   const LOCAL_SERVER = "http://localhost:5000/";
   const eventId = match.params.eventId;
+  const dispatch = useDispatch();
 
   const [DetailEvent, setDetailEvent] = useState({});
+  const [ShowSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
     Axios.get(`/api/events/events_by_id?id=${eventId}&type=single`)
@@ -77,6 +96,30 @@ function EventDetailPage({ match }) {
       })
       .catch((err) => alert(err));
   }, []);
+
+  const successMessage = () => {
+    const key = "updatable";
+    message.loading({ content: "Loading...", key });
+
+    setTimeout(() => {
+      message.success({
+        content: "Success!",
+        key,
+        duration: 2,
+      });
+      setShowSuccess(true);
+    }, 2000);
+  };
+
+  const addToCartHandler = async (e) => {
+    try {
+      const response = await dispatch(addToCart(eventId));
+      // console.log(response);
+      successMessage();
+    } catch {
+      console.error(e);
+    }
+  };
 
   const { images, name, description, time, location, writer } = DetailEvent;
 
@@ -127,40 +170,52 @@ function EventDetailPage({ match }) {
             <Title level={3}>Menu</Title>
             <Row gutter={[16, 16]}>
               {/* 반복 시작되는 부분 */}
-              <Col xs={24} sm={12} style={{ padding: "8px" }}>
-                {/* styled component 적용 */}
-                <CardBody>
-                  <InnerCardBody>
-                    <CardSection>
-                      <Menu>DIY Ramen</Menu>
-                      <span style={{ marginBottom: "16px" }}>16000 (원)</span>
-                      <Paragraph type="secondary" style={menuDescriptionStyle}>
-                        Make Yume at Home
-                      </Paragraph>
-                    </CardSection>
-                    <section style={{ marginBottom: "8px" }}>
-                      <div style={{ width: "100%" }}>
-                        <Row>
-                          <Col span={24}>
-                            <Card
-                              hoverable={true}
-                              bodyStyle={{ padding: "0px" }}
-                              cover={
-                                <div style={cardImageWrapper}>
-                                  <CardImageStyle
-                                    alt="example"
-                                    src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"
-                                  />
-                                </div>
-                              }
-                            ></Card>
-                          </Col>
-                        </Row>
-                      </div>
-                    </section>
-                  </InnerCardBody>
-                </CardBody>
-              </Col>
+              {images.map((image) => (
+                <Col xs={24} sm={12} style={{ padding: "8px" }}>
+                  {/* styled component 적용 */}
+                  <CardBody>
+                    <InnerCardBody>
+                      <CardSection>
+                        <Menu>DIY Ramen</Menu>
+                        <span style={{ marginBottom: "16px" }}>16000 (원)</span>
+                        <Paragraph
+                          type="secondary"
+                          style={menuDescriptionStyle}
+                        >
+                          Make Yume at Home
+                        </Paragraph>
+                      </CardSection>
+                      <section style={{ marginBottom: "8px" }}>
+                        <div style={{ width: "100%" }}>
+                          <Row>
+                            <Col span={24}>
+                              <Card
+                                hoverable={true}
+                                bodyStyle={{ padding: "0px" }}
+                                cover={
+                                  <div style={cardImageWrapper}>
+                                    <CardImageStyle
+                                      alt="example"
+                                      src={`${LOCAL_SERVER}${image}`}
+                                    />
+                                  </div>
+                                }
+                              ></Card>
+                            </Col>
+                          </Row>
+                        </div>
+                      </section>
+                    </InnerCardBody>
+                    <MenuFooter>
+                      <Tag style={tagStyle}>0/40 remaining</Tag>
+                      <Button type="primary" onClick={addToCartHandler}>
+                        Add To Cart
+                      </Button>
+                    </MenuFooter>
+                  </CardBody>
+                </Col>
+              ))}
+
               {/* 반복 끝나는 부분 */}
             </Row>
           </div>

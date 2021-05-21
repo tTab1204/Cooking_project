@@ -31,12 +31,13 @@ function App() {
 
       <Content>
         <div
-          style={{
-            paddingTop: "69px",
-            minHeight: "calc(100vh - 80px)",
-            paddingLeft: "5%",
-            paddingRight: "5%",
-          }}
+        // style={{
+        //   paddingTop: "69px",
+        //   minHeight: "calc(100vh - 80px)",
+        //   paddingLeft: "5%",
+        //   paddingRight: "5%",
+        //   backgroundColor: "#f9f9f9",
+        // }}
         >
           {/* <Switch> 는 첫번째로 매칭되는 path 를 가진 컴포넌트를 렌더링 시킨다. 
           이것이 exact path 와 다른 점은 첫번째 매칭만 본다는 것이다. */}

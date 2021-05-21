@@ -37,6 +37,15 @@ const userSchema = mongoose.Schema({
     type: Number,
     default: 0,
   },
+  cart: {
+    type: Array,
+    default: [],
+  },
+
+  history: {
+    type: Array,
+    default: [],
+  },
 });
 
 userSchema.pre("save", function (next) {

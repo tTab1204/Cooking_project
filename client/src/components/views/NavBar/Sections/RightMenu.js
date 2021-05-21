@@ -36,12 +36,18 @@ function RightMenu(props) {
     );
   } else {
     return (
-      <Menu mode={props.mode}>
+      <Menu
+        style={{ fontSize: "20px", borderBottom: "none" }}
+        mode={props.mode}
+      >
         <Menu.Item key="app" style={{ borderBottom: "none" }}>
-          <Link to="/events">Event</Link>
+          <Link to="/events">이벤트</Link>
         </Menu.Item>
 
-        <SubMenu title={<span>Kitchen</span>} style={{ borderBottom: "none" }}>
+        <SubMenu
+          title={<span>주방 대여</span>}
+          style={{ borderBottom: "none" }}
+        >
           <MenuItemGroup>
             <Menu.Item key="kitchens">
               <Link to="/kitchens">Kitchen</Link>
@@ -51,7 +57,7 @@ function RightMenu(props) {
             </Menu.Item>
           </MenuItemGroup>
         </SubMenu>
-        <SubMenu title={<span>Hosts</span>} style={{ borderBottom: "none" }}>
+        <SubMenu title={<span>호스트</span>} style={{ borderBottom: "none" }}>
           <MenuItemGroup>
             <Menu.Item key="hosts">
               <Link to="/hosts">Hosts</Link>
@@ -66,8 +72,7 @@ function RightMenu(props) {
           style={{ borderBottom: "none" }}
           title={
             <span>
-              <UserOutlined />
-              My Page
+              <UserOutlined style={{ fontSize: "20px" }} />
             </span>
           }
         >

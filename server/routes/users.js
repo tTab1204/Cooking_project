@@ -69,4 +69,52 @@ router.get("/logout", auth, (req, res) => {
   );
 });
 
+router.post("/add-to-cart", auth, (req, res) => {
+  let duplicate = false;
+
+  // 상품 중복 확인
+  User.findOne({ _id: req.user._id }, (err, userInfo) => {
+    userInfo.cart.forEach((item) => {
+      if (item.id === req.body.eventId) {
+        duplicate = true;
+      }
+    });
+
+    // 이벤트(상품)가 중복일 때 (같은 상품이 있을 때)
+    if (duplicate) {
+      User.findOneAndUpdate(
+        { _id: req.user._id, "cart.id": req.body.eventId },
+        { $inc: { "cart.$.quantity": 1 } },
+        { new: true },
+        (err, userInfo) => {
+          if (err) return res.status(400).json({ success: false, err });
+          res.status(200).json({ success: true, cart: userInfo.cart });
+          // console.log("중복일 때: ", userInfo.cart.quantity);
+        }
+      );
+
+      // 이벤트(상품)가 중복이 아닐 때 (상품이 없을 때)
+    } else {
+      User.findOneAndUpdate(
+        { _id: req.user._id },
+        {
+          $push: {
+            cart: {
+              id: req.body.eventId,
+              quantity: 1,
+              date: Date.now(),
+            },
+          },
+        },
+        { new: true },
+        (err, userInfo) => {
+          if (err) return res.status(400).json({ success: false, err });
+          res.status(200).json({ success: true, cart: userInfo.cart });
+          // console.log("중복이 아닐 때: ", userInfo.cart.quantity);
+        }
+      );
+    }
+  });
+});
+
 module.exports = router;

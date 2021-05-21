@@ -38,3 +38,10 @@ export const CardImageStyle = styled.img`
   top: 0px;
   right: 0px;
 `;
+
+export const MenuFooter = styled.div`
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  margin-top: 16px;
+`;
