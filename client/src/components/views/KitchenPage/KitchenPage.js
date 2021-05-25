@@ -1,12 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { Card, Row, Col, Typography } from "antd";
+import { Typography, Tag } from "antd";
 import { Link } from "react-router-dom";
 import Axios from "axios";
-import { EnvironmentOutlined, TeamOutlined } from "@ant-design/icons";
+import {
+  EnvironmentFilled,
+  DollarCircleFilled,
+  UserOutlined,
+} from "@ant-design/icons";
 import Loading from "../../Loading";
-import { MainBox } from "../HostPage/Sections/HostPageStyle";
-const { Title } = Typography;
 
+import {
+  EventCard,
+  RemainDayBox,
+  RemainDay,
+  CardBody,
+  CardCover,
+  CardTitle,
+  CardText,
+  PriceAndTagBox,
+  WholeCardContainer,
+  WholeCardWrapper,
+} from "../EventPage/EventPageStyle";
+
+const { Title } = Typography;
 const removeLinkColor = { color: "inherit", textDecoration: "none" };
 const spanStyle = {
   fontWeight: "bold",
@@ -16,6 +32,7 @@ const spanStyle = {
 };
 
 function KitchenPage() {
+  const LOCAL_API = "http://localhost:5000";
   const [Kitchens, setKitchens] = useState([]);
   const [loading, setloading] = useState(true);
 
@@ -31,60 +48,67 @@ function KitchenPage() {
   }, []);
 
   const renderKitchen = Kitchens.map((kitchen, index) => (
-    <Col
-      xl={8}
-      sm={12}
-      xs={24}
-      key={index}
-      className="gutter-row"
-      style={{ padding: "16px" }}
-    >
-      <Link to={`/kitchens/${kitchen._id}`} style={removeLinkColor}>
-        <Card
-          hoverable={true}
-          style={{ border: "none", height: "450px" }}
-          cover={
-            <img
-              style={{ width: "100%", height: "200px" }}
-              alt="kitchen"
-              src={`http://localhost:5000/${kitchen.images[0]}`}
+    <Link to={`/kitchens/${kitchen._id}`} style={removeLinkColor} key={index}>
+      <EventCard className="card">
+        <RemainDayBox>
+          <RemainDay>
+            {" "}
+            <UserOutlined /> {kitchen.capacity}명{" "}
+          </RemainDay>
+        </RemainDayBox>
+        <CardCover src={`${LOCAL_API}/${kitchen.images[0]}`}></CardCover>
+        {/* Hover Effect */}
+        {/* <div className="info">
+        <h2>Show Event!</h2>
+      </div> */}
+        {/* -------------- */}
+        <CardBody>
+          <div style={{ width: "100%" }}>
+            <CardTitle>
+              {kitchen.name}{" "}
+              <Tag color="purple" style={{ marginLeft: "5px" }}>
+                Popular
+              </Tag>
+            </CardTitle>
+          </div>
+          <CardText>
+            <EnvironmentFilled style={{ marginRight: "5px" }} />{" "}
+            {kitchen.address}, {kitchen.capacity}
+          </CardText>
+          <PriceAndTagBox>
+            <DollarCircleFilled
+              style={{
+                marginRight: "5px",
+                color: "var(--primary-color2)",
+              }}
             />
-          }
-        >
-          <Row>
-            <span style={spanStyle}>
-              <span style={{ marginRight: "5px" }}>
-                <EnvironmentOutlined />
-              </span>
-              <span>{kitchen.address}</span>
+            {kitchen.rent_price}{" "}
+            <span
+              style={{
+                fontSize: "0.8rem",
+                color: "rgb(67, 67, 67)",
+                marginLeft: "2px",
+              }}
+            >
+              원
             </span>
-            <span style={spanStyle}>
-              <span style={{ marginRight: "5px" }}>
-                <TeamOutlined />
-              </span>
-              <span>{kitchen.capacity}</span>
-            </span>
-          </Row>
-          <Row style={{ paddingTop: "10px" }}>
-            <Title level={2} style={{ marginBottom: "0px" }}>
-              {kitchen.name}
-            </Title>
-          </Row>
-        </Card>
-      </Link>
-    </Col>
+          </PriceAndTagBox>
+        </CardBody>
+      </EventCard>
+    </Link>
   ));
 
   return (
     <>
-      <MainBox>
-        {loading && <Loading />}
-
-        <Title level={1}>Kitchens</Title>
-        <Row gutter={[32, 32]} type="flex">
-          {!loading && renderKitchen}
-        </Row>
-      </MainBox>
+      {loading && <Loading />}
+      {!loading && (
+        <>
+          <Title level={1}>Kitchens</Title>
+          <WholeCardContainer>
+            <WholeCardWrapper>{renderKitchen}</WholeCardWrapper>
+          </WholeCardContainer>
+        </>
+      )}
     </>
   );
 }

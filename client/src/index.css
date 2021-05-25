@@ -11,8 +11,8 @@ body {
 #root {
   min-height: 100%;
   --primary-color: #1890ff;
-  /* --primary-color: #4458dc; */
   --primary-color2: #854fee;
+  --primary-color3: #4458dc;
   --title-color: #141313;
   --text-color: #777777;
   --border-color: #201f1f17;

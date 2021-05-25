@@ -85,7 +85,6 @@ function UploadEvent({ match }) {
     Axios.post("/api/events/upload-event", variables).then((response) => {
       if (response.data.success) {
         successMessage();
-        console.log(response.data);
       } else {
         console.error(response.data);
       }

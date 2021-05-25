@@ -4,6 +4,7 @@ import Reviews from "./Reviews";
 import Followers from "./Followers";
 import Axios from "axios";
 import { Tabs, Col } from "antd";
+import Loading from "../../../Loading";
 
 const { TabPane } = Tabs;
 
@@ -11,6 +12,7 @@ function HostTabs({ url, history, hostId, detail }) {
   const API_REIVEWS = "/api/reviews";
 
   const [AllReviews, setAllReviews] = useState([]);
+  const [loading, setloading] = useState(true);
 
   const variable = { hostId: hostId };
   // Show All reviews
@@ -29,6 +31,7 @@ function HostTabs({ url, history, hostId, detail }) {
 
   useEffect(() => {
     showReviews();
+    setloading(false);
   }, []);
 
   const onHandleTab = (key) => {
@@ -42,7 +45,11 @@ function HostTabs({ url, history, hostId, detail }) {
   return (
     <>
       <Col className="gutter-row" xs={24} md={17}>
-        <Tabs defaultActiveKey="events" onChange={onHandleTab}>
+        <Tabs
+          defaultActiveKey="events"
+          onChange={onHandleTab}
+          style={{ background: "rgb(255, 255, 255)", padding: "20px" }}
+        >
           {/* Events */}
           <TabPane tab="Events" key="events">
             <Events hostId={hostId} />
@@ -50,13 +57,16 @@ function HostTabs({ url, history, hostId, detail }) {
 
           {/* Reviews */}
           <TabPane tab="Reviews" key="reviews">
-            <Reviews
-              refreshFunction={refreshFunction}
-              reviewList={AllReviews}
-              hostId={hostId}
-              showReviews={showReviews}
-              detail={detail}
-            />
+            {loading && <Loading />}
+            {!loading && (
+              <Reviews
+                refreshFunction={refreshFunction}
+                reviewList={AllReviews}
+                hostId={hostId}
+                showReviews={showReviews}
+                detail={detail}
+              />
+            )}
           </TabPane>
 
           {/* Followers */}

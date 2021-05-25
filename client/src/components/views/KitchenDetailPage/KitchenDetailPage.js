@@ -9,6 +9,9 @@ import {
   Card,
   message,
   Result,
+  Modal,
+  Form,
+  Input,
 } from "antd";
 import Axios from "axios";
 import { EnvironmentOutlined, TeamOutlined } from "@ant-design/icons";
@@ -57,6 +60,7 @@ const priceStyle = {
   textAlign: "center",
   display: "flex",
   justifyContent: "space-between",
+  marginTop: "20px",
 };
 
 const smallPriceStyle = {
@@ -78,6 +82,8 @@ function KitchenDetailPage({ match }) {
   const [loading, setloading] = useState(true);
   const [DetailKitchen, setDetailKitchen] = useState({});
   const [ShowSuccess, setShowSuccess] = useState(false);
+  const [ShowModal, setShowModal] = useState(false);
+
   const { images, name, address, capacity, description, rent_price } =
     DetailKitchen;
 
@@ -104,8 +110,12 @@ function KitchenDetailPage({ match }) {
     }, 2000);
   };
 
-  const onSubmit = () => {
-    successMessage();
+  const onHandleModal = () => {
+    setShowModal(true);
+  };
+
+  const handleCancel = () => {
+    setShowModal(false);
   };
 
   return (
@@ -119,7 +129,7 @@ function KitchenDetailPage({ match }) {
       )}
       {!loading && (
         <Row gutter={[12]}>
-          <Col xs={24} sm={24} md={16}>
+          <Col xs={24} sm={24} md={16} style={{ marginTop: "20px" }}>
             <div>
               <span style={spanStyle}>
                 <span style={{ marginRight: "4px" }}>
@@ -194,7 +204,7 @@ function KitchenDetailPage({ match }) {
                     type="primary"
                     size="large"
                     style={buttonStyle}
-                    onClick={onSubmit}
+                    onClick={onHandleModal}
                   >
                     Contact
                   </Button>
@@ -204,6 +214,30 @@ function KitchenDetailPage({ match }) {
           </Col>
         </Row>
       )}
+      <Modal
+        title="Contact Us"
+        visible={ShowModal}
+        // confirmLoading={confirmLoading}
+        footer={null}
+        style={{ fontSize: "1.4rem" }}
+        onCancel={handleCancel}
+      >
+        <Form layout="vertical">
+          <p style={{ marginBottom: "1em", lineHeight: "200%" }}>
+            Thank you for your interest in {name}. If you send us your e-mail,
+            we'll get back to you as soon as possible!
+          </p>
+          <Form.Item label="Email" required>
+            <Input
+              placeholder="paka123@naver.com"
+              style={{ marginBottom: "1.5rem" }}
+            />
+            <Button type="primary" size="large" style={{ width: "100%" }}>
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Modal>
     </>
   );
 }

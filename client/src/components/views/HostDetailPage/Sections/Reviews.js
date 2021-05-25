@@ -3,6 +3,7 @@ import { Form, Input, Button, Rate, Modal } from "antd";
 import Axios from "axios";
 import SingleReview from "./SingleReview";
 import ReplyReview from "./ReplyReview";
+
 const { TextArea } = Input;
 
 function Reviews({ hostId, reviewList, refreshFunction, showReviews, detail }) {
@@ -77,6 +78,7 @@ function Reviews({ hostId, reviewList, refreshFunction, showReviews, detail }) {
   return (
     <>
       {/* Root Review Form */}
+
       <Form style={{ display: "flex" }} onSubmit={onSubmit}>
         <TextArea
           style={{ width: "100%", borderRadius: "5px" }}
@@ -127,10 +129,13 @@ function Reviews({ hostId, reviewList, refreshFunction, showReviews, detail }) {
               )
           )
           .reverse()}
-      {/* 최신순으로 정렬하기 위해 reverse() 사용 */}
-      {/* 추후에 좋아요가 높은 순서대로 정렬하는 기능 필요 */}
     </>
   );
 }
-
+{
+  /* 최신순으로 정렬하기 위해 reverse() 사용 */
+}
+{
+  /* 추후에 좋아요가 높은 순서대로 정렬하는 기능 필요 */
+}
 export default Reviews;

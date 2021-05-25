@@ -2,12 +2,14 @@ import React, { useState, useEffect } from "react";
 import { List, Avatar } from "antd";
 import { Link } from "react-router-dom";
 import Axios from "axios";
+import Loading from "../../../Loading";
 
 function Followers({ hostId }) {
   const API_FOLLOWERS = "/api/follow";
   const variable = { hostId: hostId };
 
   const [HostFollowers, setHostFollowers] = useState([]);
+  const [loading, setloading] = useState(false);
 
   const showFollowers = async () => {
     try {
@@ -23,11 +25,14 @@ function Followers({ hostId }) {
 
   useEffect(() => {
     showFollowers();
+    setloading(false);
   }, []);
 
   return (
     <>
-      {HostFollowers && (
+      {loading && <Loading />}
+
+      {!loading && HostFollowers && (
         <List
           header={<div>{HostFollowers.length} followers</div>}
           itemLayout="horizontal"

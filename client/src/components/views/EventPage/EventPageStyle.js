@@ -17,17 +17,18 @@ export const WholeCardContainer = styled.div`
 `;
 
 export const WholeCardWrapper = styled.div`
-  max-width: 1000px;
+  max-width: ${({ host }) => (host ? "707px" : "1000px")};
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: ${({ host }) => (host ? "1fr 1fr" : "1fr 1fr 1fr")};
   align-items: center;
   grid-gap: 30px;
+  margin-bottom: ${({ host }) => (host ? "20px" : "0px")};
 
   @media screen and (max-width: 1000px) {
     grid-template-columns: 1fr 1fr;
   }
 
-  @media screen and (max-width: 550px) {
+  @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     padding: 0 20px;
   }
@@ -37,10 +38,11 @@ export const EventCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-
+  height: 300px;
   position: relative;
 
-  box-shadow: rgb(0 0 0 / 15%) 0px 3px 6px 0px;
+  box-shadow: ${({ host }) =>
+    host ? "none" : "rgb(0 0 0 / 15%) 0px 3px 6px 0px"};
   border-radius: 30px;
   box-sizing: border-box;
   overflow: hidden;
@@ -52,7 +54,7 @@ export const EventCard = styled.div`
     transition: all 0.2s ease-in-out;
   }
 
-  &:before {
+  /* &:before {
     content: "";
     position: absolute;
     top: 0;
@@ -67,8 +69,8 @@ export const EventCard = styled.div`
   }
 
   &:hover:before {
-    opacity: 0.8;
-  }
+    opacity: 0.7;
+  } */
 
   &:hover CardHoverEffect {
     opacity: 1;
@@ -85,21 +87,20 @@ export const CardCover = styled.img`
 `;
 
 export const CardBody = styled.div`
-  font-size: 1.2rem;
   font-weight: bold;
   color: rgb(46, 46, 46);
   width: 100%;
-  min-height: 58px;
+  min-height: 30px;
   display: flex;
   flex-direction: column;
   -webkit-box-pack: justify;
   justify-content: space-between;
   line-height: 180%;
   padding: 0px 18px 0px 17px;
-  margin-top: 10px;
 `;
 
 export const CardTitle = styled.div`
+  font-size: 1.1rem;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -107,8 +108,50 @@ export const CardTitle = styled.div`
   cursor: pointer;
 `;
 export const CardText = styled.div`
+  color: var(--primary-color2);
+  font-size: 0.8rem;
+  margin-top: 5px;
   text-align: right;
   align-items: center;
   display: flex;
   justify-content: flex-end;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+export const RemainDayBox = styled.div`
+  border: 3px solid black;
+  user-select: none;
+  z-index: 10;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.533);
+  border-radius: 14px;
+  margin-top: 16px;
+  margin-left: 16px;
+  padding: 6px 10px;
+  font-size: 17px;
+  color: rgb(93, 93, 93);
+  border: 0.5px solid rgba(248, 248, 248, 0.333);
+  transition: all 200ms ease-in-out 0s;
+
+  &:hover {
+    color: var(--primary-color2);
+    transition: all 0.2s ease-in-out;
+  }
+`;
+
+export const RemainDay = styled.div`
+  width: 100%;
+  height: 100%;
+  font-weight: 700;
+  letter-spacing: 1px;
+  word-spacing: 5px;
+`;
+
+export const PriceAndTagBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  line-height: 100%;
+  margin: 7px 0px 0px 8px;
 `;

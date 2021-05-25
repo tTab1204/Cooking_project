@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Card, Row, Col, Typography } from "antd";
+import { Typography, Tag } from "antd";
 import { Link } from "react-router-dom";
 import Axios from "axios";
-import { EnvironmentOutlined, TeamOutlined } from "@ant-design/icons";
+import { DollarCircleFilled, EnvironmentFilled } from "@ant-design/icons";
 import Loading from "../../Loading";
 import {
   WholeCardContainer,
@@ -12,19 +12,15 @@ import {
   CardBody,
   CardTitle,
   CardText,
-  CardHoverEffect,
+  RemainDayBox,
+  RemainDay,
+  PriceAndTagBox,
 } from "./EventPageStyle";
 import "./EventPageStyle.css";
 
 const { Title } = Typography;
 
 const removeLinkColor = { color: "inherit", textDecoration: "none" };
-const spanStyle = {
-  fontWeight: "bold",
-  fontSize: "12px",
-  color: "rgba(0, 0, 0, 0.85)",
-  paddingRight: "10px",
-};
 
 function EventPage() {
   const LOCAL_API = "http://localhost:5000";
@@ -43,17 +39,48 @@ function EventPage() {
   }, []);
 
   const renderEvent = Events.map((event, index) => (
-    <Link to={`/events/${event._id}`} style={removeLinkColor}>
+    <Link to={`/events/${event._id}`} style={removeLinkColor} key={index}>
       <EventCard className="card">
+        <RemainDayBox>
+          <RemainDay>D-2</RemainDay>
+        </RemainDayBox>
         <CardCover src={`${LOCAL_API}/${event.images[0]}`}></CardCover>
-        <div class="info">
+        {/* Hover Effect */}
+        {/* <div className="info">
           <h2>Show Event!</h2>
-        </div>
+        </div> */}
+        {/* -------------- */}
         <CardBody>
           <div style={{ width: "100%" }}>
-            <CardTitle>{event.name}</CardTitle>
+            <CardTitle>
+              {event.name}{" "}
+              <Tag color="purple" style={{ marginLeft: "5px" }}>
+                Popular
+              </Tag>
+            </CardTitle>
           </div>
-          <CardText>{event.location}</CardText>
+          <CardText>
+            <EnvironmentFilled style={{ marginRight: "5px" }} /> {event.time},{" "}
+            {event.location}
+          </CardText>
+          <PriceAndTagBox>
+            <DollarCircleFilled
+              style={{
+                marginRight: "5px",
+                color: "var(--primary-color2)",
+              }}
+            />{" "}
+            {event.price}{" "}
+            <span
+              style={{
+                fontSize: "0.8rem",
+                color: "rgb(67, 67, 67)",
+                marginLeft: "2px",
+              }}
+            >
+              원
+            </span>
+          </PriceAndTagBox>
         </CardBody>
       </EventCard>
     </Link>
@@ -63,10 +90,14 @@ function EventPage() {
     <>
       {loading && <Loading />}
 
-      <Title level={1}>Events</Title>
-      <WholeCardContainer>
-        <WholeCardWrapper>{!loading && renderEvent}</WholeCardWrapper>
-      </WholeCardContainer>
+      {!loading && (
+        <>
+          <Title level={1}>Events</Title>
+          <WholeCardContainer>
+            <WholeCardWrapper>{renderEvent}</WholeCardWrapper>
+          </WholeCardContainer>
+        </>
+      )}
     </>
   );
 }
