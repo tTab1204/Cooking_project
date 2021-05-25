@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { Comment, Avatar, Button, Input, Form } from "antd";
+import React, { useState, useEffect } from "react";
+import { Comment, Avatar, Button, Input, Form, Rate, Tooltip } from "antd";
 import LikeDislikes from "./LikeDislikes";
 import Axios from "axios";
+import moment from "moment";
 const { TextArea } = Input;
 
 function SingleReview({ hostId, review, refreshFunction, showReviews }) {
   const API_REIVEWS = "/api/reviews";
+  const API_RATINGS = "/api/ratings";
 
   const userId = localStorage.getItem("userId");
 
@@ -52,6 +54,28 @@ function SingleReview({ hostId, review, refreshFunction, showReviews }) {
       console.error(e);
     }
   };
+
+  // 평점 정보 가져오기
+  const showRatingsDetail = async () => {
+    const variables = {
+      userFrom: localStorage.getItem("userId"),
+      hostId: hostId,
+    };
+
+    try {
+      const response = await Axios.post(
+        `${API_RATINGS}/show-ratings`,
+        variables
+      );
+      // console.log(response.data.rateInfo);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    showRatingsDetail();
+  }, []);
 
   // 댓글 수정 기능
   const onCorrect = async (e) => {
@@ -109,9 +133,15 @@ function SingleReview({ hostId, review, refreshFunction, showReviews }) {
     <span onClick={onClickReplyOpen} key="comment-basic-reply-to">
       답글
     </span>,
+    // 조건문 두번 쓰기 싫었는데 왜 한번으로는 안 되는지 모르겠다.
+    review.writer && userId === review.writer._id && (
+      <span onClick={closeCorrectHandler}>수정</span>
+    ),
+    review.writer && userId === review.writer._id && (
+      <span onClick={() => deleteHandler(review._id)}>삭제</span>
+    ),
 
-    <span onClick={closeCorrectHandler}>수정</span>,
-    <span onClick={() => deleteHandler(review._id)}>삭제</span>,
+    // <Rate disabled defaultValue={2} />,
   ];
 
   return (
@@ -122,6 +152,11 @@ function SingleReview({ hostId, review, refreshFunction, showReviews }) {
           author={review.writer.name}
           avatar={<Avatar src={review.writer.image} alt="true" />}
           content={<p>{review.content}</p>}
+          datetime={
+            <Tooltip title={moment().format("YYYY-MM-DD HH:mm:ss")}>
+              <span>{moment().fromNow()}</span>
+            </Tooltip>
+          }
         />
       )}
 

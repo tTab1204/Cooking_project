@@ -39,7 +39,7 @@ function NavBar() {
           </div>
 
           <MenuOutlined
-            style={{ fontSize: "24px", color: "#1890ff" }}
+            style={{ fontSize: "24px", fontWeight: "400", color: "#1890ff" }}
             className="menu__mobile-button"
             onClick={showDrawer}
           />
@@ -53,7 +53,7 @@ function NavBar() {
             onClose={onClose}
             visible={visible}
             style={{
-              fontFamily: `"Do Hyeon", sans-serif`,
+              fontFamily: `"Spoqa Han Sans", sans-serif`,
             }}
           >
             <LeftMenu mode="inline" />

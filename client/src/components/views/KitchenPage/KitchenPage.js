@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 import { EnvironmentOutlined, TeamOutlined } from "@ant-design/icons";
 import Loading from "../../Loading";
+import { MainBox } from "../HostPage/Sections/HostPageStyle";
 const { Title } = Typography;
 
 const removeLinkColor = { color: "inherit", textDecoration: "none" };
@@ -44,6 +45,7 @@ function KitchenPage() {
           style={{ border: "none", height: "450px" }}
           cover={
             <img
+              style={{ width: "100%", height: "200px" }}
               alt="kitchen"
               src={`http://localhost:5000/${kitchen.images[0]}`}
             />
@@ -75,14 +77,14 @@ function KitchenPage() {
 
   return (
     <>
-      <div className="main_box">
+      <MainBox>
         {loading && <Loading />}
 
         <Title level={1}>Kitchens</Title>
         <Row gutter={[32, 32]} type="flex">
           {!loading && renderKitchen}
         </Row>
-      </div>
+      </MainBox>
     </>
   );
 }

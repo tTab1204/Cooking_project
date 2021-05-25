@@ -1,5 +1,5 @@
 import React from "react";
-import { Menu } from "antd";
+import { Menu, Badge } from "antd";
 // import LoginPage from "../../LoginPage/LoginPage";
 import axios from "axios";
 import { USER_SERVER } from "../../../Config";
@@ -12,6 +12,8 @@ const MenuItemGroup = Menu.ItemGroup;
 
 function RightMenu(props) {
   const user = useSelector((state) => state.user);
+  let currentUserName = "";
+  if (user.userData) currentUserName = user.userData.name;
 
   const logoutHandler = () => {
     axios.get(`${USER_SERVER}/logout`).then((response) => {
@@ -37,17 +39,14 @@ function RightMenu(props) {
   } else {
     return (
       <Menu
-        style={{ fontSize: "20px", borderBottom: "none" }}
+        style={{ fontSize: "14px", borderBottom: "none" }}
         mode={props.mode}
       >
         <Menu.Item key="app" style={{ borderBottom: "none" }}>
-          <Link to="/events">이벤트</Link>
+          <Link to="/events">Events</Link>
         </Menu.Item>
 
-        <SubMenu
-          title={<span>주방 대여</span>}
-          style={{ borderBottom: "none" }}
-        >
+        <SubMenu title={<span>Kitchens</span>} style={{ borderBottom: "none" }}>
           <MenuItemGroup>
             <Menu.Item key="kitchens">
               <Link to="/kitchens">Kitchen</Link>
@@ -57,7 +56,7 @@ function RightMenu(props) {
             </Menu.Item>
           </MenuItemGroup>
         </SubMenu>
-        <SubMenu title={<span>호스트</span>} style={{ borderBottom: "none" }}>
+        <SubMenu title={<span>Hosts</span>} style={{ borderBottom: "none" }}>
           <MenuItemGroup>
             <Menu.Item key="hosts">
               <Link to="/hosts">Hosts</Link>
@@ -72,7 +71,13 @@ function RightMenu(props) {
           style={{ borderBottom: "none" }}
           title={
             <span>
-              <UserOutlined style={{ fontSize: "20px" }} />
+              <Badge
+                overflowCount={10}
+                offset={[0, 2]}
+                count={user.userData && user.userData.cart.length}
+              >
+                <UserOutlined style={{ fontSize: "20px" }} />
+              </Badge>
             </span>
           }
         >
@@ -80,11 +85,18 @@ function RightMenu(props) {
             <Menu.Item key="upload-event">
               <Link to="/upload-event">Upload Event</Link>
             </Menu.Item>
+
             <Menu.Item key="my-profile">
-              <Link to="/my-profile">My Profile</Link>
+              <Link to={`/users/${currentUserName}`}>My Profile</Link>
             </Menu.Item>
             <Menu.Item key="my-tickets">
-              <Link to="/my-tickets">My Tickets</Link>
+              <Badge
+                count={user.userData && user.userData.cart.length}
+                overflowCount={10}
+                offset={[12, 0]}
+              >
+                <Link to="/my-tickets">My Tickets</Link>
+              </Badge>
             </Menu.Item>
             <Menu.Item key="logout">
               <Link style={{ color: "#1890ff" }} to="/" onClick={logoutHandler}>

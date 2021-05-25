@@ -85,97 +85,107 @@ function LoginPage(props) {
           //   handleReset,
         } = props;
         return (
-          <div className="app">
-            <form onSubmit={handleSubmit} style={{ width: "350px" }}>
-              <Form.Item required label="Email">
-                <Input
-                  id="email"
-                  prefix={
-                    <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
-                  placeholder="Enter your email"
-                  type="email"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.email && touched.email
-                      ? "text-input error"
-                      : "text-input"
-                  }
-                />
-                {errors.email && touched.email && (
-                  <div className="input-feedback">{errors.email}</div>
+          <>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <form
+                onSubmit={handleSubmit}
+                style={{ width: "350px", marginTop: "100px" }}
+              >
+                <Form.Item required label="Email">
+                  <Input
+                    id="email"
+                    prefix={
+                      <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                    }
+                    placeholder="Enter your email"
+                    type="email"
+                    value={values.email}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.email && touched.email
+                        ? "text-input error"
+                        : "text-input"
+                    }
+                  />
+                  {errors.email && touched.email && (
+                    <div className="input-feedback">{errors.email}</div>
+                  )}
+                </Form.Item>
+
+                <Form.Item required label="Password">
+                  <Input
+                    id="password"
+                    prefix={
+                      <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                    }
+                    placeholder="Enter your password"
+                    type="password"
+                    value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    className={
+                      errors.password && touched.password
+                        ? "text-input error"
+                        : "text-input"
+                    }
+                  />
+                  {errors.password && touched.password && (
+                    <div className="input-feedback">{errors.password}</div>
+                  )}
+                </Form.Item>
+
+                {formErrorMessage && (
+                  <label>
+                    <p
+                      style={{
+                        color: "#ff0000bf",
+                        fontSize: "0.7rem",
+                        border: "1px solid",
+                        padding: "1rem",
+                        borderRadius: "10px",
+                      }}
+                    >
+                      {formErrorMessage}
+                    </p>
+                  </label>
                 )}
-              </Form.Item>
 
-              <Form.Item required label="Password">
-                <Input
-                  id="password"
-                  prefix={
-                    <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-                  }
-                  placeholder="Enter your password"
-                  type="password"
-                  value={values.password}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className={
-                    errors.password && touched.password
-                      ? "text-input error"
-                      : "text-input"
-                  }
-                />
-                {errors.password && touched.password && (
-                  <div className="input-feedback">{errors.password}</div>
-                )}
-              </Form.Item>
-
-              {formErrorMessage && (
-                <label>
-                  <p
-                    style={{
-                      color: "#ff0000bf",
-                      fontSize: "0.7rem",
-                      border: "1px solid",
-                      padding: "1rem",
-                      borderRadius: "10px",
-                    }}
-                  >
-                    {formErrorMessage}
-                  </p>
-                </label>
-              )}
-
-              <Form.Item>
-                {/* <Checkbox
+                <Form.Item>
+                  {/* <Checkbox
                   id="rememberMe"
                   onChange={handleRememberMe}
                   checked={rememberMe}
                 >
                   Remember me
                 </Checkbox> */}
-                <div>
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                    className="login-form-button"
-                    style={{ minWidth: "100%" }}
-                    disabled={isSubmitting}
-                    onSubmit={handleSubmit}
-                  >
-                    Log in
-                  </Button>
-                </div>
-                <div>
-                  <Link className="login-form-forgot" to="/reset_user">
-                    Forgot password?
-                  </Link>
-                </div>
-                Or <Link to="/register">Register Now!</Link>
-              </Form.Item>
-            </form>
-          </div>
+                  <div>
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      className="login-form-button"
+                      style={{ minWidth: "100%" }}
+                      disabled={isSubmitting}
+                      onSubmit={handleSubmit}
+                    >
+                      Log in
+                    </Button>
+                  </div>
+                  <div>
+                    <Link className="login-form-forgot" to="/reset_user">
+                      Forgot password?
+                    </Link>
+                  </div>
+                  Or <Link to="/register">Register Now!</Link>
+                </Form.Item>
+              </form>
+            </div>
+          </>
         );
       }}
     </Formik>

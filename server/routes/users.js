@@ -18,6 +18,8 @@ router.get("/auth", auth, (req, res) => {
     role: req.user.role,
     image: req.user.image,
     isHost: req.user.host === 0 ? false : true,
+    cart: req.user.cart,
+    history: req.user.history,
   });
 });
 

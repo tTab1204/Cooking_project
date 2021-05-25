@@ -1,18 +1,53 @@
 import React, { useState } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Rate, Modal } from "antd";
 import Axios from "axios";
 import SingleReview from "./SingleReview";
 import ReplyReview from "./ReplyReview";
 const { TextArea } = Input;
 
-function Reviews({ hostId, reviewList, refreshFunction, showReviews }) {
+function Reviews({ hostId, reviewList, refreshFunction, showReviews, detail }) {
   const [ReviewValue, setReviewValue] = useState("");
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [Rates, setRates] = useState(0);
+
+  const { name } = detail;
 
   // 개선할 부분 - 나중에 api요청하는거 다 한 군데 모아서 export해주자
   const API_REIVEWS = "/api/reviews";
+  const API_RATINGS = "/api/ratings";
 
   const handleClick = (e) => {
     setReviewValue(e.target.value);
+  };
+
+  const onRateChange = async (value) => {
+    console.log("별점: ", value);
+    setRates(value);
+  };
+
+  const handleModalCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const onSubmitRate = async (e) => {
+    const variables = {
+      userFrom: localStorage.getItem("userId"),
+      hostId: hostId,
+      ratings: Rates,
+    };
+
+    try {
+      const response = await Axios.post(
+        `${API_RATINGS}/add-ratings`,
+        variables
+      );
+      console.log("받아온 데이터: ", response.data);
+      setIsModalVisible(false);
+    } catch (e) {
+      console.error(e);
+    }
+
+    setIsModalVisible(false);
   };
 
   // 실제 프로젝트에서는 처음 써 본 async await
@@ -31,8 +66,8 @@ function Reviews({ hostId, reviewList, refreshFunction, showReviews }) {
         `${API_REIVEWS}/save-review`,
         variables
       );
-
       setReviewValue("");
+      // setIsModalVisible(true);
       refreshFunction(response.data.review);
     } catch (e) {
       console.error(e);
@@ -53,7 +88,21 @@ function Reviews({ hostId, reviewList, refreshFunction, showReviews }) {
         <Button style={{ width: "20%", height: "52px" }} onClick={onSubmit}>
           Submit
         </Button>
+        <br />
       </Form>
+
+      {/* Modal */}
+      <Modal
+        title={`${name}님의 이벤트는 어떠셨나요? 평점을 남겨주세요!`}
+        visible={isModalVisible}
+        onOk={onSubmitRate}
+        okText="제출하기"
+        onCancel={handleModalCancel}
+        cancelText="닫기"
+      >
+        <Rate onChange={onRateChange} />
+      </Modal>
+
       {/* Review List */}
       {reviewList &&
         reviewList

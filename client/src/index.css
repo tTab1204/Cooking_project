@@ -2,7 +2,7 @@
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
 body {
-  font-family: "Do Hyeon", "Segoe UI";
+  font-family: "Spoqa Han Sans", "Spoqa Han Sans JP", "Sans-serif";
 }
 * {
   box-sizing: inherit;
@@ -19,7 +19,9 @@ body {
   --gradient-color: linear-gradient(90deg, #4458dc 0%, #854fee 100%);
   --shadow-color: 0px 10px 30px rgba(118, 85, 225, 0.3);
   --box-shadow: 0px 10px 30px rgba(57, 56, 61, 0.205);
-  font-family: "Do Hyeon", sans-serif;
+  /* font-family: "Do Hyeon", sans-serif; */
+  /* font-family: "Spoqa Han Sans", "Sans-serif"; */
+  font-weight: 500;
 }
 
 /* 링크의 색상 및 밑줄 없애기 */
@@ -31,17 +33,6 @@ a {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
-}
-
-.main_box {
-  width: 100%;
-  padding-left: 24px;
-  padding-right: 24px;
-  margin-right: auto;
-  margin-left: auto;
-  display: flex;
-  flex-direction: column;
-  padding-top: 20px;
 }
 
 body {
@@ -57,7 +48,7 @@ body {
   min-height: 100%;
 }
 
-.app {
+/* .app {
   display: flex;
   flex-direction: column;
   padding-top: 20px;
@@ -66,31 +57,7 @@ body {
   padding-right: 24px;
   margin-right: auto;
   margin-left: auto;
-}
-
-.ant-card-cover img {
-  border-radius: 2px 2px 0 0;
-}
-
-.ant-card-body {
-  max-width: 450px;
-  margin: 0px auto;
-}
-
-.host-bottom-card {
-  display: flex;
-  justify-content: space-around;
-  margin: auto;
-  width: 100%;
-  max-width: 200px;
-}
-
-.host-bottom-card-piece {
-  display: flex;
-  flex-direction: column;
-  -webkit-box-align: center;
-  align-items: center;
-}
+} */
 
 .ant-statistic-content {
   display: flex;
@@ -98,10 +65,10 @@ body {
   font-size: 14px !important;
 }
 
-.ant-statistic-title {
+/* .ant-statistic-title {
   display: flex;
   justify-content: center;
-}
+} */
 
 input.error {
   border-color: red;

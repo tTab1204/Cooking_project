@@ -90,7 +90,7 @@ function ListYourKitchenPage({ match }) {
         {/*------------------- Image -----------------------*/}
         <div style={breadCrumb_style}>
           <Title level={1} style={{ color: "white" }}>
-            List your kitchen on Souskasa
+            List your kitchen on Cooking
           </Title>
         </div>
         {/*--------------------------------------------------*/}

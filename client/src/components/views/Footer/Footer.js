@@ -13,7 +13,7 @@ function Footer() {
         fontSize: "0.3rem",
       }}
     >
-      <p> ©2021 Give Your Kitchen Inc. All Rights Reserved.</p>
+      <p> ©2021 Share with Cooking Inc. All Rights Reserved.</p>
     </div>
   );
 }

@@ -36,10 +36,12 @@ function Followers({ hostId }) {
             <List.Item key={index}>
               <List.Item.Meta
                 avatar={<Avatar src={follower.userFrom.image} />}
-                title={
-                  <a href="https://ant.design">{follower.userFrom.name}</a>
-                }
-                description={[<Link to="/">@{follower.userFrom.name}</Link>]}
+                title={follower.userFrom.name}
+                description={[
+                  <Link to={`/users/${follower.userFrom.name}`}>
+                    @{follower.userFrom.name}
+                  </Link>,
+                ]}
               />
             </List.Item>
           )}

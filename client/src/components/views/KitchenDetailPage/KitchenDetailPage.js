@@ -14,6 +14,7 @@ import Axios from "axios";
 import { EnvironmentOutlined, TeamOutlined } from "@ant-design/icons";
 // import { Link } from "react-router-dom";
 import Loading from "../../Loading";
+import { MainBox } from "../HostPage/Sections/HostPageStyle";
 
 const { Title, Paragraph } = Typography;
 
@@ -77,14 +78,8 @@ function KitchenDetailPage({ match }) {
   const [loading, setloading] = useState(true);
   const [DetailKitchen, setDetailKitchen] = useState({});
   const [ShowSuccess, setShowSuccess] = useState(false);
-  const {
-    images,
-    name,
-    address,
-    capacity,
-    description,
-    rent_price,
-  } = DetailKitchen;
+  const { images, name, address, capacity, description, rent_price } =
+    DetailKitchen;
 
   useEffect(() => {
     Axios.get(`/api/kitchens/kitchens_by_id?id=${kitchenId}&type=single`)
@@ -123,93 +118,91 @@ function KitchenDetailPage({ match }) {
         </div>
       )}
       {!loading && (
-        <div className="main_box">
-          <Row gutter={[12]}>
-            <Col xs={24} sm={24} md={16}>
-              <div>
-                <span style={spanStyle}>
-                  <span style={{ marginRight: "4px" }}>
-                    <EnvironmentOutlined />
-                  </span>
-                  <span>{address}</span>
+        <Row gutter={[12]}>
+          <Col xs={24} sm={24} md={16}>
+            <div>
+              <span style={spanStyle}>
+                <span style={{ marginRight: "4px" }}>
+                  <EnvironmentOutlined />
                 </span>
-                <span style={spanStyle}>
-                  <span style={{ marginRight: "4px" }}>
-                    <TeamOutlined />
-                  </span>
-                  <span>{capacity}</span>
+                <span>{address}</span>
+              </span>
+              <span style={spanStyle}>
+                <span style={{ marginRight: "4px" }}>
+                  <TeamOutlined />
                 </span>
-                <Title level={1} style={{ margin: "5px 0px" }}>
-                  {name}
-                </Title>
-              </div>
-              <Divider />
-              <Paragraph>{description}</Paragraph>
-              <Divider />
-              <Descriptions title="address">
-                <Descriptions.Item>{address}</Descriptions.Item>
-              </Descriptions>
-              <Divider />
-              {/* Images */}
-              <Title level={2}>Images</Title>
-              <div style={{ width: "100%" }}>
-                <Row gutter={[8, 8]}>
-                  {images &&
-                    images.map((image, index) => (
-                      <Col
-                        key={index}
-                        className="gutter-row"
-                        lg={6}
-                        md={12}
-                        sm={24}
-                      >
-                        <Card
-                          hoverable={true}
-                          style={imageStyle}
-                          cover={
-                            <img
-                              alt="kitchen-detail-images"
-                              src={`http://localhost:5000/${image}`}
-                            />
-                          }
-                        ></Card>
-                      </Col>
-                    ))}
-                </Row>
-              </div>
-            </Col>
-            <Col span={8}>
-              <div style={priceStyle}>
-                {ShowSuccess && (
-                  <Result
-                    status="success"
-                    title="Successfully send the information"
-                    subTitle="The answer will come soon."
-                  />
-                )}
-
-                {!ShowSuccess && (
-                  <Row gutter={[12]}>
-                    <Col md={24} xl={24}>
-                      <Title level={4}>Full Rental</Title>
-                    </Col>
-                    <Col md={24} xl={24} style={smallPriceStyle}>
-                      {rent_price}원 / 일
-                    </Col>
-                    <Button
-                      type="primary"
-                      size="large"
-                      style={buttonStyle}
-                      onClick={onSubmit}
+                <span>{capacity}</span>
+              </span>
+              <Title level={1} style={{ margin: "5px 0px" }}>
+                {name}
+              </Title>
+            </div>
+            <Divider />
+            <Paragraph>{description}</Paragraph>
+            <Divider />
+            <Descriptions title="address">
+              <Descriptions.Item>{address}</Descriptions.Item>
+            </Descriptions>
+            <Divider />
+            {/* Images */}
+            <Title level={2}>Images</Title>
+            <div style={{ width: "100%" }}>
+              <Row gutter={[8, 8]}>
+                {images &&
+                  images.map((image, index) => (
+                    <Col
+                      key={index}
+                      className="gutter-row"
+                      lg={6}
+                      md={12}
+                      sm={24}
                     >
-                      Contact
-                    </Button>
-                  </Row>
-                )}
-              </div>
-            </Col>
-          </Row>
-        </div>
+                      <Card
+                        hoverable={true}
+                        style={imageStyle}
+                        cover={
+                          <img
+                            alt="kitchen-detail-images"
+                            src={`http://localhost:5000/${image}`}
+                          />
+                        }
+                      ></Card>
+                    </Col>
+                  ))}
+              </Row>
+            </div>
+          </Col>
+          <Col span={8}>
+            <div style={priceStyle}>
+              {ShowSuccess && (
+                <Result
+                  status="success"
+                  title="Successfully send the information"
+                  subTitle="The answer will come soon."
+                />
+              )}
+
+              {!ShowSuccess && (
+                <Row gutter={[12]}>
+                  <Col md={24} xl={24}>
+                    <Title level={4}>Full Rental</Title>
+                  </Col>
+                  <Col md={24} xl={24} style={smallPriceStyle}>
+                    {rent_price}원 / 일
+                  </Col>
+                  <Button
+                    type="primary"
+                    size="large"
+                    style={buttonStyle}
+                    onClick={onSubmit}
+                  >
+                    Contact
+                  </Button>
+                </Row>
+              )}
+            </div>
+          </Col>
+        </Row>
       )}
     </>
   );

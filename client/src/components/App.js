@@ -19,8 +19,9 @@ import KitchenDetailPage from "./views/KitchenDetailPage/KitchenDetailPage";
 import EventPage from "./views/EventPage/EventPage";
 import UploadEventPage from "./admin/UploadEventPage";
 import EventDetailPage from "../EventDetailPage/EventDetailPage";
-import MyProfilePage from "./views/MyPage/MyProfilePage";
+import UserProfilePage from "./views/MyPage/UserProfilePage";
 import MyTicketPage from "./views/MyPage/MyTicketPage";
+import { MainBox } from "./views/HostPage/Sections/HostPageStyle";
 
 const { Content } = Layout;
 
@@ -28,17 +29,14 @@ function App() {
   return (
     <Suspense fallback={<Button type="primary" size="small" loading></Button>}>
       <NavBar />
-
-      <Content>
-        <div
-        // style={{
-        //   paddingTop: "69px",
-        //   minHeight: "calc(100vh - 80px)",
-        //   paddingLeft: "5%",
-        //   paddingRight: "5%",
-        //   backgroundColor: "#f9f9f9",
-        // }}
-        >
+      <Content
+        style={{
+          backgroundColor: "rgb(250, 250, 250)",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
+        <MainBox>
           {/* <Switch> 는 첫번째로 매칭되는 path 를 가진 컴포넌트를 렌더링 시킨다. 
           이것이 exact path 와 다른 점은 첫번째 매칭만 본다는 것이다. */}
           <Switch>
@@ -76,8 +74,8 @@ function App() {
             {/* My Page */}
             <Route
               exact
-              path="/my-profile"
-              component={Auth(MyProfilePage, null)}
+              path="/users/:userName"
+              component={Auth(UserProfilePage, null)}
             />
 
             <Route
@@ -108,7 +106,7 @@ function App() {
               component={Auth(UploadEventPage, true)}
             />
           </Switch>
-        </div>
+        </MainBox>
       </Content>
       <Footer />
     </Suspense>

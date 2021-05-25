@@ -10,6 +10,7 @@ import {
   Tag,
   Button,
   message,
+  Modal,
 } from "antd";
 import {
   CardBody,
@@ -21,10 +22,9 @@ import {
 } from "../styles/EventDetailStyle";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../_actions/user_actions";
+import { BottomButtonBox } from "./EventDetailStyle";
 
 const { Title, Paragraph } = Typography;
-
-// import ImageSlider from "../components/utils/ImageSlider";
 
 const first_boxStyle = {
   alignItems: "center",
@@ -81,6 +81,16 @@ const menuDescriptionStyle = {
   lineHeight: "1.5", // line-height값은 상속을 고려하여 단위를 빼고 쓰자. (줄 간격 나타내는 속성)
 };
 
+const bottomButtonStyle = {
+  width: "100%",
+  margin: "0px auto",
+  marginTop: "20px",
+  maxWidth: "552px",
+  display: "block",
+  transition: "width 0.2s ease-in-out 0s",
+  boxShadow: "0.2s ease-in-out 0s",
+};
+
 function EventDetailPage({ match }) {
   const LOCAL_SERVER = "http://localhost:5000/";
   const eventId = match.params.eventId;
@@ -103,7 +113,7 @@ function EventDetailPage({ match }) {
 
     setTimeout(() => {
       message.success({
-        content: "Success!",
+        content: "장바구니에 상품이 담겼습니다!",
         key,
         duration: 2,
       });
@@ -114,7 +124,6 @@ function EventDetailPage({ match }) {
   const addToCartHandler = async (e) => {
     try {
       const response = await dispatch(addToCart(eventId));
-      // console.log(response);
       successMessage();
     } catch {
       console.error(e);
@@ -126,7 +135,7 @@ function EventDetailPage({ match }) {
   return (
     <>
       {images && writer && (
-        <div className="main_box">
+        <div>
           <Row type="flex">
             <Col sm={24} md={14} style={first_boxStyle}>
               <div style={{ width: "100%" }}>
@@ -166,12 +175,12 @@ function EventDetailPage({ match }) {
             </Col>
           </Row>
           <Divider />
-          <div className="app">
+          <div>
             <Title level={3}>Menu</Title>
             <Row gutter={[16, 16]}>
               {/* 반복 시작되는 부분 */}
-              {images.map((image) => (
-                <Col xs={24} sm={12} style={{ padding: "8px" }}>
+              {images.map((image, index) => (
+                <Col xs={24} sm={12} style={{ padding: "8px" }} key={index}>
                   {/* styled component 적용 */}
                   <CardBody>
                     <InnerCardBody>
@@ -206,24 +215,32 @@ function EventDetailPage({ match }) {
                         </div>
                       </section>
                     </InnerCardBody>
-                    <MenuFooter>
+                    {/* <MenuFooter>
                       <Tag style={tagStyle}>0/40 remaining</Tag>
-                      <Button type="primary" onClick={addToCartHandler}>
-                        Add To Cart
+                      <Button type="primary" disabled>
+                        여기다 뭘 넣을까...
                       </Button>
-                    </MenuFooter>
+                    </MenuFooter> */}
                   </CardBody>
                 </Col>
               ))}
-
               {/* 반복 끝나는 부분 */}
             </Row>
           </div>
+          <BottomButtonBox>
+            <Button
+              style={bottomButtonStyle}
+              type="primary"
+              size="large"
+              onClick={addToCartHandler}
+            >
+              장바구니에 담기
+            </Button>
+          </BottomButtonBox>
         </div>
       )}
     </>
   );
 }
-// border: "1px solid black"
 
 export default EventDetailPage;

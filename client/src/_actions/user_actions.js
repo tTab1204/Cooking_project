@@ -59,7 +59,7 @@ export const addToCart = async (id) => {
 
   const response = await axios.post(`${USER_SERVER}/add-to-cart`, body);
   const request = response.data;
-  console.log(request);
+  // console.log(request);
 
   return {
     type: ADD_TO_CART,

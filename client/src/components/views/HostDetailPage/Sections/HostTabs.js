@@ -7,7 +7,7 @@ import { Tabs, Col } from "antd";
 
 const { TabPane } = Tabs;
 
-function HostTabs({ url, history, hostId }) {
+function HostTabs({ url, history, hostId, detail }) {
   const API_REIVEWS = "/api/reviews";
 
   const [AllReviews, setAllReviews] = useState([]);
@@ -55,6 +55,7 @@ function HostTabs({ url, history, hostId }) {
               reviewList={AllReviews}
               hostId={hostId}
               showReviews={showReviews}
+              detail={detail}
             />
           </TabPane>
 

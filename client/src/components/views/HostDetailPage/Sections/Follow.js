@@ -4,6 +4,8 @@ import { Col, Statistic, Row, Button } from "antd";
 //import Ratings from "./Ratings";
 import Axios from "axios";
 import { LoadingOutlined } from "@ant-design/icons";
+import { FollowBox } from "../../HostPage/Sections/HostPageStyle";
+import { UserOutlined } from "@ant-design/icons";
 
 function Follow({ detail, url }) {
   const [FollowNumber, setFollowNumber] = useState(0);
@@ -59,20 +61,19 @@ function Follow({ detail, url }) {
   return (
     <>
       {detail && (
-        <div className="host-bottom-card-piece">
-          <Row style={{ width: "100%" }}>
-            <div className="host-bottom-card ">
-              {/* Follow */}
-              <Col span={12}>
-                {loading && <LoadingOutlined />}
-                {!loading && (
-                  <Statistic title="Followers" value={FollowNumber} />
-                )}
-              </Col>
+        <div>
+          <FollowBox>
+            {/* Follow */}
 
-              {/* Ratings */}
-            </div>
-          </Row>
+            {loading && <LoadingOutlined />}
+            {!loading && (
+              <Statistic
+                title="Followers"
+                prefix={<UserOutlined />}
+                value={FollowNumber}
+              />
+            )}
+          </FollowBox>
           {url !== "/hosts" && (
             <Row
               style={{ paddingTop: "10px", textAlign: "center", width: "100%" }}

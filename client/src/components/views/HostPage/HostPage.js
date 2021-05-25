@@ -1,17 +1,42 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Typography, Card, Avatar, Divider } from "antd";
+import { Row, Col, Typography, Card, Avatar, Divider, Statistic } from "antd";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import Follow from "../HostDetailPage/Sections/Follow";
-import Ratings from "../HostDetailPage/Sections/Ratings";
-import Mini_Korea from "../food_nation/mini_korea.png";
 import Loading from "../../Loading";
+import China from "../../Images/china.png";
+import Korea from "../../Images/south-korea.png";
+import japan from "../../Images/japan.png";
+import {
+  HostCardContainer,
+  HostCardWrapper,
+  HostCarouselCard,
+  HostCardIcon,
+  HostCardP,
+  MainBox,
+  FollowAndRatingsBox,
+  FollowBox,
+} from "./Sections/HostPageStyle";
 
 const { Title } = Typography;
 
 const removeLinkColor = { color: "inherit", textDecoration: "none" };
 
+const FOOD_NATION = {
+  Korean: (
+    <img src={Korea} style={{ maxWidth: "20px", marginLeft: "5px" }} alt="KR" />
+  ),
+  Japan: (
+    <img src={japan} style={{ maxWidth: "20px", marginLeft: "5px" }} alt="JP" />
+  ),
+  Chinese: (
+    <img src={China} style={{ maxWidth: "20px", marginLeft: "5px" }} alt="CN" />
+  ),
+};
+
 function HostPage({ match }) {
+  const LOCAL_API = "http://localhost:5000";
+
   const [Hosts, setHosts] = useState([]);
 
   useEffect(() => {
@@ -25,77 +50,46 @@ function HostPage({ match }) {
   }, []);
 
   const renderHosts = Hosts.map((host, index) => (
-    <Col xl={8} md={12} xs={24} key={index} className="gutter-row">
-      <Card hoverable={true} style={{ border: "none" }}>
-        <Link to={`/hosts/${host._id}`} style={removeLinkColor}>
-          <Row type="flex">
-            <Col xs={10} md={24}>
-              <div style={{ textAlign: "center" }}>
-                <Avatar
-                  style={{
-                    width: "150px",
-                    height: "150px",
-                  }}
-                  src={`http://localhost:5000/${host.image}`}
-                  alt="host-main-image"
-                />
-              </div>
+    <Link to={`/hosts/${host._id}`} style={removeLinkColor}>
+      <HostCarouselCard>
+        <HostCardIcon src={`${LOCAL_API}/${host.image}`} />
 
-              <Col xs={14} md={24}>
-                <div
-                  style={{
-                    paddingTop: "10px",
-                    textAlign: "center",
-                  }}
-                >
-                  <Title level={2} style={{ marginBottom: "0px" }}>
-                    {host.name}
-                  </Title>
-                </div>
-                <div style={{ textAlign: "center" }}>
-                  <img
-                    src={Mini_Korea}
-                    width="50px"
-                    height="50px"
-                    alt="nation"
-                  />
-                </div>
-              </Col>
-            </Col>
-          </Row>
-          <Divider />
-          <Row>
-            <div className="host-bottom-card ">
-              {/* Follow */}
-              <Follow
-                userFrom={localStorage.getItem("userId")}
-                detail={host}
-                url={match.url}
-              />
+        <Title level={3}>
+          {" "}
+          {host.name}
+          {FOOD_NATION[host.food_nation]}
+        </Title>
 
-              {/* Ratings */}
-              <Ratings />
-            </div>
-          </Row>
-          <Row style={{ paddingTop: "10px" }}>{host.description}</Row>
-        </Link>
-      </Card>
-    </Col>
+        <Divider style={{ marginTop: "0" }} />
+        <Row>
+          <FollowAndRatingsBox>
+            <Follow
+              userFrom={localStorage.getItem("userId")}
+              detail={host}
+              url={match.url}
+            />
+          </FollowAndRatingsBox>
+        </Row>
+        <Row style={{ paddingTop: "10px" }}>
+          <HostCardP>{host.description}</HostCardP>
+        </Row>
+      </HostCarouselCard>
+    </Link>
   ));
 
   return (
-    <div className="app">
+    <>
       {Hosts.length === 0 ? (
         <Loading />
       ) : (
-        <div>
+        <>
           <Title level={1}>Hosts</Title>
-          <Row gutter={[32, 32]} type="flex">
-            {renderHosts}
-          </Row>
-        </div>
+          <HostCardContainer>
+            <HostCardWrapper>{renderHosts}</HostCardWrapper>
+          </HostCardContainer>
+        </>
       )}
-    </div>
+    </>
   );
 }
 

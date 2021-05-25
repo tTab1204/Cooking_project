@@ -6,7 +6,7 @@ import {
   CardIcon,
   CardH2,
   CardP,
-} from "./LandingPageStyle";
+} from "./CardStyle";
 import Barbeque from "../../../Images/barbeque.svg";
 import Chef from "../../../Images/chef.svg";
 import Cooking from "../../../Images/cooking.svg";

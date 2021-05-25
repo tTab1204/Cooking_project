@@ -31,7 +31,6 @@ const InfoBox = ({
   dark2,
   img,
 }) => {
-  console.log(img);
   return (
     <>
       <InfoContainer lightBg={lightBg} id={id}>

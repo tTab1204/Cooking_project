@@ -2,6 +2,7 @@ import React from "react";
 import { Row, Col, Card, Avatar, Divider, Tabs } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 const { TabPane } = Tabs;
 
 const cardStyle = {
@@ -38,9 +39,11 @@ const cardNameStyle = {
   fontWeight: "500",
 };
 
-function MyProfilePage() {
+function UserProfilePage({ match }) {
+  const userName = match.params.userName;
+
   return (
-    <div className="app">
+    <>
       {/* Card(Left) */}
       <Row gutter={24}>
         <Col xs={24} md={7}>
@@ -57,8 +60,13 @@ function MyProfilePage() {
               </Col>
               <Col xs={14} md={24} style={{ display: "flex" }}>
                 <div style={cardNameBoxStyle}>
-                  <div style={cardNameStyle}>Paka</div>
-                  <Link>@vertical</Link>
+                  <div style={cardNameStyle}>{userName}</div>
+                  <Link
+                    to={`/users/${userName}`}
+                    style={{ textAlign: "center" }}
+                  >
+                    @{userName}
+                  </Link>
                 </div>
               </Col>
             </Row>
@@ -67,15 +75,18 @@ function MyProfilePage() {
         </Col>
         {/* Tabs(Right) */}
         <Col xs={24} md={17}>
-          <Tabs defaultActiveKey="1">
+          <Tabs
+            defaultActiveKey="1"
+            style={{ background: "rgb(255, 255, 255)", padding: "0px 20px" }}
+          >
             <TabPane tab="Cheers" key="1">
               {/* Content of Tab Pane 1 */}
             </TabPane>
           </Tabs>
         </Col>
       </Row>
-    </div>
+    </>
   );
 }
 
-export default MyProfilePage;
+export default UserProfilePage;
