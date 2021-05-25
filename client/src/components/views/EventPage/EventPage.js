@@ -4,6 +4,18 @@ import { Link } from "react-router-dom";
 import Axios from "axios";
 import { EnvironmentOutlined, TeamOutlined } from "@ant-design/icons";
 import Loading from "../../Loading";
+import {
+  WholeCardContainer,
+  WholeCardWrapper,
+  EventCard,
+  CardCover,
+  CardBody,
+  CardTitle,
+  CardText,
+  CardHoverEffect,
+} from "./EventPageStyle";
+import "./EventPageStyle.css";
+
 const { Title } = Typography;
 
 const removeLinkColor = { color: "inherit", textDecoration: "none" };
@@ -15,6 +27,7 @@ const spanStyle = {
 };
 
 function EventPage() {
+  const LOCAL_API = "http://localhost:5000";
   const [Events, setEvents] = useState([]);
   const [loading, setloading] = useState(true);
 
@@ -30,56 +43,30 @@ function EventPage() {
   }, []);
 
   const renderEvent = Events.map((event, index) => (
-    <Col
-      xl={8}
-      sm={12}
-      xs={24}
-      key={index}
-      className="gutter-row"
-      style={{ padding: "16px" }}
-    >
-      <Link to={`/events/${event._id}`} style={removeLinkColor}>
-        <Card
-          hoverable={true}
-          style={{ border: "none", height: "480px" }}
-          cover={
-            <img alt="Event" src={`http://localhost:5000/${event.images[0]}`} />
-          }
-        >
-          <Row>
-            <span style={spanStyle}>
-              <span style={{ marginRight: "5px" }}>
-                <EnvironmentOutlined />
-              </span>
-              <span>{event.time}</span>
-            </span>
-          </Row>
-          <Row style={{ paddingTop: "10px" }}>
-            <Title level={2} style={{ marginBottom: "0px", marginTop: "0px" }}>
-              {event.name}
-            </Title>
-          </Row>
-          <span style={spanStyle}>
-            <span style={{ marginRight: "5px" }}>
-              <TeamOutlined />
-            </span>
-            <span>{event.host.name}</span>
-          </span>
-        </Card>
-      </Link>
-    </Col>
+    <Link to={`/events/${event._id}`} style={removeLinkColor}>
+      <EventCard className="card">
+        <CardCover src={`${LOCAL_API}/${event.images[0]}`}></CardCover>
+        <div class="info">
+          <h2>Show Event!</h2>
+        </div>
+        <CardBody>
+          <div style={{ width: "100%" }}>
+            <CardTitle>{event.name}</CardTitle>
+          </div>
+          <CardText>{event.location}</CardText>
+        </CardBody>
+      </EventCard>
+    </Link>
   ));
 
   return (
     <>
-      <div className="main_box">
-        {loading && <Loading />}
+      {loading && <Loading />}
 
-        <Title level={1}>Events</Title>
-        <Row gutter={[32, 32]} type="flex">
-          {!loading && renderEvent}
-        </Row>
-      </div>
+      <Title level={1}>Events</Title>
+      <WholeCardContainer>
+        <WholeCardWrapper>{!loading && renderEvent}</WholeCardWrapper>
+      </WholeCardContainer>
     </>
   );
 }
