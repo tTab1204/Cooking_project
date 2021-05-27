@@ -65,6 +65,12 @@ body {
   font-size: 14px !important;
 }
 
+.ant-card-cover:hover img {
+  transform: scale(1.01);
+  box-shadow: rgb(0 0 0 / 16%) 0px 3px 6px 0px;
+  transition: transform 0.3s ease;
+}
+
 /* .ant-statistic-title {
   display: flex;
   justify-content: center;

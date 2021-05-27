@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LeftMenu from "./Sections/LeftMenu";
 import RightMenu from "./Sections/RightMenu";
 import { Drawer } from "antd";
 import "./Sections/Navbar.css";
 import { Link } from "react-router-dom";
 import { MenuOutlined } from "@ant-design/icons";
-import { NavbarContainer, NavLogo } from "./Sections/NavBarStyle";
+import { NavbarContainer, NavLogo, Nav } from "./Sections/NavBarStyle";
+
+const removeLinkColor = { color: "inherit", textDecoration: "none" };
 
 function NavBar() {
   const [visible, setVisible] = useState(false);
+  const [scrollNav, setScrollNav] = useState(false);
+
+  const changeNav = () => {
+    if (window.scrollY >= 80) setScrollNav(true);
+    else setScrollNav(false);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", changeNav);
+  }, []);
 
   const showDrawer = () => {
     setVisible(true);
@@ -19,16 +31,13 @@ function NavBar() {
   };
 
   return (
-    <nav
-      className="menu"
-      style={{
-        width: "100%",
-      }}
-    >
+    <Nav scrollNav={scrollNav}>
       <NavbarContainer>
         <NavLogo>
           {/* Link: 애플리케이션은 그대로 유지한 상태에서 페이지의 주소만 변경해줌 */}
-          <Link to="/">Cooking</Link>
+          <Link to="/" style={removeLinkColor}>
+            Cooking
+          </Link>
         </NavLogo>
         <div className="menu__container">
           <div className="menu_left">
@@ -61,7 +70,7 @@ function NavBar() {
           </Drawer>
         </div>
       </NavbarContainer>
-    </nav>
+    </Nav>
   );
 }
 

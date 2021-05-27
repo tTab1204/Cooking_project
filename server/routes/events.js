@@ -57,17 +57,28 @@ router.post("/upload-event", auth, (req, res) => {
   });
 });
 
-router.get("/show-events", (req, res) => {
-  Event.find()
-    .populate("host")
-    .exec((err, events) => {
-      if (err) return res.status(400).send(err);
-      res.status(200).json({ success: true, events });
-    });
+router.post("/show-events", auth, (req, res) => {
+  let term = req.body.searchTerm;
+
+  if (term) {
+    Event.find({ name: { $regex: term, $options: "i" } })
+      .populate("host")
+      .exec((err, events) => {
+        if (err) return res.status(400).send(err);
+        res.status(200).json({ success: true, events });
+      });
+  } else {
+    Event.find()
+      .populate("host")
+      .exec((err, events) => {
+        if (err) return res.status(400).send(err);
+        res.status(200).json({ success: true, events });
+      });
+  }
 });
 
 // --------------- get Event's Detail ----------------//
-router.get("/events_by_id", (req, res) => {
+router.get("/events_by_id", auth, (req, res) => {
   let type = req.query.type;
   let eventId = req.query.id;
 

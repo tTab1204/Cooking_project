@@ -66,7 +66,7 @@ function KitchenPage() {
           <div style={{ width: "100%" }}>
             <CardTitle>
               {kitchen.name}{" "}
-              <Tag color="purple" style={{ marginLeft: "5px" }}>
+              <Tag color="geekblue" style={{ marginLeft: "5px" }}>
                 Popular
               </Tag>
             </CardTitle>
@@ -79,7 +79,7 @@ function KitchenPage() {
             <DollarCircleFilled
               style={{
                 marginRight: "5px",
-                color: "var(--primary-color2)",
+                color: "var(--primary-color3)",
               }}
             />
             {kitchen.rent_price}{" "}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Typography, Tag } from "antd";
+import { Row, Col, Typography, Tag, Input } from "antd";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 import { DollarCircleFilled, EnvironmentFilled } from "@ant-design/icons";
@@ -17,6 +17,7 @@ import {
   PriceAndTagBox,
 } from "./EventPageStyle";
 import "./EventPageStyle.css";
+import SearchBox from "./Sections/SearchBox";
 
 const { Title } = Typography;
 
@@ -26,16 +27,29 @@ function EventPage() {
   const LOCAL_API = "http://localhost:5000";
   const [Events, setEvents] = useState([]);
   const [loading, setloading] = useState(true);
+  const [SearchTerm, setSearchTerm] = useState("");
+
+  const showEvents = async (body) => {
+    try {
+      const response = await Axios.post("/api/events/show-events", body);
+      setEvents(response.data.events);
+      setloading(false);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const updateSearchTerm = (newSearchTerm) => {
+    let body = {
+      searchTerm: newSearchTerm,
+    };
+
+    setSearchTerm(newSearchTerm);
+    showEvents(body);
+  };
 
   useEffect(() => {
-    Axios.get("/api/events/show-events").then((response) => {
-      if (response.data.success) {
-        setEvents(response.data.events);
-        setloading(false);
-      } else {
-        console.error(response.data);
-      }
-    });
+    showEvents();
   }, []);
 
   const renderEvent = Events.map((event, index) => (
@@ -46,15 +60,15 @@ function EventPage() {
         </RemainDayBox>
         <CardCover src={`${LOCAL_API}/${event.images[0]}`}></CardCover>
         {/* Hover Effect */}
-        {/* <div className="info">
+        <div className="info">
           <h2>Show Event!</h2>
-        </div> */}
+        </div>
         {/* -------------- */}
         <CardBody>
           <div style={{ width: "100%" }}>
             <CardTitle>
               {event.name}{" "}
-              <Tag color="purple" style={{ marginLeft: "5px" }}>
+              <Tag color="geekblue" style={{ marginLeft: "5px" }}>
                 Popular
               </Tag>
             </CardTitle>
@@ -67,7 +81,7 @@ function EventPage() {
             <DollarCircleFilled
               style={{
                 marginRight: "5px",
-                color: "var(--primary-color2)",
+                color: "var(--primary-color3)",
               }}
             />{" "}
             {event.price}{" "}
@@ -92,7 +106,16 @@ function EventPage() {
 
       {!loading && (
         <>
-          <Title level={1}>Events</Title>
+          <Row style={{ display: "flex" }}>
+            <Col>
+              <Title level={1}>Events</Title>
+            </Col>
+            {/* 검색 필터링 기능 */}
+            <Col>
+              <SearchBox refreshFunction={updateSearchTerm} />
+            </Col>
+          </Row>
+
           <WholeCardContainer>
             <WholeCardWrapper>{renderEvent}</WholeCardWrapper>
           </WholeCardContainer>

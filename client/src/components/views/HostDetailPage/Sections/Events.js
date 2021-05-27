@@ -48,7 +48,7 @@ function Events({ hostId }) {
 
   const renderHostEvents = HostEvents.map((event, index) => (
     <Link to={`/events/${event._id}`} style={removeLinkColor} key={index}>
-      <EventCard className="card" host="true">
+      <EventCard className="card">
         <RemainDayBox>
           <RemainDay>D-2</RemainDay>
         </RemainDayBox>
@@ -62,7 +62,7 @@ function Events({ hostId }) {
           <div style={{ width: "100%" }}>
             <CardTitle>
               {event.name}{" "}
-              <Tag color="purple" style={{ marginLeft: "5px" }}>
+              <Tag color="geekblue" style={{ marginLeft: "5px" }}>
                 Popular
               </Tag>
             </CardTitle>
@@ -75,7 +75,7 @@ function Events({ hostId }) {
             <DollarCircleFilled
               style={{
                 marginRight: "5px",
-                color: "var(--primary-color2)",
+                color: "var(--primary-color3)",
               }}
             />
             {event.price}{" "}

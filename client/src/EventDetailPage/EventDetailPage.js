@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Axios from "axios";
 import {
   Row,
@@ -22,7 +22,16 @@ import {
 } from "../styles/EventDetailStyle";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../_actions/user_actions";
-import { BottomButtonBox } from "./EventDetailStyle";
+import {
+  BottomButtonBox,
+  ModalContentWrapper,
+  InnerModalBox,
+  ModalImage,
+  LeftDirectionBox,
+  RightDirectionBox,
+} from "./EventDetailPageStyle";
+import Loading from "../components/Loading";
+import { RightOutlined, LeftOutlined } from "@ant-design/icons";
 
 const { Title, Paragraph } = Typography;
 
@@ -98,11 +107,29 @@ function EventDetailPage({ match }) {
 
   const [DetailEvent, setDetailEvent] = useState({});
   const [ShowSuccess, setShowSuccess] = useState(false);
+  const [loading, setloading] = useState(true);
+  const [ShowModal, setShowModal] = useState(false);
+  const [Image, setImage] = useState("");
+  const [CurrentSlide, setCurrentSlide] = useState(0);
+
+  const slideRef = useRef(null);
+
+  // Modal
+  const handleModalOpen = (targetedImage, i) => {
+    setShowModal(true);
+    setImage(targetedImage);
+    setCurrentSlide(i);
+  };
+
+  const handleCancel = () => {
+    setShowModal(false);
+  };
 
   useEffect(() => {
     Axios.get(`/api/events/events_by_id?id=${eventId}&type=single`)
       .then((response) => {
         setDetailEvent(response.data.event[0]);
+        setloading(false);
       })
       .catch((err) => alert(err));
   }, []);
@@ -132,9 +159,29 @@ function EventDetailPage({ match }) {
 
   const { images, name, description, time, location, writer } = DetailEvent;
 
+  // Image Slider
+  const nextSlide = () => {
+    // 더 이상 넘어갈 슬라이드가 없다면 처음으로 돌아오도록 만들기
+    if (CurrentSlide >= images.length - 1) {
+      setCurrentSlide(0);
+    } else {
+      setCurrentSlide(CurrentSlide + 1);
+    }
+  };
+
+  const prevSlide = () => {
+    if (CurrentSlide === 0) {
+      setCurrentSlide(images.length - 1);
+    } else {
+      setCurrentSlide(CurrentSlide - 1);
+    }
+  };
+
   return (
     <>
-      {images && writer && (
+      {loading && <Loading />}
+
+      {!loading && images && writer && (
         <div>
           <Row type="flex">
             <Col sm={24} md={14} style={first_boxStyle}>
@@ -150,6 +197,7 @@ function EventDetailPage({ match }) {
                             alt="Event_main"
                             src={`${LOCAL_SERVER}${images[0]}`}
                             style={imgStyle}
+                            onClick={() => handleModalOpen(images[0], 0)}
                           />
                         </div>
                       }
@@ -206,6 +254,9 @@ function EventDetailPage({ match }) {
                                     <CardImageStyle
                                       alt="example"
                                       src={`${LOCAL_SERVER}${image}`}
+                                      onClick={() =>
+                                        handleModalOpen(image, index)
+                                      }
                                     />
                                   </div>
                                 }
@@ -237,6 +288,57 @@ function EventDetailPage({ match }) {
               장바구니에 담기
             </Button>
           </BottomButtonBox>
+          {/* Image Modal */}
+          <Modal
+            style={{
+              paddingBottom: "0px",
+              maxWidth: "80vw",
+              minWidth: "80vw",
+              width: "auto",
+              transformOrigin: "249.159px 183.727px",
+            }}
+            bodyStyle={{
+              padding: "0px",
+              height: "80vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            visible={ShowModal}
+            onCancel={handleCancel}
+            footer={null}
+          >
+            <ModalContentWrapper>
+              <InnerModalBox>
+                <ModalImage
+                  alt="example"
+                  src={`${LOCAL_SERVER}${images[CurrentSlide]}`}
+                />
+              </InnerModalBox>
+              <LeftDirectionBox>
+                <LeftOutlined
+                  style={{
+                    background: " rgba(255, 255, 255, 0.3)",
+                    border: "none",
+                    fontSize: "25px",
+                    padding: "8px",
+                  }}
+                  onClick={prevSlide}
+                />
+              </LeftDirectionBox>
+              <RightDirectionBox>
+                <RightOutlined
+                  style={{
+                    background: " rgba(255, 255, 255, 0.3)",
+                    border: "none",
+                    fontSize: "25px",
+                    padding: "8px",
+                  }}
+                  onClick={nextSlide}
+                />
+              </RightDirectionBox>
+            </ModalContentWrapper>
+          </Modal>
         </div>
       )}
     </>

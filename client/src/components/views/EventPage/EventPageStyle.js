@@ -41,8 +41,7 @@ export const EventCard = styled.div`
   height: 300px;
   position: relative;
 
-  box-shadow: ${({ host }) =>
-    host ? "none" : "rgb(0 0 0 / 15%) 0px 3px 6px 0px"};
+  box-shadow: rgb(0 0 0 / 15%) 0px 3px 6px 0px;
   border-radius: 30px;
   box-sizing: border-box;
   overflow: hidden;
@@ -54,7 +53,7 @@ export const EventCard = styled.div`
     transition: all 0.2s ease-in-out;
   }
 
-  /* &:before {
+  &:before {
     content: "";
     position: absolute;
     top: 0;
@@ -70,7 +69,7 @@ export const EventCard = styled.div`
 
   &:hover:before {
     opacity: 0.7;
-  } */
+  }
 
   &:hover CardHoverEffect {
     opacity: 1;
@@ -108,7 +107,7 @@ export const CardTitle = styled.div`
   cursor: pointer;
 `;
 export const CardText = styled.div`
-  color: var(--primary-color2);
+  color: var(--primary-color3);
   font-size: 0.8rem;
   margin-top: 5px;
   text-align: right;
@@ -136,7 +135,7 @@ export const RemainDayBox = styled.div`
   transition: all 200ms ease-in-out 0s;
 
   &:hover {
-    color: var(--primary-color2);
+    color: var(--primary-color3);
     transition: all 0.2s ease-in-out;
   }
 `;

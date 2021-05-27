@@ -24,8 +24,8 @@ function HostTabs({ url, history, hostId, detail }) {
       );
 
       setAllReviews(response.data.reviews);
-    } catch {
-      console.error();
+    } catch (e) {
+      console.error(e);
     }
   };
 

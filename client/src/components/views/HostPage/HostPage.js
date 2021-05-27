@@ -13,9 +13,9 @@ import {
   HostCarouselCard,
   HostCardIcon,
   HostCardP,
-  MainBox,
   FollowAndRatingsBox,
   FollowBox,
+  LikeBox,
 } from "./Sections/HostPageStyle";
 
 const { Title } = Typography;
@@ -61,14 +61,13 @@ function HostPage({ match }) {
         </Title>
 
         <Divider style={{ marginTop: "0" }} />
-        <Row>
-          <FollowAndRatingsBox>
-            <Follow
-              userFrom={localStorage.getItem("userId")}
-              detail={host}
-              url={match.url}
-            />
-          </FollowAndRatingsBox>
+        <Row style={{ width: "100%" }}>
+          {/* Follow and Likes */}
+          <Follow
+            userFrom={localStorage.getItem("userId")}
+            detail={host}
+            url={match.url}
+          />
         </Row>
         <Row style={{ paddingTop: "10px" }}>
           <HostCardP>{host.description}</HostCardP>

@@ -41,6 +41,12 @@ const eventSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+// 나는 키워드 검색 시 name이 검색되도록 하겠다.
+eventSchema.index({
+  name: "text",
+  //description: "text",
+});
+
 const Event = mongoose.model("Event", eventSchema);
 
 module.exports = { Event };

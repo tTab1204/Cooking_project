@@ -6,9 +6,11 @@ import Loading from "../../../Loading";
 
 function Followers({ hostId }) {
   const API_FOLLOWERS = "/api/follow";
+  const API_RATINGS = "/api/ratings";
   const variable = { hostId: hostId };
 
   const [HostFollowers, setHostFollowers] = useState([]);
+  const [Rates, setRates] = useState([]);
   const [loading, setloading] = useState(false);
 
   const showFollowers = async () => {
@@ -18,13 +20,14 @@ function Followers({ hostId }) {
         variable
       );
       setHostFollowers(response.data.followers);
-    } catch {
-      console.error();
+    } catch (e) {
+      console.error(e);
     }
   };
 
   useEffect(() => {
     showFollowers();
+
     setloading(false);
   }, []);
 

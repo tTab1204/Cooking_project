@@ -1,7 +1,7 @@
 .info {
   position: absolute;
   top: 40%;
-  left: 31%;
+  left: 24%;
 
   z-index: 3;
 
@@ -12,6 +12,7 @@
 
 .info h2 {
   color: #fff;
+  font-size: 30px;
 }
 
 .card:hover .info {

@@ -48,10 +48,7 @@ function LoginPage(props) {
             .then((response) => {
               if (response.payload.loginSuccess) {
                 window.localStorage.setItem("userId", response.payload.userId);
-                console.log(
-                  "로그인에 대한 action.payload 보기: ",
-                  response.payload
-                );
+
                 if (rememberMe === true) {
                   window.localStorage.setItem("rememberMe", values.id);
                 } else {

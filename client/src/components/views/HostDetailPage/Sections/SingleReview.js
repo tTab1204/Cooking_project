@@ -7,7 +7,6 @@ const { TextArea } = Input;
 
 function SingleReview({ hostId, review, refreshFunction, showReviews }) {
   const API_REIVEWS = "/api/reviews";
-  const API_RATINGS = "/api/ratings";
 
   const userId = localStorage.getItem("userId");
 
@@ -54,28 +53,6 @@ function SingleReview({ hostId, review, refreshFunction, showReviews }) {
       console.error(e);
     }
   };
-
-  // 평점 정보 가져오기
-  const showRatingsDetail = async () => {
-    const variables = {
-      userFrom: localStorage.getItem("userId"),
-      hostId: hostId,
-    };
-
-    try {
-      const response = await Axios.post(
-        `${API_RATINGS}/show-ratings`,
-        variables
-      );
-      // console.log(response.data.rateInfo);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-  useEffect(() => {
-    showRatingsDetail();
-  }, []);
 
   // 댓글 수정 기능
   const onCorrect = async (e) => {
@@ -140,8 +117,6 @@ function SingleReview({ hostId, review, refreshFunction, showReviews }) {
     review.writer && userId === review.writer._id && (
       <span onClick={() => deleteHandler(review._id)}>삭제</span>
     ),
-
-    // <Rate disabled defaultValue={2} />,
   ];
 
   return (

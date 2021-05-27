@@ -3,14 +3,30 @@ import { Col, Statistic, Row, Button } from "antd";
 // import Loading from "../../../Loading";
 //import Ratings from "./Ratings";
 import Axios from "axios";
-import { LoadingOutlined } from "@ant-design/icons";
-import { FollowBox } from "../../HostPage/Sections/HostPageStyle";
-import { UserOutlined } from "@ant-design/icons";
+
+import {
+  LoadingOutlined,
+  UserOutlined,
+  LikeOutlined,
+  DislikeOutlined,
+} from "@ant-design/icons";
+import {
+  FollowBox,
+  LikeBox,
+  FollowAndRatingsBox,
+} from "../../HostPage/Sections/HostPageStyle";
 
 function Follow({ detail, url }) {
+  // Follow
   const [FollowNumber, setFollowNumber] = useState(0);
   const [Followed, setFollowed] = useState(false);
   const [loading, setloading] = useState(true);
+
+  // Likes
+  const [Likes, setLikes] = useState(0);
+  const [Dislikes, setDislikes] = useState(0);
+  const [LikeAction, setLikeAction] = useState(null);
+  const [DislikeAction, setDislikeAction] = useState(null);
 
   const userFrom = localStorage.getItem("userId");
   const hostId = detail._id;
@@ -20,6 +36,13 @@ function Follow({ detail, url }) {
     userFrom: userFrom,
     hostId: hostId,
     hostName: hostName,
+  };
+
+  let likeVariables = {};
+
+  likeVariables = {
+    hostId: hostId,
+    userId: userFrom,
   };
 
   useEffect(() => {
@@ -34,7 +57,7 @@ function Follow({ detail, url }) {
         setloading(false);
       } else alert("정보를 가져오는 데 실패했습니다.");
     });
-  }, [detail]);
+  }, []);
 
   const onClickFollow = () => {
     if (Followed) {
@@ -52,7 +75,7 @@ function Follow({ detail, url }) {
           setFollowNumber(FollowNumber + 1);
           setFollowed(!Followed);
         } else {
-          alert("Favorite 리스트에서 추가하는데에 실패했습니다.");
+          alert("Follow 리스트에서 추가하는데에 실패했습니다.");
         }
       });
     }
@@ -62,18 +85,32 @@ function Follow({ detail, url }) {
     <>
       {detail && (
         <div>
-          <FollowBox>
-            {/* Follow */}
+          {/* Follow */}
 
-            {loading && <LoadingOutlined />}
-            {!loading && (
-              <Statistic
-                title="Followers"
-                prefix={<UserOutlined />}
-                value={FollowNumber}
-              />
-            )}
-          </FollowBox>
+          {loading && (
+            <div style={{ display: "flex", justifyContent: "center" }}>
+              <LoadingOutlined />
+            </div>
+          )}
+          {!loading && (
+            <FollowAndRatingsBox>
+              <FollowBox>
+                <Statistic
+                  title="Followers"
+                  prefix={<UserOutlined />}
+                  value={FollowNumber}
+                />
+              </FollowBox>
+              <LikeBox>
+                <Statistic
+                  title="Likes"
+                  prefix={<LikeOutlined />}
+                  value={FollowNumber}
+                />
+              </LikeBox>
+            </FollowAndRatingsBox>
+          )}
+
           {url !== "/hosts" && (
             <Row
               style={{ paddingTop: "10px", textAlign: "center", width: "100%" }}
