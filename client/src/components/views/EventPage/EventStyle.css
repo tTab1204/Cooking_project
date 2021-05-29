@@ -1,12 +1,10 @@
+/* styled-components로 한꺼번에 적용시키고 싶은데 어떻게 해야되는지 모르겠다. */
 .info {
   position: absolute;
   top: 40%;
   left: 24%;
-
   z-index: 3;
-
   opacity: 0;
-
   transition: all 0.2s ease-in-out;
 }
 

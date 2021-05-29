@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledButton } from "../../../../styles/ButtonStyle";
+// import { StyledButton } from "../../../../styles/ButtonStyle";
 import {
   InfoContainer,
   InfoWrapper,
@@ -42,7 +42,7 @@ const InfoBox = ({
                 <Heading lightText={lightText}>{headline}</Heading>
                 <Subtitle darkText={darkText}>{description}</Subtitle>
                 <BtnWrap>
-                  <StyledButton
+                  {/* <StyledButton
                     to="home"
                     smooth={true}
                     duration={500}
@@ -54,7 +54,7 @@ const InfoBox = ({
                     dark2={dark2 ? 1 : 0}
                   >
                     {buttonLabel}
-                  </StyledButton>
+                  </StyledButton> */}
                 </BtnWrap>
               </TextWrapper>
             </Column1>

@@ -16,13 +16,14 @@ import UploadKitchenPage from "./admin/UploadKitchenPage";
 import UploadHostPage from "./admin/UploadHostPage";
 import KitchenPage from "./views/KitchenPage/KitchenPage";
 import KitchenDetailPage from "./views/KitchenDetailPage/KitchenDetailPage";
-import EventPage from "./views/EventPage/EventPage";
+import EventContainer from "./views/EventPage/EventContainer";
 import UploadEventPage from "./admin/UploadEventPage";
-import EventDetailPage from "../EventDetailPage/EventDetailPage";
+import EventDetailContainer from "./views/EventDetailPage/EventDetailContainer";
 import UserProfilePage from "./views/MyPage/UserProfilePage";
 import MyTicketPage from "./views/MyPage/MyTicketPage";
 import { MainBox } from "./views/HostPage/Sections/HostPageStyle";
 import { BackTop } from "antd";
+
 const { Content } = Layout;
 
 const style = {
@@ -87,7 +88,11 @@ function App() {
                 path="/kitchens/:kitchensId"
                 component={Auth(KitchenDetailPage, null)}
               />
-              <Route exact path="/events" component={Auth(EventPage, null)} />
+              <Route
+                exact
+                path="/events"
+                component={Auth(EventContainer, null)}
+              />
 
               {/* My Page */}
               <Route
@@ -106,7 +111,7 @@ function App() {
               <Route
                 exact
                 path="/events/:eventId"
-                component={Auth(EventDetailPage, null)}
+                component={Auth(EventDetailContainer, null)}
               />
               <Route
                 exact

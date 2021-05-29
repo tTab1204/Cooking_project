@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
-import Axios from "axios";
+import React, { useState } from "react";
 import {
   Row,
   Col,
@@ -7,57 +6,44 @@ import {
   Typography,
   Divider,
   Descriptions,
-  Tag,
   Button,
-  message,
   Modal,
 } from "antd";
 import {
   CardBody,
   InnerCardBody,
   CardSection,
-  Menu,
+  CardMenu,
   CardImageStyle,
-  MenuFooter,
-} from "../styles/EventDetailStyle";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../_actions/user_actions";
-import {
   BottomButtonBox,
   ModalContentWrapper,
   InnerModalBox,
   ModalImage,
   LeftDirectionBox,
   RightDirectionBox,
-} from "./EventDetailPageStyle";
-import Loading from "../components/Loading";
+  MainImgWrapper,
+  MenuImageWrapper,
+} from "./EventDetailStyle";
+
 import { RightOutlined, LeftOutlined } from "@ant-design/icons";
+import { LOCAL_SERVER } from "../../Config";
 
 const { Title, Paragraph } = Typography;
 
-const first_boxStyle = {
+// ---------------------------- CSS-in-JS --------------------------- //
+const colStyle = {
   alignItems: "center",
   display: "flex",
   flexDirection: "column",
 };
 
-const second_boxStyle = {
+const cardBodyStyle = {
   display: "flex",
   flexDirection: "column",
   height: "100%",
 };
 
-const cardStyle = {
-  minWidth: "200px",
-  width: "100%",
-  height: "100%",
-  position: "relative",
-  paddingTop: "75%",
-  display: "flex",
-  border: "none",
-};
-
-const imgStyle = {
+const mainImgStyle = {
   objectFit: "cover",
   height: "100%",
   width: "100%",
@@ -69,19 +55,6 @@ const imgStyle = {
 const descriptionStyle = {
   display: "grid",
   gridTemplateColumns: "1fr 3fr",
-};
-
-const tagStyle = {
-  margin: "auto 0px",
-};
-
-const cardImageWrapper = {
-  minWidth: "200px",
-  width: "100%",
-  height: "100%",
-  position: "relative",
-  paddingTop: "75%",
-  display: "flex",
 };
 
 const menuDescriptionStyle = {
@@ -100,21 +73,14 @@ const bottomButtonStyle = {
   boxShadow: "0.2s ease-in-out 0s",
 };
 
-function EventDetailPage({ match }) {
-  const LOCAL_SERVER = "http://localhost:5000/";
-  const eventId = match.params.eventId;
-  const dispatch = useDispatch();
+// ----------------------------------------------------------------------//
 
-  const [DetailEvent, setDetailEvent] = useState({});
-  const [ShowSuccess, setShowSuccess] = useState(false);
-  const [loading, setloading] = useState(true);
-  const [ShowModal, setShowModal] = useState(false);
+function EventDetailPresenter({ DetailEvent, addToCartHandler }) {
+  // Modal (UI logic)
   const [Image, setImage] = useState("");
   const [CurrentSlide, setCurrentSlide] = useState(0);
+  const [ShowModal, setShowModal] = useState(false);
 
-  const slideRef = useRef(null);
-
-  // Modal
   const handleModalOpen = (targetedImage, i) => {
     setShowModal(true);
     setImage(targetedImage);
@@ -124,40 +90,6 @@ function EventDetailPage({ match }) {
   const handleCancel = () => {
     setShowModal(false);
   };
-
-  useEffect(() => {
-    Axios.get(`/api/events/events_by_id?id=${eventId}&type=single`)
-      .then((response) => {
-        setDetailEvent(response.data.event[0]);
-        setloading(false);
-      })
-      .catch((err) => alert(err));
-  }, []);
-
-  const successMessage = () => {
-    const key = "updatable";
-    message.loading({ content: "Loading...", key });
-
-    setTimeout(() => {
-      message.success({
-        content: "장바구니에 상품이 담겼습니다!",
-        key,
-        duration: 2,
-      });
-      setShowSuccess(true);
-    }, 2000);
-  };
-
-  const addToCartHandler = async (e) => {
-    try {
-      const response = await dispatch(addToCart(eventId));
-      successMessage();
-    } catch {
-      console.error(e);
-    }
-  };
-
-  const { images, name, description, time, location, writer } = DetailEvent;
 
   // Image Slider
   const nextSlide = () => {
@@ -177,14 +109,13 @@ function EventDetailPage({ match }) {
     }
   };
 
+  const { images, name, description, time, location, writer } = DetailEvent;
   return (
     <>
-      {loading && <Loading />}
-
-      {!loading && images && writer && (
+      {images && writer && (
         <div>
           <Row type="flex">
-            <Col sm={24} md={14} style={first_boxStyle}>
+            <Col sm={24} md={14} style={colStyle}>
               <div style={{ width: "100%" }}>
                 <Row type="flex">
                   <Col span={24}>
@@ -192,14 +123,14 @@ function EventDetailPage({ match }) {
                       hoverable={true}
                       bodyStyle={{ padding: "0" }}
                       cover={
-                        <div style={cardStyle}>
+                        <MainImgWrapper>
                           <img
                             alt="Event_main"
                             src={`${LOCAL_SERVER}${images[0]}`}
-                            style={imgStyle}
+                            style={mainImgStyle}
                             onClick={() => handleModalOpen(images[0], 0)}
                           />
-                        </div>
+                        </MainImgWrapper>
                       }
                     ></Card>
                   </Col>
@@ -207,7 +138,7 @@ function EventDetailPage({ match }) {
               </div>
             </Col>
             <Col sm={24} md={10}>
-              <Card style={{ height: "100%" }} bodyStyle={second_boxStyle}>
+              <Card style={{ height: "100%" }} bodyStyle={cardBodyStyle}>
                 <Title level={3}>{name}</Title>
                 <Divider />
                 <Descriptions>
@@ -233,7 +164,7 @@ function EventDetailPage({ match }) {
                   <CardBody>
                     <InnerCardBody>
                       <CardSection>
-                        <Menu>DIY Ramen</Menu>
+                        <CardMenu>DIY Ramen</CardMenu>
                         <span style={{ marginBottom: "16px" }}>16000 (원)</span>
                         <Paragraph
                           type="secondary"
@@ -250,7 +181,7 @@ function EventDetailPage({ match }) {
                                 hoverable={true}
                                 bodyStyle={{ padding: "0px" }}
                                 cover={
-                                  <div style={cardImageWrapper}>
+                                  <MenuImageWrapper>
                                     <CardImageStyle
                                       alt="example"
                                       src={`${LOCAL_SERVER}${image}`}
@@ -258,7 +189,7 @@ function EventDetailPage({ match }) {
                                         handleModalOpen(image, index)
                                       }
                                     />
-                                  </div>
+                                  </MenuImageWrapper>
                                 }
                               ></Card>
                             </Col>
@@ -345,4 +276,4 @@ function EventDetailPage({ match }) {
   );
 }
 
-export default EventDetailPage;
+export default EventDetailPresenter;
