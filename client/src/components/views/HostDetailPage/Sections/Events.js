@@ -13,7 +13,7 @@ import {
   PriceAndTagBox,
   WholeCardContainer,
   WholeCardWrapper,
-} from "../../EventPage/EventPageStyle";
+} from "../../EventPage/EventStyle";
 import { DollarCircleFilled, EnvironmentFilled } from "@ant-design/icons";
 import Loading from "../../../Loading";
 

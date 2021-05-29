@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Row,
   Col,
@@ -7,60 +7,26 @@ import {
   Button,
   Descriptions,
   Card,
-  message,
   Result,
   Modal,
   Form,
   Input,
 } from "antd";
-import Axios from "axios";
+import {
+  BreadCrumbImg,
+  AddressAndCapacityWrapper,
+  PriceWrapper,
+} from "./KitchenDetailStyle";
 import { EnvironmentOutlined, TeamOutlined } from "@ant-design/icons";
-// import { Link } from "react-router-dom";
-import Loading from "../../Loading";
-import { MainBox } from "../HostPage/Sections/HostPageStyle";
 
 const { Title, Paragraph } = Typography;
 
 // --------------- style --------------------//
-// ------------------------------------------//
-const breadCrumb_style = {
-  background: `linear-gradient(to bottom, rgba(0,0,0,0)
-                  39%, rgba(0,0,0,0)
-                  41%, rgba(0,0,0,0.65)
-                  100%),
-                  url(''), #1c1c1c`,
-  height: "400px",
-  backgroundSize: "cover",
-  backgroundPosition: "center, center",
-  width: "100%",
-  position: "relative",
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "flex-end",
-  paddingLeft: "24px",
-  paddingRight: "24px",
-};
-const spanStyle = {
-  fontWeight: "bold",
-  fontSize: "12px",
-  color: "rgba(0, 0, 0, 0.85)",
-  paddingRight: "10px",
-};
+
 const imageStyle = {
   minWidth: "auto",
   width: "auto",
   border: "none",
-};
-
-const priceStyle = {
-  border: "1px solid rgb(221, 221, 221)",
-  padding: "16px",
-  width: "100%",
-  flexDirection: "column",
-  textAlign: "center",
-  display: "flex",
-  justifyContent: "space-between",
-  marginTop: "20px",
 };
 
 const smallPriceStyle = {
@@ -74,41 +40,18 @@ const buttonStyle = {
   marginTop: "20px",
   width: "90%",
 };
-// ------------------------------------------- //
+
 // ------------------------------------------- //
 
-function KitchenDetailPage({ match }) {
-  const kitchenId = match.params.kitchensId;
-  const [loading, setloading] = useState(true);
-  const [DetailKitchen, setDetailKitchen] = useState({});
-  const [ShowSuccess, setShowSuccess] = useState(false);
+function KitchenDetailPresenter({
+  DetailKitchen,
+  ShowSuccess,
+  successMessage,
+}) {
   const [ShowModal, setShowModal] = useState(false);
 
   const { images, name, address, capacity, description, rent_price } =
     DetailKitchen;
-
-  useEffect(() => {
-    Axios.get(`/api/kitchens/kitchens_by_id?id=${kitchenId}&type=single`)
-      .then((response) => {
-        setDetailKitchen(response.data.kitchen[0]);
-        setloading(false);
-      })
-      .catch((err) => alert(err));
-  }, []);
-
-  const successMessage = () => {
-    const key = "updatable";
-    message.loading({ content: "Loading...", key });
-
-    setTimeout(() => {
-      message.success({
-        content: "Success!",
-        key,
-        duration: 2,
-      });
-      setShowSuccess(true);
-    }, 2000);
-  };
 
   const onHandleModal = () => {
     setShowModal(true);
@@ -118,31 +61,33 @@ function KitchenDetailPage({ match }) {
     setShowModal(false);
   };
 
+  const onSubmit = () => {
+    successMessage();
+
+    setTimeout(() => {
+      setShowModal(false);
+    }, 2000);
+  };
+
   return (
     <>
-      {loading && <Loading />}
-
-      {!loading && images && (
-        <div style={breadCrumb_style}>
-          <Title level={1} style={{ color: "white" }}></Title>
-        </div>
-      )}
-      {!loading && (
+      <>
+        <BreadCrumbImg />
         <Row gutter={[12]}>
           <Col xs={24} sm={24} md={16} style={{ marginTop: "20px" }}>
             <div>
-              <span style={spanStyle}>
+              <AddressAndCapacityWrapper>
                 <span style={{ marginRight: "4px" }}>
                   <EnvironmentOutlined />
                 </span>
                 <span>{address}</span>
-              </span>
-              <span style={spanStyle}>
+              </AddressAndCapacityWrapper>
+              <AddressAndCapacityWrapper>
                 <span style={{ marginRight: "4px" }}>
                   <TeamOutlined />
                 </span>
                 <span>{capacity}</span>
-              </span>
+              </AddressAndCapacityWrapper>
               <Title level={1} style={{ margin: "5px 0px" }}>
                 {name}
               </Title>
@@ -183,7 +128,7 @@ function KitchenDetailPage({ match }) {
             </div>
           </Col>
           <Col span={8}>
-            <div style={priceStyle}>
+            <PriceWrapper>
               {ShowSuccess && (
                 <Result
                   status="success"
@@ -210,10 +155,11 @@ function KitchenDetailPage({ match }) {
                   </Button>
                 </Row>
               )}
-            </div>
+            </PriceWrapper>
           </Col>
         </Row>
-      )}
+      </>
+
       <Modal
         title="Contact Us"
         visible={ShowModal}
@@ -232,7 +178,12 @@ function KitchenDetailPage({ match }) {
               placeholder="paka123@naver.com"
               style={{ marginBottom: "1.5rem" }}
             />
-            <Button type="primary" size="large" style={{ width: "100%" }}>
+            <Button
+              type="primary"
+              size="large"
+              style={{ width: "100%" }}
+              onClick={onSubmit}
+            >
               Submit
             </Button>
           </Form.Item>
@@ -242,4 +193,4 @@ function KitchenDetailPage({ match }) {
   );
 }
 
-export default KitchenDetailPage;
+export default KitchenDetailPresenter;

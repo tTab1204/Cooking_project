@@ -1,20 +1,11 @@
 import React from "react";
-// import { Icon } from "antd";
+import { FooterWrapper } from "./FooterStyle";
 
 function Footer() {
   return (
-    <div
-      style={{
-        height: "80px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        fontSize: "0.3rem",
-      }}
-    >
+    <FooterWrapper>
       <p> ©2021 Share with Cooking Inc. All Rights Reserved.</p>
-    </div>
+    </FooterWrapper>
   );
 }
 

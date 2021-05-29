@@ -28,17 +28,10 @@ function ImageUpload({ refreshFunction, url }) {
     Axios.post(`/api/${urlType}/upload-image`, formData, config).then(
       (response) => {
         if (response.data.success) {
-          // 이렇게 하면 하나의 이미지만 넣을 수 있기 때문에
-          // setImages(response.data.image)
           console.log(response.data);
-          // 전개 연산자를 사용해 다음과 같은 방식으로 이전, 이후의 이미지(여러개)를 저장할 수 있게 한다.
           setImages([...Images, response.data.image]);
           refreshFunction([...Images, response.data.image]);
         } else {
-          // Error: ENOENT: no such file or directory,
-          //  파일 또는 디렉토리가 없을 경우 나오는 에러
-          // 가장 흔한 실수가 생성한 파일명과 호출하는 파일명이 다를 경우
-
           alert("이미지 업로드에 실패했습니다.");
         }
       }

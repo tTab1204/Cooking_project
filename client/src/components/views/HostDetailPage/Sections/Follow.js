@@ -14,7 +14,7 @@ import {
   FollowBox,
   LikeBox,
   FollowAndRatingsBox,
-} from "../../HostPage/Sections/HostPageStyle";
+} from "../../HostPage/HostStyle";
 
 function Follow({ detail, url }) {
   // Follow

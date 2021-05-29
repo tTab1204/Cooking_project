@@ -1,19 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Typography, Menu, Empty } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { CartContainer, CartImage, CartItems } from "./MyTicketStyle";
+import { EmptyWrapper } from "./MyTicketStyle";
 
 const { Title } = Typography;
-
-const emptyStyle = {
-  display: "flex",
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
-  textAlign: "center",
-  flexGrow: "1",
-  height: "100%",
-};
 
 function MyTicketPage() {
   const user = useSelector((state) => state.user);
@@ -34,9 +24,9 @@ function MyTicketPage() {
       )} */}
 
       {user.userData && !user.userData.cart && (
-        <div style={emptyStyle}>
+        <EmptyWrapper>
           <Empty description="Nothing here" style={{ width: "100%" }} />
-        </div>
+        </EmptyWrapper>
       )}
     </>
   );

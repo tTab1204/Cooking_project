@@ -10,7 +10,6 @@ import {
 import Barbeque from "../../../Images/barbeque.svg";
 import Chef from "../../../Images/chef.svg";
 import Cooking from "../../../Images/cooking.svg";
-import { Typography } from "antd";
 import { useMotionValue, useTransform } from "framer-motion";
 
 const CardBox = () => {

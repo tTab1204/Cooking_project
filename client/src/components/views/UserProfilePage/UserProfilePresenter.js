@@ -2,20 +2,12 @@ import React from "react";
 import { Row, Col, Card, Avatar, Divider, Tabs } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { AvatarWrapper, CardNameWrapper, CardName } from "./UserProfileStyle";
 const { TabPane } = Tabs;
 
-const cardStyle = {
-  border: "none",
-};
 const cardBodyStyle = {
   maxWidth: "350px",
   margin: "0px auto",
-};
-
-const innerCardStyle = {
-  display: "flex",
-  justifyContent: "center",
 };
 
 const cardAvatarStyle = {
@@ -25,21 +17,7 @@ const cardAvatarStyle = {
   fontSize: "50px",
 };
 
-const cardNameBoxStyle = {
-  display: "flex",
-  margin: " 0px auto",
-  paddingLeft: "0px",
-  paddingTop: "10px",
-  flexFlow: "column nowrap",
-};
-
-const cardNameStyle = {
-  fontSize: "24px",
-  lineHeight: "28px",
-  fontWeight: "500",
-};
-
-function UserProfilePage({ match }) {
+function UserProfilePresenter({ match }) {
   const userName = match.params.userName;
 
   return (
@@ -47,27 +25,27 @@ function UserProfilePage({ match }) {
       {/* Card(Left) */}
       <Row gutter={24}>
         <Col xs={24} md={7}>
-          <Card style={cardStyle} bodyStyle={cardBodyStyle}>
+          <Card style={{ border: "none" }} bodyStyle={cardBodyStyle}>
             <Row>
               <Col xs={10} md={24}>
-                <div style={innerCardStyle}>
+                <AvatarWrapper>
                   <Avatar
                     size={{ xs: 24, sm: 32, md: 40, lg: 64, xl: 80, xxl: 100 }}
                     style={cardAvatarStyle}
                     icon={<UserOutlined />}
                   />
-                </div>
+                </AvatarWrapper>
               </Col>
               <Col xs={14} md={24} style={{ display: "flex" }}>
-                <div style={cardNameBoxStyle}>
-                  <div style={cardNameStyle}>{userName}</div>
+                <CardNameWrapper>
+                  <CardName>{userName}</CardName>
                   <Link
                     to={`/users/${userName}`}
                     style={{ textAlign: "center" }}
                   >
                     @{userName}
                   </Link>
-                </div>
+                </CardNameWrapper>
               </Col>
             </Row>
             <Divider style={{ margin: "12px 0px" }} />
@@ -89,4 +67,4 @@ function UserProfilePage({ match }) {
   );
 }
 
-export default UserProfilePage;
+export default UserProfilePresenter;

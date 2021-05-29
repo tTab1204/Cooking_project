@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col, Typography, Tag, Input } from "antd";
+import { Row, Col, Typography, Tag } from "antd";
 import { Link } from "react-router-dom";
 import { DollarCircleFilled, EnvironmentFilled } from "@ant-design/icons";
 import {

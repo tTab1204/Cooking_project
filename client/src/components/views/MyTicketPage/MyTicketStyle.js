@@ -23,3 +23,13 @@ export const CartItems = styled.div`
   align-items: baseline;
   width: 100%;
 `;
+
+export const EmptyWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  flex-grow: 1;
+  height: 100%;
+`;

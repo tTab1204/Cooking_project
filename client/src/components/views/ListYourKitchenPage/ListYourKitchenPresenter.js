@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import {
+  Result,
   Alert,
   Row,
   Col,
@@ -7,120 +8,59 @@ import {
   Input,
   Select,
   Form,
-  Result,
   Button,
+  Divider,
+  Steps,
 } from "antd";
-import Axios from "axios";
-import BottomPages from "../HostPage/Sections/BottomPages";
+import { BreadCrumbImg, MiddleBox, BottomBox } from "./ListYourKitchenStyle";
 
-// -------------- style --------------- //
-const breadCrumb_style = {
-  background: `linear-gradient(to bottom, rgba(0,0,0,0)
-  39%, rgba(0,0,0,0)
-  41%, rgba(0,0,0,0.65)
-  100%),
-  url('https://source.unsplash.com/1600x900/?cooking'), #1c1c1c`,
-  height: "400px",
-  backgroundSize: "cover",
-  backgroundPosition: "center, center",
-  width: "100%",
-  position: "relative",
-  display: "flex",
-  flexDirection: "row",
-  alignItems: "flex-end",
-  paddingLeft: "24px",
-  paddingRight: "24px",
-};
-const upload_middleBox_style = {
-  maxWidth: "600px",
-  paddingLeft: "24px",
-  paddingRight: "24px",
-  marginRight: "auto",
-  marginLeft: "auto",
-  display: "flex",
-  flexDirection: "column",
-  paddingTop: "20px",
-};
-// ------------------------------------ //
-const { Title } = Typography;
 const { Option } = Select;
+const { Step } = Steps;
+const { Title, Paragraph } = Typography;
 
-function ListYourKitchenPage({ match }) {
-  const [Name, setName] = useState("");
-  const [Email, setEmail] = useState("");
-  const [LookingTo, setLookingTo] = useState("");
-  const [ShowSuccess, setShowSuccess] = useState(false);
-
-  const onNameChange = (e) => {
-    setName(e.target.value);
-  };
-
-  const onEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
-
-  const onLookingToChange = (label) => {
-    console.log(label.key);
-    setLookingTo(label.key);
-  };
-
-  const onSubmit = () => {
-    const variables = {
-      writer: localStorage.getItem("userId"),
-      name: Name,
-      email: Email,
-      looking_to: LookingTo,
-    };
-
-    Axios.post("/api/temp-kitchenReq/list-your-kitchen", variables).then(
-      (response) => {
-        if (response.data.success) {
-          console.log(response.data);
-          setShowSuccess(true);
-        } else {
-          alert("Failed to send your information");
-        }
-      }
-    );
-  };
-
+function ListYourKitchenPresenter({
+  ShowSuccess,
+  onNameChange,
+  onEmailChange,
+  onLookingToChange,
+  onSubmit,
+}) {
   return (
-    <div>
+    <>
       <Row type="flex">
         {/*------------------- Image -----------------------*/}
-        <div style={breadCrumb_style}>
+        <BreadCrumbImg>
           <Title level={1} style={{ color: "white" }}>
-            List your kitchen on Cooking
+            List Your Kitchen
           </Title>
-        </div>
+        </BreadCrumbImg>
         {/*--------------------------------------------------*/}
 
         {/*------------------- Inputs -----------------------*/}
-        {ShowSuccess && (
+
+        {ShowSuccess ? (
           <Col
             lg={24}
             md={24}
             xs={24}
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <div style={upload_middleBox_style}>
+            <MiddleBox>
               <Result
                 status="success"
                 title="Successfully send the information"
                 subTitle="It will take a few days to answer. Thank you for your decision!"
               />
-            </div>
+            </MiddleBox>
           </Col>
-        )}
-
-        {!ShowSuccess && (
+        ) : (
           <Col
             lg={24}
             md={24}
             xs={24}
             style={{ display: "flex", justifyContent: "center" }}
           >
-            <div style={upload_middleBox_style}>
+            <MiddleBox>
               <Alert
                 message="Invite Only"
                 description="Currently, we are operating on invite-only. Feel free to leave your contact information to be contacted in the future."
@@ -147,7 +87,6 @@ function ListYourKitchenPage({ match }) {
                 />
                 <br />
                 <br />
-
                 {/* I am looking to.. */}
                 <Select
                   labelInValue
@@ -162,12 +101,10 @@ function ListYourKitchenPage({ match }) {
                     Rent out entire kitchen
                   </Option>
                 </Select>
-
                 <br />
                 <br />
 
                 {/* Submit Button */}
-
                 <Button
                   onClick={onSubmit}
                   size="large"
@@ -177,17 +114,71 @@ function ListYourKitchenPage({ match }) {
                   I'm intersted
                 </Button>
               </Form>
-            </div>
+            </MiddleBox>
           </Col>
         )}
       </Row>
       {/*--------------------------------------------------*/}
 
       {/*-------------------BottomPages-------------------*/}
-      <BottomPages url={match.url} />
+      <BottomBox>
+        {/* First Bottom-Page */}
+        <Title level={2}>Why List Your Kitchen?</Title>
+
+        <Paragraph>
+          Grow your brand as a chef, test out your new recipes, and share your
+          lovely food with the community. You’re in full control of your
+          availability, prices, and rules.
+        </Paragraph>
+
+        <Divider />
+
+        {/* Second Bottom-Page */}
+        <Title level={2}>Listing in 3 Steps</Title>
+        <Steps direction="vertical">
+          <Step
+            status="process"
+            title="Apply"
+            description="Gain new customers by collaborating with local chefs. Make a guaranteed form of income by sharing your kitchen or allowing chefs to host pop-ups. You’re in full control of your availability, prices, and rules."
+          />
+          <Step
+            status="process"
+            title="Set Availability"
+            description="Choose your own schedule, prices, and requirements for hosts. You can also set kitchen appliances, prep area, and fridge space you are willing to let the hosts use."
+          />
+          <Step
+            status="process"
+            title="Find Host"
+            description="Once your listing is live, qualified hosts and reach out."
+          />
+        </Steps>
+
+        <Divider />
+        {/* Third Bottom-Page */}
+
+        <Title level={2}>Payments made simple</Title>
+        <Steps direction="vertical">
+          <Step
+            status="finish"
+            title="No fees"
+            description="There’s no cost to sign up, list, and share your kitchen."
+          />
+          <Step
+            status="finish"
+            title="Flexible payout models"
+            description="Choose a payout model that fits your needs. Share your kitchen at a flat fee or collaborate with a chef and divide the revenue among the hosts."
+          />
+          <Step
+            status="finish"
+            title="Get paid quickly"
+            description="
+Once the event ends, the balance will be available in your dashboard to payout by direct deposit."
+          />
+        </Steps>
+      </BottomBox>
       {/*--------------------------------------------------*/}
-    </div>
+    </>
   );
 }
 
-export default ListYourKitchenPage;
+export default ListYourKitchenPresenter;

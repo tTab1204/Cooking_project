@@ -12,7 +12,6 @@ function EventContainer() {
     try {
       const response = await Axios.post("/api/events/show-events", body);
       setEvents(response.data.events);
-
       setloading(false);
     } catch (e) {
       console.error(e);

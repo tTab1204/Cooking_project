@@ -6,23 +6,23 @@ import LandingPage from "./views/LandingPage/LandingPage.js";
 import LoginPage from "./views/LoginPage/LoginPage.js";
 import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import NavBar from "./views/NavBar/NavBar";
-import HostPage from "./views/HostPage/HostPage";
-import BecomeAHostPage from "./views/HostPage/BecomeAHostPage";
+import HostContainer from "./views/HostPage/HostContainer";
+import BecomeAHostContainer from "./views/BecomeAHostPage/BecomeAHostContainer";
 import HostDetailPage from "./views/HostDetailPage/HostDetailPage";
-import ListYourKitchenPage from "./views/KitchenPage/ListYourKitchenPage";
+import ListYourKitchenContainer from "./views/ListYourKitchenPage/ListYourKitchenContainer";
 import Footer from "./views/Footer/Footer";
 import { Layout, Button } from "antd";
 import UploadKitchenPage from "./admin/UploadKitchenPage";
 import UploadHostPage from "./admin/UploadHostPage";
-import KitchenPage from "./views/KitchenPage/KitchenPage";
-import KitchenDetailPage from "./views/KitchenDetailPage/KitchenDetailPage";
+import KitchenContainer from "./views/KitchenPage/KitchenContainer";
 import EventContainer from "./views/EventPage/EventContainer";
 import UploadEventPage from "./admin/UploadEventPage";
 import EventDetailContainer from "./views/EventDetailPage/EventDetailContainer";
-import UserProfilePage from "./views/MyPage/UserProfilePage";
-import MyTicketPage from "./views/MyPage/MyTicketPage";
-import { MainBox } from "./views/HostPage/Sections/HostPageStyle";
+import UserProfilePresenter from "./views/UserProfilePage/UserProfilePresenter";
+import MyTicketPage from "./views/MyTicketPage/MyTicketPage";
+import { MainBox } from "./views/HostPage/HostStyle";
 import { BackTop } from "antd";
+import KitchenDetailContainer from "./views/KitchenDetailPage/KitchenDetailContainer";
 
 const { Content } = Layout;
 
@@ -62,11 +62,15 @@ function App() {
                 path="/register"
                 component={Auth(RegisterPage, false)}
               />
-              <Route exact path="/hosts" component={Auth(HostPage, true)} />
+              <Route
+                exact
+                path="/hosts"
+                component={Auth(HostContainer, true)}
+              />
               <Route
                 exact
                 path="/become-a-host"
-                component={Auth(BecomeAHostPage, true)}
+                component={Auth(BecomeAHostContainer, true)}
               />
               <Route
                 path="/hosts/:hostsId"
@@ -76,17 +80,17 @@ function App() {
               <Route
                 exact
                 path="/list-your-kitchen"
-                component={Auth(ListYourKitchenPage, null)}
+                component={Auth(ListYourKitchenContainer, null)}
               />
               <Route
                 exact
                 path="/kitchens"
-                component={Auth(KitchenPage, null)}
+                component={Auth(KitchenContainer, null)}
               />
               <Route
                 exact
                 path="/kitchens/:kitchensId"
-                component={Auth(KitchenDetailPage, null)}
+                component={Auth(KitchenDetailContainer, null)}
               />
               <Route
                 exact
@@ -98,7 +102,7 @@ function App() {
               <Route
                 exact
                 path="/users/:userName"
-                component={Auth(UserProfilePage, null)}
+                component={Auth(UserProfilePresenter, null)}
               />
 
               <Route

@@ -8,12 +8,31 @@
   transition: all 0.2s ease-in-out;
 }
 
+.info-kitchen {
+  position: absolute;
+  top: 40%;
+  left: 19%;
+  z-index: 3;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+}
+
 .info h2 {
   color: #fff;
   font-size: 30px;
 }
 
+.info-kitchen h2 {
+  color: #fff;
+  font-size: 30px;
+}
+
 .card:hover .info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card:hover .info-kitchen {
   opacity: 1;
   transform: translateY(0);
 }
