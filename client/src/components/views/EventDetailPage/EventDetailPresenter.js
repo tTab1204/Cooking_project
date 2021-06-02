@@ -8,6 +8,7 @@ import {
   Descriptions,
   Button,
   Modal,
+  Avatar,
 } from "antd";
 import {
   CardBody,
@@ -23,10 +24,14 @@ import {
   RightDirectionBox,
   MainImgWrapper,
   MenuImageWrapper,
+  DescriptionContentContainer,
+  DescriptionContentWrapper,
+  DescriptionFollowers,
 } from "./EventDetailStyle";
-
-import { RightOutlined, LeftOutlined } from "@ant-design/icons";
-import { LOCAL_SERVER } from "../../Config";
+import "./EventDetailStyle.css";
+import { Link } from "react-router-dom";
+import { RightOutlined, LeftOutlined, UserOutlined } from "@ant-design/icons";
+import { LOCAL_SERVER, HOST_SERVER } from "../../Config";
 
 const { Title, Paragraph } = Typography;
 
@@ -75,9 +80,13 @@ const bottomButtonStyle = {
 
 // ----------------------------------------------------------------------//
 
-function EventDetailPresenter({ DetailEvent, addToCartHandler }) {
-  // Modal (UI logic)
-  const [Image, setImage] = useState("");
+function EventDetailPresenter({
+  DetailEvent,
+  addToCartHandler,
+  FollowersNumber,
+}) {
+  // Modal
+  const [, setImage] = useState("");
   const [CurrentSlide, setCurrentSlide] = useState(0);
   const [ShowModal, setShowModal] = useState(false);
 
@@ -109,7 +118,9 @@ function EventDetailPresenter({ DetailEvent, addToCartHandler }) {
     }
   };
 
-  const { images, name, description, time, location, writer } = DetailEvent;
+  const { images, name, host, description, time, location, writer } =
+    DetailEvent;
+
   return (
     <>
       {images && writer && (
@@ -140,14 +151,41 @@ function EventDetailPresenter({ DetailEvent, addToCartHandler }) {
             <Col sm={24} md={10}>
               <Card style={{ height: "100%" }} bodyStyle={cardBodyStyle}>
                 <Title level={3}>{name}</Title>
-                <Divider />
-                <Descriptions>
+                <Divider style={{ margin: "16px 0px" }} />
+                <Descriptions column={1} colon={false}>
                   <Descriptions.Item
-                    span={1}
-                    style={descriptionStyle}
                     label="Host"
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 3fr",
+                    }}
                   >
-                    MuYaho
+                    <DescriptionContentContainer>
+                      <DescriptionContentWrapper>
+                        <Link to={`${HOST_SERVER}/${host.id}`}>
+                          {host.name}
+                        </Link>
+                        <DescriptionFollowers>
+                          <UserOutlined
+                            style={{
+                              color: "var(--primary-color3)",
+                              marginRight: "4px",
+                            }}
+                          />{" "}
+                          <Typography
+                            style={{
+                              whiteSpace: "nowrap",
+                            }}
+                          >
+                            4.8 (150)
+                          </Typography>
+                        </DescriptionFollowers>
+                      </DescriptionContentWrapper>
+                    </DescriptionContentContainer>
+                    <Avatar
+                      size="large"
+                      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                    />
                   </Descriptions.Item>
                 </Descriptions>
               </Card>
@@ -157,7 +195,6 @@ function EventDetailPresenter({ DetailEvent, addToCartHandler }) {
           <div>
             <Title level={3}>Menu</Title>
             <Row gutter={[16, 16]}>
-              {/* 반복 시작되는 부분 */}
               {images.map((image, index) => (
                 <Col xs={24} sm={12} style={{ padding: "8px" }} key={index}>
                   {/* styled component 적용 */}
@@ -206,7 +243,6 @@ function EventDetailPresenter({ DetailEvent, addToCartHandler }) {
                   </CardBody>
                 </Col>
               ))}
-              {/* 반복 끝나는 부분 */}
             </Row>
           </div>
           <BottomButtonBox>

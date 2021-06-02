@@ -47,9 +47,9 @@ function KitchenPresenter({ Kitchens }) {
                   src={`${LOCAL_SERVER}${kitchen.images[0]}`}
                 ></CardCover>
                 {/* Hover Effect */}
-                <div className="info-kitchen">
+                {/* <div className="info-kitchen">
                   <h2>Show Kitchen!</h2>
-                </div>
+                </div> */}
                 {/* -------------- */}
                 <CardBody>
                   <div style={{ width: "100%" }}>

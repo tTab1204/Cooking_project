@@ -1,0 +1,15 @@
+.ant-descriptions-item {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}
+
+.ant-descriptions-item > span {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.ant-descriptions-item-label {
+  color: rgba(0, 0, 0, 0.85);
+  line-height: 1.5715;
+  text-align: start;
+}

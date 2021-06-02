@@ -16,7 +16,7 @@ const SearchBox = ({ refreshFunction }) => {
       <Search
         placeholder="Search..."
         onChange={searchHandler}
-        style={{ marginTop: "10px", marginLeft: "3rem" }}
+        style={{ width: "100", marginTop: "10px", paddingLeft: "3rem" }}
         value={SearchTerm}
       />
     </>

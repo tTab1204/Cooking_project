@@ -107,3 +107,22 @@ export const MenuImageWrapper = styled.div`
   padding-top: 75%;
   display: flex;
 `;
+
+export const DescriptionContentContainer = styled.div`
+  border: 3px solid black;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const DescriptionContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-right: 12px;
+`;
+
+export const DescriptionFollowers = styled.div`
+  display: flex;
+  flex-direction: row;
+  -webkit-box-align: center;
+  align-items: center;
+`;
