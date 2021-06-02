@@ -44,6 +44,7 @@ function App() {
       // style={{ background: "geekblue" }}
       >
         <NavBar />
+
         <Content
           style={{
             // backgroundColor: "rgb(250, 250, 250)",
@@ -51,11 +52,11 @@ function App() {
             flexDirection: "column",
           }}
         >
-          <MainBox>
-            {/* <Switch> 는 첫번째로 매칭되는 path 를 가진 컴포넌트를 렌더링 시킨다. 
+          {/* <Switch> 는 첫번째로 매칭되는 path 를 가진 컴포넌트를 렌더링 시킨다. 
           이것이 exact path 와 다른 점은 첫번째 매칭만 본다는 것이다. */}
-            <Switch>
-              <Route exact path="/" component={Auth(LandingPage, null)} />
+          <Switch>
+            <Route exact path="/" component={Auth(LandingPage, null)} />
+            <MainBox>
               <Route exact path="/login" component={Auth(LoginPage, false)} />
               <Route
                 exact
@@ -132,8 +133,8 @@ function App() {
                 path="/upload-event"
                 component={Auth(UploadEventPage, true)}
               />
-            </Switch>
-          </MainBox>
+            </MainBox>
+          </Switch>
         </Content>
 
         <BackTop>
