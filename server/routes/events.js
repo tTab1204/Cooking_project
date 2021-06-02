@@ -59,9 +59,17 @@ router.post("/upload-event", auth, (req, res) => {
 
 router.post("/show-events", auth, (req, res) => {
   let term = req.body.searchTerm;
+  let search_date = req.body.date;
 
   if (term) {
     Event.find({ name: { $regex: term, $options: "i" } })
+      .populate("host")
+      .exec((err, events) => {
+        if (err) return res.status(400).send(err);
+        res.status(200).json({ success: true, events });
+      });
+  } else if (search_date) {
+    Event.find({ date: search_date })
       .populate("host")
       .exec((err, events) => {
         if (err) return res.status(400).send(err);

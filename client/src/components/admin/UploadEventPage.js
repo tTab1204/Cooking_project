@@ -8,6 +8,8 @@ import {
   Form,
   Button,
   message,
+  DatePicker,
+  Space,
 } from "antd";
 import Axios from "axios";
 import ImageUpload from "../utils/ImageUpload";
@@ -32,6 +34,7 @@ function UploadEvent({ match }) {
   const [Location, setLocation] = useState("");
   const [Price, setPrice] = useState(0);
   const [Description, setDescription] = useState("");
+  const [Date, setDate] = useState("");
   const [Images, setImages] = useState([]);
   const [ShowSuccess, setShowSuccess] = useState(false);
 
@@ -49,6 +52,11 @@ function UploadEvent({ match }) {
   };
   const onDescriptionChange = (e) => {
     setDescription(e.target.value);
+  };
+
+  const onDateChange = (date, dateString) => {
+    console.log("dateString: ", dateString);
+    setDate(dateString);
   };
 
   const refreshImages = (updatedImages) => {
@@ -79,6 +87,7 @@ function UploadEvent({ match }) {
       price: Price,
       description: Description,
       state: "pre",
+      date: Date,
       images: Images,
     };
 
@@ -165,6 +174,15 @@ function UploadEvent({ match }) {
                 />
                 <br />
                 <br />
+
+                <Title level={4} style={{ color: "gray" }}>
+                  Select Your Event Day
+                </Title>
+                <DatePicker onChange={onDateChange} />
+
+                <br />
+                <br />
+
                 {/* Image Upload */}
                 <Title level={4} style={{ color: "gray" }}>
                   Images

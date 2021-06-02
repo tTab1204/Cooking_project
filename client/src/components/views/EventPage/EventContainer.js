@@ -6,6 +6,7 @@ import EventPresenter from "./EventPresenter";
 function EventContainer() {
   const [Events, setEvents] = useState([]);
   const [loading, setloading] = useState(true);
+
   const [SearchTerm, setSearchTerm] = useState("");
 
   const showEvents = async (body) => {
@@ -27,6 +28,13 @@ function EventContainer() {
     showEvents(body);
   };
 
+  const onDateChange = (date, dateString) => {
+    let body = {
+      date: dateString,
+    };
+    showEvents(body);
+  };
+
   useEffect(() => {
     showEvents();
   }, []);
@@ -36,7 +44,12 @@ function EventContainer() {
       {loading && <Loading />}
 
       {!loading && (
-        <EventPresenter Events={Events} updateSearchTerm={updateSearchTerm} />
+        <EventPresenter
+          Events={Events}
+          updateSearchTerm={updateSearchTerm}
+          showEvents={showEvents}
+          onDateChange={onDateChange}
+        />
       )}
     </>
   );

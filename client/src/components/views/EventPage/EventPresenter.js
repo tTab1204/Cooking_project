@@ -1,5 +1,5 @@
-import React from "react";
-import { Row, Col, Typography, Tag } from "antd";
+import React, { useState } from "react";
+import { Row, Col, Typography, Tag, DatePicker } from "antd";
 import { Link } from "react-router-dom";
 import { DollarCircleFilled, EnvironmentFilled } from "@ant-design/icons";
 import {
@@ -17,11 +17,15 @@ import {
 import "./EventStyle.css";
 import SearchBox from "../../utils/SearchBox";
 import { LOCAL_SERVER } from "../../Config";
+import moment from "moment";
 const { Title } = Typography;
 
 const removeLinkColor = { color: "inherit", textDecoration: "none" };
 
-function EventPresenter({ Events, updateSearchTerm }) {
+function EventPresenter({ Events, updateSearchTerm, onDateChange }) {
+  const nowTime = moment().format("YYYY-MM-DD");
+  console.log(nowTime);
+
   return (
     <>
       <>
@@ -32,6 +36,12 @@ function EventPresenter({ Events, updateSearchTerm }) {
           {/* 검색 필터링 기능 */}
           <Col>
             <SearchBox refreshFunction={updateSearchTerm} />
+          </Col>
+          <Col>
+            <DatePicker
+              onChange={onDateChange}
+              style={{ marginTop: "10px", paddingLeft: "2rem" }}
+            />
           </Col>
         </Row>
 
@@ -51,9 +61,9 @@ function EventPresenter({ Events, updateSearchTerm }) {
                     src={`${LOCAL_SERVER}${event.images[0]}`}
                   ></CardCover>
                   {/* Hover Effect */}
-                  <div className="info">
+                  {/* <div className="info">
                     <h2>Show Event!</h2>
-                  </div>
+                  </div> */}
                   {/* -------------- */}
                   <CardBody>
                     <div style={{ width: "100%" }}>
