@@ -109,7 +109,6 @@ export const MenuImageWrapper = styled.div`
 `;
 
 export const DescriptionContentContainer = styled.div`
-  border: 3px solid black;
   display: flex;
   flex-direction: row;
 `;

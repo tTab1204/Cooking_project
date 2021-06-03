@@ -83,7 +83,7 @@ const bottomButtonStyle = {
 function EventDetailPresenter({
   DetailEvent,
   addToCartHandler,
-  FollowersNumber,
+  // FollowersNumber,
 }) {
   // Modal
   const [, setImage] = useState("");
@@ -153,6 +153,8 @@ function EventDetailPresenter({
                 <Title level={3}>{name}</Title>
                 <Divider style={{ margin: "16px 0px" }} />
                 <Descriptions column={1} colon={false}>
+                  {/* 나중에 리팩토링 - 컴포넌트로 묶어버리자. */}
+                  {/* Host*/}
                   <Descriptions.Item
                     label="Host"
                     style={{
@@ -162,7 +164,7 @@ function EventDetailPresenter({
                   >
                     <DescriptionContentContainer>
                       <DescriptionContentWrapper>
-                        <Link to={`${HOST_SERVER}/${host.id}`}>
+                        <Link to={`${HOST_SERVER}/${host._id}`}>
                           {host.name}
                         </Link>
                         <DescriptionFollowers>
@@ -181,13 +183,53 @@ function EventDetailPresenter({
                           </Typography>
                         </DescriptionFollowers>
                       </DescriptionContentWrapper>
+                      <Avatar
+                        size="large"
+                        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                        style={{ width: "40px", height: "40px" }}
+                      />
                     </DescriptionContentContainer>
-                    <Avatar
-                      size="large"
-                      src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                    />
+                  </Descriptions.Item>
+                  {/* Time */}
+                  <Descriptions.Item
+                    label="Time"
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 3fr",
+                    }}
+                  >
+                    <DescriptionContentContainer>
+                      <DescriptionContentWrapper>
+                        {DetailEvent.time}
+                      </DescriptionContentWrapper>
+                    </DescriptionContentContainer>
+                  </Descriptions.Item>
+                  {/* Location */}
+                  <Descriptions.Item
+                    label="Location"
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: "1fr 3fr",
+                    }}
+                  >
+                    <DescriptionContentContainer>
+                      <DescriptionContentWrapper>
+                        {DetailEvent.location}
+                        <br />
+                        <a
+                          target="_blank"
+                          href="https://www.google.com/maps/place/NAVER/@37.3538874,127.1014005,17z/data=!3m1!4b1!4m5!3m4!1s0x357b59b81a8b3727:0xf4082515883c699a!8m2!3d37.3538874!4d127.1035892"
+                        >
+                          View Map
+                        </a>
+                      </DescriptionContentWrapper>
+                    </DescriptionContentContainer>
                   </Descriptions.Item>
                 </Descriptions>
+                <Divider />
+                <Typography style={{ whiteSpace: "pre-wrap" }}>
+                  {DetailEvent.description}
+                </Typography>
               </Card>
             </Col>
           </Row>
