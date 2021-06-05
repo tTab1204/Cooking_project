@@ -11,6 +11,13 @@ export const MiddleBox = styled.div`
   padding-top: 20px;
 `;
 
+export const DropzoneBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const DropzoneContainer = styled.div`
   width: 460px;
   height: 150px;

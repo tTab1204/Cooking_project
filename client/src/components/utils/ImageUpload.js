@@ -1,11 +1,27 @@
 import React, { useState } from "react";
 import Dropzone from "react-dropzone";
-import { Icon } from "antd";
+import { Typography } from "antd";
 import Axios from "axios";
+import {
+  DropzoneContainer,
+  DropzoneTitle,
+  ImagesContainer,
+  MenuImageWrapper,
+  MenuImageContainer,
+  MenuImage,
+  MenuImageTitle,
+  DropzoneBox,
+} from "../views/UploadEventPage/UploadEventStyle";
+import { UploadOutlined, DeleteOutlined } from "@ant-design/icons";
+import { LOCAL_SERVER } from "../Config";
 
-function ImageUpload({ refreshFunction, url }) {
+const { Title } = Typography;
+
+function ImageUpload({ refreshFunction, url, refreshImages }) {
   const [Images, setImages] = useState([]);
   let urlType = "";
+
+  console.log("refreshImages: ", refreshImages);
 
   // urlType이라는 변수를 지정해 줌으로써 upload-event인지 / upload-kitchen인지 구분한다.
   if (url === "/upload-event") urlType = "events";
@@ -52,49 +68,35 @@ function ImageUpload({ refreshFunction, url }) {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "space-between" }}>
-      <Dropzone onDrop={onDrop} multiple={true} maxSize={800000000}>
-        {({ getRootProps, getInputProps }) => (
-          <div
-            style={{
-              width: "300px",
-              height: "240px",
-              border: "1px solid lightgray",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-            {...getRootProps()}
-          >
-            <input {...getInputProps()} />
-            <Icon type="plus" style={{ fontSize: "3rem" }} />
-          </div>
-        )}
-      </Dropzone>
-
-      <div
-        style={{
-          display: "flex",
-          width: "350px",
-          height: "240px",
-          overflowX: "scroll",
-        }}
-      >
-        {Images.map((image, index) => (
-          <div key={index} onClick={() => onDelete(image)}>
-            <img
-              style={{
-                minWidth: "300px",
-                width: "300px",
-                height: "240px",
-              }}
-              src={`http://localhost:5000/${image}`}
-              alt={`hostImg-${index}`}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
+    <>
+      <DropzoneBox>
+        <Dropzone onDrop={onDrop} multiple={true} maxSize={800000000}>
+          {({ getRootProps, getInputProps }) => (
+            <DropzoneContainer {...getRootProps()}>
+              <input {...getInputProps()} />
+              <DropzoneTitle>
+                <Title level={4}>Upload Your Menu Image</Title>
+                <UploadOutlined style={{ fontSize: "2rem" }} />
+              </DropzoneTitle>
+            </DropzoneContainer>
+          )}
+        </Dropzone>
+        <ImagesContainer>
+          {refreshImages.map((image, index) => (
+            <MenuImageContainer key={index}>
+              <MenuImageWrapper>
+                <MenuImage src={`${LOCAL_SERVER}${image}`} />
+                <MenuImageTitle>{image.slice(8)}</MenuImageTitle>
+                <DeleteOutlined
+                  style={{ color: "gray" }}
+                  onClick={() => onDelete(image)}
+                />
+              </MenuImageWrapper>
+            </MenuImageContainer>
+          ))}
+        </ImagesContainer>
+      </DropzoneBox>
+    </>
   );
 }
 

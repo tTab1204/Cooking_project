@@ -1,19 +1,7 @@
 import React from "react";
 import { Row, Col, Typography, Input, Form, Button, DatePicker } from "antd";
-
-import {
-  MiddleBox,
-  DropzoneContainer,
-  DropzoneTitle,
-  ImagesContainer,
-  MenuImageWrapper,
-  MenuImageContainer,
-  MenuImage,
-  MenuImageTitle,
-} from "./UploadEventStyle";
-import { UploadOutlined, DeleteOutlined } from "@ant-design/icons";
-import Dropzone from "react-dropzone";
-import { LOCAL_SERVER } from "../../Config";
+import { MiddleBox } from "./UploadEventStyle";
+import ImageUpload from "../../utils/ImageUpload";
 
 const { Title } = Typography;
 const { TextArea } = Input;
@@ -26,11 +14,11 @@ function UploadEventPresenter({
   onPriceChange,
   onDescriptionChange,
   onDateChange,
-  onDrop,
-  onDelete,
   Description,
+  refreshFunction,
+
   Images,
-  loading,
+  url,
 }) {
   return (
     <>
@@ -90,42 +78,11 @@ function UploadEventPresenter({
 
               <br />
               <br />
-
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Dropzone onDrop={onDrop} multiple={true} maxSize={800000000}>
-                  {({ getRootProps, getInputProps }) => (
-                    <DropzoneContainer {...getRootProps()}>
-                      <input {...getInputProps()} />
-                      <DropzoneTitle>
-                        <Title level={4}>Upload Your Menu Image</Title>
-                        <UploadOutlined style={{ fontSize: "2rem" }} />
-                      </DropzoneTitle>
-                    </DropzoneContainer>
-                  )}
-                </Dropzone>
-                <ImagesContainer>
-                  {!loading &&
-                    Images.map((image, index) => (
-                      <MenuImageContainer key={index}>
-                        <MenuImageWrapper>
-                          <MenuImage src={`${LOCAL_SERVER}${image}`} />
-                          <MenuImageTitle>{image.slice(8)}</MenuImageTitle>
-                          <DeleteOutlined
-                            style={{ color: "gray" }}
-                            onClick={() => onDelete(image)}
-                          />
-                        </MenuImageWrapper>
-                      </MenuImageContainer>
-                    ))}
-                </ImagesContainer>
-              </div>
+              <ImageUpload
+                refreshFunction={refreshFunction}
+                refreshImages={Images}
+                url={url}
+              />
 
               {/* Submit Button */}
               <Button
