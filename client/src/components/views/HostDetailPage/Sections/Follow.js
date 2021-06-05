@@ -46,7 +46,7 @@ function Follow({ detail, url }) {
   };
 
   useEffect(() => {
-    Axios.post("/api/follow/followNumber", variables).then((response) => {
+    Axios.post("/api/follow/follow-number", variables).then((response) => {
       setFollowNumber(response.data.followNumber);
       setloading(false);
     });

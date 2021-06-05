@@ -36,24 +36,27 @@ function Followers({ hostId }) {
       {loading && <Loading />}
 
       {!loading && HostFollowers && (
-        <List
-          header={<div>{HostFollowers.length} followers</div>}
-          itemLayout="horizontal"
-          dataSource={HostFollowers}
-          renderItem={(follower, index) => (
-            <List.Item key={index}>
-              <List.Item.Meta
-                avatar={<Avatar src={follower.userFrom.image} />}
-                title={follower.userFrom.name}
-                description={[
-                  <Link to={`/users/${follower.userFrom.name}`}>
-                    @{follower.userFrom.name}
-                  </Link>,
-                ]}
-              />
-            </List.Item>
-          )}
-        />
+        <>
+          <List
+            header={<div>{HostFollowers.length} followers</div>}
+            itemLayout="horizontal"
+            dataSource={HostFollowers}
+            pagination={true}
+            renderItem={(follower, index) => (
+              <List.Item key={index}>
+                <List.Item.Meta
+                  avatar={<Avatar src={follower.userFrom.image} />}
+                  title={follower.userFrom.name}
+                  description={[
+                    <Link to={`/users/${follower.userFrom.name}`}>
+                      @{follower.userFrom.name}
+                    </Link>,
+                  ]}
+                />
+              </List.Item>
+            )}
+          />
+        </>
       )}
     </>
   );

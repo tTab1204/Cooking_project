@@ -25,8 +25,6 @@ let storage = multer.diskStorage({
   },
 });
 
-// 여기서 single이 아니라 다른걸 쓰면 여러개를 동시에 올릴 수 있다는데..
-// 나중에 해보자(5/7-금)
 const upload = multer({ storage: storage }).single("file");
 
 router.post("/upload-image", auth, (req, res) => {
@@ -38,6 +36,8 @@ router.post("/upload-image", auth, (req, res) => {
     if (err) {
       return res.json({ success: false, err });
     }
+
+    console.log("업로드한 이미지 :", res.req.file.path);
 
     return res.json({
       success: true,
@@ -101,6 +101,7 @@ router.get("/events_by_id", auth, (req, res) => {
 router.post("/show-host-events", auth, (req, res) => {
   Event.find({ host: { $in: req.body.host } })
     .populate("host")
+
     .exec((err, events) => {
       if (err) res.status(400).send(err);
       res.status(200).json({ success: true, events });

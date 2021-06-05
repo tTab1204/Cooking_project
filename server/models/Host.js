@@ -32,7 +32,8 @@ const hostSchema = mongoose.Schema(
 
     // 대표 이미지
     image: {
-      type: String,
+      type: Array,
+      default: [],
       required: true,
     },
 
