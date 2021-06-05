@@ -13,3 +13,9 @@
   line-height: 1.5715;
   text-align: start;
 }
+
+.ant-col-24 {
+  display: block;
+  flex: 0 0 100%;
+  max-width: 100%;
+}

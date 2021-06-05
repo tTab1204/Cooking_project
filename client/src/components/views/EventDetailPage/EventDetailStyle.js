@@ -125,3 +125,7 @@ export const DescriptionFollowers = styled.div`
   -webkit-box-align: center;
   align-items: center;
 `;
+
+export const MenuImageStyle = styled.img`
+  height: 200px;
+`;
