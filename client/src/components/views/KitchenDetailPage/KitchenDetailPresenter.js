@@ -114,6 +114,7 @@ function KitchenDetailPresenter({
                     >
                       <Card
                         hoverable={true}
+                        bodyStyle={{ padding: "0" }}
                         style={imageStyle}
                         cover={
                           <img
