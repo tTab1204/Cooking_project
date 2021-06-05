@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
+import EventDetailPresenter from "./EventDetailPresenter";
 import Loading from "../../Loading";
 import Axios from "axios";
 import { message } from "antd";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../_actions/user_actions";
-import EventDetailPresenter from "./EventDetailPresenter";
 
 function EventDetailContainer({ match }) {
   const eventId = match.params.eventId;
   const dispatch = useDispatch();
 
   const [DetailEvent, setDetailEvent] = useState({});
-  const [ShowSuccess, setShowSuccess] = useState(false);
+  const [, setShowSuccess] = useState(false);
   const [loading, setloading] = useState(true);
 
   useEffect(() => {

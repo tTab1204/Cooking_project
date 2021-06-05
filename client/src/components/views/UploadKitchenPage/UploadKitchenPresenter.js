@@ -90,9 +90,6 @@ function UploadKitchenPresenter({
               <br />
               <br />
               {/* Image Upload */}
-              <Title level={4} style={{ color: "gray" }}>
-                Put your Images
-              </Title>
               <ImageUpload
                 refreshFunction={refreshFunction}
                 refreshImages={Images}

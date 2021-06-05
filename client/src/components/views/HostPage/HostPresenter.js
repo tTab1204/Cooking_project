@@ -24,7 +24,7 @@ function HostPresenter({ Hosts, FOOD_NATION, url }) {
           {Hosts.map((host, index) => (
             <Link to={`/hosts/${host._id}`} style={removeLinkColor}>
               <HostCarouselCard>
-                <HostCardIcon src={`${LOCAL_SERVER}${host.image}`} />
+                <HostCardIcon src={`${LOCAL_SERVER}${host.image[0]}`} />
 
                 <Title level={3}>
                   {" "}

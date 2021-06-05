@@ -41,7 +41,7 @@ function HostCard({ detail }) {
                     minWidth: "150px",
                     height: "150px",
                   }}
-                  src={`http://localhost:5000/${image}`}
+                  src={`http://localhost:5000/${image[0]}`}
                   alt="host-main-image"
                 />
               </CardAvatarStyle>

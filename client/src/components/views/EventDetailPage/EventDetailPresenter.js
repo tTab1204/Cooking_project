@@ -11,11 +11,6 @@ import {
   Avatar,
 } from "antd";
 import {
-  CardBody,
-  InnerCardBody,
-  CardSection,
-  CardMenu,
-  CardImageStyle,
   BottomButtonBox,
   ModalContentWrapper,
   InnerModalBox,
@@ -23,17 +18,17 @@ import {
   LeftDirectionBox,
   RightDirectionBox,
   MainImgWrapper,
-  MenuImageWrapper,
   DescriptionContentContainer,
   DescriptionContentWrapper,
   DescriptionFollowers,
+  MenuImageStyle,
 } from "./EventDetailStyle";
 import "./EventDetailStyle.css";
 import { Link } from "react-router-dom";
 import { RightOutlined, LeftOutlined, UserOutlined } from "@ant-design/icons";
-import { LOCAL_SERVER, HOST_SERVER } from "../../Config";
+import { LOCAL_SERVER } from "../../Config";
 
-const { Title, Paragraph } = Typography;
+const { Title } = Typography;
 
 // ---------------------------- CSS-in-JS --------------------------- //
 const colStyle = {
@@ -57,17 +52,6 @@ const mainImgStyle = {
   right: "0px",
 };
 
-const descriptionStyle = {
-  display: "grid",
-  gridTemplateColumns: "1fr 3fr",
-};
-
-const menuDescriptionStyle = {
-  whiteSpace: "pre-wrap", //연속 공백은 그대로 유지됩니다. 행(行)의 줄 바꿈은 행의 박스를 채우기 위해 필요한 경우에 실행합니다.
-  wordBreak: "break-word", // 글이 길어질 때 줄바꿈을 어떻게 해야 하는지 보여주는 속성, 이 경우에선 단어별로 줄바꿈
-  lineHeight: "1.5", // line-height값은 상속을 고려하여 단위를 빼고 쓰자. (줄 간격 나타내는 속성)
-};
-
 const bottomButtonStyle = {
   width: "100%",
   margin: "0px auto",
@@ -76,6 +60,12 @@ const bottomButtonStyle = {
   display: "block",
   transition: "width 0.2s ease-in-out 0s",
   boxShadow: "0.2s ease-in-out 0s",
+};
+
+const imageStyle = {
+  minWidth: "auto",
+  width: "auto",
+  border: "none",
 };
 
 // ----------------------------------------------------------------------//
@@ -121,6 +111,7 @@ function EventDetailPresenter({
   const { images, name, host, description, time, location, writer } =
     DetailEvent;
 
+  console.log("hostImage: ", host.image);
   return (
     <>
       {images && writer && (
@@ -164,9 +155,7 @@ function EventDetailPresenter({
                   >
                     <DescriptionContentContainer>
                       <DescriptionContentWrapper>
-                        <Link to={`${HOST_SERVER}/${host._id}`}>
-                          {host.name}
-                        </Link>
+                        <Link to={`/hosts/${host._id}`}>{host.name}</Link>
                         <DescriptionFollowers>
                           <UserOutlined
                             style={{
@@ -184,8 +173,8 @@ function EventDetailPresenter({
                         </DescriptionFollowers>
                       </DescriptionContentWrapper>
                       <Avatar
+                        src={`${LOCAL_SERVER}${host.image}`}
                         size="large"
-                        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
                         style={{ width: "40px", height: "40px" }}
                       />
                     </DescriptionContentContainer>
@@ -234,55 +223,25 @@ function EventDetailPresenter({
             </Col>
           </Row>
           <Divider />
+
           <div>
             <Title level={3}>Menu</Title>
-            <Row gutter={[16, 16]}>
+            <Row gutter={[8, 8]}>
               {images.map((image, index) => (
-                <Col xs={24} sm={12} style={{ padding: "8px" }} key={index}>
-                  {/* styled component 적용 */}
-                  <CardBody>
-                    <InnerCardBody>
-                      <CardSection>
-                        <CardMenu>DIY Ramen</CardMenu>
-                        <span style={{ marginBottom: "16px" }}>16000 (원)</span>
-                        <Paragraph
-                          type="secondary"
-                          style={menuDescriptionStyle}
-                        >
-                          Make Yume at Home
-                        </Paragraph>
-                      </CardSection>
-                      <section style={{ marginBottom: "8px" }}>
-                        <div style={{ width: "100%" }}>
-                          <Row>
-                            <Col span={24}>
-                              <Card
-                                hoverable={true}
-                                bodyStyle={{ padding: "0px" }}
-                                cover={
-                                  <MenuImageWrapper>
-                                    <CardImageStyle
-                                      alt="example"
-                                      src={`${LOCAL_SERVER}${image}`}
-                                      onClick={() =>
-                                        handleModalOpen(image, index)
-                                      }
-                                    />
-                                  </MenuImageWrapper>
-                                }
-                              ></Card>
-                            </Col>
-                          </Row>
-                        </div>
-                      </section>
-                    </InnerCardBody>
-                    {/* <MenuFooter>
-                      <Tag style={tagStyle}>0/40 remaining</Tag>
-                      <Button type="primary" disabled>
-                        여기다 뭘 넣을까...
-                      </Button>
-                    </MenuFooter> */}
-                  </CardBody>
+                <Col key={index} className="gutter-row" lg={6} md={12} sm={24}>
+                  <Card
+                    hoverable={true}
+                    bodyStyle={{ padding: "0" }}
+                    style={imageStyle}
+                    cover={
+                      <MenuImageStyle
+                        alt="event-menu-images"
+                        src={`${LOCAL_SERVER}${image}`}
+                        onClick={() => handleModalOpen(image, index)}
+                        style={{ maxHeight: "160px" }}
+                      />
+                    }
+                  ></Card>
                 </Col>
               ))}
             </Row>

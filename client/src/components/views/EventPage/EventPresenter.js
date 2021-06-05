@@ -23,9 +23,8 @@ const { Title } = Typography;
 const removeLinkColor = { color: "inherit", textDecoration: "none" };
 
 function EventPresenter({ Events, updateSearchTerm, onDateChange }) {
-  const nowTime = moment().format("YYYY-MM-DD");
-  console.log(nowTime);
-
+  const nowTime = moment().format("YYYY-MM-DD"); // 현재 시각
+  
   return (
     <>
       <>

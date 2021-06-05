@@ -53,7 +53,7 @@ export const EventCard = styled.div`
     transition: all 0.2s ease-in-out;
   }
 
-  &:before {
+  /* &:before {
     content: "";
     position: absolute;
     top: 0;
@@ -74,7 +74,7 @@ export const EventCard = styled.div`
   &:hover CardHoverEffect {
     opacity: 1;
     transition: all 0.2s ease-in-out;
-  }
+  } */
 `;
 
 export const CardCover = styled.img`

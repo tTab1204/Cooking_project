@@ -1,5 +1,14 @@
 import React from "react";
-import { Row, Col, Typography, Input, Form, Button, DatePicker } from "antd";
+import {
+  Row,
+  Col,
+  Typography,
+  Input,
+  Form,
+  Button,
+  DatePicker,
+  Alert,
+} from "antd";
 import { MiddleBox } from "./UploadEventStyle";
 import ImageUpload from "../../utils/ImageUpload";
 
@@ -16,7 +25,6 @@ function UploadEventPresenter({
   onDateChange,
   Description,
   refreshFunction,
-
   Images,
   url,
 }) {
@@ -31,6 +39,12 @@ function UploadEventPresenter({
           style={{ display: "flex", justifyContent: "center" }}
         >
           <MiddleBox>
+            <Alert
+              message="Invite Only"
+              description="Currently, we are operating on invite-only. Feel free to leave your contact information to be contacted in the future."
+              type="info"
+              showIcon
+            />
             <Title level={4} style={{ color: "gray", paddingTop: "10px" }}>
               Information
             </Title>
