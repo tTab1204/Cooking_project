@@ -11,7 +11,7 @@ import {
   MenuImage,
   MenuImageTitle,
   DropzoneBox,
-} from "../views/UploadEventPage/UploadEventStyle";
+} from "./ImageUploadStyle";
 import { UploadOutlined, DeleteOutlined } from "@ant-design/icons";
 import { LOCAL_SERVER } from "../Config";
 
@@ -21,10 +21,9 @@ function ImageUpload({ refreshFunction, url, refreshImages }) {
   const [Images, setImages] = useState([]);
   let urlType = "";
 
-  console.log("refreshImages: ", refreshImages);
-
   // urlType이라는 변수를 지정해 줌으로써 upload-event인지 / upload-kitchen인지 구분한다.
   if (url === "/upload-event") urlType = "events";
+  else if (url === "/upload-host") urlType = "hosts";
   else urlType = "kitchens";
 
   const onDrop = (files) => {
@@ -69,14 +68,19 @@ function ImageUpload({ refreshFunction, url, refreshImages }) {
 
   return (
     <>
+      <Title level={4} style={{ color: "gray" }}>
+        Upload Images
+      </Title>
       <DropzoneBox>
         <Dropzone onDrop={onDrop} multiple={true} maxSize={800000000}>
           {({ getRootProps, getInputProps }) => (
             <DropzoneContainer {...getRootProps()}>
               <input {...getInputProps()} />
               <DropzoneTitle>
-                <Title level={4}>Upload Your Menu Image</Title>
-                <UploadOutlined style={{ fontSize: "2rem" }} />
+                <Title level={4} style={{ color: "gray" }}>
+                  Upload Your Menu Image
+                </Title>
+                <UploadOutlined style={{ fontSize: "2rem", color: "gray" }} />
               </DropzoneTitle>
             </DropzoneContainer>
           )}
