@@ -6,10 +6,15 @@ import ReplyReview from "./ReplyReview";
 
 const { TextArea } = Input;
 
-function Reviews({ hostId, reviewList, refreshFunction, showReviews, detail }) {
+function Reviews({
+  hostId,
+  reviewList,
+  refreshFunction,
+  showReviews,
+  onLoadMore,
+  pageEnd,
+}) {
   const [ReviewValue, setReviewValue] = useState("");
-
-  const { name } = detail;
 
   // 개선할 부분 - 나중에 api요청하는거 다 한 군데 모아서 export해주자
   const API_REIVEWS = "/api/reviews";
@@ -18,8 +23,6 @@ function Reviews({ hostId, reviewList, refreshFunction, showReviews, detail }) {
     setReviewValue(e.target.value);
   };
 
-  // 실제 프로젝트에서는 처음 써 본 async await
-  // 코드 리팩토링 - 전부 async await 쓰자
   const onSubmit = async (e) => {
     e.preventDefault();
 
@@ -35,12 +38,28 @@ function Reviews({ hostId, reviewList, refreshFunction, showReviews, detail }) {
         variables
       );
       setReviewValue("");
-
       refreshFunction(response.data.review);
     } catch (e) {
       console.error(e);
     }
   };
+
+  // const handleScroll = () => {
+  //   const scrollHeight = document.documentElement.scrollHeight;
+
+  //   const scrollTop = document.documentElement.scrollTop;
+
+  //   const clientHeight = document.documentElement.clientHeight;
+
+  //   if (!Fetching && scrollTop + clientHeight >= scrollHeight) fetchMoreData();
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // });
 
   return (
     <>
@@ -62,28 +81,26 @@ function Reviews({ hostId, reviewList, refreshFunction, showReviews, detail }) {
 
       {/* Review List */}
       {reviewList &&
-        reviewList
-          .map(
-            (review, index) =>
-              !review.responseTo && (
-                <div key={index}>
-                  <SingleReview
-                    refreshFunction={refreshFunction}
-                    review={review}
-                    hostId={hostId}
-                    showReviews={showReviews}
-                  />
-                  <ReplyReview
-                    refreshFunction={refreshFunction}
-                    hostId={hostId}
-                    parentReviewId={review._id}
-                    reviewList={reviewList}
-                    showReviews={showReviews}
-                  />
-                </div>
-              )
-          )
-          .reverse()}
+        reviewList.map(
+          (review, index) =>
+            !review.responseTo && (
+              <div key={index}>
+                <SingleReview
+                  refreshFunction={refreshFunction}
+                  review={review}
+                  hostId={hostId}
+                  showReviews={showReviews}
+                />
+                <ReplyReview
+                  refreshFunction={refreshFunction}
+                  hostId={hostId}
+                  parentReviewId={review._id}
+                  reviewList={reviewList}
+                  showReviews={showReviews}
+                />
+              </div>
+            )
+        )}
     </>
   );
 }

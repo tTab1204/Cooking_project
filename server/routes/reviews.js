@@ -18,8 +18,13 @@ router.post("/save-review", (req, res) => {
 });
 
 router.post("/show-reviews", (req, res) => {
+  let limit = req.body.limit ? parseInt(req.body.limit) : 0;
+  let skip = req.body.skip ? parseInt(req.body.skip) : 0;
+
   Review.find({ hostId: req.body.hostId })
     .populate("writer")
+    .skip(skip)
+    .limit(limit)
     .exec((err, reviews) => {
       if (err) res.status(400).send(err);
       res.status(200).json({ success: true, reviews });
