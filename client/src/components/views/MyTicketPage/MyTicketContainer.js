@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import MyTicketPresenter from "./MyTicketPresenter";
 import Loading from "../../Loading";
 import { useDispatch, useSelector } from "react-redux";
-import { showCartItems } from "../../../_actions/user_actions";
+import { showCartItems, removeCartItem } from "../../../_actions/user_actions";
 
 const IconText = ({ icon, text }) => (
   <div style={{ cursor: "default" }}>
@@ -18,6 +18,7 @@ function MyTicketContainer() {
 
   const [Total, setTotal] = useState("");
   const [loading, setLoading] = useState(true);
+  const [removeLoading, setRemoveLoading] = useState(false);
 
   const calculateTotal = (cartDetail) => {
     let total = 0;
@@ -44,6 +45,13 @@ function MyTicketContainer() {
     }
   }, [user]);
 
+  let removeItem = (eventId) => {
+    setRemoveLoading(true);
+    dispatch(removeCartItem(eventId)).then((response) => {
+      setRemoveLoading(false);
+    });
+  };
+
   return (
     <>
       {loading && <Loading />}
@@ -54,6 +62,8 @@ function MyTicketContainer() {
           user={user}
           cart={cart}
           Total={Total}
+          removeItem={removeItem}
+          removeLoading={removeLoading}
         />
       )}
     </>

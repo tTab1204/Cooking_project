@@ -8,17 +8,25 @@ import {
   UserOutlined,
   DeleteOutlined,
   EditOutlined,
+  LoadingOutlined,
 } from "@ant-design/icons";
 import { EVENTS_CLIENT, LOCAL_SERVER } from "../../Config";
 
 const { Title } = Typography;
 
-function MyTicketPresenter({ IconText, user, cart, Total }) {
+function MyTicketPresenter({
+  IconText,
+  user,
+  cart,
+  Total,
+  removeItem,
+  removeLoading,
+}) {
   return (
     <>
       <Title level={2}>Tickets</Title>
       <Menu
-        // onClick={handleMenuClick}
+        onClick={removeItem}
         defaultSelectedKeys="available"
         mode="horizontal"
       >
@@ -68,7 +76,15 @@ function MyTicketPresenter({ IconText, user, cart, Total }) {
                   key="list-vertical-like-o"
                 />,
                 <EditOutlined style={{ color: "var(--primary-color)" }} />,
-                <DeleteOutlined style={{ color: "var(--primary-color)" }} />,
+
+                removeLoading ? (
+                  <LoadingOutlined />
+                ) : (
+                  <DeleteOutlined
+                    style={{ color: "var(--primary-color)" }}
+                    onClick={() => removeItem(event._id)}
+                  />
+                ),
               ]}
               extra={
                 <img

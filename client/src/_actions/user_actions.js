@@ -6,6 +6,7 @@ import {
   LOGOUT_USER,
   ADD_TO_CART,
   SHOW_CART_ITEMS,
+  REMOVE_CART_ITEM,
 } from "./types";
 import { USER_SERVER, EVENTS_SERVER } from "../components/Config.js";
 
@@ -67,7 +68,7 @@ export const addToCart = async (id) => {
   };
 };
 
-export const showCartItems = async (cartItems, userCart) => {
+export const showCartItems = (cartItems, userCart) => {
   const request = axios
     .get(`${EVENTS_SERVER}/events_by_id?id=${cartItems}&type=array`)
     .then((response) => {
@@ -84,6 +85,28 @@ export const showCartItems = async (cartItems, userCart) => {
 
   return {
     type: SHOW_CART_ITEMS,
+    payload: request,
+  };
+};
+
+export const removeCartItem = (eventId) => {
+  let variable = { eventId: eventId };
+
+  const request = axios
+    .post(`${USER_SERVER}/remove-cart-item`, variable)
+    .then((response) => {
+      const data = response.data;
+
+      data.cart.forEach((item) => {
+        data.eventInfo.forEach((event, i) => {
+          if (item.id === event._id) data.eventInfo[i].quantity = item.quantity;
+        });
+      });
+      return data;
+    });
+
+  return {
+    type: REMOVE_CART_ITEM,
     payload: request,
   };
 };

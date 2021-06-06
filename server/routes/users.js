@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const { User } = require("../models/User");
 const { auth } = require("../middleware/auth");
+const { Event } = require("../models/Event");
 
 //=================================
 //             User
@@ -117,6 +118,30 @@ router.post("/add-to-cart", auth, (req, res) => {
       );
     }
   });
+});
+
+router.post("/remove-cart-item", auth, (req, res) => {
+  let eventId = req.body.eventId;
+
+  User.findOneAndUpdate(
+    // auth에서 갖고온 userId
+    { _id: req.user._id },
+    { $pull: { cart: { id: eventId } } },
+    { new: true },
+    (err, userInfo) => {
+      let cart = userInfo.cart;
+      let newCart = cart.map((item) => {
+        return item.id;
+      });
+
+      Event.find({ _id: { $in: newCart } })
+        .populate("host")
+        .exec((err, eventInfo) => {
+          if (err) return res.status(400).json({ success: false, err });
+          res.status(200).json({ success: true, eventInfo, cart });
+        });
+    }
+  );
 });
 
 module.exports = router;
