@@ -85,7 +85,6 @@ router.post("/show-events", auth, (req, res) => {
   }
 });
 
-// --------------- get Event's Detail ----------------//
 router.get("/events_by_id", auth, (req, res) => {
   let type = req.query.type;
   let eventIds = req.query.id;
