@@ -99,3 +99,7 @@ input.error {
   position: absolute;
   left: 0;
 }
+
+.ant-menu-sub {
+  font-weight: 500;
+}

@@ -63,7 +63,7 @@ function NavBar() {
               onClose={onClose}
               visible={visible}
               style={{
-                fontFamily: `"Spoqa Han Sans", sans-serif`,
+                fontWeight: "500",
               }}
             >
               <LeftMenu mode="inline" />
