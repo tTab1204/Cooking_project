@@ -19,7 +19,7 @@ import EventContainer from "./views/EventPage/EventContainer";
 import UploadEventContainer from "./views/UploadEventPage/UploadEventContainer";
 import EventDetailContainer from "./views/EventDetailPage/EventDetailContainer";
 import UserProfilePresenter from "./views/UserProfilePage/UserProfilePresenter";
-import MyTicketPage from "./views/MyTicketPage/MyTicketPage";
+import MyTicketContainer from "./views/MyTicketPage/MyTicketContainer";
 import { MainBox } from "./views/HostPage/HostStyle";
 import { BackTop } from "antd";
 import KitchenDetailContainer from "./views/KitchenDetailPage/KitchenDetailContainer";
@@ -102,7 +102,7 @@ function App() {
             <Route
               exact
               path="/my-tickets"
-              component={Auth(MyTicketPage, null)}
+              component={Auth(MyTicketContainer, null)}
             />
 
             {/* Admin Page */}

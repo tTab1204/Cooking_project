@@ -88,20 +88,25 @@ router.post("/show-events", auth, (req, res) => {
 // --------------- get Event's Detail ----------------//
 router.get("/events_by_id", auth, (req, res) => {
   let type = req.query.type;
-  let eventId = req.query.id;
+  let eventIds = req.query.id;
+  if (type === "array") {
+    let ids = req.query.id.split(",");
+    eventIds = ids.map((item) => {
+      return item;
+    });
+  }
 
-  Event.find({ _id: eventId })
+  Event.find({ _id: { $in: eventIds } })
     .populate("host")
     .exec((err, event) => {
       if (err) return res.status(400).send(err);
-      res.status(200).json({ success: true, event });
+      res.status(200).send(event);
     });
 });
 
 router.post("/show-host-events", auth, (req, res) => {
   Event.find({ host: { $in: req.body.host } })
     .populate("host")
-
     .exec((err, events) => {
       if (err) res.status(400).send(err);
       res.status(200).json({ success: true, events });

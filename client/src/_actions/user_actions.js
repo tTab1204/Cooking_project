@@ -5,8 +5,9 @@ import {
   AUTH_USER,
   LOGOUT_USER,
   ADD_TO_CART,
+  SHOW_CART_ITEMS,
 } from "./types";
-import { USER_SERVER } from "../components/Config.js";
+import { USER_SERVER, EVENTS_SERVER } from "../components/Config.js";
 
 export function registerUser(dataToSubmit) {
   const request = axios
@@ -59,10 +60,30 @@ export const addToCart = async (id) => {
 
   const response = await axios.post(`${USER_SERVER}/add-to-cart`, body);
   const request = response.data;
-  // console.log(request);
 
   return {
     type: ADD_TO_CART,
+    payload: request,
+  };
+};
+
+export const showCartItems = async (cartItems, userCart) => {
+  const request = axios
+    .get(`${EVENTS_SERVER}/events_by_id?id=${cartItems}&type=array`)
+    .then((response) => {
+      let data = response.data;
+
+      userCart.forEach((cartItem) => {
+        data.forEach((eventDetail, i) => {
+          if (cartItem.id === eventDetail._id)
+            data[i].quantity = cartItem.quantity;
+        });
+      });
+      return data;
+    });
+
+  return {
+    type: SHOW_CART_ITEMS,
     payload: request,
   };
 };
