@@ -105,7 +105,6 @@ function App() {
               component={Auth(MyTicketContainer, null)}
             />
 
-            {/* Admin Page */}
             <Route
               exact
               path="/events/:eventId"
