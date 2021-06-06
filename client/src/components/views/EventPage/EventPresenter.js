@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Row, Col, Typography, Tag, DatePicker } from "antd";
+import React from "react";
+import { Row, Col, Typography, DatePicker } from "antd";
 import { Link } from "react-router-dom";
 import { DollarCircleFilled, EnvironmentFilled } from "@ant-design/icons";
 import {
@@ -24,7 +24,7 @@ const removeLinkColor = { color: "inherit", textDecoration: "none" };
 
 function EventPresenter({ Events, updateSearchTerm, onDateChange }) {
   const nowTime = moment().format("YYYY-MM-DD"); // 현재 시각
-  
+
   return (
     <>
       <>
@@ -68,9 +68,9 @@ function EventPresenter({ Events, updateSearchTerm, onDateChange }) {
                     <div style={{ width: "100%" }}>
                       <CardTitle>
                         {event.name}{" "}
-                        <Tag color="geekblue" style={{ marginLeft: "5px" }}>
+                        {/* <Tag color="geekblue" style={{ marginLeft: "5px" }}>
                           Popular
-                        </Tag>
+                        </Tag> */}
                       </CardTitle>
                     </div>
                     <CardText>
