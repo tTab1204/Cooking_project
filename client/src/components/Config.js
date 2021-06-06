@@ -9,4 +9,3 @@ export const FOLLOWER_SERVER = "/api/follow";
 export const EVENTS_CLIENT = "/events";
 export const KITCHNES_CLIENT = "/kitchens";
 export const HOST_CLIENT = "/hosts";
-Y;
