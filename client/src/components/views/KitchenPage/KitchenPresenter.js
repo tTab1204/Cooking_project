@@ -55,14 +55,14 @@ function KitchenPresenter({ Kitchens }) {
                   <div style={{ width: "100%" }}>
                     <CardTitle>
                       {kitchen.name}{" "}
-                      <Tag color="geekblue" style={{ marginLeft: "5px" }}>
+                      {/* <Tag color="geekblue" style={{ marginLeft: "5px" }}>
                         Popular
-                      </Tag>
+                      </Tag> */}
                     </CardTitle>
                   </div>
                   <CardText>
                     <EnvironmentFilled style={{ marginRight: "5px" }} />{" "}
-                    {kitchen.address}, {kitchen.capacity}
+                    {kitchen.address}
                   </CardText>
                   <PriceAndTagBox>
                     <DollarCircleFilled
