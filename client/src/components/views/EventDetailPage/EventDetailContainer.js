@@ -17,10 +17,10 @@ function EventDetailContainer({ match }) {
   useEffect(() => {
     Axios.get(`/api/events/events_by_id?id=${eventId}&type=single`)
       .then((response) => {
-        setDetailEvent(response.data.event[0]);
+        setDetailEvent(response.data[0]);
         setloading(false);
       })
-      .catch((err) => alert(err));
+      .catch((err) => console.error(err));
   }, []);
 
   const successMessage = () => {
