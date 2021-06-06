@@ -26,7 +26,7 @@ import {
 import "./EventDetailStyle.css";
 import { Link } from "react-router-dom";
 import { RightOutlined, LeftOutlined, UserOutlined } from "@ant-design/icons";
-import { LOCAL_SERVER } from "../../Config";
+import { HOST_CLIENT, LOCAL_SERVER } from "../../Config";
 
 const { Title } = Typography;
 
@@ -111,7 +111,6 @@ function EventDetailPresenter({
   const { images, name, host, description, time, location, writer } =
     DetailEvent;
 
-  console.log("hostImage: ", host.image);
   return (
     <>
       {images && writer && (
@@ -155,7 +154,9 @@ function EventDetailPresenter({
                   >
                     <DescriptionContentContainer>
                       <DescriptionContentWrapper>
-                        <Link to={`/hosts/${host._id}`}>{host.name}</Link>
+                        <Link to={`${HOST_CLIENT}/${host._id}`}>
+                          {host.name}
+                        </Link>
                         <DescriptionFollowers>
                           <UserOutlined
                             style={{
