@@ -9,6 +9,7 @@ import {
   DeleteOutlined,
   EditOutlined,
   LoadingOutlined,
+  IdcardOutlined,
 } from "@ant-design/icons";
 import { EVENTS_CLIENT, LOCAL_SERVER } from "../../Config";
 
@@ -75,6 +76,7 @@ function MyTicketPresenter({
                   text={`${event.quantity}명`}
                   key="list-vertical-like-o"
                 />,
+
                 <EditOutlined style={{ color: "var(--primary-color)" }} />,
 
                 removeLoading ? (

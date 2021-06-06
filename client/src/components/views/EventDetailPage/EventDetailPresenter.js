@@ -7,16 +7,10 @@ import {
   Divider,
   Descriptions,
   Button,
-  Modal,
   Avatar,
 } from "antd";
 import {
   BottomButtonBox,
-  ModalContentWrapper,
-  InnerModalBox,
-  ModalImage,
-  LeftDirectionBox,
-  RightDirectionBox,
   MainImgWrapper,
   DescriptionContentContainer,
   DescriptionContentWrapper,
@@ -25,8 +19,10 @@ import {
 } from "./EventDetailStyle";
 import "./EventDetailStyle.css";
 import { Link } from "react-router-dom";
-import { RightOutlined, LeftOutlined, UserOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 import { HOST_CLIENT, LOCAL_SERVER } from "../../Config";
+
+import ImageSlideModal from "../../utils/ImageSlideModal";
 
 const { Title } = Typography;
 
@@ -258,56 +254,14 @@ function EventDetailPresenter({
             </Button>
           </BottomButtonBox>
           {/* Image Modal */}
-          <Modal
-            style={{
-              paddingBottom: "0px",
-              maxWidth: "80vw",
-              minWidth: "80vw",
-              width: "auto",
-              transformOrigin: "249.159px 183.727px",
-            }}
-            bodyStyle={{
-              padding: "0px",
-              height: "80vh",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-            visible={ShowModal}
-            onCancel={handleCancel}
-            footer={null}
-          >
-            <ModalContentWrapper>
-              <InnerModalBox>
-                <ModalImage
-                  alt="example"
-                  src={`${LOCAL_SERVER}${images[CurrentSlide]}`}
-                />
-              </InnerModalBox>
-              <LeftDirectionBox>
-                <LeftOutlined
-                  style={{
-                    background: " rgba(255, 255, 255, 0.3)",
-                    border: "none",
-                    fontSize: "25px",
-                    padding: "8px",
-                  }}
-                  onClick={prevSlide}
-                />
-              </LeftDirectionBox>
-              <RightDirectionBox>
-                <RightOutlined
-                  style={{
-                    background: " rgba(255, 255, 255, 0.3)",
-                    border: "none",
-                    fontSize: "25px",
-                    padding: "8px",
-                  }}
-                  onClick={nextSlide}
-                />
-              </RightDirectionBox>
-            </ModalContentWrapper>
-          </Modal>
+          <ImageSlideModal
+            CurrentSlide={CurrentSlide}
+            ShowModal={ShowModal}
+            prevSlide={prevSlide}
+            nextSlide={nextSlide}
+            handleCancel={handleCancel}
+            images={images}
+          />
         </div>
       )}
     </>
