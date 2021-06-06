@@ -11,6 +11,7 @@ function EventDetailContainer({ match }) {
   const dispatch = useDispatch();
 
   const [DetailEvent, setDetailEvent] = useState({});
+  const [Quantity, setQuantity] = useState(1);
   const [, setShowSuccess] = useState(false);
   const [loading, setloading] = useState(true);
 
@@ -36,10 +37,14 @@ function EventDetailContainer({ match }) {
       setShowSuccess(true);
     }, 2000);
   };
+  const onQuantityChange = (label) => {
+    setQuantity(label.key);
+  };
 
   const addToCartHandler = async (e) => {
     try {
-      const response = await dispatch(addToCart(eventId));
+      const response = await dispatch(addToCart(eventId, Quantity));
+
       successMessage();
     } catch {
       console.error(e);
@@ -54,6 +59,7 @@ function EventDetailContainer({ match }) {
         <EventDetailPresenter
           DetailEvent={DetailEvent}
           addToCartHandler={addToCartHandler}
+          onQuantityChange={onQuantityChange}
         />
       )}
     </>

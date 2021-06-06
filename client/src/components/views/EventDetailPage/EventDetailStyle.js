@@ -38,7 +38,7 @@ export const MenuFooter = styled.div`
 `;
 
 export const BottomButtonBox = styled.div`
-  padding: 16px;
+  padding: 16px 0;
   width: 100%;
   text-align: center;
 `;
@@ -128,4 +128,15 @@ export const DescriptionFollowers = styled.div`
 
 export const MenuImageStyle = styled.img`
   height: 200px;
+`;
+
+export const AffixBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 16px;
+  width: 100%;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.05) 0px -2px 0px;
 `;

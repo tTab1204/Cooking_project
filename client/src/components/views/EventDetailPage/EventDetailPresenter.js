@@ -8,6 +8,8 @@ import {
   Descriptions,
   Button,
   Avatar,
+  Affix,
+  Select,
 } from "antd";
 import {
   BottomButtonBox,
@@ -16,6 +18,7 @@ import {
   DescriptionContentWrapper,
   DescriptionFollowers,
   MenuImageStyle,
+  AffixBox,
 } from "./EventDetailStyle";
 import "./EventDetailStyle.css";
 import { Link } from "react-router-dom";
@@ -25,6 +28,7 @@ import { HOST_CLIENT, LOCAL_SERVER } from "../../Config";
 import ImageSlideModal from "../../utils/ImageSlideModal";
 
 const { Title } = Typography;
+const { Option } = Select;
 
 // ---------------------------- CSS-in-JS --------------------------- //
 const colStyle = {
@@ -49,10 +53,7 @@ const mainImgStyle = {
 };
 
 const bottomButtonStyle = {
-  width: "100%",
-  margin: "0px auto",
-  marginTop: "20px",
-  maxWidth: "552px",
+  width: "70%",
   display: "block",
   transition: "width 0.2s ease-in-out 0s",
   boxShadow: "0.2s ease-in-out 0s",
@@ -69,16 +70,14 @@ const imageStyle = {
 function EventDetailPresenter({
   DetailEvent,
   addToCartHandler,
-  // FollowersNumber,
+  onQuantityChange,
 }) {
   // Modal
-  const [, setImage] = useState("");
   const [CurrentSlide, setCurrentSlide] = useState(0);
   const [ShowModal, setShowModal] = useState(false);
 
   const handleModalOpen = (targetedImage, i) => {
     setShowModal(true);
-    setImage(targetedImage);
     setCurrentSlide(i);
   };
 
@@ -244,14 +243,32 @@ function EventDetailPresenter({
             </Row>
           </div>
           <BottomButtonBox>
-            <Button
-              style={bottomButtonStyle}
-              type="primary"
-              size="large"
-              onClick={addToCartHandler}
-            >
-              장바구니에 담기
-            </Button>
+            <Affix offsetBottom={0} style={{ height: "70px" }}>
+              <AffixBox>
+                <Button
+                  style={bottomButtonStyle}
+                  type="primary"
+                  size="large"
+                  onClick={addToCartHandler}
+                >
+                  Add To Cart
+                </Button>
+                <Select
+                  labelInValue
+                  defaultActiveFirstOption={true}
+                  size="large"
+                  placeholder="1"
+                  style={{ width: "15%" }}
+                  onChange={onQuantityChange}
+                >
+                  <Option value="1">1</Option>
+                  <Option value="2">2</Option>
+                  <Option value="3">3</Option>
+                  <Option value="4">4</Option>
+                  <Option value="5">5</Option>
+                </Select>
+              </AffixBox>
+            </Affix>
           </BottomButtonBox>
           {/* Image Modal */}
           <ImageSlideModal

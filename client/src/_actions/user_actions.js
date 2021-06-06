@@ -54,9 +54,10 @@ export function logoutUser() {
   };
 }
 
-export const addToCart = async (id) => {
+export const addToCart = async (id, quantity) => {
   let body = {
     eventId: id,
+    quantity: quantity,
   };
 
   const response = await axios.post(`${USER_SERVER}/add-to-cart`, body);

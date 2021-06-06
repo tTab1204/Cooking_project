@@ -74,6 +74,7 @@ router.get("/logout", auth, (req, res) => {
 
 router.post("/add-to-cart", auth, (req, res) => {
   let duplicate = false;
+  let itemQuantity = parseInt(req.body.quantity);
 
   // 상품 중복 확인
   User.findOne({ _id: req.user._id }, (err, userInfo) => {
@@ -87,7 +88,7 @@ router.post("/add-to-cart", auth, (req, res) => {
     if (duplicate) {
       User.findOneAndUpdate(
         { _id: req.user._id, "cart.id": req.body.eventId },
-        { $inc: { "cart.$.quantity": 1 } },
+        { $inc: { "cart.$.quantity": itemQuantity } },
         { new: true },
         (err, userInfo) => {
           if (err) return res.status(400).json({ success: false, err });
@@ -104,7 +105,7 @@ router.post("/add-to-cart", auth, (req, res) => {
           $push: {
             cart: {
               id: req.body.eventId,
-              quantity: 1,
+              quantity: itemQuantity,
               date: Date.now(),
             },
           },
