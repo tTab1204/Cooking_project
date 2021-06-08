@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Menu, Empty, List, Avatar } from "antd";
+import { Typography, Menu, Empty, List, Avatar, Select } from "antd";
 import { Link } from "react-router-dom";
 import { EmptyWrapper } from "./MyTicketStyle";
 import {
@@ -9,11 +9,11 @@ import {
   DeleteOutlined,
   EditOutlined,
   LoadingOutlined,
-  IdcardOutlined,
 } from "@ant-design/icons";
 import { EVENTS_CLIENT, LOCAL_SERVER } from "../../Config";
 
 const { Title } = Typography;
+const { Option } = Select;
 
 function MyTicketPresenter({
   IconText,
@@ -26,11 +26,7 @@ function MyTicketPresenter({
   return (
     <>
       <Title level={2}>Tickets</Title>
-      <Menu
-        onClick={removeItem}
-        defaultSelectedKeys="available"
-        mode="horizontal"
-      >
+      <Menu defaultSelectedKeys="available" mode="horizontal">
         <Menu.Item key="available">Available (0)</Menu.Item>
         <Menu.Item key="used/expired">Used/Expired (0)</Menu.Item>
       </Menu>
@@ -57,9 +53,8 @@ function MyTicketPresenter({
               Total: <span style={{ paddingLeft: "10px" }}>{Total}원</span>
             </strong>
           }
-          renderItem={(event) => (
+          renderItem={(event, index) => (
             <List.Item
-              key={event.name}
               actions={[
                 <IconText
                   icon={EnvironmentFilled}
@@ -73,18 +68,17 @@ function MyTicketPresenter({
                 />,
                 <IconText
                   icon={UserOutlined}
-                  text={`${event.quantity}명`}
+                  text={`${event.quantity}매`}
                   key="list-vertical-like-o"
                 />,
-
-                <EditOutlined style={{ color: "var(--primary-color)" }} />,
 
                 removeLoading ? (
                   <LoadingOutlined />
                 ) : (
                   <DeleteOutlined
+                    key={index}
                     style={{ color: "var(--primary-color)" }}
-                    onClick={() => removeItem(event._id)}
+                    onClick={() => removeItem(event._id, index)}
                   />
                 ),
               ]}

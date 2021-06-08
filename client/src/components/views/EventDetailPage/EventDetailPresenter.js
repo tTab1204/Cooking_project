@@ -242,8 +242,9 @@ function EventDetailPresenter({
               ))}
             </Row>
           </div>
+
           <BottomButtonBox>
-            <Affix offsetBottom={0} style={{ height: "70px" }}>
+            <Affix offsetBottom={0} style={{ height: "72px" }}>
               <AffixBox>
                 <Button
                   style={bottomButtonStyle}

@@ -10,7 +10,7 @@ export const MainBox = styled.div`
   flex-direction: column;
   padding-top: 20px;
 
-  min-height: calc(100vh - 80px);
+  // min-height: calc(100vh - 80px);
 `;
 
 export const HostCardContainer = styled.div`

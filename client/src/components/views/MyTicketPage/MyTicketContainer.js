@@ -22,6 +22,7 @@ function MyTicketContainer() {
 
   const calculateTotal = (cartDetail) => {
     let total = 0;
+
     cartDetail.map((item) => {
       total += parseInt(item.price, 10) * item.quantity;
     });
@@ -45,7 +46,7 @@ function MyTicketContainer() {
     }
   }, [user]);
 
-  let removeItem = (eventId) => {
+  const removeItem = (eventId) => {
     setRemoveLoading(true);
     dispatch(removeCartItem(eventId)).then((response) => {
       setRemoveLoading(false);
