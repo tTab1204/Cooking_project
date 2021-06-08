@@ -1,15 +1,10 @@
 import React from "react";
-import FollowPresenter from "../Follow/FollowPresenter";
 import { Row, Col, Card, Avatar, Typography, Divider } from "antd";
-import {
-  CardAvatarStyle,
-  NationBox,
-  TitleAndNationBox,
-  FollowAndLikeBox,
-} from "./HostCardStyle";
+import { CardAvatarStyle, NationBox, TitleAndNationBox } from "./HostCardStyle";
 import China from "../../../Images/china.png";
 import Korea from "../../../Images/south-korea.png";
 import japan from "../../../Images/japan.png";
+import FollowContainer from "../Follow/FollowContainer";
 
 const { Title } = Typography;
 
@@ -56,10 +51,7 @@ function HostCardPresenter({ detail, url, userId }) {
 
           <Divider />
           {/* Follow and Like */}
-
-          <FollowAndLikeBox>
-            <FollowPresenter userFrom={userId} detail={detail} url={url} />
-          </FollowAndLikeBox>
+          <FollowContainer userFrom={userId} detail={detail} url={url} />
         </Card>
       </Col>
     </>

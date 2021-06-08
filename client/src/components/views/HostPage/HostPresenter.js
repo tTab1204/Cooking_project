@@ -9,7 +9,7 @@ import {
   HostCardP,
 } from "./HostStyle";
 import { LOCAL_SERVER } from "../../Config";
-import FollowPresenter from "../HostDetailPage/Follow/FollowPresenter";
+import FollowContainer from "../HostDetailPage/Follow/FollowContainer";
 
 const { Title } = Typography;
 
@@ -35,7 +35,7 @@ function HostPresenter({ Hosts, FOOD_NATION, userId, url }) {
                 <Divider style={{ marginTop: "0" }} />
 
                 {/* Follow and Likes */}
-                <FollowPresenter userFrom={userId} detail={host} url={url} />
+                <FollowContainer userFrom={userId} detail={host} url={url} />
 
                 <Row style={{ paddingTop: "10px" }}>
                   <HostCardP>{host.description}</HostCardP>
