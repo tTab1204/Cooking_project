@@ -54,12 +54,14 @@ function FollowContainer({ userFrom, detail, url }) {
     <>
       {loading && (
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <LoadingOutlined style={{ fontSize: "12px" }} />
+          <LoadingOutlined style={{ fontSize: "10px" }} />
         </div>
       )}
 
       {!loading && (
         <FollowPresenter
+          userFrom={userFrom}
+          detail={detail}
           FollowNumber={FollowNumber}
           Followed={Followed}
           url={url}

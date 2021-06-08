@@ -4,7 +4,15 @@ import { UserOutlined } from "@ant-design/icons";
 import { FollowBox, FollowAndLikeBox } from "./FollowStyle";
 import LikesContainer from "../Likes/LikesContainer";
 
-function FollowPresenter({ FollowNumber, Followed, url, onClickFollow }) {
+function FollowPresenter({
+  userFrom,
+  detail,
+  FollowNumber,
+  Followed,
+  url,
+  onClickFollow,
+  loading,
+}) {
   return (
     <>
       <Row style={{ width: "100%" }}>
@@ -16,7 +24,7 @@ function FollowPresenter({ FollowNumber, Followed, url, onClickFollow }) {
               value={FollowNumber}
             />
           </FollowBox>
-          <LikesContainer />
+          <LikesContainer userId={userFrom} detail={detail} />
         </FollowAndLikeBox>
 
         {url !== "/hosts" && (
