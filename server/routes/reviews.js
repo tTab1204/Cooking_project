@@ -23,8 +23,6 @@ router.post("/show-reviews", (req, res) => {
 
   Review.find({ hostId: req.body.hostId })
     .populate("writer")
-    .skip(skip)
-    .limit(limit)
     .exec((err, reviews) => {
       if (err) res.status(400).send(err);
       res.status(200).json({ success: true, reviews });
@@ -54,10 +52,12 @@ router.post("/delete-review", (req, res) => {
 
   Review.findOneAndDelete({
     _id: req.body.reviewId,
-  }).exec((err, deletedId) => {
-    if (err) return res.status(400).send(err);
-    return res.status(200).json({ success: true, deletedId });
-  });
+  })
+    .populate("writer")
+    .exec((err, deletedId) => {
+      if (err) return res.status(400).send(err);
+      return res.status(200).json({ success: true, deletedId });
+    });
 });
 
 module.exports = router;

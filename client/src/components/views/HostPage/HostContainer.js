@@ -20,6 +20,7 @@ const FOOD_NATION = {
 
 function HostContainer({ match }) {
   const url = match.url;
+  const userId = localStorage.getItem("userId");
 
   const [Hosts, setHosts] = useState([]);
   const [loading, setloading] = useState(true);
@@ -39,7 +40,12 @@ function HostContainer({ match }) {
     <>
       {loading && <Loading />}
       {!loading && (
-        <HostPresenter Hosts={Hosts} FOOD_NATION={FOOD_NATION} url={url} />
+        <HostPresenter
+          Hosts={Hosts}
+          FOOD_NATION={FOOD_NATION}
+          url={url}
+          userId={userId}
+        />
       )}
     </>
   );

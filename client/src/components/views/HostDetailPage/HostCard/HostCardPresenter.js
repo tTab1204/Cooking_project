@@ -1,14 +1,12 @@
 import React from "react";
-import Follow from "./Follow";
-// import Ratings from "./Ratings";
-
+import FollowPresenter from "../Follow/FollowPresenter";
 import { Row, Col, Card, Avatar, Typography, Divider } from "antd";
 import {
   CardAvatarStyle,
   NationBox,
   TitleAndNationBox,
-} from "../HostDetailStyles/HostDetailStyles";
-
+  FollowAndLikeBox,
+} from "./HostCardStyle";
 import China from "../../../Images/china.png";
 import Korea from "../../../Images/south-korea.png";
 import japan from "../../../Images/japan.png";
@@ -21,7 +19,7 @@ const FOOD_NATION = {
   Chinese: <img src={China} style={{ maxWidth: "20px" }} alt="CN" />,
 };
 
-function HostCard({ detail }) {
+function HostCardPresenter({ detail, url, userId }) {
   const { name, image, food_nation } = detail;
 
   return (
@@ -57,12 +55,15 @@ function HostCard({ detail }) {
           </Row>
 
           <Divider />
-          {/* Follow and Ratings */}
-          <Follow userFrom={localStorage.getItem("userId")} detail={detail} />
+          {/* Follow and Like */}
+
+          <FollowAndLikeBox>
+            <FollowPresenter userFrom={userId} detail={detail} url={url} />
+          </FollowAndLikeBox>
         </Card>
       </Col>
     </>
   );
 }
 
-export default HostCard;
+export default HostCardPresenter;

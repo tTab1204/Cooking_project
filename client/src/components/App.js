@@ -8,7 +8,6 @@ import RegisterPage from "./views/RegisterPage/RegisterPage.js";
 import NavBar from "./views/NavBar/NavBar";
 import HostContainer from "./views/HostPage/HostContainer";
 import BecomeAHostContainer from "./views/BecomeAHostPage/BecomeAHostContainer";
-import HostDetailPage from "./views/HostDetailPage/HostDetailPage";
 import ListYourKitchenContainer from "./views/ListYourKitchenPage/ListYourKitchenContainer";
 import Footer from "./views/Footer/Footer";
 import { Layout, Button } from "antd";
@@ -22,6 +21,7 @@ import UserProfilePresenter from "./views/UserProfilePage/UserProfilePresenter";
 import MyTicketContainer from "./views/MyTicketPage/MyTicketContainer";
 import { MainBox } from "./views/HostPage/HostStyle";
 import { BackTop } from "antd";
+import HostDetailContainer from "./views/HostDetailPage/HostDetailContainer";
 import KitchenDetailContainer from "./views/KitchenDetailPage/KitchenDetailContainer";
 
 const { Content } = Layout;
@@ -56,7 +56,7 @@ function App() {
           />
           <Route
             path="/hosts/:hostsId"
-            component={Auth(HostDetailPage, null)}
+            component={Auth(HostDetailContainer, null)}
           />
 
           <Route

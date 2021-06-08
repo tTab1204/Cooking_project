@@ -9,7 +9,6 @@ export const MainBox = styled.div`
   display: flex;
   flex-direction: column;
   padding-top: 20px;
-
   // min-height: calc(100vh - 80px);
 `;
 
@@ -87,14 +86,13 @@ export const HostCardP = styled.p`
   text-overflow: ellipsis;
 `;
 
-export const FollowAndRatingsBox = styled.div`
+export const FollowAndLikeBox = styled.div`
   display: flex;
   justify-content: space-around;
   margin: auto;
   width: 100%;
   max-width: 200px;
 `;
-
 export const FollowBox = styled.div`
   display: flex;
   flex-direction: column;
