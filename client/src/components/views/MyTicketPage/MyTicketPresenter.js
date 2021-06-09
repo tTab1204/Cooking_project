@@ -25,7 +25,9 @@ function MyTicketPresenter({
 }) {
   return (
     <>
-      <Title level={2}>Tickets</Title>
+      <Title level={2} style={{ marginTop: "20px" }}>
+        Tickets
+      </Title>
       <Menu defaultSelectedKeys="available" mode="horizontal">
         <Menu.Item key="available">Available (0)</Menu.Item>
         <Menu.Item key="used/expired">Used/Expired (0)</Menu.Item>

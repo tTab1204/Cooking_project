@@ -23,7 +23,7 @@ function UserProfilePresenter({ match }) {
   return (
     <>
       {/* Card(Left) */}
-      <Row gutter={24}>
+      <Row gutter={24} style={{ marginTop: "20px" }}>
         <Col xs={24} md={7}>
           <Card style={{ border: "none" }} bodyStyle={cardBodyStyle}>
             <Row>

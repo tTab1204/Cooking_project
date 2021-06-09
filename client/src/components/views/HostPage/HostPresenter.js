@@ -18,7 +18,9 @@ const removeLinkColor = { color: "inherit", textDecoration: "none" };
 function HostPresenter({ Hosts, FOOD_NATION, userId, url }) {
   return (
     <>
-      <Title level={1}>Hosts</Title>
+      <Title level={1} style={{ marginTop: "20px" }}>
+        Hosts
+      </Title>
       <HostCardContainer>
         <HostCardWrapper>
           {Hosts.map((host, index) => (

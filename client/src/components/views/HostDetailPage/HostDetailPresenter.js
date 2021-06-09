@@ -6,7 +6,7 @@ import HostCardPresenter from "./HostCard/HostCardPresenter";
 const HostDetailPresenter = ({ url, hostId, history, DetailHost, userId }) => {
   return (
     <>
-      <Row gutter={24}>
+      <Row gutter={24} style={{ marginTop: "20px" }}>
         {/* ---------------- Show Main Card ------------------ */}
         <HostCardPresenter url={url} detail={DetailHost} userId={userId} />
         {/* ---------------- Show Main Card ------------------ */}

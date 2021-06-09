@@ -27,7 +27,9 @@ const removeLinkColor = { color: "inherit", textDecoration: "none" };
 function KitchenPresenter({ Kitchens }) {
   return (
     <>
-      <Title level={1}>Kitchens</Title>
+      <Title level={1} style={{ marginTop: "20px" }}>
+        Kitchens
+      </Title>
       <WholeCardContainer>
         <WholeCardWrapper>
           {Kitchens.map((kitchen, index) => (

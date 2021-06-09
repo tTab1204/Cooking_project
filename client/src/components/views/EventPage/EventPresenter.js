@@ -28,7 +28,7 @@ function EventPresenter({ Events, updateSearchTerm, onDateChange }) {
   return (
     <>
       <>
-        <Row style={{ display: "flex" }}>
+        <Row style={{ display: "flex", marginTop: "20px" }}>
           <Col>
             <Title level={1}>Events</Title>
           </Col>
