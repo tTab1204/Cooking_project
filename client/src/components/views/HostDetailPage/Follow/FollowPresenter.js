@@ -5,13 +5,11 @@ import { FollowBox, FollowAndLikeBox } from "./FollowStyle";
 import LikesContainer from "../Likes/LikesContainer";
 
 function FollowPresenter({
-  userFrom,
   detail,
   FollowNumber,
   Followed,
   url,
   onClickFollow,
-  loading,
 }) {
   return (
     <>
@@ -24,7 +22,10 @@ function FollowPresenter({
               value={FollowNumber}
             />
           </FollowBox>
-          <LikesContainer userId={userFrom} detail={detail} />
+          <LikesContainer
+            userId={localStorage.getItem("userId")}
+            detail={detail}
+          />
         </FollowAndLikeBox>
 
         {url !== "/hosts" && (

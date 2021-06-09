@@ -7,7 +7,7 @@ const dislikeSchema = mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: "User",
     },
-    commentId: {
+    reviewId: {
       type: Schema.Types.ObjectId,
       ref: "Review",
     },

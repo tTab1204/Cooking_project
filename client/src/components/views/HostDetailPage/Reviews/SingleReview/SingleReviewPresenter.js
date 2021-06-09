@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Comment, Avatar, Button, Input, Form, Tooltip } from "antd";
-
+import LikesContainer from "../../Likes/LikesContainer";
 import moment from "moment";
 
 const { TextArea } = Input;
@@ -23,6 +23,10 @@ function SingleReviewPresenter({
       {review.writer && (
         <Comment
           actions={[
+            <LikesContainer
+              userId={localStorage.getItem("userId")}
+              reviewId={review._id}
+            />,
             <span onClick={onClickReplyOpen} key="comment-basic-reply-to">
               답글
             </span>,

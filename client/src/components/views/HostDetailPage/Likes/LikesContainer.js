@@ -3,23 +3,31 @@ import LikesPresenter from "./LikesPresenter";
 import Axios from "axios";
 import { LoadingOutlined } from "@ant-design/icons";
 
-const LikesContainer = ({ detail }) => {
+const LikesContainer = ({ detail, reviewId, userId }) => {
   const [Likes, setLikes] = useState(0);
   const [Liked, setLiked] = useState(false);
   const [Dislikes, setDislikes] = useState(0);
   const [DisLiked, setDisLiked] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  let variables = {
-    userId: localStorage.getItem("userId"),
-    hostId: detail._id,
-  };
+  let variables = {};
+
+  if (detail) {
+    variables = {
+      hostId: detail._id,
+      userId: userId,
+    };
+  } else {
+    variables = {
+      reviewId: reviewId,
+      userId: userId,
+    };
+  }
 
   useEffect(() => {
     Axios.post("/api/like/number-of-likes", variables).then((response) => {
       if (response.data.success) {
         setLikes(response.data.likes.length);
-        setLoading(false);
       } else {
         alert("좋아요 갯수를 받아오지 못했습니다.");
       }
@@ -41,9 +49,10 @@ const LikesContainer = ({ detail }) => {
 
     Axios.post("/api/like/disliked", variables).then((response) => {
       if (response.data.success) {
-        setLiked(response.data.disliked);
+        setDisLiked(response.data.disliked);
       } else alert("정보를 가져오는 데 실패했습니다.");
     });
+    setLoading(false);
   }, []);
 
   const onLike = () => {
@@ -110,6 +119,8 @@ const LikesContainer = ({ detail }) => {
           onLike={onLike}
           onDislike={onDislike}
           Liked={Liked}
+          DisLiked={DisLiked}
+          reviewId={reviewId}
         />
       )}
     </>
