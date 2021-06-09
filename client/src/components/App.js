@@ -19,7 +19,7 @@ import UploadEventContainer from "./views/UploadEventPage/UploadEventContainer";
 import EventDetailContainer from "./views/EventDetailPage/EventDetailContainer";
 import UserProfilePresenter from "./views/UserProfilePage/UserProfilePresenter";
 import MyTicketContainer from "./views/MyTicketPage/MyTicketContainer";
-import { MainBox } from "./views/HostPage/HostStyle";
+import { MainBox } from "../GlobalStyle/GlobayStyle";
 import { BackTop } from "antd";
 import HostDetailContainer from "./views/HostDetailPage/HostDetailContainer";
 import KitchenDetailContainer from "./views/KitchenDetailPage/KitchenDetailContainer";
