@@ -7,7 +7,8 @@
 <img width="50%" src="https://user-images.githubusercontent.com/66458836/122670546-96b04e80-d1fd-11eb-98c8-17183b67d635.gif" /> 
 
 ### Delete Cart-Item
-<img width="50%" src="https://user-images.githubusercontent.com/66458836/122670916-54880c80-d1ff-11eb-89cc-02c64aa56a2f.gif" /> 
+<img width="50%" src="https://user-images.githubusercontent.com/66458836/122671035-c1030b80-d1ff-11eb-839c-b390811146ad.gif" /> 
+
 
 ## Features
 - 로그인/회원가입
