@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import EventDetailPresenter from "./EventDetailPresenter";
-import Loading from "../../Loading";
-import Axios from "axios";
-import { message } from "antd";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../../_actions/user_actions";
+import React, { useState, useEffect } from 'react';
+import EventDetailPresenter from './EventDetailPresenter';
+import Loading from '../../Loading';
+import Axios from 'axios';
+import { message } from 'antd';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../../_actions/user_actions';
 
 function EventDetailContainer({ match }) {
   const eventId = match.params.eventId;
@@ -25,12 +25,12 @@ function EventDetailContainer({ match }) {
   }, []);
 
   const successMessage = () => {
-    const key = "updatable";
-    message.loading({ content: "Loading...", key });
+    const key = 'updatable';
+    message.loading({ content: 'Loading...', key });
 
     setTimeout(() => {
       message.success({
-        content: "장바구니에 상품이 담겼습니다!",
+        content: '장바구니에 상품이 담겼습니다!',
         key,
         duration: 2,
       });

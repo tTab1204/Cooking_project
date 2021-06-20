@@ -1,17 +1,5 @@
 import styled from "styled-components";
 
-export const MainBox = styled.div`
-  width: 100%;
-  max-width: 1100px;
-  padding-left: 46px;
-  padding-right: 46px;
-  margin: 0px auto 180px;
-  display: flex;
-  flex-direction: column;
-  padding-top: 20px;
-  // min-height: calc(100vh - 80px);
-`;
-
 export const HostCardContainer = styled.div`
   height: 100%;
   display: flex;

@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import Images1 from "../../Images/barbeque.svg";
-
 export const BreadCrumbImg = styled.div`
   background: linear-gradient(
       to bottom,
