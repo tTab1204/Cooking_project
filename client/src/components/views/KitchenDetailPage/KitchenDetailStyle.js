@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Card } from "antd";
+
 export const BreadCrumbImg = styled.div`
   background: linear-gradient(
       to bottom,
@@ -7,7 +7,9 @@ export const BreadCrumbImg = styled.div`
       rgba(0, 0, 0, 0) 41%,
       rgba(0, 0, 0, 0.65) 100%
     ),
-    url(""), #1c1c1c;
+    // 왜 안되는거지? 콘솔에는 정확한 경로를 받아오는데..
+    url(${(props) => props.imgPath}),
+    #1c1c1c;
   height: 400px;
   background-size: cover;
   background-position: center, center;
