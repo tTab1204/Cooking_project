@@ -18,6 +18,7 @@ import {
   PriceWrapper,
 } from "./KitchenDetailStyle";
 import { EnvironmentOutlined, TeamOutlined } from "@ant-design/icons";
+import { LOCAL_SERVER } from "../../Config";
 
 const { Title, Paragraph } = Typography;
 
@@ -69,10 +70,12 @@ function KitchenDetailPresenter({
     }, 2000);
   };
 
+  // console.log("이미지 경로: ", `${LOCAL_SERVER}${images[0]}`);
+
   return (
     <>
       <>
-        <BreadCrumbImg />
+        {images && <BreadCrumbImg imgPath={`${LOCAL_SERVER}${images[0]}`} />}
         <Row gutter={[12]}>
           <Col xs={24} sm={24} md={16} style={{ marginTop: "20px" }}>
             <div>
@@ -119,7 +122,7 @@ function KitchenDetailPresenter({
                         cover={
                           <img
                             alt="kitchen-detail-images"
-                            src={`http://localhost:5000/${image}`}
+                            src={`${LOCAL_SERVER}${image}`}
                           />
                         }
                       ></Card>
