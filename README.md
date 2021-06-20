@@ -6,6 +6,9 @@
 ### LandingPage
 <img width="50%" src="https://user-images.githubusercontent.com/66458836/122670546-96b04e80-d1fd-11eb-98c8-17183b67d635.gif" /> 
 
+### Delete Cart-Item
+<img width="50%" src="" /> 
+
 ## Features
 - 로그인/회원가입
 - JWT Authorization
