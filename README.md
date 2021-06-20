@@ -2,20 +2,13 @@
 ### 이 프로젝트는 미완성입니다!
 요리 이벤트를 예매하고, 요리사들이 호스트로 등록되는 MERN stack 웹사이트
 
-## 소개
-### LandingPage
-<img width="80%" src="https://user-images.githubusercontent.com/66458836/122670546-96b04e80-d1fd-11eb-98c8-17183b67d635.gif" /> 
-
-### Delete Cart-Item
-<img width="80%" src="https://user-images.githubusercontent.com/66458836/122671035-c1030b80-d1ff-11eb-839c-b390811146ad.gif" /> 
-
-
 ## Features
 - 로그인/회원가입
 - JWT Authorization
 - 이벤트 검색 (이름, 날짜)
 - MyTicketPage에 상품 추가/제거
 - Ant Design
+- Styled Components
 - 반응형 웹 페이지
 - Naver Payments API(구현 예정)
 - Naver Login (구현 예정)
@@ -29,6 +22,27 @@
 - Express
 - Mongoose
 - AWS (적용 예정)
+
+## Introduction
+
+### Login / Register
+<img width="80%" src="" /> 
+
+### LandingPage
+<img width="80%" src="" /> 
+
+### Add/Delete Cart-Item
+<img width="80%" src="" /> 
+
+### Reviews
+<img width="80%" src="" /> 
+
+### Follow / Likes / Dislikes
+<img width="80%" src="" /> 
+
+### Infinite Scrolling
+<img width="80%" src="" /> 
+
 
 ## 디자인 패턴
 - Presentational / Container 컴포넌트 적용 (예시 이미지 필요)
