@@ -2,6 +2,9 @@
 ### 이 프로젝트는 미완성입니다!
 요리 이벤트를 예매하고, 요리사들이 호스트로 등록되는 MERN stack 웹사이트
 
+## 소개
+<img width="80%" src="https://user-images.githubusercontent.com/66458836/122670546-96b04e80-d1fd-11eb-98c8-17183b67d635.gif" /> 
+
 ## Features
 - 로그인/회원가입
 - JWT Authorization
