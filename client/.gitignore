@@ -23,4 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # github template
-feature_request.md
+.github
