@@ -44,7 +44,7 @@
 <img width="80%" src="" /> 
 
 
-## 디자인 패턴
+## Design Pattern
 - Presentational / Container 컴포넌트 적용 (예시 이미지 필요)
 
 ## Deployment / 배포
