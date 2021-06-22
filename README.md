@@ -48,7 +48,7 @@
 - Presentational / Container 컴포넌트 적용 (예시 이미지 필요)
 
 ## Deployment / 배포
-AWS EC2 - (미적용)
+Heroku
 
 ## Contributiong / 기여
 tTab1204
