@@ -1,22 +1,22 @@
-import React, { useState, useEffect } from "react";
-import MyTicketPresenter from "./MyTicketPresenter";
-import Loading from "../../Loading";
-import { useDispatch, useSelector } from "react-redux";
-import { showCartItems, removeCartItem } from "../../../_actions/user_actions";
+import React, { useState, useEffect } from 'react';
+import MyTicketPresenter from './MyTicketPresenter';
+import Loading from '../../Loading';
+import { useDispatch, useSelector } from 'react-redux';
+import { showCartItems, removeCartItem } from '../../../_actions/user_actions';
 
 const IconText = ({ icon, text }) => (
-  <div style={{ cursor: "default" }}>
-    <span style={{ paddingRight: "5px" }}>{React.createElement(icon)}</span>
+  <div style={{ cursor: 'default' }}>
+    <span style={{ paddingRight: '5px' }}>{React.createElement(icon)}</span>
     {text}
   </div>
 );
 
-function MyTicketContainer() {
+function MyTicketContainer({ history }) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.userData);
   const cart = useSelector((state) => state.user.cartDetail);
 
-  const [Total, setTotal] = useState("");
+  const [Total, setTotal] = useState('');
   const [loading, setLoading] = useState(true);
   const [removeLoading, setRemoveLoading] = useState(false);
 
@@ -26,7 +26,6 @@ function MyTicketContainer() {
     cartDetail.map((item) => {
       total += parseInt(item.price, 10) * item.quantity;
     });
-
     setTotal(total);
   };
 
@@ -53,6 +52,10 @@ function MyTicketContainer() {
     });
   };
 
+  const goShippingPage = () => {
+    history.push('/payment');
+  };
+
   return (
     <>
       {loading && <Loading />}
@@ -65,6 +68,7 @@ function MyTicketContainer() {
           Total={Total}
           removeItem={removeItem}
           removeLoading={removeLoading}
+          goShippingPage={goShippingPage}
         />
       )}
     </>
