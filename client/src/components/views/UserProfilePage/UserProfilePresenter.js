@@ -61,15 +61,15 @@ function UserProfilePresenter({ userName, history }) {
               }
               key='1'
             >
-              {history?.map(() => (
+              {history?.map((item, index) => (
                 <>
                   <Order>
                     <OrderDetails>
                       <Title level={4}>
-                        <CheckCircleTwoTone twoToneColor='#52c41a' /> Order: #60d2f5139757b50004f47908
+                        <CheckCircleTwoTone twoToneColor='#52c41a' /> Order: #{index + 1} - {item.id}
                       </Title>
-                      <p>NAME: Akaps' party</p>
-                      <p>TOTAL: 20000원</p>
+                      <p>NAME: {item.name}</p>
+                      <p>TOTAL: {item.price}원</p>
                     </OrderDetails>
                     <div>
                       <img src={baker} alt='baker' style={{ width: '80px' }} />
