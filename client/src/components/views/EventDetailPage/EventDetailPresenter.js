@@ -183,7 +183,7 @@ function EventDetailPresenter({ DetailEvent, addToCartHandler, onQuantityChange 
                         <br />
                         <a
                           target='_blank'
-                          href='https://www.google.com/maps/place/NAVER/@37.3538874,127.1014005,17z/data=!3m1!4b1!4m5!3m4!1s0x357b59b81a8b3727:0xf4082515883c699a!8m2!3d37.3538874!4d127.1035892'
+                          href={`https://www.google.com/maps/place/${DetailEvent.location.replace(/(\s*)/g, '')}`}
                         >
                           View Map
                         </a>
