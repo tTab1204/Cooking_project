@@ -1,25 +1,16 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const BreadCrumbImg = styled.div`
-  background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 39%,
-      rgba(0, 0, 0, 0) 41%,
-      rgba(0, 0, 0, 0.65) 100%
-    ),
-    // 왜 안되는거지? 콘솔에는 정확한 경로를 받아오는데..
-    url(${(props) => props.imgPath}),
-    #1c1c1c;
-  height: 400px;
-  background-size: cover;
-  background-position: center, center;
+  min-width: 200px;
   width: 100%;
+  height: 40vh;
   position: relative;
   display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  padding-left: 24px;
-  padding-right: 24px;
+  & > img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+  }
 `;
 
 export const AddressAndCapacityWrapper = styled.span`
