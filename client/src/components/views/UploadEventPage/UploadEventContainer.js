@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import { message } from "antd";
-import Axios from "axios";
-import UploadEventPresenter from "./UploadEventPresenter";
-import UploadSuccess from "../../utils/UploadSuccess";
+import React, { useState } from 'react';
+import { message } from 'antd';
+import Axios from 'axios';
+import UploadEventPresenter from './UploadEventPresenter';
+import UploadSuccess from '../../utils/UploadSuccess';
 
 function UploadEventContainer({ match }) {
   const url = match.url;
 
-  const [Name, setName] = useState("");
-  const [Time, setTime] = useState("");
-  const [Location, setLocation] = useState("");
+  const [Name, setName] = useState('');
+  const [Time, setTime] = useState('');
+  const [Location, setLocation] = useState('');
   const [Price, setPrice] = useState(0);
-  const [Description, setDescription] = useState("");
-  const [Date, setDate] = useState("");
+  const [Description, setDescription] = useState('');
+  const [Date, setDate] = useState('');
   const [ShowSuccess, setShowSuccess] = useState(false);
 
   const [Images, setImages] = useState([]);
@@ -34,17 +34,17 @@ function UploadEventContainer({ match }) {
   };
 
   const onDateChange = (date, dateString) => {
-    console.log("dateString: ", dateString);
+    console.log('dateString: ', dateString);
     setDate(dateString);
   };
 
   const successMessage = () => {
-    const key = "updatable";
-    message.loading({ content: "Loading...", key });
+    const key = 'updatable';
+    message.loading({ content: 'Loading...', key });
 
     setTimeout(() => {
       message.success({
-        content: "Success!",
+        content: 'Success!',
         key,
         duration: 2,
       });
@@ -54,19 +54,19 @@ function UploadEventContainer({ match }) {
 
   const onSubmit = () => {
     const variables = {
-      writer: localStorage.getItem("userId"),
-      host: "609ce5949d64244f2c79cc53", // dopa
+      writer: localStorage.getItem('userId'),
+      host: '60d58464c760016778daa8cf', // Jamie
       name: Name,
       time: Time,
       location: Location,
       price: Price,
       description: Description,
-      state: "pre",
+      state: 'pre',
       date: Date,
       images: Images,
     };
 
-    Axios.post("/api/events/upload-event", variables).then((response) => {
+    Axios.post('/api/events/upload-event', variables).then((response) => {
       if (response.data.success) {
         successMessage();
       } else {
