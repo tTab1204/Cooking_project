@@ -35,7 +35,7 @@ function EventDetailContainer({ match }) {
         duration: 2,
       });
       setShowSuccess(true);
-    }, 2000);
+    });
   };
   const onQuantityChange = (label) => {
     setQuantity(label.key);
