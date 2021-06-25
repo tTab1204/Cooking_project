@@ -74,7 +74,7 @@ function RegisterPage(props) {
                   duration: 2,
                 });
                 props.history.push('/login');
-              }, 2000);
+              });
             } else {
               alert(response.payload.err.errmsg);
             }
