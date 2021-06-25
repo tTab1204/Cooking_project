@@ -17,7 +17,7 @@ import KitchenContainer from './views/KitchenPage/KitchenContainer';
 import EventContainer from './views/EventPage/EventContainer';
 import UploadEventContainer from './views/UploadEventPage/UploadEventContainer';
 import EventDetailContainer from './views/EventDetailPage/EventDetailContainer';
-import UserProfilePresenter from './views/UserProfilePage/UserProfilePresenter';
+import UserProfileContainer from './views/UserProfilePage/UserProfileContainer';
 import MyTicketContainer from './views/MyTicketPage/MyTicketContainer';
 import { MainBox } from '../GlobalStyle/GlobayStyle';
 import { BackTop } from 'antd';
@@ -54,7 +54,7 @@ function App() {
           <Route exact path='/kitchens' component={Auth(KitchenContainer, null)} />
           <Route exact path='/kitchens/:kitchensId' component={Auth(KitchenDetailContainer, null)} />
           <Route exact path='/events' component={Auth(EventContainer, null)} />
-          <Route exact path='/users/:userName' component={Auth(UserProfilePresenter, null)} />
+          <Route exact path='/users/:userName' component={Auth(UserProfileContainer, null)} />
           <Route exact path='/my-tickets' component={Auth(MyTicketContainer, true)} />
           <Route exact path='/events/:eventId' component={Auth(EventDetailContainer, null)} />
           <Route exact path='/upload-kitchen' component={Auth(UploadKitchenContainer, true)} />

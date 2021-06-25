@@ -55,11 +55,6 @@ export const OrderItem = styled.div`
   justify-content: flex-start;
   grid-gap: 1rem;
   gap: 1rem;
-
-  & > img {
-    width: 60px;
-    display: block;
-  }
 `;
 
 export const OrderItemInfo = styled.div`
@@ -108,5 +103,11 @@ export const OrderSummaryTable = styled.table`
   & > tbody > tr > td {
     padding: 0.8em;
     text-align: inherit;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  & > tbody > tr > .item_price {
+    text-align: right;
   }
 `;

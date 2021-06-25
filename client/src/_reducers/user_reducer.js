@@ -6,7 +6,8 @@ import {
   ADD_TO_CART,
   SHOW_CART_ITEMS,
   REMOVE_CART_ITEM,
-} from "../_actions/types";
+  PAYMENT_SUCCESS,
+} from '../_actions/types';
 
 export default function (state = {}, action) {
   switch (action.type) {
@@ -32,6 +33,15 @@ export default function (state = {}, action) {
       return {
         ...state,
         cartDetail: action.payload.eventInfo,
+        userData: {
+          ...state.userData,
+          cart: action.payload.cart,
+        },
+      };
+    case PAYMENT_SUCCESS:
+      return {
+        ...state,
+        cartDetail: action.payload.cartDetail,
         userData: {
           ...state.userData,
           cart: action.payload.cart,

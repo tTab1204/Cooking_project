@@ -14,12 +14,13 @@ import {
   OrderSummaryTable,
 } from './PaymentStyle';
 import { CreditCardOutlined, CreditCardFilled } from '@ant-design/icons';
+import { LOCAL_SERVER } from '../../Config';
 
 const { Step } = Steps;
 const { TextArea } = Input;
 const { Title } = Typography;
 
-const PaymentPresenter = () => {
+const PaymentPresenter = ({ cartDetail, Total, paymentSuccess }) => {
   const steps = [
     {
       title: '희망사항 입력',
@@ -70,26 +71,24 @@ const PaymentPresenter = () => {
             </div>
             <Divider />
             <Title level={4}>ORDER ITEM</Title>
-            <OrderItem>
-              <div>
-                <img alt='test_item' />
-              </div>
-              <OrderItemInfo>
-                <div>Paka's Party</div>
-                <div>4 x 20000원</div>
-              </OrderItemInfo>
-            </OrderItem>
-            <Divider />
-            <OrderItem>
-              <div>
-                <img alt='test_item' />
-              </div>
-              <OrderItemInfo>
-                <div>Paka's Party</div>
-                <div>4 x 20000원</div>
-              </OrderItemInfo>
-            </OrderItem>
-            <Divider />
+            {cartDetail?.map((item) => (
+              <>
+                <OrderItem>
+                  <div>
+                    <img
+                      style={{ width: '60px', display: 'block' }}
+                      src={`${LOCAL_SERVER}${item.images[0]}`}
+                      alt='test_item'
+                    />
+                  </div>
+                  <OrderItemInfo>
+                    <div>{item.name}</div>
+                    <div>{`${item.quantity} x ${item.price}`}</div>
+                  </OrderItemInfo>
+                </OrderItem>
+                <Divider />
+              </>
+            ))}
           </OrderDetails>
           <OrderSummary>
             <Title level={4}>ORDER SUMMARY</Title>
@@ -98,19 +97,21 @@ const PaymentPresenter = () => {
                 <tbody>
                   <tr>
                     <td>Items: </td>
-                    <td style={{ textAlign: 'right' }}>40000원</td>
+                    <td className='item_price'>{Total}원</td>
                   </tr>
                   <tr>
-                    <td>Items: </td>
-                    <td style={{ textAlign: 'right' }}>40000원</td>
+                    <td>Shipping & handling: </td>
+                    <td className='item_price'>0원</td>
                   </tr>
                   <tr>
-                    <td>Items: </td>
-                    <td style={{ textAlign: 'right' }}>40000원</td>
+                    <td>Tax: </td>
+                    <td className='item_price'>0원</td>
                   </tr>
                   <tr>
-                    <td>Total: </td>
-                    <td style={{ textAlign: 'right' }}>40000원</td>
+                    <td style={{ fontSize: '1.2rem' }}>Total: </td>
+                    <td className='item_price' style={{ fontSize: '1.2rem' }}>
+                      {Total}원
+                    </td>
                   </tr>
                 </tbody>
               </OrderSummaryTable>
@@ -149,7 +150,7 @@ const PaymentPresenter = () => {
         )}
         {current === steps.length - 1 && (
           <ButtonWrapper>
-            <Button type='primary' size='large' style={{ width: '100%' }}>
+            <Button type='primary' size='large' style={{ width: '100%' }} onClick={paymentSuccess}>
               주문 완료하기
             </Button>
           </ButtonWrapper>
