@@ -6,13 +6,11 @@
 - 로그인/회원가입
 - JWT Authorization
 - 이벤트 검색 (이름, 날짜)
+- 댓글(답글), 팔로우, 좋아요/싫어요
 - MyTicketPage에 상품 추가/제거
 - Ant Design
 - Styled Components
 - 반응형 웹 페이지
-- Naver Payments API(구현 예정)
-- Naver Login (구현 예정)
-- 결제 내역 페이지 (구현 예정)
 
 ## Tools
 - React
