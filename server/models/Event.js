@@ -1,15 +1,15 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const eventSchema = mongoose.Schema(
   {
     writer: {
       type: Schema.Types.ObjectId,
-      ref: "Host",
+      ref: 'Host',
     },
     host: {
       type: Schema.Types.ObjectId,
-      ref: "Host",
+      ref: 'Host',
     },
     name: {
       type: String,
@@ -40,16 +40,20 @@ const eventSchema = mongoose.Schema(
     date: {
       type: String,
     },
+    sold: {
+      type: Number,
+      default: 0,
+    },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 // 나는 키워드 검색 시 name이 검색되도록 하겠다.
 eventSchema.index({
-  name: "text",
+  name: 'text',
   //description: "text",
 });
 
-const Event = mongoose.model("Event", eventSchema);
+const Event = mongoose.model('Event', eventSchema);
 
 module.exports = { Event };
