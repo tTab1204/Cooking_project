@@ -53,7 +53,7 @@ export const HostCarouselCard = styled.div`
 `;
 
 export const HostCardIcon = styled.img`
-  height: 100px;
+  height: 150px;
   width: 160px;
   margin-bottom: 10px;
   border-radius: 10px;
