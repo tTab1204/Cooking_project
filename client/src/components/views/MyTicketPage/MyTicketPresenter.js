@@ -14,7 +14,7 @@ import { EVENTS_CLIENT, LOCAL_SERVER } from '../../Config';
 
 const { Title } = Typography;
 
-function MyTicketPresenter({ IconText, user, cart, Total, removeItem, removeLoading, goShippingPage }) {
+function MyTicketPresenter({ ShowTotal, IconText, cart, Total, removeItem, removeLoading, goShippingPage }) {
   return (
     <>
       <Title level={2} style={{ marginTop: '20px' }}>
@@ -25,13 +25,13 @@ function MyTicketPresenter({ IconText, user, cart, Total, removeItem, removeLoad
         <Menu.Item key='used/expired'>Used/Expired (0)</Menu.Item>
       </Menu>
 
-      {user && !cart && (
+      {!ShowTotal && (
         <EmptyWrapper>
           <Empty description='Nothing here' style={{ width: '100%' }} />
         </EmptyWrapper>
       )}
 
-      {cart && (
+      {ShowTotal && cart && (
         <List
           itemLayout='vertical'
           size='large'
@@ -84,11 +84,14 @@ function MyTicketPresenter({ IconText, user, cart, Total, removeItem, removeLoad
           )}
         />
       )}
-      <Affix offsetBottom={0} style={{ height: '72px' }}>
-        <Button type='primary' size='large' onClick={goShippingPage}>
-          결제 진행하기
-        </Button>
-      </Affix>
+
+      {ShowTotal && cart && (
+        <Affix offsetBottom={0} style={{ height: '72px' }}>
+          <Button type='primary' size='large' onClick={goShippingPage}>
+            결제 진행하기
+          </Button>
+        </Affix>
+      )}
     </>
   );
 }

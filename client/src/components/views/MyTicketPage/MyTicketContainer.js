@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useLayoutEffect } from 'react';
 import MyTicketPresenter from './MyTicketPresenter';
 import Loading from '../../Loading';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,6 +19,7 @@ function MyTicketContainer({ history }) {
   const [Total, setTotal] = useState('');
   const [loading, setLoading] = useState(true);
   const [removeLoading, setRemoveLoading] = useState(false);
+  const [ShowTotal, setShowTotal] = useState(false);
 
   const calculateTotal = (cartDetail) => {
     let total = 0;
@@ -27,9 +28,10 @@ function MyTicketContainer({ history }) {
       total += parseInt(item.price, 10) * item.quantity;
     });
     setTotal(total);
+    setShowTotal(true);
   };
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let cartItems = [];
 
     if (user && user.cart) {
@@ -41,13 +43,16 @@ function MyTicketContainer({ history }) {
           calculateTotal(response.payload);
           setLoading(false);
         });
-      }
+      } else setLoading(false); // 뭔가 setLoading(false)가 남발되는 느낌.. 수정 필요할듯
     }
   }, [user]);
 
   const removeItem = (eventId) => {
     setRemoveLoading(true);
     dispatch(removeCartItem(eventId)).then((response) => {
+      if (response.payload.eventInfo.length === 0) {
+        setShowTotal(false);
+      }
       setRemoveLoading(false);
     });
   };
@@ -69,6 +74,7 @@ function MyTicketContainer({ history }) {
           removeItem={removeItem}
           removeLoading={removeLoading}
           goShippingPage={goShippingPage}
+          ShowTotal={ShowTotal}
         />
       )}
     </>
