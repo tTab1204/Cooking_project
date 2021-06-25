@@ -1,20 +1,20 @@
-import React, { useState } from "react";
-import { message } from "antd";
+import React, { useState } from 'react';
+import { message } from 'antd';
 
-import Axios from "axios";
-import UploadSuccess from "../../utils/UploadSuccess";
-import UploadHostPresenter from "./UploadHostPresenter";
+import Axios from 'axios';
+import UploadSuccess from '../../utils/UploadSuccess';
+import UploadHostPresenter from './UploadHostPresenter';
 
 function UploadHostContainer({ match }) {
-  const userId = localStorage.getItem("userId");
+  const userId = localStorage.getItem('userId');
   const url = match.url;
 
-  const [Name, setName] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Kitchen_Ex, setKitchen_Ex] = useState("");
-  const [Deposit, setDeposit] = useState("");
-  const [Food_Nation, setFood_Nation] = useState("");
-  const [Description, setDescription] = useState("");
+  const [Name, setName] = useState('');
+  const [Email, setEmail] = useState('');
+  const [Kitchen_Ex, setKitchen_Ex] = useState('');
+  const [Deposit, setDeposit] = useState('');
+  const [Food_Nation, setFood_Nation] = useState('');
+  const [Description, setDescription] = useState('');
   const [Images, setImages] = useState([]);
   const [ShowSuccess, setShowSuccess] = useState(false);
 
@@ -49,12 +49,12 @@ function UploadHostContainer({ match }) {
   };
 
   const successMessage = () => {
-    const key = "updatable";
-    message.loading({ content: "Loading...", key });
+    const key = 'updatable';
+    message.loading({ content: 'Loading...', key });
 
     setTimeout(() => {
       message.success({
-        content: "Success!",
+        content: 'Success!',
         key,
         duration: 2,
       });
@@ -71,14 +71,14 @@ function UploadHostContainer({ match }) {
       deposit: Deposit,
       food_nation: Food_Nation,
       description: Description,
-      image: Image,
+      image: Images,
     };
 
-    Axios.post("/api/hosts/become-a-host", variables).then((response) => {
+    Axios.post('/api/hosts/become-a-host', variables).then((response) => {
       if (response.data.success) {
         successMessage();
       } else {
-        alert("Failed to become a host");
+        alert('Failed to become a host');
       }
     });
   };

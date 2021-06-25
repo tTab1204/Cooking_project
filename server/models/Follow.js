@@ -1,13 +1,12 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const followSchema = mongoose.Schema(
   {
     userFrom: {
       type: Schema.Types.ObjectId,
-      ref: "User",
+      ref: 'User',
     },
-
     hostId: {
       type: String,
     },
@@ -15,9 +14,9 @@ const followSchema = mongoose.Schema(
       type: String,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-const Follow = mongoose.model("Follow", followSchema);
+const Follow = mongoose.model('Follow', followSchema);
 
 module.exports = { Follow };
