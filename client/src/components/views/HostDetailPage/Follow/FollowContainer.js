@@ -3,7 +3,9 @@ import { LoadingOutlined } from '@ant-design/icons';
 import Axios from 'axios';
 import FollowPresenter from './FollowPresenter';
 
-function FollowContainer({ userFrom, detail, url }) {
+function FollowContainer({ detail, url }) {
+  const userFrom = localStorage.getItem('userId');
+
   const [loading, setloading] = useState(true);
   const [FollowNumber, setFollowNumber] = useState(0);
   const [Followed, setFollowed] = useState(false);
