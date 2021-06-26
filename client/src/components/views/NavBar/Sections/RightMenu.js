@@ -43,18 +43,12 @@ function RightMenu(props) {
     return (
       <>
         {user && (
-          <Menu
-            style={{ fontSize: '14px', borderBottom: 'none' }}
-            mode={props.mode}
-          >
+          <Menu style={{ fontSize: '14px', borderBottom: 'none' }} mode={props.mode}>
             <Menu.Item key='app' style={{ borderBottom: 'none' }}>
               <Link to='/events'>Events</Link>
             </Menu.Item>
 
-            <SubMenu
-              title={<span>Kitchens</span>}
-              style={{ borderBottom: 'none' }}
-            >
+            <SubMenu title={<span>Kitchens</span>} style={{ borderBottom: 'none' }}>
               <MenuItemGroup>
                 <Menu.Item key='kitchens'>
                   <Link to='/kitchens'>Kitchen</Link>
@@ -64,10 +58,7 @@ function RightMenu(props) {
                 </Menu.Item>
               </MenuItemGroup>
             </SubMenu>
-            <SubMenu
-              title={<span>Hosts</span>}
-              style={{ borderBottom: 'none' }}
-            >
+            <SubMenu title={<span>Hosts</span>} style={{ borderBottom: 'none' }}>
               <MenuItemGroup>
                 <Menu.Item key='hosts'>
                   <Link to='/hosts'>Hosts</Link>
@@ -82,39 +73,29 @@ function RightMenu(props) {
               style={{ borderBottom: 'none' }}
               title={
                 <span>
-                  <Badge
-                    overflowCount={10}
-                    offset={[0, 2]}
-                    count={cart && total}
-                  >
+                  <Badge overflowCount={10} offset={[0, 2]} count={cart && total}>
                     <UserOutlined style={{ fontSize: '20px' }} />
                   </Badge>
                 </span>
               }
             >
               <MenuItemGroup>
-                <Menu.Item key='upload-event'>
-                  <Link to='/upload-event'>Upload Event</Link>
-                </Menu.Item>
+                {user.isHost && (
+                  <Menu.Item key='upload-event'>
+                    <Link to='/upload-event'>Upload Event</Link>
+                  </Menu.Item>
+                )}
 
                 <Menu.Item key='my-profile'>
                   <Link to={`/users/${user.name}`}>My Profile</Link>
                 </Menu.Item>
                 <Menu.Item key='my-tickets'>
-                  <Badge
-                    count={cart && total}
-                    overflowCount={10}
-                    offset={[12, 0]}
-                  >
+                  <Badge count={cart && total} overflowCount={10} offset={[12, 0]}>
                     <Link to='/my-tickets'>My Tickets</Link>
                   </Badge>
                 </Menu.Item>
                 <Menu.Item key='logout'>
-                  <Link
-                    style={{ color: '#1890ff' }}
-                    to='/'
-                    onClick={logoutHandler}
-                  >
+                  <Link style={{ color: '#1890ff' }} to='/' onClick={logoutHandler}>
                     Logout
                   </Link>
                 </Menu.Item>
