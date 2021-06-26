@@ -9,6 +9,7 @@ import {
   DeleteOutlined,
   EditOutlined,
   LoadingOutlined,
+  ClockCircleFilled,
 } from '@ant-design/icons';
 import { EVENTS_CLIENT, LOCAL_SERVER } from '../../Config';
 
@@ -77,7 +78,12 @@ function MyTicketPresenter({ ShowTotal, IconText, cart, Total, removeItem, remov
               <List.Item.Meta
                 avatar={<Avatar src={event.host && `${LOCAL_SERVER}${event.host.image[0]}`} />}
                 title={<Link to={`${EVENTS_CLIENT}/${event._id}`}>{event.name}</Link>}
-                description={event.time}
+                description={
+                  <div>
+                    <ClockCircleFilled style={{ marginRight: '5px' }} />
+                    <span>{event.time}</span>
+                  </div>
+                }
               />
               {event.description}
             </List.Item>
@@ -88,7 +94,7 @@ function MyTicketPresenter({ ShowTotal, IconText, cart, Total, removeItem, remov
       {ShowTotal && cart && (
         <Affix offsetBottom={0} style={{ height: '72px' }}>
           <Button type='primary' size='large' onClick={goShippingPage}>
-            결제 진행하기
+            Check Out
           </Button>
         </Affix>
       )}
