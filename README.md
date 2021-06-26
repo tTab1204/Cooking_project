@@ -1,4 +1,4 @@
-# :curry: Cooking Project (이름 미정)
+# :curry: Cooking
 ### 이 프로젝트는 미완성입니다!
 요리 이벤트를 예매하고, 요리사들이 호스트로 등록되는 MERN stack 웹사이트
 
