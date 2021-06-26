@@ -30,9 +30,9 @@ function EventDetailContainer({ match }) {
 
     setTimeout(() => {
       message.success({
-        content: '장바구니에 상품이 담겼습니다!',
+        content: 'You picked an event. Please check User > MyTicket',
         key,
-        duration: 2,
+        duration: 4,
       });
       setShowSuccess(true);
     });
