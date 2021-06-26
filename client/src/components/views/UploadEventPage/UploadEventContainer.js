@@ -12,7 +12,7 @@ function UploadEventContainer({ match }) {
   const [Location, setLocation] = useState('');
   const [Price, setPrice] = useState(0);
   const [Description, setDescription] = useState('');
-  const [Date, setDate] = useState('');
+  const [EventDate, setEventDate] = useState('');
   const [ShowSuccess, setShowSuccess] = useState(false);
 
   const [Images, setImages] = useState([]);
@@ -35,7 +35,7 @@ function UploadEventContainer({ match }) {
 
   const onDateChange = (date, dateString) => {
     console.log('dateString: ', dateString);
-    setDate(dateString);
+    setEventDate(dateString);
   };
 
   const successMessage = () => {
@@ -55,14 +55,14 @@ function UploadEventContainer({ match }) {
   const onSubmit = () => {
     const variables = {
       writer: localStorage.getItem('userId'),
-      host: '60d58464c760016778daa8cf', // Jamie
+      host: '60d58b2a10eedb34205360cc',
       name: Name,
       time: Time,
       location: Location,
       price: Price,
       description: Description,
-      state: 'pre',
-      date: Date,
+      state: 'valid',
+      date: EventDate,
       images: Images,
     };
 
