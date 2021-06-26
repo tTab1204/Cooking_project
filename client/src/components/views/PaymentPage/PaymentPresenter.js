@@ -23,36 +23,36 @@ const { Title } = Typography;
 const PaymentPresenter = ({ cartDetail, Total, paymentSuccess }) => {
   const steps = [
     {
-      title: '희망사항 입력',
+      title: 'Enter your wishes to your host',
       content: (
         <FormContainer>
-          <Title level={4}>희망사항 입력</Title>
+          <Title level={4}>Enter your wishes to your host</Title>
           <Form colon={false}>
             <Form.Item>
-              <TextArea placeholder='호스트에게 원하는 말을 적어주세요!' style={{ minHeight: '200px' }} />
+              <TextArea style={{ minHeight: '200px' }} />
             </Form.Item>
           </Form>
         </FormContainer>
       ),
     },
     {
-      title: '결제 방법 선택',
+      title: 'Payment Methods',
       content: (
         <FormContainer>
           <Title level={4} style={{ marginBottom: '2rem' }}>
-            결제 방법 선택
+            Payment Methods
           </Title>
           <Radio.Group defaultValue={1}>
             <RadioWrapper>
               <Radio value={1} style={{ marginBottom: '1rem' }}>
                 <CreditCardOutlined style={{ marginRight: '3px' }} />
-                신용 카드
+                Credit Card
               </Radio>
               <Radio value={2} disabled style={{ marginBottom: '1rem' }}>
-                카카오 페이로 결제하기
+                KaKao Pay
               </Radio>
               <Radio value={3} disabled style={{ marginBottom: '1rem' }}>
-                네이버 페이로 결제하기
+                Naver Pay
               </Radio>
             </RadioWrapper>
           </Radio.Group>
@@ -60,7 +60,7 @@ const PaymentPresenter = ({ cartDetail, Total, paymentSuccess }) => {
       ),
     },
     {
-      title: '주문하기',
+      title: 'Order',
       content: (
         <OrderContainer>
           <OrderDetails>
@@ -144,21 +144,21 @@ const PaymentPresenter = ({ cartDetail, Total, paymentSuccess }) => {
         {current < steps.length - 1 && (
           <ButtonWrapper>
             <Button size='large' type='primary' onClick={next} style={{ width: '100%' }}>
-              계속하기
+              Continue
             </Button>
           </ButtonWrapper>
         )}
         {current === steps.length - 1 && (
           <ButtonWrapper>
             <Button type='primary' size='large' style={{ width: '100%' }} onClick={paymentSuccess}>
-              주문 완료하기
+              Complete your order
             </Button>
           </ButtonWrapper>
         )}
         {current > 0 && (
           <ButtonWrapper>
             <Button size='large' onClick={prev} style={{ width: '100%' }}>
-              이전으로
+              Back
             </Button>
           </ButtonWrapper>
         )}
