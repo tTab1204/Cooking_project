@@ -20,6 +20,19 @@
 - Express
 - Mongoose
 
+## Design Pattern
+- Presentational / Container 컴포넌트 방식 적용 
+<img width="50%" src="https://user-images.githubusercontent.com/66458836/124344884-2b5c7880-dc10-11eb-897d-2cc72956ae38.png" /> 
+
+
+## Deployment / 배포
+Heroku
+
+
+## Contributiong / 기여
+tTab1204
+
+
 ## Introduction
 
 ### Login / Register
@@ -44,13 +57,4 @@
 <img width="80%" src="https://user-images.githubusercontent.com/66458836/124344777-70cc7600-dc0f-11eb-8aaf-3a61851c772b.gif" /> 
 
 
-## Design Pattern
-- Presentational / Container 컴포넌트 방식 적용 
-<img width="50%" src="https://user-images.githubusercontent.com/66458836/124344884-2b5c7880-dc10-11eb-897d-2cc72956ae38.png" /> 
 
-
-## Deployment / 배포
-Heroku
-
-## Contributiong / 기여
-tTab1204
