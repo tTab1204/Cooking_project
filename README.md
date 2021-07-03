@@ -19,6 +19,24 @@
 - Node
 - Express
 - Mongoose
+- Heroku
+
+Installation
+React Setup & Git Initialize
+
+npx create-react-app frontend
+Implementing React Router
+
+npm i react-router-dom
+Fetch Data From Express
+
+npm i axios
+"proxy":  "http://127.0.0.1:5000", 
+npm i -D nodemon concurrently
+npm i dotenv
+Connect to MongoDB
+
+npm i mongoose
 
 ## Design Pattern
 - Presentational / Container 컴포넌트 방식 적용 
