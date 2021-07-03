@@ -1,6 +1,6 @@
-# :curry: Cooking Project (이름 미정)
-### 이 프로젝트는 미완성입니다!
-요리 이벤트를 예매하고, 요리사들이 호스트로 등록되는 MERN stack 웹사이트
+# :curry: Cooking
+### 요리 공유 플랫폼!
+요리 이벤트를 예매하고, 요리사들이 호스트로 등록되는 MERN stack 웹사이트 (ES6)
 
 ## Features
 - 로그인/회원가입
@@ -19,7 +19,6 @@
 - Node
 - Express
 - Mongoose
-- AWS (적용 예정)
 
 ## Introduction
 
