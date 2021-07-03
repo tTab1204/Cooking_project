@@ -43,7 +43,7 @@
 
 ## Design Pattern
 - Presentational / Container 컴포넌트 적용 
-<img width="50%" src="https://user-images.githubusercontent.com/66458836/124344858-fb14da00-dc0f-11eb-9bbd-321cb720b648.png" /> 
+<img width="50%" src="https://user-images.githubusercontent.com/66458836/124344884-2b5c7880-dc10-11eb-897d-2cc72956ae38.png" /> 
 
 
 ## Deployment / 배포
