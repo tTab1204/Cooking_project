@@ -1,3 +1,4 @@
+![Review_Follow_Like](https://user-images.githubusercontent.com/66458836/124345075-6c08c180-dc11-11eb-8729-13163350a1ae.gif)
 # :curry: Cooking
 ### 요리 공유 플랫폼!
 사용자들이 호스트의 요리 이벤트를 예매하고, 요리사들이 호스트로 등록되는 MERN stack 웹사이트 (ES6)
@@ -32,7 +33,8 @@
 <img width="80%" src="" /> 
 
 ### Reviews / Follow / Likes / Dislikes
-<img width="80%" src="" /> 
+<img width="80%" src="https://user-images.githubusercontent.com/66458836/124345076-6f9c4880-dc11-11eb-9730-f02271267911.gif" /> 
+
 
 ### Filtering
 <img width="80%" src="https://user-images.githubusercontent.com/66458836/124344751-34991580-dc0f-11eb-889e-1cea4e58bf4a.gif" /> 
