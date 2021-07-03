@@ -52,7 +52,7 @@ Heroku
 ## Introduction
 
 ### Login / Register
-<img width="80%" src="https://user-images.githubusercontent.com/66458836/124345216-97d87700-dc12-11eb-872b-af2efad857c3.gif" />
+<img width="100%" src="https://user-images.githubusercontent.com/66458836/124345216-97d87700-dc12-11eb-872b-af2efad857c3.gif" />
 
 
 ### LandingPage
