@@ -26,7 +26,7 @@
 <img width="80%" src="" /> 
 
 ### LandingPage
-<img width="80%" src="" /> 
+<img width="80%" src="https://user-images.githubusercontent.com/66458836/124344736-0adfee80-dc0f-11eb-8e7c-4f46c78f8696.gif" /> 
 
 ### Add/Delete Cart-Item
 <img width="80%" src="" /> 
