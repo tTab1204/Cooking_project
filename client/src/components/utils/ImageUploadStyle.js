@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const DropzoneBox = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const DropzoneBox = styled.div`
 `;
 
 export const DropzoneContainer = styled.div`
-  width: 460px;
+  width: 100%;
   height: 150px;
   border: 3px dashed lightgray;
   display: flex;
@@ -21,11 +21,17 @@ export const DropzoneContainer = styled.div`
 export const DropzoneTitle = styled.div`
   display: flex;
   flex-direction: column;
+
+  @media screen and (max-width: 540px) {
+    & > h4 {
+      font-size: 1rem;
+    }
+  }
 `;
 
 export const ImagesContainer = styled.div`
   box-sizing: border-box;
-  width: 350px;
+  width: 100%;
   margin: 0;
   padding: 0;
   color: rgba(0, 0, 0, 0.85);

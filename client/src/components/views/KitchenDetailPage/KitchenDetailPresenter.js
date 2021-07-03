@@ -1,5 +1,17 @@
 import React, { useState } from 'react';
-import { Row, Col, Typography, Divider, Button, Descriptions, Card, Result, Modal, Form, Input } from 'antd';
+import {
+  Row,
+  Col,
+  Typography,
+  Divider,
+  Button,
+  Descriptions,
+  Card,
+  Result,
+  Modal,
+  Form,
+  Input,
+} from 'antd';
 import { BreadCrumbImg, AddressAndCapacityWrapper, PriceWrapper } from './KitchenDetailStyle';
 import { EnvironmentOutlined, TeamOutlined } from '@ant-design/icons';
 import { LOCAL_SERVER } from '../../Config';
@@ -101,7 +113,7 @@ function KitchenDetailPresenter({ DetailKitchen, ShowSuccess, successMessage }) 
               </Row>
             </div>
           </Col>
-          <Col span={8}>
+          <Col lg={8} md={8} sm={24}>
             <PriceWrapper>
               {ShowSuccess && (
                 <Result
@@ -139,8 +151,8 @@ function KitchenDetailPresenter({ DetailKitchen, ShowSuccess, successMessage }) 
       >
         <Form layout='vertical'>
           <p style={{ marginBottom: '1em', lineHeight: '200%' }}>
-            Thank you for your interest in {name}. If you send us your e-mail, we'll get back to you as soon as
-            possible!
+            Thank you for your interest in {name}. If you send us your e-mail, we'll get back to you
+            as soon as possible!
           </p>
           <Form.Item label='Email' required>
             <Input placeholder='paka123@naver.com' style={{ marginBottom: '1.5rem' }} />

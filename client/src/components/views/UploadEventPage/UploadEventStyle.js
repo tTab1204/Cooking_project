@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const MiddleBox = styled.div`
-  max-width: 600px;
+  max-width: 100%;
   padding-left: 24px;
   padding-right: 24px;
   margin-right: auto;
