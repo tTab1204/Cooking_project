@@ -1,5 +1,16 @@
 import React, { useState } from 'react';
-import { Row, Col, Card, Typography, Divider, Descriptions, Button, Avatar, Affix, Select } from 'antd';
+import {
+  Row,
+  Col,
+  Card,
+  Typography,
+  Divider,
+  Descriptions,
+  Button,
+  Avatar,
+  Affix,
+  Select,
+} from 'antd';
 import {
   BottomButtonBox,
   MainImgWrapper,
@@ -72,7 +83,6 @@ function EventDetailPresenter({ DetailEvent, addToCartHandler, onQuantityChange 
 
   // Image Slider
   const nextSlide = () => {
-    // 더 이상 넘어갈 슬라이드가 없다면 처음으로 돌아오도록 만들기
     if (CurrentSlide >= images.length - 1) {
       setCurrentSlide(0);
     } else {
@@ -94,10 +104,10 @@ function EventDetailPresenter({ DetailEvent, addToCartHandler, onQuantityChange 
     <>
       {images && writer && (
         <div>
-          <Row type='flex'>
+          <Row>
             <Col sm={24} md={14} style={colStyle}>
               <div style={{ width: '100%' }}>
-                <Row type='flex'>
+                <Row>
                   <Col span={24}>
                     <Card
                       hoverable={true}
@@ -183,7 +193,10 @@ function EventDetailPresenter({ DetailEvent, addToCartHandler, onQuantityChange 
                         <br />
                         <a
                           target='_blank'
-                          href={`https://www.google.com/maps/place/${DetailEvent.location.replace(/(\s*)/g, '')}`}
+                          href={`https://www.google.com/maps/place/${DetailEvent.location.replace(
+                            /(\s*)/g,
+                            '',
+                          )}`}
                         >
                           View Map
                         </a>
@@ -192,7 +205,9 @@ function EventDetailPresenter({ DetailEvent, addToCartHandler, onQuantityChange 
                   </Descriptions.Item>
                 </Descriptions>
                 <Divider />
-                <Typography style={{ whiteSpace: 'pre-wrap' }}>{DetailEvent.description}</Typography>
+                <Typography style={{ whiteSpace: 'pre-wrap' }}>
+                  {DetailEvent.description}
+                </Typography>
               </Card>
             </Col>
           </Row>
@@ -224,7 +239,12 @@ function EventDetailPresenter({ DetailEvent, addToCartHandler, onQuantityChange 
           <BottomButtonBox>
             <Affix offsetBottom={0} style={{ height: '72px' }}>
               <AffixBox>
-                <Button style={bottomButtonStyle} type='primary' size='large' onClick={addToCartHandler}>
+                <Button
+                  style={bottomButtonStyle}
+                  type='primary'
+                  size='large'
+                  onClick={addToCartHandler}
+                >
                   Add To Cart
                 </Button>
                 <Select
