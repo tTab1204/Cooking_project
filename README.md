@@ -42,7 +42,9 @@
 
 
 ## Design Pattern
-- Presentational / Container 컴포넌트 적용 (예시 이미지 필요)
+- Presentational / Container 컴포넌트 적용 
+<img width="50%" src="https://user-images.githubusercontent.com/66458836/124344858-fb14da00-dc0f-11eb-9bbd-321cb720b648.png" /> 
+
 
 ## Deployment / 배포
 Heroku
