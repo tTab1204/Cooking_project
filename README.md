@@ -21,33 +21,32 @@
 - Mongoose
 - Heroku
 
-Installation
-React Setup & Git Initialize
-
-npx create-react-app frontend
-Implementing React Router
-
-npm i react-router-dom
-Fetch Data From Express
-
-npm i axios
-"proxy":  "http://127.0.0.1:5000", 
-npm i -D nodemon concurrently
-npm i dotenv
-Connect to MongoDB
-
-npm i mongoose
-
 ## Design Pattern
 - Presentational / Container 컴포넌트 방식 적용 
-<img width="50%" src="https://user-images.githubusercontent.com/66458836/124344884-2b5c7880-dc10-11eb-897d-2cc72956ae38.png" /> 
+<img width="50%" src="https://user-images.githubusercontent.com/66458836/124344884-2b5c7880-dc10-11eb-897d-2cc72956ae38.png" />
+
+## Installation
+```
+$ npm install
+```
+
+## Running
+```
+ "scripts": {
+    "start": "node server/index.js",
+    "backend": "nodemon server/index.js",
+    "frontend": "npm run start --prefix client",
+    "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  }
+```
 
 
-## Deployment / 배포
+## Deployment
 Heroku
 
 
-## Contributiong / 기여
+## Contributiong
 tTab1204
 
 
