@@ -1,4 +1,4 @@
-# :curry: Cooking
+# :curry: Cooking (MERN stack)
 ### 요리 공유 플랫폼!
 사용자들이 호스트의 요리 이벤트를 예매하고, 요리사들이 호스트로 등록되는 MERN stack 웹사이트 (ES6)
 
