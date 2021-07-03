@@ -1,6 +1,3 @@
-![Register_Login](https://user-images.githubusercontent.com/66458836/124345206-8a22f180-dc12-11eb-90f3-8ccd299407ec.gif)
-![Register_Login](https://user-images.githubusercontent.com/66458836/124345212-94dd8680-dc12-11eb-9b13-b89cafb41c73.gif)
-![Review_Follow_Like](https://user-images.githubusercontent.com/66458836/124345075-6c08c180-dc11-11eb-8729-13163350a1ae.gif)
 # :curry: Cooking
 ### 요리 공유 플랫폼!
 사용자들이 호스트의 요리 이벤트를 예매하고, 요리사들이 호스트로 등록되는 MERN stack 웹사이트 (ES6)
