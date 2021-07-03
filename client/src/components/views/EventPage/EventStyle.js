@@ -40,7 +40,6 @@ export const EventCard = styled.div`
   justify-content: flex-start;
   height: 300px;
   position: relative;
-
   box-shadow: rgb(0 0 0 / 15%) 0px 3px 6px 0px;
   border-radius: 30px;
   box-sizing: border-box;
