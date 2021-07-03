@@ -30,7 +30,8 @@
 <img width="80%" src="https://user-images.githubusercontent.com/66458836/124344736-0adfee80-dc0f-11eb-8e7c-4f46c78f8696.gif" /> 
 
 ### Add/Delete Cart-Item
-<img width="80%" src="" /> 
+
+<img width="80%" src="https://user-images.githubusercontent.com/66458836/124345146-0537d800-dc12-11eb-8526-94747ecdfcbe.gif" /> 
 
 ### Reviews / Follow / Likes / Dislikes
 <img width="80%" src="https://user-images.githubusercontent.com/66458836/124345076-6f9c4880-dc11-11eb-9730-f02271267911.gif" /> 
