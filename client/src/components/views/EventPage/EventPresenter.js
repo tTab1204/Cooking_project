@@ -37,7 +37,10 @@ function EventPresenter({ Events, updateSearchTerm, onDateChange }) {
             <SearchBox refreshFunction={updateSearchTerm} />
           </Col>
           <Col>
-            <DatePicker onChange={onDateChange} style={{ marginTop: '10px', paddingLeft: '2rem' }} />
+            <DatePicker
+              onChange={onDateChange}
+              style={{ marginTop: '10px', paddingLeft: '2rem' }}
+            />
           </Col>
         </Row>
 
@@ -48,7 +51,10 @@ function EventPresenter({ Events, updateSearchTerm, onDateChange }) {
                 <EventCard className='card'>
                   <RemainDayBox>
                     <RemainDay>
-                      D-{moment.duration(moment(`${event?.date}`, 'YYYY-MM-DD').diff(current)).asDays()}
+                      D-
+                      {moment
+                        .duration(moment(`${event?.date}`, 'YYYY-MM-DD').diff(current))
+                        .asDays()}
                     </RemainDay>
                   </RemainDayBox>
                   <CardCover src={`${LOCAL_SERVER}${event.images[0]}`}></CardCover>
@@ -67,7 +73,8 @@ function EventPresenter({ Events, updateSearchTerm, onDateChange }) {
                       </CardTitle>
                     </div>
                     <CardText>
-                      <EnvironmentFilled style={{ marginRight: '5px' }} /> {event.time}, {event.location}
+                      <EnvironmentFilled style={{ marginRight: '5px' }} /> {event.time},{' '}
+                      {event.location}
                     </CardText>
                     <PriceAndTagBox>
                       <DollarCircleFilled
