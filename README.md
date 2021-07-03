@@ -31,14 +31,14 @@
 ### Add/Delete Cart-Item
 <img width="80%" src="" /> 
 
-### Reviews
-<img width="80%" src="" /> 
-
-### Follow / Likes / Dislikes
+### Reviews / Follow / Likes / Dislikes
 <img width="80%" src="" /> 
 
 ### Filtering
 <img width="80%" src="https://user-images.githubusercontent.com/66458836/124344751-34991580-dc0f-11eb-889e-1cea4e58bf4a.gif" /> 
+
+### Payment
+<img width="80%" src="https://user-images.githubusercontent.com/66458836/124344777-70cc7600-dc0f-11eb-8aaf-3a61851c772b.gif" /> 
 
 
 ## Design Pattern
