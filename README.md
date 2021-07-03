@@ -37,8 +37,8 @@
 ### Follow / Likes / Dislikes
 <img width="80%" src="" /> 
 
-### Infinite Scrolling
-<img width="80%" src="" /> 
+### Filtering
+<img width="80%" src="https://user-images.githubusercontent.com/66458836/124344751-34991580-dc0f-11eb-889e-1cea4e58bf4a.gif" /> 
 
 
 ## Design Pattern
