@@ -44,7 +44,7 @@ Heroku
 
 
 ## Contributiong
-tTab1204
+tTab1204: https://www.notion.so/Ju-Young-Lee-5ccfc4d5ea1a40d79ff9973ad14ab963
 Project Link: https://cooking-with.herokuapp.com/
 
 
