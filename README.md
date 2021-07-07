@@ -44,7 +44,7 @@ Heroku
 
 
 ## Author
-- tTab1204: https://www.notion.so/Ju-Young-Lee-5ccfc4d5ea1a40d79ff9973ad14ab963
+- tTab1204: https://www.notion.so/JuYoung-5d3c6f4d97514faeb996ea7ca64fa0e9
 - Project Detail: https://www.notion.so/Cooking-d6f93e1cac5d47e3b6709a3028782245
 - Project Link: https://cooking-with.herokuapp.com/
 
