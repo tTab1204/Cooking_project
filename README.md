@@ -1,7 +1,8 @@
 # :curry: Cooking (MERN stack)
 ### 요리 공유 플랫폼!
 - 사용자들이 호스트의 요리 이벤트를 예매하고, 요리사들이 호스트로 등록되는 MERN stack 웹사이트 (ES6)
-- Demo ID, PW: ken1204@naver.com / 068193felix
+- test ID: test@gmail.com
+- test PW: 1234567
 
 ## Features
 - 로그인/회원가입
@@ -48,9 +49,6 @@ Heroku
 - tTab1204: https://www.notion.so/JuYoung-5d3c6f4d97514faeb996ea7ca64fa0e9
 - Project Detail: https://www.notion.so/Cooking-d6f93e1cac5d47e3b6709a3028782245
 - Project Link: https://cooking-with.herokuapp.com/
-- test ID: test@gmail.com
-- test PW: 1234567
-
 
 ## Introduction
 
