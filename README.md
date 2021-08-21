@@ -1,6 +1,7 @@
 # :curry: Cooking (MERN stack)
 ### 요리 공유 플랫폼!
-사용자들이 호스트의 요리 이벤트를 예매하고, 요리사들이 호스트로 등록되는 MERN stack 웹사이트 (ES6)
+- 사용자들이 호스트의 요리 이벤트를 예매하고, 요리사들이 호스트로 등록되는 MERN stack 웹사이트 (ES6)
+- Demo ID, PW: ken1204@naver.com / 068193felix
 
 ## Features
 - 로그인/회원가입
