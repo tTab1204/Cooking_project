@@ -17,7 +17,6 @@
 ## Tools
 - React
 - Redux
-- Recoil(시범 적용)
 - Node
 - Express
 - Mongoose
