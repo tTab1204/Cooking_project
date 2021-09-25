@@ -33,7 +33,7 @@ const UploadHostPresenter = ({
             <Alert
               message="Invite Only"
               description="Currently, we are operating on invite-only. Feel free to leave your contact information to be contacted in the future."
-              type="info"
+              type="success"
               showIcon
             />
             <Title level={4} style={{ color: 'gray', paddingTop: '10px' }}>

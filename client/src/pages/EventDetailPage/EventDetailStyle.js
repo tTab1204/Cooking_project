@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { color } from 'styles/Theme';
 
 export const CardBody = styled.div`
   width: 100%;
@@ -117,6 +118,10 @@ export const DescriptionContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   padding-right: 12px;
+
+  & > a {
+    color: ${color.green_2};
+  }
 `;
 
 export const DescriptionFollowers = styled.div`

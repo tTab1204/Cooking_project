@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { color } from 'styles/Theme';
 
 export const WholeCardContainer = styled.div`
   height: 100%;
@@ -106,7 +107,7 @@ export const CardTitle = styled.div`
   cursor: pointer;
 `;
 export const CardText = styled.div`
-  color: var(--primary-color3);
+  color: ${color.green_2};
   font-size: 0.8rem;
   margin-top: 5px;
   text-align: right;

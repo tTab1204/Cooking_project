@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { color } from 'styles/Theme';
 
 export const Nav = styled.div`
   display: flex;
@@ -42,6 +43,6 @@ export const NavLogo = styled.div`
   align-items: center;
   margin-left: 24px;
   font-weight: bold;
-  color: var(--primary-color3);
+  color: ${color.green_2};
   font-family: 'Jua', sans-serif;
 `;

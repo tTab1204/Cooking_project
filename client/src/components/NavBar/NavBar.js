@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
-import LeftMenu from "./Sections/LeftMenu";
-import RightMenu from "./Sections/RightMenu";
-import { Drawer } from "antd";
-import "./Sections/Navbar.css";
-import { Link } from "react-router-dom";
-import { MenuOutlined } from "@ant-design/icons";
-import { NavbarContainer, NavLogo, Nav } from "./Sections/NavBarStyle";
+import React, { useState, useEffect } from 'react';
+import LeftMenu from './Sections/LeftMenu';
+import RightMenu from './Sections/RightMenu';
+import { Drawer } from 'antd';
+import './Sections/Navbar.css';
+import { Link } from 'react-router-dom';
+import { MenuOutlined } from '@ant-design/icons';
+import { NavbarContainer, NavLogo, Nav } from './Sections/NavBarStyle';
 
-const removeLinkColor = { color: "inherit", textDecoration: "none" };
+const removeLinkColor = { color: 'inherit', textDecoration: 'none' };
 
 function NavBar() {
   const [visible, setVisible] = useState(false);
@@ -19,7 +19,7 @@ function NavBar() {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", changeNav);
+    window.addEventListener('scroll', changeNav);
   }, []);
 
   const showDrawer = () => {
@@ -35,7 +35,6 @@ function NavBar() {
       <Nav scrollNav={scrollNav}>
         <NavbarContainer>
           <NavLogo>
-            {/* Link: 애플리케이션은 그대로 유지한 상태에서 페이지의 주소만 변경해줌 */}
             <Link to="/" style={removeLinkColor}>
               Cooking
             </Link>
@@ -49,7 +48,7 @@ function NavBar() {
             </div>
 
             <MenuOutlined
-              style={{ fontSize: "24px", fontWeight: "400", color: "#1890ff" }}
+              style={{ fontSize: '24px', fontWeight: '400', color: '#1890ff' }}
               className="menu__mobile-button"
               onClick={showDrawer}
             />
@@ -63,7 +62,7 @@ function NavBar() {
               onClose={onClose}
               visible={visible}
               style={{
-                fontWeight: "500",
+                fontWeight: '500',
               }}
             >
               <LeftMenu mode="inline" />
