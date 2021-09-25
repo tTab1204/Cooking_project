@@ -1,4 +1,5 @@
-import styled from "styled-components";
+import styled from 'styled-components';
+import { color } from 'styles/Theme';
 
 export const WholeCardContainer = styled.div`
   height: 100%;
@@ -17,12 +18,12 @@ export const WholeCardContainer = styled.div`
 `;
 
 export const WholeCardWrapper = styled.div`
-  max-width: ${({ host }) => (host ? "707px" : "1000px")};
+  max-width: ${({ host }) => (host ? '707px' : '1000px')};
   display: grid;
-  grid-template-columns: ${({ host }) => (host ? "1fr 1fr" : "1fr 1fr 1fr")};
+  grid-template-columns: ${({ host }) => (host ? '1fr 1fr' : '1fr 1fr 1fr')};
   align-items: center;
   grid-gap: 30px;
-  margin-bottom: ${({ host }) => (host ? "20px" : "0px")};
+  margin-bottom: ${({ host }) => (host ? '20px' : '0px')};
 
   @media screen and (max-width: 1000px) {
     grid-template-columns: 1fr 1fr;
@@ -107,7 +108,7 @@ export const CardTitle = styled.div`
   cursor: pointer;
 `;
 export const CardText = styled.div`
-  color: var(--primary-color3);
+  color: ${color.green_2};
   font-size: 0.8rem;
   margin-top: 5px;
   text-align: right;

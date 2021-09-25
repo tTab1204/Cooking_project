@@ -62,7 +62,7 @@ export const AffixStyle = {
   width: 40,
   lineHeight: '40px',
   borderRadius: 4,
-  backgroundColor: `${color.green}`,
+  backgroundColor: `${color.green_2}`,
   color: `${color.white}`,
   textAlign: 'center',
   fontSize: 14,

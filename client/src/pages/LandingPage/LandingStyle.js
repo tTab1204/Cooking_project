@@ -1,6 +1,7 @@
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import { Typography } from "antd";
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { Typography } from 'antd';
+import { color } from 'styles/Theme';
 
 const { Title, Paragraph } = Typography;
 
@@ -107,7 +108,7 @@ export const MiddleBox = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  background-color: var(--black-color);
+  background-color: ${color.black};
   padding: 40px 0;
   width: 100%;
 `;

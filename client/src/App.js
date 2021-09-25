@@ -18,11 +18,11 @@ import HostDetailContainer from 'pages/HostDetailPage/HostDetailContainer';
 import KitchenDetailContainer from 'pages/KitchenDetailPage/KitchenDetailContainer';
 import PaymentContainer from 'pages/PaymentPage/PaymentContainer';
 import Footer from 'components/Footer/Footer';
-import styled from 'styled-components';
 import Auth from 'components/auth/auth';
 import { Route, Switch } from 'react-router-dom';
 import { BackTop, Button } from 'antd';
 import { ROUTES } from 'utils/routes';
+import { AffixStyle, MainBox } from 'styles/GlobayStyle';
 
 function App() {
   return (
@@ -109,36 +109,11 @@ function App() {
         </MainBox>
       </Switch>
       <BackTop>
-        <div style={affixStyle}>UP</div>
+        <div style={AffixStyle}>UP</div>
       </BackTop>
       <Footer />
     </Suspense>
   );
 }
-
-const affixStyle = {
-  height: 40,
-  width: 40,
-  lineHeight: '40px',
-  borderRadius: 4,
-  backgroundColor: '#1088e9',
-  color: '#fff',
-  textAlign: 'center',
-  fontSize: 14,
-};
-
-const MainBox = styled.div`
-  width: 100%;
-  max-width: 1100px;
-  padding-left: 46px;
-  padding-right: 46px;
-  margin: 0px auto 180px;
-  display: flex;
-  flex-direction: column;
-
-  @media screen and (max-width: 960px) {
-    padding: 0;
-  }
-`;
 
 export default App;
