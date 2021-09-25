@@ -16,7 +16,7 @@ export const ROUTES = {
   MY_TICKETS: '/my-tickets',
   EVENTS: {
     MAIN: '/events',
-    DETAIL: '/events/:eventsId',
+    DETAIL: '/events/:eventId',
   },
   UPLOAD_KITCHEN: '/upload-kitchen',
   UPLOAD_HOST: '/upload-host',
