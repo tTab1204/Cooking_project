@@ -1,14 +1,14 @@
-import React from "react";
-import { Modal } from "antd";
+import React from 'react';
+import { Modal } from 'antd';
 import {
   ModalContentWrapper,
   InnerModalBox,
   ModalImage,
   LeftDirectionBox,
   RightDirectionBox,
-} from "../views/EventDetailPage/EventDetailStyle";
-import { RightOutlined, LeftOutlined } from "@ant-design/icons";
-import { LOCAL_SERVER } from "../Config";
+} from '../pages/EventDetailPage/EventDetailStyle';
+import { RightOutlined, LeftOutlined } from '@ant-design/icons';
+import { LOCAL_SERVER } from '../Config';
 
 const ImageSlideModal = ({
   CurrentSlide,
@@ -22,18 +22,18 @@ const ImageSlideModal = ({
     <>
       <Modal
         style={{
-          paddingBottom: "0px",
-          maxWidth: "80vw",
-          minWidth: "80vw",
-          width: "auto",
-          transformOrigin: "249.159px 183.727px",
+          paddingBottom: '0px',
+          maxWidth: '80vw',
+          minWidth: '80vw',
+          width: 'auto',
+          transformOrigin: '249.159px 183.727px',
         }}
         bodyStyle={{
-          padding: "0px",
-          height: "80vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          padding: '0px',
+          height: '80vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
         visible={ShowModal}
         onCancel={handleCancel}
@@ -49,10 +49,10 @@ const ImageSlideModal = ({
           <LeftDirectionBox>
             <LeftOutlined
               style={{
-                background: " rgba(255, 255, 255, 0.3)",
-                border: "none",
-                fontSize: "25px",
-                padding: "8px",
+                background: ' rgba(255, 255, 255, 0.3)',
+                border: 'none',
+                fontSize: '25px',
+                padding: '8px',
               }}
               onClick={prevSlide}
             />
@@ -60,10 +60,10 @@ const ImageSlideModal = ({
           <RightDirectionBox>
             <RightOutlined
               style={{
-                background: " rgba(255, 255, 255, 0.3)",
-                border: "none",
-                fontSize: "25px",
-                padding: "8px",
+                background: ' rgba(255, 255, 255, 0.3)',
+                border: 'none',
+                fontSize: '25px',
+                padding: '8px',
               }}
               onClick={nextSlide}
             />

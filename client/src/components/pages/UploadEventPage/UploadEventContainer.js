@@ -55,7 +55,7 @@ function UploadEventContainer({ match }) {
   const onSubmit = () => {
     const variables = {
       writer: localStorage.getItem('userId'),
-      host: '60d58b2a10eedb34205360cc',
+      host: '60d58464c760016778daa8cf',
       name: Name,
       time: Time,
       location: Location,

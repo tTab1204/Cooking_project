@@ -1,14 +1,9 @@
 import styled from 'styled-components';
+import { becomeAHostImg } from 'components/utils/constants';
+import { color } from 'styles/Theme';
 
 export const BreadCrumbImg = styled.div`
-  background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0) 39%,
-      rgba(0, 0, 0, 0) 41%,
-      rgba(0, 0, 0, 0.65) 100%
-    ),
-    url('https://images.unsplash.com/photo-1556911261-6bd341186b2f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80'),
-    #1c1c1c;
+  background: ${color.background_img}, url(${becomeAHostImg}), ${color.black};
   height: 450px;
   background-size: cover;
   background-position: center, center;
@@ -21,7 +16,7 @@ export const BreadCrumbImg = styled.div`
   padding-right: 24px;
 
   @media screen and (max-width: 540px) {
-    height: 20vh;
+    height: 25vh;
   }
 `;
 

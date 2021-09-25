@@ -21,6 +21,7 @@ function Followers({ hostId }) {
   };
 
   useEffect(() => {
+    setloading(true);
     showFollowers();
     setloading(false);
   }, []);
