@@ -1,5 +1,5 @@
 export const ROUTES = {
-  MAIN: '/',
+  ROOT: '/',
   LOGIN: '/login',
   REGISTER: '/register',
   HOST: {
@@ -14,7 +14,6 @@ export const ROUTES = {
   },
   USER_PROFILE: '/users/:userName',
   MY_TICKETS: '/my-tickets',
-  PAYMENT: '/payment',
   EVENTS: {
     MAIN: '/events',
     DETAIL: '/events/:eventsId',
@@ -22,4 +21,5 @@ export const ROUTES = {
   UPLOAD_KITCHEN: '/upload-kitchen',
   UPLOAD_HOST: '/upload-host',
   UPLOAD_EVENT: '/upload-event',
+  PAYMENT: '/payment',
 };
