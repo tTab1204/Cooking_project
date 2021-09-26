@@ -52,7 +52,7 @@ export const kitchen = {
       description:
         'Choose your own schedule, prices, and requirements for hosts. You can also set kitchen appliances, prep area, and fridge space you are willing to let the hosts use.',
     },
-    thrid: {
+    third: {
       title: 'Find Host',
       description: 'Once your listing is live, qualified hosts and reach out.',
     },
