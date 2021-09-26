@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { message } from 'antd';
 import BecomeAHostPresenter from './BecomeAHostPresenter';
+import { successMessage } from 'utils/successMessage';
 
 function BecomeAHostContainer() {
   const [, setName] = useState('');
   const [, setEmail] = useState('');
   const [, setCookingExperience] = useState('');
-
   const [ShowSuccess, setShowSuccess] = useState(false);
 
   const onNameChange = e => {
@@ -21,22 +20,8 @@ function BecomeAHostContainer() {
     setCookingExperience(label.key);
   };
 
-  const successMessage = () => {
-    const key = 'updatable';
-    message.loading({ content: 'Loading...', key });
-
-    setTimeout(() => {
-      message.success({
-        content: 'Success!',
-        key,
-        duration: 2,
-      });
-      setShowSuccess(true);
-    }, 2000);
-  };
-
   const onSubmit = () => {
-    successMessage();
+    successMessage(setShowSuccess);
   };
 
   return (
