@@ -5,7 +5,7 @@ import BecomeAHostPresenter from './BecomeAHostPresenter';
 function BecomeAHostContainer() {
   const [, setName] = useState('');
   const [, setEmail] = useState('');
-  const [, setKitchen_Ex] = useState('');
+  const [, setCookingExperience] = useState('');
 
   const [ShowSuccess, setShowSuccess] = useState(false);
 
@@ -17,9 +17,8 @@ function BecomeAHostContainer() {
     setEmail(e.target.value);
   };
 
-  const onKitchen_ExChange = label => {
-    console.log(label.key);
-    setKitchen_Ex(label.key);
+  const onSelectChange = label => {
+    setCookingExperience(label.key);
   };
 
   const successMessage = () => {
@@ -45,7 +44,7 @@ function BecomeAHostContainer() {
       <BecomeAHostPresenter
         onNameChange={onNameChange}
         onEmailChange={onEmailChange}
-        onKitchen_ExChange={onKitchen_ExChange}
+        onSelectChange={onSelectChange}
         onSubmit={onSubmit}
         ShowSuccess={ShowSuccess}
       />
