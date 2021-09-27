@@ -1,7 +1,5 @@
 import React from 'react';
-
 import styled from 'styled-components';
-
 import { Col, Row, Typography } from 'antd';
 import AlertBox from 'components/AlertBox/AlertBox';
 
@@ -12,9 +10,7 @@ const UploadContainer = ({ title, children }) => {
     <Container>
       <Wrapper>
         <AlertBox />
-        <Title level={4} style={{ color: 'gray', paddingTop: '10px' }}>
-          {title}
-        </Title>
+        <Title level={4}>{title}</Title>
         {children}
       </Wrapper>
     </Container>
@@ -37,6 +33,36 @@ const Wrapper = styled(Col)`
   @media screen and (max-width: 540px) {
     width: 95%;
     padding-top: 1rem;
+  }
+
+  & > form > input {
+    margin-bottom: 1.2rem;
+  }
+
+  & > form > .ant-select {
+    margin-bottom: 1.2rem;
+  }
+
+  & > form > .ant-input-affix-wrapper {
+    margin-bottom: 1.2rem;
+  }
+
+  & > form > .ant-calendar-picker {
+    margin-bottom: 1.2rem;
+  }
+
+  & > form > button {
+    width: 100%;
+  }
+
+  & > h4 {
+    color: gray;
+    padding-top: 10px;
+  }
+
+  & > form > h4 {
+    color: gray;
+    padding-top: 10px;
   }
 `;
 

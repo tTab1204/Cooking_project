@@ -1,17 +1,17 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { showSuccessState } from 'atoms/atoms';
-import UploadHostInput from 'components/UploadHostInput';
+import UploadEventInput from 'components/UploadEventInput';
 import UploadSuccess from 'components/UploadSuccess';
 
-const UploadHostPage = () => {
+function UploadEventPage() {
   const showSuccess = useRecoilValue(showSuccessState);
   return (
     <>
       {showSuccess && <UploadSuccess />}
-      {!showSuccess && <UploadHostInput />}
+      {!showSuccess && <UploadEventInput />}
     </>
   );
-};
+}
 
-export default UploadHostPage;
+export default UploadEventPage;

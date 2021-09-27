@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import UploadContainer from 'components/UploadContainer/UploadContainer';
+import UploadContainer from 'components/UploadContainer';
 import { Input, Select, Button, Form } from 'antd';
 import { successMessage } from 'utils/successMessage';
 import ImageUpload from 'components/ImageUpload/ImageUpload';
 import { useRecoilState } from 'recoil';
 import { showSuccessState } from 'atoms/atoms';
+import { host, userId } from 'utils/constants';
 
 const { Option } = Select;
 const { TextArea } = Input;
 
 const UploadHostInput = () => {
-  const userId = localStorage.getItem('userId');
-
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [hasCookingExperience, setKitchen_Ex] = useState('');
@@ -22,35 +21,14 @@ const UploadHostInput = () => {
   const [images, setImages] = useState([]);
   const [, setShowSuccess] = useRecoilState(showSuccessState);
 
-  const onNameChange = e => {
-    setName(e.target.value);
-  };
+  const onNameChange = e => setName(e.target.value);
+  const onEmailChange = e => setEmail(e.target.value);
+  const onKitchen_ExChange = label => setKitchen_Ex(label.key);
+  const onDepositChange = e => setDeposit(e.target.value);
+  const onFood_nationChange = label => setFood_Nation(label.key);
+  const onDescriptionChange = e => setDescription(e.target.value);
 
-  const onEmailChange = e => {
-    setEmail(e.target.value);
-  };
-
-  const onKitchen_ExChange = label => {
-    console.log(label.key);
-    setKitchen_Ex(label.key);
-  };
-
-  const onDepositChange = e => {
-    setDeposit(e.target.value);
-  };
-
-  const onFood_nationChange = label => {
-    console.log(label.key);
-    setFood_Nation(label.key);
-  };
-
-  const onDescriptionChange = e => {
-    setDescription(e.target.value);
-  };
-
-  const refreshImages = updatedImages => {
-    setImages(updatedImages);
-  };
+  const refreshImages = updatedImages => setImages(updatedImages);
 
   const onSubmit = () => {
     const variables = {
@@ -71,25 +49,14 @@ const UploadHostInput = () => {
   };
 
   return (
-    <UploadContainer page="host">
+    <UploadContainer title="Information">
       <Form onSubmit={onSubmit}>
-        <Input
-          placeholder="Name"
-          size="large"
-          onChange={onNameChange}
-          style={addMarginBottom}
-        />
-        <Input
-          placeholder="Email"
-          size="large"
-          onChange={onEmailChange}
-          style={addMarginBottom}
-        />
+        <Input placeholder="Name" size="large" onChange={onNameChange} />
+        <Input placeholder="Email" size="large" onChange={onEmailChange} />
         <Input
           placeholder="deposit number"
           size="large"
           onChange={onDepositChange}
-          style={addMarginBottom}
         />
 
         <Select
@@ -98,7 +65,6 @@ const UploadHostInput = () => {
           size="large"
           placeholder="food_nation"
           onChange={onFood_nationChange}
-          style={addMarginBottom}
         >
           <Option value="Korean">Korean</Option>
           <Option value="Japan">Japan</Option>
@@ -112,7 +78,6 @@ const UploadHostInput = () => {
           size="large"
           placeholder="Previous industrial kitchen experience"
           onChange={onKitchen_ExChange}
-          style={addMarginBottom}
         >
           <Option value="None">None</Option>
           <Option value="Less than a year">Less than a year</Option>
@@ -123,34 +88,20 @@ const UploadHostInput = () => {
           placeholder="Please write down short description about yourself"
           onChange={onDescriptionChange}
           value={description}
-          style={addMarginBottom}
         />
 
         <ImageUpload
           refreshFunction={refreshImages}
           refreshImages={images}
-          url="hosts"
+          url={host.url}
         />
 
-        <Button
-          onClick={onSubmit}
-          size="large"
-          type="primary"
-          style={buttonStyle}
-        >
+        <Button onClick={onSubmit} size="large" type="primary">
           I'm intersted
         </Button>
       </Form>
     </UploadContainer>
   );
-};
-
-const addMarginBottom = {
-  marginBottom: '1.2rem',
-};
-
-const buttonStyle = {
-  width: '100%',
 };
 
 export default UploadHostInput;

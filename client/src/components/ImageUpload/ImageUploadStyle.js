@@ -5,6 +5,7 @@ export const DropzoneBox = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 2rem;
 `;
 
 export const DropzoneContainer = styled.div`
@@ -14,7 +15,7 @@ export const DropzoneContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 10px;
+
   cursor: pointer;
 `;
 
