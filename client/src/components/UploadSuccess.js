@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row, Col, Result } from 'antd';
-import { MiddleBox } from 'pages/UploadEventPage/UploadEventStyle';
+import { MiddleBox } from 'styles/GlobayStyle';
 
 const UploadSuccess = () => {
   return (
