@@ -1,42 +1,28 @@
-import React, { useState } from "react";
-import { message } from "antd";
-import ListYourKitchenPresenter from "./ListYourKitchenPresenter";
+import React, { useState } from 'react';
+import { message } from 'antd';
+import ListYourKitchenPresenter from './ListYourKitchenPresenter';
+import { successMessage } from 'utils/successMessage';
 
 function ListYourKitchenContainer() {
-  const [, setName] = useState("");
-  const [, setEmail] = useState("");
-  const [, setLookingTo] = useState("");
+  const [, setName] = useState('');
+  const [, setEmail] = useState('');
+  const [, setLookingTo] = useState('');
   const [ShowSuccess, setShowSuccess] = useState(false);
 
-  const onNameChange = (e) => {
+  const onNameChange = e => {
     setName(e.target.value);
   };
 
-  const onEmailChange = (e) => {
+  const onEmailChange = e => {
     setEmail(e.target.value);
   };
 
-  const onLookingToChange = (label) => {
-    console.log(label.key);
+  const onSelectChange = label => {
     setLookingTo(label.key);
   };
 
-  const successMessage = () => {
-    const key = "updatable";
-    message.loading({ content: "Loading...", key });
-
-    setTimeout(() => {
-      message.success({
-        content: "Success!",
-        key,
-        duration: 2,
-      });
-      setShowSuccess(true);
-    }, 2000);
-  };
-
   const onSubmit = () => {
-    successMessage();
+    successMessage(setShowSuccess);
   };
 
   return (
@@ -44,7 +30,7 @@ function ListYourKitchenContainer() {
       <ListYourKitchenPresenter
         onNameChange={onNameChange}
         onEmailChange={onEmailChange}
-        onLookingToChange={onLookingToChange}
+        onSelectChange={onSelectChange}
         onSubmit={onSubmit}
         ShowSuccess={ShowSuccess}
       />

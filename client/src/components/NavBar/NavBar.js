@@ -48,7 +48,7 @@ function NavBar() {
             </div>
 
             <MenuOutlined
-              style={{ fontSize: '24px', fontWeight: '400', color: '#1890ff' }}
+              style={{ fontSize: '24px', fontWeight: '400', color: '#389e0d' }}
               className="menu__mobile-button"
               onClick={showDrawer}
             />

@@ -9,7 +9,7 @@ import EventDetailContainer from 'pages/EventDetailPage/EventDetailContainer';
 import ListYourKitchenContainer from 'pages/ListYourKitchenPage/ListYourKitchenContainer';
 import UploadKitchenContainer from 'pages/UploadKitchenPage/UploadKitchenContainer';
 import UploadEventContainer from 'pages/UploadEventPage/UploadEventContainer';
-import UploadHostContainer from 'pages/UploadHostPage/UploadHostContainer';
+import UploadHostPage from 'pages/UploadHostPage';
 import KitchenContainer from 'pages/KitchenPage/KitchenContainer';
 import EventContainer from 'pages/EventPage/EventContainer';
 import UserProfileContainer from 'pages/UserProfilePage/UserProfileContainer';
@@ -94,7 +94,7 @@ function App() {
           <Route
             exact
             path={ROUTES.UPLOAD_HOST}
-            component={Auth(UploadHostContainer, true)}
+            component={Auth(UploadHostPage, true)}
           />
           <Route
             exact
