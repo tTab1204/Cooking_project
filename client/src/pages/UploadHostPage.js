@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { showSuccessState } from 'atoms/atoms';
-import UploadHostInput from 'components/UploadHostInput/UploadHostInput';
+import UploadHostInput from 'components/UploadHostInput';
 import UploadSuccess from 'components/UploadSuccess/UploadSuccess';
 
 const UploadHostPage = () => {
