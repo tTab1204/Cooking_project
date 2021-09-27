@@ -74,8 +74,6 @@ export const MainBox = styled.div`
   padding-left: 46px;
   padding-right: 46px;
   margin: 0px auto 180px;
-  display: flex;
-  flex-direction: column;
 
   @media screen and (max-width: 960px) {
     padding: 0;
