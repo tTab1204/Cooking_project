@@ -1,5 +1,9 @@
+export const userId = localStorage.getItem('userId');
+
+// become-a-host Page
 export const host = {
   page: 'host',
+  url: 'hosts',
   title: 'Become A Host',
   img: 'https://images.unsplash.com/photo-1556911261-6bd341186b2f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=750&q=80',
   placeholder: 'Previous industrial kitchen experience',
@@ -29,8 +33,10 @@ export const host = {
   },
 };
 
+// list-your-kitchen page
 export const kitchen = {
   page: 'kitchen',
+  url: 'kitchens',
   title: 'List Your Kitchen',
   img: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=835&q=80',
   placeholder: 'I am looking to...',
