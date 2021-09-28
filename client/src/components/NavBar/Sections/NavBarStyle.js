@@ -30,8 +30,9 @@ export const NavbarContainer = styled.div`
   padding: 0 24px;
   max-width: 1100px;
 
-  @media screen and (max-width: 540px) {
+  @media screen and (max-width: 768px) {
     padding: 0;
+    height: 60px;
   }
 `;
 
@@ -45,4 +46,8 @@ export const NavLogo = styled.div`
   font-weight: bold;
   color: ${color.green_2};
   font-family: 'Jua', sans-serif;
+
+  @media screen and (max-width: 1140px) {
+    margin-left: 0.5rem;
+  }
 `;

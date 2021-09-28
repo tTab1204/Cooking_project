@@ -1,5 +1,38 @@
 import styled from 'styled-components';
 import { color } from 'styles/Theme';
+import { DatePicker, Row } from 'antd';
+
+export const Container = styled.div`
+  @media screen and (max-width: 960px) {
+    padding: 0 46px;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 0 24px;
+  }
+`;
+
+export const HeaderContainer = styled(Row)`
+  margin-top: 2rem;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+
+  & > div > h1 {
+    margin-bottom: 0;
+
+    @media screen and (max-width: 580px) {
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+  }
+
+  @media screen and (max-width: 540px) {
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+  }
+`;
 
 export const WholeCardContainer = styled.div`
   height: 100%;
@@ -17,6 +50,10 @@ export const WholeCardContainer = styled.div`
   }
 `;
 
+export const CustomedDatePicker = styled(DatePicker)`
+  padding-left: 2rem;
+`;
+
 export const WholeCardWrapper = styled.div`
   max-width: ${({ host }) => (host ? '707px' : '1000px')};
   display: grid;
@@ -31,7 +68,6 @@ export const WholeCardWrapper = styled.div`
 
   @media screen and (max-width: 768px) {
     grid-template-columns: 1fr;
-    padding: 0 20px;
   }
 `;
 
@@ -42,7 +78,7 @@ export const EventCard = styled.div`
   height: 300px;
   position: relative;
   box-shadow: rgb(0 0 0 / 15%) 0px 3px 6px 0px;
-  border-radius: 30px;
+  border-radius: 1rem;
   box-sizing: border-box;
   overflow: hidden;
   background-color: rgb(248, 248, 248);
@@ -53,28 +89,10 @@ export const EventCard = styled.div`
     transition: all 0.2s ease-in-out;
   }
 
-  /* &:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    background: black;
-    opacity: 0;
-    transition: all 0.2s ease-in-out;
-    z-index: 2;
+  @media screen and (max-width: 768px) {
+    flex-direction: row;
+    height: 80px;
   }
-
-  &:hover:before {
-    opacity: 0.7;
-  }
-
-  &:hover CardHoverEffect {
-    opacity: 1;
-    transition: all 0.2s ease-in-out;
-  } */
 `;
 
 export const CardCover = styled.img`
@@ -83,11 +101,17 @@ export const CardCover = styled.img`
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   margin-bottom: 10px;
+
+  @media screen and (max-width: 768px) {
+    flex-direction: row;
+    width: 80px;
+    height: 80px;
+  }
 `;
 
 export const CardBody = styled.div`
   font-weight: bold;
-  color: rgb(46, 46, 46);
+  color: ${color.black};
   width: 100%;
   min-height: 30px;
   display: flex;
@@ -95,7 +119,15 @@ export const CardBody = styled.div`
   -webkit-box-pack: justify;
   justify-content: space-between;
   line-height: 180%;
-  padding: 0px 18px 0px 17px;
+  padding: 0px 18px;
+
+  @media screen and (max-width: 768px) {
+    padding: 0.5rem 18px;
+  }
+`;
+
+export const CardTitleWrapper = styled.div`
+  width: 100%;
 `;
 
 export const CardTitle = styled.div`
@@ -105,6 +137,10 @@ export const CardTitle = styled.div`
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
+
+  @media screen and (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 export const CardText = styled.div`
   color: ${color.green_2};
@@ -117,6 +153,14 @@ export const CardText = styled.div`
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+  & > span {
+    margin-right: 5px;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 0.7rem;
+  }
 `;
 
 export const RemainDayBox = styled.div`
@@ -138,6 +182,10 @@ export const RemainDayBox = styled.div`
     color: var(--primary-color3);
     transition: all 0.2s ease-in-out;
   }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const RemainDay = styled.div`
@@ -153,4 +201,14 @@ export const PriceAndTagBox = styled.div`
   justify-content: flex-end;
   line-height: 100%;
   margin: 7px 0px 0px 8px;
+
+  & > span {
+    margin-right: 5px;
+  }
+
+  & > .won {
+    font-size: 0.8rem;
+    color: ${color.text};
+    margin-left: 2px;
+  }
 `;
