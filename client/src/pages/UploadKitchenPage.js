@@ -1,7 +1,7 @@
 import React from 'react';
 import { showSuccessState } from 'atoms/atoms';
 import { useRecoilValue } from 'recoil';
-import SuccessBox from 'components/SuccessBox/SuccessBox';
+import SuccessBox from 'components/SuccessBox';
 import UploadKitchenInput from 'components/UploadKitchenInput';
 
 function UploadKitchenPage() {
