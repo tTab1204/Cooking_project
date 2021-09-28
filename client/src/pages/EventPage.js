@@ -6,11 +6,12 @@ import SearchBox from 'components/SearchBox';
 import EventCard from 'components/EventCard';
 import Loading from 'components/Loading';
 import { DatePicker, Row } from 'antd';
+import { getExpiredEvents, getOnGoingEvents } from 'utils/getRemainDay';
 
 const { Title } = Typography;
 
 function EventPage() {
-  const [Events, setEvents] = useState([]);
+  const [events, setEvents] = useState([]);
   const [loading, setloading] = useState(true);
 
   const [, setSearchTerm] = useState('');
@@ -41,6 +42,9 @@ function EventPage() {
     showEvents();
   }, []);
 
+  let expiredEvents = getExpiredEvents(events);
+  let onGoingEvents = getOnGoingEvents(events);
+
   return (
     <>
       {loading && <Loading />}
@@ -55,7 +59,13 @@ function EventPage() {
               <CustomedDatePicker onChange={onDateChange} />
             </Col>
           </HeaderContainer>
-          <EventCard events={Events} />
+          <EventCard events={onGoingEvents} />
+          <HeaderContainer type="flex">
+            <Col>
+              <Title level={1}>Past Events</Title>
+            </Col>
+          </HeaderContainer>
+          <EventCard events={expiredEvents} />
         </Container>
       )}
     </>
@@ -87,14 +97,14 @@ export const HeaderContainer = styled(Row)`
     margin-bottom: 0;
 
     @media screen and (max-width: 580px) {
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
       font-size: 2rem;
     }
   }
 
   @media screen and (max-width: 540px) {
-    margin-bottom: 1rem;
-    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
   }
 `;
 
