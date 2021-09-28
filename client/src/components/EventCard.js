@@ -150,12 +150,10 @@ const CardTitle = styled.div`
 `;
 const CardText = styled.div`
   color: ${color.green_2};
+  width: 100%;
   font-size: 0.8rem;
-  margin-top: 5px;
   text-align: right;
   align-items: center;
-  display: flex;
-  justify-content: flex-end;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -166,7 +164,7 @@ const CardText = styled.div`
 
   @media screen and (max-width: 768px) {
     font-size: 0.7rem;
-    justify-content: flex-start;
+    text-align: left;
   }
 
   @media screen and (max-width: 480px) {
@@ -208,10 +206,11 @@ const RemainDay = styled.div`
 `;
 
 const PriceAndTagBox = styled.div`
+  width: 100%;
   display: flex;
   justify-content: flex-end;
   line-height: 100%;
-  margin: 7px 0px 0px 8px;
+  margin-top: 1rem;
 
   & > span {
     margin-right: 5px;
@@ -221,6 +220,10 @@ const PriceAndTagBox = styled.div`
     font-size: 0.8rem;
     color: ${color.text};
     margin-left: 2px;
+  }
+
+  @media screen and (max-width: 768px) {
+    margin-top: 0;
   }
 `;
 

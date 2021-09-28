@@ -78,7 +78,7 @@ export const Container = styled.div`
   }
 
   @media screen and (max-width: 768px) {
-    padding: 0 24px;
+    padding: 0 0.5rem;
   }
 `;
 
