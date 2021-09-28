@@ -18,7 +18,7 @@ import {
   HeaderContainer,
   Container,
 } from './EventStyle';
-import SearchBox from 'components/SearchBox/SearchBox';
+import SearchBox from 'components/SearchBox';
 import { EVENTS_CLIENT, LOCAL_SERVER } from 'utils/config';
 import moment from 'moment';
 import { getRemainDay } from 'utils/getRemainDay';
