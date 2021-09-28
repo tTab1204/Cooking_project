@@ -1,6 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Col, Result } from 'antd';
-import { MiddleBox, colStyle } from './SuccessBoxStyle';
 
 const SuccessBox = () => {
   return (
@@ -14,6 +14,22 @@ const SuccessBox = () => {
       </MiddleBox>
     </Col>
   );
+};
+
+const MiddleBox = styled.div`
+  max-width: 600px;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-right: auto;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+`;
+
+const colStyle = {
+  display: 'flex',
+  justifyContent: 'center',
 };
 
 export default SuccessBox;

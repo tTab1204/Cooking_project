@@ -2,7 +2,7 @@ import React from 'react';
 import { Row } from 'antd';
 import { kitchen } from 'utils/constants';
 import BreadCrumb from 'components/BreadCrumb/BreadCrumb';
-import SuccessBox from 'components/SuccessBox/SuccessBox';
+import SuccessBox from 'components/SuccessBox';
 import Inputs from 'components/Inputs/Inputs';
 import InformationBox from 'components/InformationBox/InformationBox';
 

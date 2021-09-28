@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import EventDetailPresenter from './EventDetailPresenter';
-import Loading from 'components/Loading/Loading';
+import Loading from 'components/Loading';
 import Axios from 'axios';
 import { message } from 'antd';
 import { useDispatch } from 'react-redux';

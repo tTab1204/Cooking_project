@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import Loading from 'components/Loading/Loading';
+import Loading from 'components/Loading';
 import { EVENTS_SERVER } from 'utils/config';
 import HostEventsPresenter from './HostEventsPresenter';
 

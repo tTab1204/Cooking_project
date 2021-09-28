@@ -1,44 +1,45 @@
+import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { EVENTS_CLIENT, LOCAL_SERVER } from 'utils/config';
+import { getRemainDay } from 'utils/getRemainDay';
+import { DollarCircleFilled, EnvironmentFilled } from '@ant-design/icons';
 import { color } from 'styles/Theme';
-import { DatePicker, Row } from 'antd';
 
-export const Container = styled.div`
-  @media screen and (max-width: 960px) {
-    padding: 0 46px;
-  }
+const EventCard = ({ events }) => {
+  return (
+    <WholeCardContainer>
+      <WholeCardWrapper>
+        {events.map((event, index) => (
+          <Link to={`${EVENTS_CLIENT}/${event._id}`} key={index}>
+            <Card>
+              <RemainDayBox>
+                <RemainDay>D-{getRemainDay(event.date)}</RemainDay>
+              </RemainDayBox>
+              <CardCover src={`${LOCAL_SERVER}${event.images[0]}`} />
+              <CardBody>
+                <CardTitleWrapper>
+                  <CardTitle>{event.name}</CardTitle>
+                </CardTitleWrapper>
+                <CardText>
+                  <EnvironmentFilled />
+                  {event.time}, {event.location}
+                </CardText>
+                <PriceAndTagBox>
+                  <DollarCircleFilled />
+                  {event.price}
+                  <span className="won">원</span>
+                </PriceAndTagBox>
+              </CardBody>
+            </Card>
+          </Link>
+        ))}
+      </WholeCardWrapper>
+    </WholeCardContainer>
+  );
+};
 
-  @media screen and (max-width: 768px) {
-    padding: 0 24px;
-  }
-`;
-
-export const HeaderContainer = styled(Row)`
-  margin-top: 2rem;
-  align-items: center;
-  width: 100%;
-  justify-content: space-between;
-  margin-bottom: 2rem;
-
-  & > div {
-    display: flex;
-  }
-
-  & > div > h1 {
-    margin-bottom: 0;
-
-    @media screen and (max-width: 580px) {
-      margin-bottom: 1rem;
-      font-size: 2rem;
-    }
-  }
-
-  @media screen and (max-width: 540px) {
-    margin-bottom: 1rem;
-    margin-top: 0.5rem;
-  }
-`;
-
-export const WholeCardContainer = styled.div`
+const WholeCardContainer = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -54,11 +55,7 @@ export const WholeCardContainer = styled.div`
   }
 `;
 
-export const CustomedDatePicker = styled(DatePicker)`
-  padding-left: 2rem;
-`;
-
-export const WholeCardWrapper = styled.div`
+const WholeCardWrapper = styled.div`
   max-width: ${({ host }) => (host ? '707px' : '1000px')};
   display: grid;
   grid-template-columns: ${({ host }) => (host ? '1fr 1fr' : '1fr 1fr 1fr')};
@@ -75,7 +72,7 @@ export const WholeCardWrapper = styled.div`
   }
 `;
 
-export const EventCard = styled.div`
+const Card = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -99,7 +96,7 @@ export const EventCard = styled.div`
   }
 `;
 
-export const CardCover = styled.img`
+const CardCover = styled.img`
   height: 200px;
   width: 100%;
   border-top-left-radius: 20px;
@@ -113,7 +110,7 @@ export const CardCover = styled.img`
   }
 `;
 
-export const CardBody = styled.div`
+const CardBody = styled.div`
   font-weight: bold;
   color: ${color.black};
   width: 100%;
@@ -130,11 +127,11 @@ export const CardBody = styled.div`
   }
 `;
 
-export const CardTitleWrapper = styled.div`
+const CardTitleWrapper = styled.div`
   width: 100%;
 `;
 
-export const CardTitle = styled.div`
+const CardTitle = styled.div`
   font-size: 1.1rem;
   width: 100%;
   white-space: nowrap;
@@ -146,7 +143,7 @@ export const CardTitle = styled.div`
     font-size: 1rem;
   }
 `;
-export const CardText = styled.div`
+const CardText = styled.div`
   color: ${color.green_2};
   font-size: 0.8rem;
   margin-top: 5px;
@@ -167,7 +164,7 @@ export const CardText = styled.div`
   }
 `;
 
-export const RemainDayBox = styled.div`
+const RemainDayBox = styled.div`
   border: 3px solid black;
   user-select: none;
   z-index: 10;
@@ -192,7 +189,7 @@ export const RemainDayBox = styled.div`
   }
 `;
 
-export const RemainDay = styled.div`
+const RemainDay = styled.div`
   width: 100%;
   height: 100%;
   font-weight: 700;
@@ -200,7 +197,7 @@ export const RemainDay = styled.div`
   word-spacing: 5px;
 `;
 
-export const PriceAndTagBox = styled.div`
+const PriceAndTagBox = styled.div`
   display: flex;
   justify-content: flex-end;
   line-height: 100%;
@@ -216,3 +213,5 @@ export const PriceAndTagBox = styled.div`
     margin-left: 2px;
   }
 `;
+
+export default EventCard;

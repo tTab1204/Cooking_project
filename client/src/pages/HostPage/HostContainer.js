@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import Loading from 'components/Loading/Loading';
+import Loading from 'components/Loading';
 import China from 'assets/china.png';
 import Korea from 'assets/south-korea.png';
 import japan from 'assets/japan.png';
