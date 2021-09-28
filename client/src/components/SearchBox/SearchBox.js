@@ -1,26 +1,30 @@
-import React, { useState } from "react";
-import { Input, Space } from "antd";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { Input } from 'antd';
 
 const { Search } = Input;
 
 const SearchBox = ({ refreshFunction }) => {
-  const [SearchTerm, setSearchTerm] = useState("");
+  const [SearchTerm, setSearchTerm] = useState('');
 
-  const searchHandler = (e) => {
+  const searchHandler = e => {
     setSearchTerm(e.target.value);
     refreshFunction(e.target.value);
   };
 
   return (
     <>
-      <Search
+      <CustomedSearch
         placeholder="Search..."
         onChange={searchHandler}
-        style={{ width: "100", marginTop: "10px", paddingLeft: "3rem" }}
         value={SearchTerm}
       />
     </>
   );
 };
+
+const CustomedSearch = styled(Search)`
+  width: 50%;
+`;
 
 export default SearchBox;
