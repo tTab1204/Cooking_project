@@ -24,11 +24,13 @@ export const HeaderContainer = styled(Row)`
 
     @media screen and (max-width: 580px) {
       margin-bottom: 1rem;
+      font-size: 2rem;
     }
   }
 
   @media screen and (max-width: 540px) {
     margin-bottom: 1rem;
+    margin-top: 0.5rem;
   }
 `;
 
