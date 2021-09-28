@@ -21,23 +21,21 @@ import {
 import SearchBox from 'components/SearchBox/SearchBox';
 import { EVENTS_CLIENT, LOCAL_SERVER } from 'utils/config';
 import moment from 'moment';
+import { getRemainDay } from 'utils/getRemainDay';
 
 const { Title } = Typography;
 
 function EventPresenter({ Events, updateSearchTerm, onDateChange }) {
-  let current = moment().startOf('day');
-
   return (
     <Container>
       <HeaderContainer type="flex">
         <Col>
           <Title level={1}>Events</Title>
         </Col>
-        <Col style={{ display: 'flex' }}>
+        <Col>
           <SearchBox refreshFunction={updateSearchTerm} />
           <CustomedDatePicker onChange={onDateChange} />
         </Col>
-        {/* <Col></Col> */}
       </HeaderContainer>
 
       <WholeCardContainer>
@@ -46,14 +44,7 @@ function EventPresenter({ Events, updateSearchTerm, onDateChange }) {
             <Link to={`${EVENTS_CLIENT}/${event._id}`} key={index}>
               <EventCard className="card">
                 <RemainDayBox>
-                  <RemainDay>
-                    D-
-                    {moment
-                      .duration(
-                        moment(`${event?.date}`, 'YYYY-MM-DD').diff(current),
-                      )
-                      .asDays()}
-                  </RemainDay>
+                  <RemainDay>D-{getRemainDay(event.date)}</RemainDay>
                 </RemainDayBox>
                 <CardCover src={`${LOCAL_SERVER}${event.images[0]}`} />
                 <CardBody>
