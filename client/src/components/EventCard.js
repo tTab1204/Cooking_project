@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { EVENTS_CLIENT, LOCAL_SERVER } from 'utils/config';
-import { getRemainDay } from 'utils/getRemainDay';
+import { getRemainDay, isExpired } from 'utils/getRemainDay';
 import { DollarCircleFilled, EnvironmentFilled } from '@ant-design/icons';
 import { color } from 'styles/Theme';
 
@@ -10,30 +10,37 @@ const EventCard = ({ events }) => {
   return (
     <WholeCardContainer>
       <WholeCardWrapper>
-        {events.map((event, index) => (
-          <Link to={`${EVENTS_CLIENT}/${event._id}`} key={index}>
-            <Card>
-              <RemainDayBox>
-                <RemainDay>D-{getRemainDay(event.date)}</RemainDay>
-              </RemainDayBox>
-              <CardCover src={`${LOCAL_SERVER}${event.images[0]}`} />
-              <CardBody>
-                <CardTitleWrapper>
-                  <CardTitle>{event.name}</CardTitle>
-                </CardTitleWrapper>
-                <CardText>
-                  <EnvironmentFilled />
-                  {event.time}, {event.location}
-                </CardText>
-                <PriceAndTagBox>
-                  <DollarCircleFilled />
-                  {event.price}
-                  <span className="won">원</span>
-                </PriceAndTagBox>
-              </CardBody>
-            </Card>
-          </Link>
-        ))}
+        {events.map((event, index) => {
+          let isExpiredEvent = isExpired(event.date);
+
+          return (
+            <Link to={`${EVENTS_CLIENT}/${event._id}`} key={index}>
+              <Card isEventExpired={isExpiredEvent}>
+                <RemainDayBox>
+                  <RemainDay>{getRemainDay(event.date)}</RemainDay>
+                </RemainDayBox>
+                <CardCover
+                  isEventExpired={isExpiredEvent}
+                  src={`${LOCAL_SERVER}${event.images[0]}`}
+                />
+                <CardBody>
+                  <CardTitleWrapper>
+                    <CardTitle>{event.name}</CardTitle>
+                  </CardTitleWrapper>
+                  <CardText>
+                    <EnvironmentFilled />
+                    {event.time}, {event.location}
+                  </CardText>
+                  <PriceAndTagBox>
+                    <DollarCircleFilled />
+                    {event.price}
+                    <span className="won">원</span>
+                  </PriceAndTagBox>
+                </CardBody>
+              </Card>
+            </Link>
+          );
+        })}
       </WholeCardWrapper>
     </WholeCardContainer>
   );
@@ -45,14 +52,6 @@ const WholeCardContainer = styled.div`
   flex-direction: column;
   position: relative;
   z-index: 1;
-
-  @media screen and (max-width: 768px) {
-    height: 1100px;
-  }
-
-  @media screen and (max-width: 480px) {
-    height: 1300px;
-  }
 `;
 
 const WholeCardWrapper = styled.div`
@@ -93,6 +92,7 @@ const Card = styled.div`
   @media screen and (max-width: 768px) {
     flex-direction: row;
     height: 80px;
+    opacity: ${({ isEventExpired }) => (isEventExpired ? '0.4' : '')};
   }
 `;
 
@@ -102,6 +102,7 @@ const CardCover = styled.img`
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   margin-bottom: 10px;
+  opacity: ${({ isEventExpired }) => (isEventExpired ? '0.4' : '')};
 
   @media screen and (max-width: 768px) {
     flex-direction: row;
@@ -142,6 +143,10 @@ const CardTitle = styled.div`
   @media screen and (max-width: 768px) {
     font-size: 1rem;
   }
+
+  @media screen and (max-width: 480px) {
+    width: 240px;
+  }
 `;
 const CardText = styled.div`
   color: ${color.green_2};
@@ -161,6 +166,11 @@ const CardText = styled.div`
 
   @media screen and (max-width: 768px) {
     font-size: 0.7rem;
+    justify-content: flex-start;
+  }
+
+  @media screen and (max-width: 480px) {
+    width: 240px;
   }
 `;
 
