@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { message } from 'antd';
 import Axios from 'axios';
-import Loading from 'components/Loading/Loading';
+import Loading from 'components/Loading';
 import KitchenDetailPresenter from './KitchenDetailPresenter';
 
 function KitchenDetailContainer({ match }) {

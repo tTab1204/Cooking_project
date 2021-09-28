@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { useRecoilState } from 'recoil';
 import { hostDetailState } from 'atoms/atoms';
-import Loading from 'components/Loading/Loading';
+import Loading from 'components/Loading';
 import HostDetailPresenter from './HostDetailPresenter';
 
 function HostDetailContainer({ match, history }) {

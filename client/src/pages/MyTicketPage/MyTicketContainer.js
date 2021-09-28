@@ -1,6 +1,6 @@
 import React, { useState, useLayoutEffect } from 'react';
 import MyTicketPresenter from './MyTicketPresenter';
-import Loading from 'components/Loading/Loading';
+import Loading from 'components/Loading';
 import { useDispatch, useSelector } from 'react-redux';
 import { showCartItems, removeCartItem } from '_actions/user_actions';
 
