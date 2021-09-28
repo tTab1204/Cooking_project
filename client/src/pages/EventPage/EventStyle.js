@@ -19,6 +19,10 @@ export const HeaderContainer = styled(Row)`
   justify-content: space-between;
   margin-bottom: 2rem;
 
+  & > div {
+    display: flex;
+  }
+
   & > div > h1 {
     margin-bottom: 0;
 
