@@ -164,6 +164,7 @@ const CardText = styled.div`
 
   @media screen and (max-width: 768px) {
     font-size: 0.7rem;
+    text-align: left;
   }
 
   @media screen and (max-width: 480px) {
