@@ -5,7 +5,7 @@ import RegisterPage from 'pages/RegisterPage/RegisterPage.js';
 import NavBar from 'components/NavBar/NavBar';
 import HostContainer from 'pages/HostPage/HostContainer';
 import BecomeAHostContainer from 'pages/BecomeAHostPage/BecomeAHostContainer';
-import EventDetailContainer from 'pages/EventDetailPage/EventDetailContainer';
+import EventDetailPage from 'pages/EventDetailPage';
 import ListYourKitchenContainer from 'pages/ListYourKitchenPage/ListYourKitchenContainer';
 import UploadKitchenPage from 'pages/UploadKitchenPage';
 import UploadEventPresenter from 'pages/UploadEventPage';
@@ -20,9 +20,9 @@ import PaymentContainer from 'pages/PaymentPage/PaymentContainer';
 import Footer from 'components/Footer/Footer';
 import Auth from 'components/auth/auth';
 import { Route, Switch } from 'react-router-dom';
-import { BackTop, Button } from 'antd';
+import { Button } from 'antd';
 import { ROUTES } from 'utils/routes';
-import { AffixStyle, MainBox } from 'styles/GlobayStyle';
+import { MainBox } from 'styles/GlobayStyle';
 
 function App() {
   return (
@@ -84,7 +84,7 @@ function App() {
           <Route
             exact
             path={ROUTES.EVENTS.DETAIL}
-            component={Auth(EventDetailContainer, null)}
+            component={Auth(EventDetailPage, null)}
           />
           <Route
             exact
