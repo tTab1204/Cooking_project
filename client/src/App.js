@@ -108,9 +108,6 @@ function App() {
           />
         </MainBox>
       </Switch>
-      <BackTop>
-        <div style={AffixStyle}>UP</div>
-      </BackTop>
       <Footer />
     </Suspense>
   );

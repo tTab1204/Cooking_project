@@ -1,11 +1,15 @@
 import moment from 'moment';
 
-export const getRemainDay = eventDate => {
-  const now = moment().startOf('day');
+const now = moment().startOf('day');
 
-  let remainDay = moment
+const calculateRemainDay = eventDate => {
+  return moment
     .duration(moment(`${eventDate}`, 'YYYY-MM-DD').diff(now))
     .asDays();
+};
+
+export const getRemainDay = eventDate => {
+  let remainDay = calculateRemainDay(eventDate);
 
   if (remainDay === 0) remainDay = 'Today!';
   else if (remainDay < 0) {
@@ -19,15 +23,18 @@ export const getRemainDay = eventDate => {
 export const isExpired = eventDate => getRemainDay(eventDate) === 'Event Ended';
 
 export const getExpiredEvents = events => {
-  const now = new Date();
-  let expiredEvents = events.filter(event => new Date(event.date) < now);
+  let expiredEvents = events.filter(event => {
+    let remainDay = calculateRemainDay(event.date);
+    return remainDay < 0;
+  });
 
   return expiredEvents;
 };
 
 export const getOnGoingEvents = events => {
-  const now = new Date();
-  let onGoingEvents = events.filter(event => new Date(event.date) >= now);
-
+  let onGoingEvents = events.filter(event => {
+    let remainDay = calculateRemainDay(event.date);
+    return remainDay >= 0;
+  });
   return onGoingEvents;
 };

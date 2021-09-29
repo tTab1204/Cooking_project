@@ -15,6 +15,7 @@ export const GlobalStyle = createGlobalStyle`
         font-size: 14px;
         font-weight: 500;
         line-height: 1.5;
+        background-color: ${color.primary_background};
     }
     input, button {
         border: none;
@@ -55,19 +56,20 @@ export const GlobalStyle = createGlobalStyle`
     .ant-menu-sub {
         font-weight: 500;
     }
+   
 `;
 
 // App.js
-export const AffixStyle = {
-  height: 40,
-  width: 40,
-  lineHeight: '40px',
-  borderRadius: 4,
-  backgroundColor: `${color.green_2}`,
-  color: `${color.white}`,
-  textAlign: 'center',
-  fontSize: 14,
-};
+// export const AffixStyle = {
+//   height: 40,
+//   width: 40,
+//   lineHeight: '40px',
+//   borderRadius: 4,
+//   backgroundColor: `${color.green_2}`,
+//   color: `${color.white}`,
+//   textAlign: 'center',
+//   fontSize: 14,
+// };
 
 export const MainBox = styled.div`
   width: 100%;
