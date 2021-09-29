@@ -7,6 +7,7 @@ export const color = {
   green: '#52c41a',
   green_2: '#389e0d',
   green_3: '#237804',
+  primary_background: 'rgb(250, 250, 250)',
   text: '#777777',
   border: '#201f1f17',
   affix_background: '#1088e9',
