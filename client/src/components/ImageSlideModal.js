@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Modal } from 'antd';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
-import { LOCAL_SERVER } from 'utils/config';
+import { getImage } from 'utils/getImage';
 
 const ImageSlideModal = ({
   CurrentSlide,
@@ -35,10 +35,7 @@ const ImageSlideModal = ({
       >
         <ModalContentWrapper>
           <InnerModalBox>
-            <ModalImage
-              alt="example"
-              src={`${LOCAL_SERVER}${images[CurrentSlide]}`}
-            />
+            <ModalImage alt="example" src={getImage(images[CurrentSlide])} />
           </InnerModalBox>
           <LeftDirectionBox>
             <LeftOutlined

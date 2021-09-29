@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Row, Col, Card, Typography } from 'antd';
-import { LOCAL_SERVER } from 'utils/config';
+import { getImage } from 'utils/getImage';
 
 const { Title } = Typography;
 
@@ -17,7 +17,7 @@ const MenuImages = ({ images, handleModalOpen }) => {
               cover={
                 <MenuImg
                   alt="event_menu_images"
-                  src={`${LOCAL_SERVER}${image}`}
+                  src={getImage(image)}
                   onClick={() => handleModalOpen(image, index)}
                 />
               }

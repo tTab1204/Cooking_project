@@ -10,12 +10,13 @@ import { Row } from 'antd';
 import { useDispatch } from 'react-redux';
 import { successMessage } from 'utils/successMessage';
 import { addToCart } from '_actions/user_actions';
+import { SHOW_EVENT_DETAIL } from 'utils/api';
 
 function EventDetailPage({ match }) {
   const eventId = match.params.eventId;
   const dispatch = useDispatch();
 
-  const [DetailEvent, setDetailEvent] = useState({});
+  const [detailEvent, setDetailEvent] = useState({});
   const [Quantity, setQuantity] = useState(1);
   const [, setShowSuccess] = useState(false);
   const [loading, setloading] = useState(true);
@@ -25,7 +26,7 @@ function EventDetailPage({ match }) {
 
   useEffect(() => {
     axios
-      .get(`/api/events/events_by_id?id=${eventId}&type=single`)
+      .get(SHOW_EVENT_DETAIL(eventId))
       .then(response => {
         setDetailEvent(response.data[0]);
         setloading(false);
@@ -64,7 +65,7 @@ function EventDetailPage({ match }) {
     else setCurrentSlide(CurrentSlide - 1);
   };
 
-  const { images, writer } = DetailEvent;
+  const { images, writer } = detailEvent;
 
   return (
     <>
@@ -73,7 +74,7 @@ function EventDetailPage({ match }) {
         <div>
           <Row style={rowStyle}>
             <EventImage images={images} handleModalOpen={handleModalOpen} />
-            <EventDescription eventDetail={DetailEvent} />
+            <EventDescription eventDetail={detailEvent} />
           </Row>
           <MenuImages images={images} handleModalOpen={handleModalOpen} />
           <PurchaseButton

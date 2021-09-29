@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Card, Col, Row } from 'antd';
-import { LOCAL_SERVER } from 'utils/config';
+import { getImage } from 'utils/getImage';
 
 const EventImage = ({ images, handleModalOpen }) => {
   return (
@@ -16,7 +16,7 @@ const EventImage = ({ images, handleModalOpen }) => {
                 <MainImgWrapper>
                   <img
                     alt="event_main"
-                    src={`${LOCAL_SERVER}${images[0]}`}
+                    src={getImage(images[0])}
                     onClick={() => handleModalOpen(images[0], 0)}
                   />
                 </MainImgWrapper>
