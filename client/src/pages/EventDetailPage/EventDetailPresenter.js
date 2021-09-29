@@ -17,10 +17,10 @@ import {
   DescriptionContentContainer,
   DescriptionContentWrapper,
   DescriptionFollowers,
-  MenuImageStyle,
+  MenuImage,
   AffixBox,
+  MenuContainer,
 } from './EventDetailStyle';
-import './EventDetailStyle.css';
 import { Link } from 'react-router-dom';
 import { UserOutlined } from '@ant-design/icons';
 import { HOST_CLIENT, LOCAL_SERVER } from 'utils/config';
@@ -109,7 +109,7 @@ function EventDetailPresenter({
     <>
       {images && writer && (
         <div>
-          <Row>
+          <Row style={{ backgroundColor: 'white' }}>
             <Col sm={24} md={14} style={colStyle}>
               <div style={{ width: '100%' }}>
                 <Row>
@@ -220,11 +220,11 @@ function EventDetailPresenter({
               </Card>
             </Col>
           </Row>
-          <Divider />
+          {/* <Divider /> */}
 
-          <div>
+          <MenuContainer>
             <Title level={3}>Menu</Title>
-            <Row gutter={[8, 8]}>
+            <Row gutter={[12, 12]}>
               {images.map((image, index) => (
                 <Col key={index} className="gutter-row" lg={6} md={12} sm={24}>
                   <Card
@@ -232,21 +232,20 @@ function EventDetailPresenter({
                     bodyStyle={{ padding: '0' }}
                     style={imageStyle}
                     cover={
-                      <MenuImageStyle
+                      <MenuImage
                         alt="event-menu-images"
                         src={`${LOCAL_SERVER}${image}`}
                         onClick={() => handleModalOpen(image, index)}
-                        style={{ maxHeight: '160px' }}
                       />
                     }
                   ></Card>
                 </Col>
               ))}
             </Row>
-          </div>
+          </MenuContainer>
 
           <BottomButtonBox>
-            <Affix offsetBottom={0} style={{ height: '72px' }}>
+            <Affix offsetBottom={0}>
               <AffixBox>
                 <Button
                   style={bottomButtonStyle}
@@ -263,6 +262,9 @@ function EventDetailPresenter({
                   placeholder="1"
                   style={{ width: '15%' }}
                   onChange={onQuantityChange}
+                  dropdownAlign={{
+                    offset: [0, -210],
+                  }}
                 >
                   <Option value="1">1</Option>
                   <Option value="2">2</Option>

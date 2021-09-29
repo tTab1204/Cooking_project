@@ -131,8 +131,17 @@ export const DescriptionFollowers = styled.div`
   align-items: center;
 `;
 
-export const MenuImageStyle = styled.img`
+export const MenuContainer = styled.div`
+  margin-top: 1rem;
+  padding: 1rem;
+`;
+
+export const MenuImage = styled.img`
   height: 200px;
+
+  @media screen and (max-width: 975px) {
+    height: 300px;
+  }
 `;
 
 export const AffixBox = styled.div`
