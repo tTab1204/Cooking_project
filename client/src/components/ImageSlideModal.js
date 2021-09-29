@@ -1,12 +1,6 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Modal } from 'antd';
-import {
-  ModalContentWrapper,
-  InnerModalBox,
-  ModalImage,
-  LeftDirectionBox,
-  RightDirectionBox,
-} from 'pages/EventDetailPage/EventDetailStyle';
 import { RightOutlined, LeftOutlined } from '@ant-design/icons';
 import { LOCAL_SERVER } from 'utils/config';
 
@@ -73,5 +67,42 @@ const ImageSlideModal = ({
     </>
   );
 };
+
+const ModalContentWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 80vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+
+const InnerModalBox = styled.div`
+  min-width: auto;
+  width: auto;
+  height: 100%;
+  position: relative;
+  display: flex;
+`;
+
+const ModalImage = styled.img`
+  object-fit: contain;
+  height: auto;
+  width: auto;
+  max-height: 100%;
+  max-width: 100%;
+`;
+
+const LeftDirectionBox = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 0px;
+`;
+
+export const RightDirectionBox = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 0px;
+`;
 
 export default ImageSlideModal;
