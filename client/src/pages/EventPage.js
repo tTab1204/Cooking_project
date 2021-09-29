@@ -7,6 +7,7 @@ import EventCard from 'components/EventCard';
 import Loading from 'components/Loading';
 import { DatePicker, Row } from 'antd';
 import { getExpiredEvents, getOnGoingEvents } from 'utils/getRemainDay';
+import { SHOW_EVENTS } from 'utils/api';
 
 const { Title } = Typography;
 
@@ -18,7 +19,7 @@ function EventPage() {
 
   const showEvents = async body => {
     try {
-      const response = await axios.post('/api/events/show-events', body);
+      const response = await axios.post(SHOW_EVENTS, body);
       setEvents(response.data.events);
       setloading(false);
     } catch (e) {

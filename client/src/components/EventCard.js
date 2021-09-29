@@ -5,6 +5,7 @@ import { EVENTS_CLIENT, LOCAL_SERVER } from 'utils/config';
 import { getRemainDay, isExpired } from 'utils/getRemainDay';
 import { DollarCircleFilled, EnvironmentFilled } from '@ant-design/icons';
 import { color } from 'styles/Theme';
+import { getImage } from 'utils/getImage';
 
 const EventCard = ({ events }) => {
   return (
@@ -21,7 +22,7 @@ const EventCard = ({ events }) => {
                 </RemainDayBox>
                 <CardCover
                   isEventExpired={isExpiredEvent}
-                  src={`${LOCAL_SERVER}${event.images[0]}`}
+                  src={getImage(event.images[0])}
                 />
                 <CardBody>
                   <CardTitleWrapper>
