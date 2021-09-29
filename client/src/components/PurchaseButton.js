@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Affix, Button, Select } from 'antd';
+import { color } from 'styles/Theme';
 
 const { Option } = Select;
 
@@ -46,8 +47,8 @@ const AffixBox = styled.div`
   padding: 16px;
   width: 100%;
   text-align: center;
-  background-color: rgb(255, 255, 255);
-  box-shadow: rgba(0, 0, 0, 0.05) 0px -2px 0px;
+  background-color: ${color.white};
+  box-shadow: ${color.boxShadow};
 
   & > button {
     width: 70%;
