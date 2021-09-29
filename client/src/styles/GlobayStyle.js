@@ -38,11 +38,6 @@ export const GlobalStyle = createGlobalStyle`
         transition: transform 0.3s ease;
     }
 
-    /* .ant-statistic-title {
-        display: flex;
-        justify-content: center;
-    } */
-
     input.error {
         border-color: red;
     }
@@ -59,24 +54,11 @@ export const GlobalStyle = createGlobalStyle`
    
 `;
 
-// App.js
-// export const AffixStyle = {
-//   height: 40,
-//   width: 40,
-//   lineHeight: '40px',
-//   borderRadius: 4,
-//   backgroundColor: `${color.green_2}`,
-//   color: `${color.white}`,
-//   textAlign: 'center',
-//   fontSize: 14,
-// };
-
 export const MainBox = styled.div`
   width: 100%;
   max-width: 1100px;
   padding-left: 46px;
   padding-right: 46px;
-  margin: 0px auto 180px;
 
   @media screen and (max-width: 960px) {
     padding: 0;
