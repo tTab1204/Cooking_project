@@ -26,6 +26,8 @@ export const GlobalStyle = createGlobalStyle`
         color: inherit;
     }
 
+
+    /* antd-style */
     .ant-statistic-content {
         display: flex;
         justify-content: center;
@@ -50,6 +52,12 @@ export const GlobalStyle = createGlobalStyle`
 
     .ant-menu-sub {
         font-weight: 500
+    }
+
+    li.ant-list-item {
+      @media screen and (max-width: 540px) {
+          padding: 0 1rem;
+      }  
     }
 `;
 
