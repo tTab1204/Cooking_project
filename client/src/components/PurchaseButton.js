@@ -5,30 +5,41 @@ import { color } from 'styles/Theme';
 
 const { Option } = Select;
 
-const PurchaseButton = ({ addToCartHandler, onQuantityChange }) => {
+const PurchaseButton = ({
+  addToCartHandler,
+  onQuantityChange,
+  isEventExpired,
+}) => {
   return (
     <BottomButtonBox>
       <Affix offsetBottom={0}>
         <AffixBox>
-          <Button type="primary" size="large" onClick={addToCartHandler}>
+          <Button
+            type="primary"
+            size="large"
+            disabled={isEventExpired}
+            onClick={addToCartHandler}
+          >
             Add To Cart
           </Button>
-          <Select
-            labelInValue
-            defaultActiveFirstOption={true}
-            size="large"
-            placeholder="1"
-            onChange={onQuantityChange}
-            dropdownAlign={{
-              offset: [0, -210],
-            }}
-          >
-            <Option value="1">1</Option>
-            <Option value="2">2</Option>
-            <Option value="3">3</Option>
-            <Option value="4">4</Option>
-            <Option value="5">5</Option>
-          </Select>
+          {!isEventExpired && (
+            <Select
+              labelInValue
+              defaultActiveFirstOption={true}
+              size="large"
+              placeholder="1"
+              onChange={onQuantityChange}
+              dropdownAlign={{
+                offset: [0, -210],
+              }}
+            >
+              <Option value="1">1</Option>
+              <Option value="2">2</Option>
+              <Option value="3">3</Option>
+              <Option value="4">4</Option>
+              <Option value="5">5</Option>
+            </Select>
+          )}
         </AffixBox>
       </Affix>
     </BottomButtonBox>
@@ -51,7 +62,7 @@ const AffixBox = styled.div`
   box-shadow: ${color.boxShadow};
 
   & > button {
-    width: 70%;
+    width: ${({ isEventExpired }) => (isEventExpired ? '90%' : '70%')};
     display: block;
     transition: width 0.2s ease-in-out 0s;
     box-shadow: 0.2s ease-in-out 0s;

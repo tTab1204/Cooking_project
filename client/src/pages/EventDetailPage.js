@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { successMessage } from 'utils/successMessage';
 import { addToCart } from '_actions/user_actions';
 import { SHOW_EVENT_DETAIL } from 'utils/api';
+import { isExpired } from 'utils/getRemainDay';
 
 function EventDetailPage({ match }) {
   const eventId = match.params.eventId;
@@ -20,6 +21,7 @@ function EventDetailPage({ match }) {
   const [Quantity, setQuantity] = useState(1);
   const [, setShowSuccess] = useState(false);
   const [loading, setloading] = useState(true);
+  const [isEventExpired, setIsEventExpired] = useState(false);
 
   const [CurrentSlide, setCurrentSlide] = useState(0);
   const [ShowModal, setShowModal] = useState(false);
@@ -33,6 +35,10 @@ function EventDetailPage({ match }) {
       })
       .catch(err => console.error(err));
   }, []);
+
+  useEffect(() => {
+    setIsEventExpired(isExpired(detailEvent.date));
+  }, [detailEvent]);
 
   const onQuantityChange = label => setQuantity(label.key);
 
@@ -78,6 +84,7 @@ function EventDetailPage({ match }) {
           </Row>
           <MenuImages images={images} handleModalOpen={handleModalOpen} />
           <PurchaseButton
+            isEventExpired={isEventExpired}
             addToCartHandler={addToCartHandler}
             onQuantityChange={onQuantityChange}
           />
