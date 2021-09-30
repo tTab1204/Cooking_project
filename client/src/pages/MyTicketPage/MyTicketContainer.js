@@ -1,15 +1,25 @@
 import React, { useState, useLayoutEffect } from 'react';
+import styled from 'styled-components';
 import MyTicketPresenter from './MyTicketPresenter';
 import Loading from 'components/Loading';
 import { useDispatch, useSelector } from 'react-redux';
 import { showCartItems, removeCartItem } from '_actions/user_actions';
+import { color } from 'styles/Theme';
 
 const IconText = ({ icon, text }) => (
-  <div style={{ cursor: 'default' }}>
-    <span style={{ paddingRight: '5px' }}>{React.createElement(icon)}</span>
+  <TextContainer>
+    <span>{React.createElement(icon)}</span>
     {text}
-  </div>
+  </TextContainer>
 );
+
+const TextContainer = styled.div`
+  cursor: default;
+
+  & > span {
+    padding-right: 5px;
+  }
+`;
 
 function MyTicketContainer({ history }) {
   const dispatch = useDispatch();

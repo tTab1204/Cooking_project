@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { EVENTS_CLIENT, LOCAL_SERVER } from 'utils/config';
+import { EVENTS_CLIENT } from 'utils/config';
 import { getRemainDay, isExpired } from 'utils/getRemainDay';
 import { DollarCircleFilled, EnvironmentFilled } from '@ant-design/icons';
 import { color } from 'styles/Theme';
@@ -56,9 +56,8 @@ const WholeCardContainer = styled.div`
 `;
 
 const WholeCardWrapper = styled.div`
-  max-width: ${({ host }) => (host ? '707px' : '1000px')};
   display: grid;
-  grid-template-columns: ${({ host }) => (host ? '1fr 1fr' : '1fr 1fr 1fr')};
+  grid-template-columns: ${({ host }) => (host ? '1fr 1fr ' : '1fr 1fr 1fr')};
   align-items: center;
   grid-gap: 30px;
   margin-bottom: ${({ host }) => (host ? '20px' : '0px')};

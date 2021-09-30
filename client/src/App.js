@@ -22,91 +22,102 @@ import Auth from 'components/auth/auth';
 import { Route, Switch } from 'react-router-dom';
 import { Button } from 'antd';
 import { ROUTES } from 'utils/routes';
-import { MainBox } from 'styles/GlobayStyle';
+import { Container, Wrapper } from 'styles/GlobayStyle';
 
 function App() {
   return (
     <Suspense fallback={<Button type="primary" size="small" loading></Button>}>
       <NavBar />
       <Switch>
-        <Route exact path={ROUTES.ROOT} component={Auth(LandingPage, null)} />
-        <MainBox>
-          <Route exact path={ROUTES.LOGIN} component={Auth(LoginPage, false)} />
-          <Route
-            exact
-            path={ROUTES.REGISTER}
-            component={Auth(RegisterPage, false)}
-          />
-          <Route
-            exact
-            path={ROUTES.HOST.MAIN}
-            component={Auth(HostContainer, true)}
-          />
-          <Route
-            exact
-            path={ROUTES.BECOME_A_HOST}
-            component={Auth(BecomeAHostContainer, true)}
-          />
-          <Route
-            path={ROUTES.HOST.DETAIL}
-            component={Auth(HostDetailContainer, null)}
-          />
-          <Route
-            exact
-            path={ROUTES.LIST_YOUR_KITCHEN}
-            component={Auth(ListYourKitchenContainer, null)}
-          />
-          <Route
-            exact
-            path={ROUTES.KITCHENS.MAIN}
-            component={Auth(KitchenContainer, null)}
-          />
-          <Route
-            exact
-            path={ROUTES.KITCHENS.DETAIL}
-            component={Auth(KitchenDetailContainer, null)}
-          />
-          <Route
-            exact
-            path={ROUTES.EVENTS.MAIN}
-            component={Auth(EventPage, null)}
-          />
-          <Route
-            exact
-            path={ROUTES.USER_PROFILE}
-            component={Auth(UserProfileContainer, null)}
-          />
-          <Route
-            exact
-            path={ROUTES.MY_TICKETS}
-            component={Auth(MyTicketContainer, true)}
-          />
-          <Route
-            exact
-            path={ROUTES.EVENTS.DETAIL}
-            component={Auth(EventDetailPage, null)}
-          />
-          <Route
-            exact
-            path={ROUTES.UPLOAD_KITCHEN}
-            component={Auth(UploadKitchenPage, true)}
-          />
-          <Route
-            exact
-            path={ROUTES.UPLOAD_HOST}
-            component={Auth(UploadHostPage, true)}
-          />
-          <Route
-            exact
-            path={ROUTES.UPLOAD_EVENT}
-            component={Auth(UploadEventPresenter, true)}
-          />
-          <Route
-            exact
-            path={ROUTES.PAYMENT}
-            component={Auth(PaymentContainer, true)}
-          />
-        </MainBox>
+        <Container>
+          <Wrapper>
+            <Route
+              exact
+              path={ROUTES.ROOT}
+              component={Auth(LandingPage, null)}
+            />
+
+            <Route
+              exact
+              path={ROUTES.LOGIN}
+              component={Auth(LoginPage, false)}
+            />
+            <Route
+              exact
+              path={ROUTES.REGISTER}
+              component={Auth(RegisterPage, false)}
+            />
+            <Route
+              exact
+              path={ROUTES.HOST.MAIN}
+              component={Auth(HostContainer, true)}
+            />
+            <Route
+              exact
+              path={ROUTES.BECOME_A_HOST}
+              component={Auth(BecomeAHostContainer, true)}
+            />
+            <Route
+              path={ROUTES.HOST.DETAIL}
+              component={Auth(HostDetailContainer, null)}
+            />
+            <Route
+              exact
+              path={ROUTES.LIST_YOUR_KITCHEN}
+              component={Auth(ListYourKitchenContainer, null)}
+            />
+            <Route
+              exact
+              path={ROUTES.KITCHENS.MAIN}
+              component={Auth(KitchenContainer, null)}
+            />
+            <Route
+              exact
+              path={ROUTES.KITCHENS.DETAIL}
+              component={Auth(KitchenDetailContainer, null)}
+            />
+            <Route
+              exact
+              path={ROUTES.EVENTS.MAIN}
+              component={Auth(EventPage, null)}
+            />
+            <Route
+              exact
+              path={ROUTES.USER_PROFILE}
+              component={Auth(UserProfileContainer, null)}
+            />
+            <Route
+              exact
+              path={ROUTES.MY_TICKETS}
+              component={Auth(MyTicketContainer, true)}
+            />
+            <Route
+              exact
+              path={ROUTES.EVENTS.DETAIL}
+              component={Auth(EventDetailPage, null)}
+            />
+            <Route
+              exact
+              path={ROUTES.UPLOAD_KITCHEN}
+              component={Auth(UploadKitchenPage, true)}
+            />
+            <Route
+              exact
+              path={ROUTES.UPLOAD_HOST}
+              component={Auth(UploadHostPage, true)}
+            />
+            <Route
+              exact
+              path={ROUTES.UPLOAD_EVENT}
+              component={Auth(UploadEventPresenter, true)}
+            />
+            <Route
+              exact
+              path={ROUTES.PAYMENT}
+              component={Auth(PaymentContainer, true)}
+            />
+          </Wrapper>
+        </Container>
       </Switch>
       <Footer />
     </Suspense>
