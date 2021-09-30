@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const CartContainer = styled.div`
   border: 3px solid pink;
@@ -8,7 +8,7 @@ export const CartContainer = styled.div`
   grid-gap: 30px;
   gap: 30px;
   align-items: center;
-  max-width: 100%;
+  width: 100%;
 `;
 
 export const CartImage = styled.div`

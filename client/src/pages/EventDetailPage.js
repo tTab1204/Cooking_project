@@ -77,7 +77,7 @@ function EventDetailPage({ match }) {
     <>
       {loading && <Loading />}
       {!loading && images && writer && (
-        <div>
+        <>
           <Row style={rowStyle}>
             <EventImage images={images} handleModalOpen={handleModalOpen} />
             <EventDescription eventDetail={detailEvent} />
@@ -96,7 +96,7 @@ function EventDetailPage({ match }) {
             handleCancel={handleCancel}
             images={images}
           />
-        </div>
+        </>
       )}
     </>
   );

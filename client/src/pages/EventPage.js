@@ -50,7 +50,7 @@ function EventPage() {
     <>
       {loading && <Loading />}
       {!loading && (
-        <Container>
+        <>
           <HeaderContainer type="flex">
             <Col>
               <Title level={1}>Events</Title>
@@ -67,23 +67,13 @@ function EventPage() {
             </Col>
           </HeaderContainer>
           <EventCard events={expiredEvents} />
-        </Container>
+        </>
       )}
     </>
   );
 }
 
-export const Container = styled.div`
-  @media screen and (max-width: 960px) {
-    padding: 0 46px;
-  }
-
-  @media screen and (max-width: 768px) {
-    padding: 0 0.5rem;
-  }
-`;
-
-export const HeaderContainer = styled(Row)`
+const HeaderContainer = styled(Row)`
   margin-top: 2rem;
   align-items: center;
   width: 100%;
@@ -109,7 +99,7 @@ export const HeaderContainer = styled(Row)`
   }
 `;
 
-export const CustomedDatePicker = styled(DatePicker)`
+const CustomedDatePicker = styled(DatePicker)`
   padding-left: 2rem;
 `;
 

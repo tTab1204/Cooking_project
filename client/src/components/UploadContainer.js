@@ -23,7 +23,7 @@ const Container = styled(Row)`
 `;
 
 const Wrapper = styled(Col)`
-  width: 60%;
+  width: 50%;
   padding-top: 3rem;
 
   @media screen and (max-width: 960px) {

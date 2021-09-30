@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Menu, Empty, List, Avatar, Button, Affix } from 'antd';
+import { Typography, Menu, Empty, List, Avatar, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { EmptyWrapper } from './MyTicketStyle';
 import {
@@ -7,7 +7,6 @@ import {
   EnvironmentFilled,
   UserOutlined,
   DeleteOutlined,
-  EditOutlined,
   LoadingOutlined,
   ClockCircleFilled,
 } from '@ant-design/icons';
@@ -119,11 +118,16 @@ function MyTicketPresenter({
       )}
 
       {ShowTotal && cart && (
-        <Affix offsetBottom={0} style={{ height: '72px' }}>
-          <Button type="primary" size="large" onClick={goShippingPage}>
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <Button
+            type="primary"
+            size="large"
+            onClick={goShippingPage}
+            style={{ width: '80%', marginTop: '2rem' }}
+          >
             Check Out
           </Button>
-        </Affix>
+        </div>
       )}
     </>
   );

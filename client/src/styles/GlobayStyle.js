@@ -49,19 +49,24 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     .ant-menu-sub {
-        font-weight: 500;
+        font-weight: 500
     }
-   
 `;
 
-export const MainBox = styled.div`
+/* Layout */
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const Wrapper = styled.div`
   width: 100%;
   max-width: 1100px;
-  padding-left: 46px;
-  padding-right: 46px;
+  padding: 0 46px;
 
-  @media screen and (max-width: 960px) {
-    padding: 0;
+  @media screen and (max-width: 540px) {
+    padding: 0 0.5rem;
   }
 `;
 
