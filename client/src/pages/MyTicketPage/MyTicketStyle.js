@@ -32,4 +32,8 @@ export const EmptyWrapper = styled.div`
   text-align: center;
   flex-grow: 1;
   height: 100%;
+
+  & > div {
+    width: 100%;
+  }
 `;

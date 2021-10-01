@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Typography, Menu, Empty, List, Avatar, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { EmptyWrapper } from './MyTicketStyle';
@@ -25,7 +26,7 @@ function MyTicketPresenter({
 }) {
   return (
     <>
-      <Title level={2} style={{ marginTop: '20px' }}>
+      <Title level={2} style={titleStyle}>
         Tickets
       </Title>
       <Menu defaultSelectedKeys="available" mode="horizontal">
@@ -35,7 +36,7 @@ function MyTicketPresenter({
 
       {!ShowTotal && (
         <EmptyWrapper>
-          <Empty description="Nothing here" style={{ width: '100%' }} />
+          <Empty description="Nothing here" />
         </EmptyWrapper>
       )}
 
@@ -51,11 +52,9 @@ function MyTicketPresenter({
           }}
           dataSource={cart}
           footer={
-            <div>
-              <strong style={{ fontWeight: 'bolder', fontSize: '18px' }}>
-                Total: <span style={{ paddingLeft: '10px' }}>{Total}원</span>
-              </strong>
-            </div>
+            <Footer>
+              Total: <span>{Total}원</span>
+            </Footer>
           }
           renderItem={(event, index) => (
             <List.Item
@@ -79,9 +78,8 @@ function MyTicketPresenter({
                 removeLoading ? (
                   <LoadingOutlined />
                 ) : (
-                  <DeleteOutlined
+                  <CustomedDeleteOutline
                     key={index}
-                    style={{ color: 'var(--primary-color)' }}
                     onClick={() => removeItem(event._id, index)}
                   />
                 ),
@@ -105,10 +103,10 @@ function MyTicketPresenter({
                   <Link to={`${EVENTS_CLIENT}/${event._id}`}>{event.name}</Link>
                 }
                 description={
-                  <div>
-                    <ClockCircleFilled style={{ marginRight: '5px' }} />
+                  <TimeContainer>
+                    <ClockCircleFilled className="icon" />
                     <span>{event.time}</span>
-                  </div>
+                  </TimeContainer>
                 }
               />
               {event.description}
@@ -118,19 +116,47 @@ function MyTicketPresenter({
       )}
 
       {ShowTotal && cart && (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <Button
-            type="primary"
-            size="large"
-            onClick={goShippingPage}
-            style={{ width: '80%', marginTop: '2rem' }}
-          >
+        <ButtonContainer>
+          <Button type="primary" size="large" onClick={goShippingPage}>
             Check Out
           </Button>
-        </div>
+        </ButtonContainer>
       )}
     </>
   );
 }
+
+const Footer = styled.div`
+  font-weight: 700;
+  font-size: 18px;
+
+  & > span {
+    padding-left: 10px;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+
+  & > button {
+    width: 80%;
+    margin-top: 2rem;
+  }
+`;
+
+const TimeContainer = styled.div`
+  & > .icon {
+    margin-right: 5px;
+  }
+`;
+
+const CustomedDeleteOutline = styled(DeleteOutlined)`
+  color: red;
+`;
+
+const titleStyle = {
+  marginTop: '2rem',
+};
 
 export default MyTicketPresenter;
