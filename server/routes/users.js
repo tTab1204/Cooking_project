@@ -44,7 +44,8 @@ router.post('/login', (req, res) => {
       });
 
     user.comparePassword(req.body.password, (err, isMatch) => {
-      if (!isMatch) return res.json({ loginSuccess: false, message: 'Wrong password' });
+      if (!isMatch)
+        return res.json({ loginSuccess: false, message: 'Wrong password' });
 
       user.generateToken((err, user) => {
         if (err) return res.status(400).send(err);
@@ -59,12 +60,16 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/logout', auth, (req, res) => {
-  User.findOneAndUpdate({ _id: req.user._id }, { token: '', tokenExp: '' }, (err, doc) => {
-    if (err) return res.json({ success: false, err });
-    return res.status(200).send({
-      success: true,
-    });
-  });
+  User.findOneAndUpdate(
+    { _id: req.user._id },
+    { token: '', tokenExp: '' },
+    (err, doc) => {
+      if (err) return res.json({ success: false, err });
+      return res.status(200).send({
+        success: true,
+      });
+    },
+  );
 });
 
 router.post('/add-to-cart', auth, (req, res) => {
@@ -73,7 +78,7 @@ router.post('/add-to-cart', auth, (req, res) => {
 
   // 상품 중복 확인
   User.findOne({ _id: req.user._id }, (err, userInfo) => {
-    userInfo.cart.forEach((item) => {
+    userInfo.cart.forEach(item => {
       if (item.id === req.body.eventId) {
         duplicate = true;
       }
@@ -126,7 +131,7 @@ router.post('/remove-cart-item', auth, (req, res) => {
     { new: true },
     (err, userInfo) => {
       let cart = userInfo.cart;
-      let newCart = cart.map((item) => {
+      let newCart = cart.map(item => {
         return item.id;
       });
 
@@ -147,7 +152,7 @@ router.post('/payment-success', auth, (req, res) => {
 
   let cartDetail = req.body.cartDetail;
 
-  cartDetail.forEach((item) => {
+  cartDetail.forEach(item => {
     history.push({
       id: item._id,
       dateOfBuy: Date.now(),
