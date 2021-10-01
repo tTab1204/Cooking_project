@@ -6,6 +6,7 @@ import './Sections/Navbar.css';
 import { Link } from 'react-router-dom';
 import { MenuOutlined } from '@ant-design/icons';
 import { NavbarContainer, NavLogo, Nav } from './Sections/NavBarStyle';
+import { throttle } from 'lodash';
 
 const removeLinkColor = { color: 'inherit', textDecoration: 'none' };
 
@@ -19,7 +20,15 @@ function NavBar() {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', changeNav);
+    const throttleScrollEvent = throttle(() => {
+      changeNav();
+    }, 30);
+
+    window.addEventListener('scroll', throttleScrollEvent);
+
+    return () => {
+      window.removeEventListener('resize', throttleScrollEvent);
+    };
   }, []);
 
   const showDrawer = () => {
