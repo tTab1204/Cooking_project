@@ -13,7 +13,7 @@ import UploadHostPage from 'pages/UploadHostPage';
 import KitchenContainer from 'pages/KitchenPage/KitchenContainer';
 import EventPage from 'pages/EventPage';
 import UserProfileContainer from 'pages/UserProfilePage/UserProfileContainer';
-import MyTicketContainer from 'pages/MyTicketPage/MyTicketContainer';
+import MyTicketPage from 'pages/MyTicketPage';
 import HostDetailContainer from 'pages/HostDetailPage/HostDetailContainer';
 import KitchenDetailContainer from 'pages/KitchenDetailPage/KitchenDetailContainer';
 import PaymentContainer from 'pages/PaymentPage/PaymentContainer';
@@ -29,14 +29,9 @@ function App() {
     <Suspense fallback={<Button type="primary" size="small" loading></Button>}>
       <NavBar />
       <Switch>
+        <Route exact path={ROUTES.ROOT} component={Auth(LandingPage, null)} />
         <Container>
           <Wrapper>
-            <Route
-              exact
-              path={ROUTES.ROOT}
-              component={Auth(LandingPage, null)}
-            />
-
             <Route
               exact
               path={ROUTES.LOGIN}
@@ -89,7 +84,7 @@ function App() {
             <Route
               exact
               path={ROUTES.MY_TICKETS}
-              component={Auth(MyTicketContainer, true)}
+              component={Auth(MyTicketPage, true)}
             />
             <Route
               exact
