@@ -5,16 +5,14 @@ import { USER_SERVER } from 'utils/config';
 import { withRouter, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { UserOutlined } from '@ant-design/icons';
+import { getTotal } from 'utils/getTotal';
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
 function RightMenu(props) {
   const user = useSelector(state => state.user.userData);
-  const cart = useSelector(state => state.user.cartDetail);
-
-  let total = 0;
-  if (cart) cart.map(item => (total += item.quantity));
+  const cart = useSelector(state => state.user?.userData?.cart);
 
   const logoutHandler = () => {
     axios.get(`${USER_SERVER}/logout`).then(response => {
@@ -85,7 +83,7 @@ function RightMenu(props) {
                   <Badge
                     overflowCount={10}
                     offset={[0, 2]}
-                    count={cart && total}
+                    count={getTotal(cart)}
                   >
                     <UserOutlined style={{ fontSize: '20px' }} />
                   </Badge>
@@ -104,7 +102,7 @@ function RightMenu(props) {
                 </Menu.Item>
                 <Menu.Item key="my-tickets">
                   <Badge
-                    count={cart && total}
+                    count={getTotal(cart)}
                     overflowCount={10}
                     offset={[12, 0]}
                   >
