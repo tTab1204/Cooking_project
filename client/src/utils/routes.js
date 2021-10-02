@@ -12,8 +12,11 @@ export const ROUTES = {
     MAIN: '/kitchens',
     DETAIL: '/kitchens/:kitchensId',
   },
-  USER_PROFILE: '/users/:userName',
-  MY_TICKETS: '/my-tickets',
+  MY_TICKETS: {
+    MAIN: '/my-tickets',
+    AVAILABLE: '/available',
+    USED_EXPIRED: '/used-expired',
+  },
   EVENTS: {
     MAIN: '/events',
     DETAIL: '/events/:eventId',

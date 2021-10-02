@@ -12,7 +12,6 @@ import UploadEventPresenter from 'pages/UploadEventPage';
 import UploadHostPage from 'pages/UploadHostPage';
 import KitchenContainer from 'pages/KitchenPage/KitchenContainer';
 import EventPage from 'pages/EventPage';
-import UserProfileContainer from 'pages/UserProfilePage/UserProfileContainer';
 import MyTicketPage from 'pages/MyTicketPage';
 import HostDetailContainer from 'pages/HostDetailPage/HostDetailContainer';
 import KitchenDetailContainer from 'pages/KitchenDetailPage/KitchenDetailContainer';
@@ -77,13 +76,7 @@ function App() {
               component={Auth(EventPage, null)}
             />
             <Route
-              exact
-              path={ROUTES.USER_PROFILE}
-              component={Auth(UserProfileContainer, null)}
-            />
-            <Route
-              exact
-              path={ROUTES.MY_TICKETS}
+              path={ROUTES.MY_TICKETS.MAIN}
               component={Auth(MyTicketPage, true)}
             />
             <Route

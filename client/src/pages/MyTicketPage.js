@@ -4,18 +4,22 @@ import { ROUTES } from 'utils/routes';
 import { Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { showCartItems } from '_actions/user_actions';
-import TicketHeader from 'components/TicketHeader';
+import TicketTabs from 'components/TicketTabs';
 import { getTotalPrice } from 'utils/getTotal';
-import TicketList from 'components/TicketList';
 import Loading from 'components/Loading';
+import { useRecoilValue } from 'recoil';
+import { ticketTabState } from 'atoms/atoms';
 
-function MyTicketPresenter({ history }) {
+function MyTicketPage({ history, match }) {
   const dispatch = useDispatch();
+  const url = match.url;
+
   const user = useSelector(state => state.user.userData);
   const cart = user?.cart;
 
-  const [Total, setTotal] = useState('');
+  const [total, setTotal] = useState('');
   const [loading, setLoading] = useState(true);
+  const tab = useRecoilValue(ticketTabState);
 
   useLayoutEffect(() => {
     let cartItems = [];
@@ -41,11 +45,14 @@ function MyTicketPresenter({ history }) {
 
       {!loading && (
         <>
-          <TicketHeader />
-          <TicketList total={Total} />
-
+          <TicketTabs total={total} url={url} history={history} />
           <ButtonContainer>
-            <Button type="primary" size="large" onClick={goShippingPage}>
+            <Button
+              disabled={tab === ROUTES.MY_TICKETS.USED_EXPIRED}
+              type="primary"
+              size="large"
+              onClick={goShippingPage}
+            >
               Check Out
             </Button>
           </ButtonContainer>
@@ -69,4 +76,4 @@ const ButtonContainer = styled.div`
   }
 `;
 
-export default MyTicketPresenter;
+export default MyTicketPage;

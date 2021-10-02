@@ -15,6 +15,7 @@ import { getImage } from 'utils/getImage';
 import { EVENTS_CLIENT } from 'utils/config';
 import { useDispatch, useSelector } from 'react-redux';
 import { removeCartItem } from '_actions/user_actions';
+import { color } from 'styles/Theme';
 
 const TicketList = ({ total }) => {
   const dispatch = useDispatch();
@@ -41,9 +42,11 @@ const TicketList = ({ total }) => {
       }}
       dataSource={cart}
       footer={
-        <Footer>
-          Total: <span>{total}원</span>
-        </Footer>
+        total && (
+          <Footer>
+            Total: <span>{total}원</span>
+          </Footer>
+        )
       }
       renderItem={(event, index) => (
         <List.Item
@@ -119,7 +122,7 @@ const TimeContainer = styled.div`
 `;
 
 const CustomedDeleteOutline = styled(DeleteOutlined)`
-  color: red;
+  color: ${color.error};
 `;
 
 export default TicketList;

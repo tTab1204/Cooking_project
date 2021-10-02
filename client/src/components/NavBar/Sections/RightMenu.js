@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Menu, Badge } from 'antd';
 import axios from 'axios';
 import { USER_SERVER } from 'utils/config';
@@ -6,6 +6,8 @@ import { withRouter, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { UserOutlined } from '@ant-design/icons';
 import { getTotal } from 'utils/getTotal';
+import { ROUTES } from 'utils/routes';
+import { color } from 'styles/Theme';
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -24,15 +26,17 @@ function RightMenu(props) {
     });
   };
 
+  const { ROOT, LOGIN, REGISTER, MY_TICKETS } = ROUTES;
+
   if (user && !user.isAuth) {
     return (
       <>
         <Menu mode={props.mode}>
-          <Menu.Item key="mail">
-            <Link to="/login">Signin</Link>
+          <Menu.Item key={LOGIN}>
+            <Link to={LOGIN}>Signin</Link>
           </Menu.Item>
-          <Menu.Item key="app">
-            <Link to="/register">Signup</Link>
+          <Menu.Item key={REGISTER}>
+            <Link to={REGISTER}>Signup</Link>
           </Menu.Item>
         </Menu>
       </>
@@ -97,22 +101,19 @@ function RightMenu(props) {
                   </Menu.Item>
                 )}
 
-                <Menu.Item key="my-profile">
-                  <Link to={`/users/${user.name}`}>My Profile</Link>
-                </Menu.Item>
-                <Menu.Item key="my-tickets">
+                <Menu.Item key={MY_TICKETS.MAIN}>
                   <Badge
                     count={getTotal(cart)}
                     overflowCount={10}
                     offset={[12, 0]}
                   >
-                    <Link to="/my-tickets">My Tickets</Link>
+                    <Link to={MY_TICKETS.MAIN}>My Tickets</Link>
                   </Badge>
                 </Menu.Item>
                 <Menu.Item key="logout">
                   <Link
-                    style={{ color: '#1890ff' }}
-                    to="/"
+                    style={{ color: color.green }}
+                    to={ROOT}
                     onClick={logoutHandler}
                   >
                     Logout
