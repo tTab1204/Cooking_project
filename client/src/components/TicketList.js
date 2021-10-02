@@ -42,9 +42,11 @@ const TicketList = ({ total }) => {
       }}
       dataSource={cart}
       footer={
-        <Footer>
-          Total: <span>{total}원</span>
-        </Footer>
+        total && (
+          <Footer>
+            Total: <span>{total}원</span>
+          </Footer>
+        )
       }
       renderItem={(event, index) => (
         <List.Item
