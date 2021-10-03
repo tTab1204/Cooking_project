@@ -8,8 +8,9 @@ export const getTotal = cart => {
 export const getTotalPrice = (cartDetail, setTotal) => {
   let totalPrice = 0;
 
-  cartDetail.map(item => {
-    totalPrice += parseInt(item.price, 10) * item.quantity;
-  });
+  cartDetail &&
+    cartDetail.map(item => {
+      totalPrice += parseInt(item.price, 10) * item.quantity;
+    });
   setTotal(totalPrice);
 };
