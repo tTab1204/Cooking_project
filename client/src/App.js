@@ -15,7 +15,7 @@ import EventPage from 'pages/EventPage';
 import MyTicketPage from 'pages/MyTicketPage';
 import HostDetailContainer from 'pages/HostDetailPage/HostDetailContainer';
 import KitchenDetailContainer from 'pages/KitchenDetailPage/KitchenDetailContainer';
-import PaymentContainer from 'pages/PaymentPage/PaymentContainer';
+import PaymentPage from 'pages/PaymentPage';
 import Footer from 'components/Footer/Footer';
 import Auth from 'components/auth/auth';
 import { Route, Switch } from 'react-router-dom';
@@ -102,7 +102,7 @@ function App() {
             <Route
               exact
               path={ROUTES.PAYMENT}
-              component={Auth(PaymentContainer, true)}
+              component={Auth(PaymentPage, true)}
             />
           </Wrapper>
         </Container>
