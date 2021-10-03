@@ -22,10 +22,6 @@
 - Mongoose
 - Heroku
 
-## Design Pattern
-- Presentational / Container 컴포넌트 방식 적용 
-<img width="30%" src="https://user-images.githubusercontent.com/66458836/124344884-2b5c7880-dc10-11eb-897d-2cc72956ae38.png" />
-
 ## Installation
 ```
 $ npm install
