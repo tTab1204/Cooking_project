@@ -4,24 +4,37 @@ import { color } from 'styles/Theme';
 import { Link } from 'react-router-dom';
 import { getGoogleMapLink } from 'utils/getGoogleMapLink';
 import { HOST_CLIENT, LOCAL_SERVER } from 'utils/config';
-import { Card, Col, Typography, Divider, Descriptions, Avatar } from 'antd';
+import {
+  Card,
+  Col,
+  Typography,
+  Divider,
+  Descriptions,
+  Avatar,
+  Tag,
+} from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { isExpired } from 'utils/getRemainDay';
+import { ROUTES } from 'utils/routes';
 
 const { Title } = Typography;
 
 const EventDescription = ({ eventDetail }) => {
-  const { name, host, time, location, description } = eventDetail;
+  const { name, host, time, location, description, date } = eventDetail;
 
   return (
     <Col sm={24} md={10}>
       <CustomedCard>
-        <Title level={3}>{name}</Title>
+        <CardHeader>
+          <Title level={3}>{name}</Title>
+          {isExpired(date) && <Tag>Event Ended</Tag>}
+        </CardHeader>
         <Divider />
         <Descriptions column={1} colon={false}>
           <Descriptions.Item label="Host" style={gridStyle}>
             <DescriptionContentContainer>
               <DescriptionContentWrapper>
-                <Link to={`${HOST_CLIENT}/${host._id}`}>{host.name}</Link>
+                <Link to={`${ROUTES.HOST.MAIN}/${host._id}`}>{host.name}</Link>
                 <DescriptionFollowers>
                   <CustomedUserOutlined />
                   <Typography>4.8 (150)</Typography>
@@ -55,6 +68,12 @@ const EventDescription = ({ eventDetail }) => {
     </Col>
   );
 };
+
+const CardHeader = styled.div`
+  & > span {
+    font-weight: 700;
+  }
+`;
 
 const DescriptionContentContainer = styled.div`
   display: flex;
@@ -90,7 +109,7 @@ const DescriptionFollowers = styled.div`
 const CustomedCard = styled(Card)`
   height: 100%;
 
-  & > .ant-card-body {
+  & > & > .ant-card-body {
     display: flex;
     flex-direction: column;
     height: 100%;
