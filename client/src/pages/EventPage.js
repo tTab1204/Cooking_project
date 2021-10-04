@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { Col, Typography } from 'antd';
 import SearchBox from 'components/SearchBox';
-import EventCard from 'components/EventCard';
+import Cards from 'components/Cards';
 import Loading from 'components/Loading';
 import { DatePicker, Row } from 'antd';
 import { getExpiredEvents, getOnGoingEvents } from 'utils/getRemainDay';
@@ -11,7 +11,7 @@ import { SHOW_EVENTS } from 'utils/api';
 
 const { Title } = Typography;
 
-function EventPage() {
+function EventPage({ match }) {
   const [events, setEvents] = useState([]);
   const [loading, setloading] = useState(true);
 
@@ -60,13 +60,13 @@ function EventPage() {
               <CustomedDatePicker onChange={onDateChange} />
             </Col>
           </HeaderContainer>
-          <EventCard events={onGoingEvents} />
+          <Cards datas={onGoingEvents} url={match.url} />
           <HeaderContainer type="flex">
             <Col>
               <Title level={1}>Past Events</Title>
             </Col>
           </HeaderContainer>
-          <EventCard events={expiredEvents} />
+          <Cards datas={expiredEvents} url={match.url} />
         </>
       )}
     </>

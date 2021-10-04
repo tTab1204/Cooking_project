@@ -10,7 +10,7 @@ import ListYourKitchenContainer from 'pages/ListYourKitchenPage/ListYourKitchenC
 import UploadKitchenPage from 'pages/UploadKitchenPage';
 import UploadEventPresenter from 'pages/UploadEventPage';
 import UploadHostPage from 'pages/UploadHostPage';
-import KitchenContainer from 'pages/KitchenPage/KitchenContainer';
+import KitchenPage from 'pages/KitchenPage';
 import EventPage from 'pages/EventPage';
 import MyTicketPage from 'pages/MyTicketPage';
 import HostDetailContainer from 'pages/HostDetailPage/HostDetailContainer';
@@ -63,7 +63,7 @@ function App() {
             <Route
               exact
               path={ROUTES.KITCHENS.MAIN}
-              component={Auth(KitchenContainer, null)}
+              component={Auth(KitchenPage, null)}
             />
             <Route
               exact
