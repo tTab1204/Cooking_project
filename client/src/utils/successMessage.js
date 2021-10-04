@@ -11,5 +11,5 @@ export const successMessage = setShowSuccess => {
       duration: 2,
     });
     setShowSuccess(true);
-  }, 2000);
+  }, 500);
 };

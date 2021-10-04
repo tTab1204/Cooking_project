@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { message } from 'antd';
 import Axios from 'axios';
 import Loading from 'components/Loading';
 import KitchenDetailPresenter from './KitchenDetailPresenter';
+import { SHOW_KITCHEN_DETAIL } from 'utils/api';
 
 function KitchenDetailContainer({ match }) {
   const kitchenId = match.params.kitchensId;
@@ -11,27 +11,13 @@ function KitchenDetailContainer({ match }) {
   const [ShowSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
-    Axios.get(`/api/kitchens/kitchens_by_id?id=${kitchenId}&type=single`)
+    Axios.get(SHOW_KITCHEN_DETAIL(kitchenId))
       .then(response => {
         setDetailKitchen(response.data.kitchen[0]);
         setloading(false);
       })
       .catch(err => alert(err));
   }, []);
-
-  const successMessage = () => {
-    const key = 'updatable';
-    message.loading({ content: 'Loading...', key });
-
-    setTimeout(() => {
-      message.success({
-        content: 'Success!',
-        key,
-        duration: 2,
-      });
-      setShowSuccess(true);
-    }, 2000);
-  };
 
   return (
     <>
@@ -42,7 +28,7 @@ function KitchenDetailContainer({ match }) {
           <KitchenDetailPresenter
             DetailKitchen={DetailKitchen}
             ShowSuccess={ShowSuccess}
-            successMessage={successMessage}
+            setShowSuccess={setShowSuccess}
           />
         </>
       )}

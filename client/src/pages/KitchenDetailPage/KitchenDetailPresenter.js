@@ -19,6 +19,7 @@ import {
 } from './KitchenDetailStyle';
 import { EnvironmentOutlined, TeamOutlined } from '@ant-design/icons';
 import { LOCAL_SERVER } from 'utils/config';
+import { successMessage } from 'utils/successMessage';
 
 const { Title, Paragraph } = Typography;
 
@@ -47,7 +48,7 @@ const buttonStyle = {
 function KitchenDetailPresenter({
   DetailKitchen,
   ShowSuccess,
-  successMessage,
+  setShowSuccess,
 }) {
   const [ShowModal, setShowModal] = useState(false);
 
@@ -63,14 +64,12 @@ function KitchenDetailPresenter({
   };
 
   const onSubmit = () => {
-    successMessage();
+    successMessage(setShowSuccess);
 
     setTimeout(() => {
       setShowModal(false);
-    }, 2000);
+    }, 500);
   };
-
-  // console.log("이미지 경로: ", `${LOCAL_SERVER}${images[0]}`);
 
   return (
     <>
