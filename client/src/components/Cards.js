@@ -1,40 +1,57 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { EVENTS_CLIENT } from 'utils/config';
+import { ROUTES } from 'utils/routes';
 import { getRemainDay, isExpired } from 'utils/getRemainDay';
-import { DollarCircleFilled, EnvironmentFilled } from '@ant-design/icons';
+import {
+  DollarCircleFilled,
+  EnvironmentFilled,
+  UserOutlined,
+} from '@ant-design/icons';
 import { color } from 'styles/Theme';
 import { getImage } from 'utils/getImage';
 
-const EventCard = ({ events }) => {
+const EventCard = ({ datas, url }) => {
+  const { EVENTS, KITCHENS } = ROUTES;
+
+  const isEvent = url === EVENTS.MAIN;
+  const isKitchen = url === KITCHENS.MAIN;
+
+  const path = isEvent ? EVENTS.MAIN : KITCHENS.MAIN;
+
   return (
     <WholeCardContainer>
       <WholeCardWrapper>
-        {events.map((event, index) => {
-          let isExpiredEvent = isExpired(event.date);
+        {datas.map((data, index) => {
+          let isExpiredEvent = isExpired(data.date);
 
           return (
-            <Link to={`${EVENTS_CLIENT}/${event._id}`} key={index}>
+            <Link to={`${path}/${data._id}`} key={index}>
               <Card isEventExpired={isExpiredEvent}>
                 <RemainDayBox>
-                  <RemainDay>{getRemainDay(event.date)}</RemainDay>
+                  <RemainDay>
+                    {isEvent && getRemainDay(data.date)}
+                    {isKitchen && <UserOutlined />}
+                    {isKitchen && `${data.capacity}명`}
+                  </RemainDay>
                 </RemainDayBox>
                 <CardCover
                   isEventExpired={isExpiredEvent}
-                  src={getImage(event.images[0])}
+                  src={getImage(data.images[0])}
                 />
                 <CardBody>
                   <CardTitleWrapper>
-                    <CardTitle>{event.name}</CardTitle>
+                    <CardTitle>{data.name}</CardTitle>
                   </CardTitleWrapper>
                   <CardText>
                     <EnvironmentFilled />
-                    {event.time}, {event.location}
+                    {isEvent && data.time}, {isEvent && data.location}
+                    {isKitchen && data.address}
                   </CardText>
                   <PriceAndTagBox>
                     <DollarCircleFilled />
-                    {event.price}
+                    {isEvent && data.price}
+                    {isKitchen && data.rent_price}
                     <span className="won">원</span>
                   </PriceAndTagBox>
                 </CardBody>
@@ -203,6 +220,10 @@ const RemainDay = styled.div`
   font-weight: 700;
   letter-spacing: 1px;
   word-spacing: 5px;
+
+  & > span {
+    margin-right: 5px;
+  }
 `;
 
 const PriceAndTagBox = styled.div`
