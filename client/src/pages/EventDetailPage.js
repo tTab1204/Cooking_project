@@ -12,8 +12,9 @@ import { successMessage } from 'utils/successMessage';
 import { addToCart } from '_actions/user_actions';
 import { SHOW_EVENT_DETAIL } from 'utils/api';
 import { isExpired } from 'utils/getRemainDay';
+import { ROUTES } from 'utils/routes';
 
-function EventDetailPage({ match }) {
+function EventDetailPage({ match, history }) {
   const eventId = match.params.eventId;
   const dispatch = useDispatch();
 
@@ -47,6 +48,8 @@ function EventDetailPage({ match }) {
       const response = await dispatch(addToCart(eventId, Quantity));
       console.log('response: ', response);
       successMessage(setShowSuccess);
+
+      history.push(ROUTES.MY_TICKETS.MAIN);
     } catch {
       console.error(e);
     }

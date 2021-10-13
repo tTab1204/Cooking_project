@@ -14,7 +14,7 @@ import KitchenPage from 'pages/KitchenPage';
 import EventPage from 'pages/EventPage';
 import MyTicketPage from 'pages/MyTicketPage';
 import HostDetailContainer from 'pages/HostDetailPage/HostDetailContainer';
-import KitchenDetailContainer from 'pages/KitchenDetailPage/KitchenDetailContainer';
+import KitchenDetailPage from 'pages/KitchenDetailPage';
 import PaymentPage from 'pages/PaymentPage';
 import Footer from 'components/Footer/Footer';
 import Auth from 'components/auth/auth';
@@ -68,7 +68,7 @@ function App() {
             <Route
               exact
               path={ROUTES.KITCHENS.DETAIL}
-              component={Auth(KitchenDetailContainer, null)}
+              component={Auth(KitchenDetailPage, null)}
             />
             <Route
               exact
