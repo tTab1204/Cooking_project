@@ -167,7 +167,7 @@ const CardTitle = styled.div`
 `;
 const CardText = styled.div`
   color: ${color.green_2};
-  width: 100%;
+  width: 280px;
   font-size: 0.8rem;
   text-align: right;
   align-items: center;
