@@ -1,3 +1,9 @@
+import React from 'react';
+import China from 'assets/china.png';
+import Korea from 'assets/south-korea.png';
+import japan from 'assets/japan.png';
+import Italy from 'assets/italy.png';
+
 export const userId = localStorage.getItem('userId');
 
 // become-a-host Page
@@ -63,4 +69,23 @@ export const kitchen = {
       description: 'Once your listing is live, qualified hosts and reach out.',
     },
   },
+};
+
+export const FOOD_NATION = {
+  Korean: (
+    <img src={Korea} style={{ maxWidth: '20px', marginLeft: '5px' }} alt="KR" />
+  ),
+  Japan: (
+    <img src={japan} style={{ maxWidth: '20px', marginLeft: '5px' }} alt="JP" />
+  ),
+  Chinese: (
+    <img src={China} style={{ maxWidth: '20px', marginLeft: '5px' }} alt="CN" />
+  ),
+  Western: (
+    <img
+      src={Italy}
+      style={{ maxWidth: '20px', marginLeft: '5px' }}
+      alt="ITALY"
+    />
+  ),
 };
