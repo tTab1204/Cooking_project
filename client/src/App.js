@@ -3,7 +3,7 @@ import LandingPage from 'pages/LandingPage/LandingPage.js';
 import LoginPage from 'pages/LoginPage/LoginPage.js';
 import RegisterPage from 'pages/RegisterPage/RegisterPage.js';
 import NavBar from 'components/NavBar/NavBar';
-import HostContainer from 'pages/HostPage/HostContainer';
+import HostPage from 'pages/HostPage';
 import BecomeAHostContainer from 'pages/BecomeAHostPage/BecomeAHostContainer';
 import EventDetailPage from 'pages/EventDetailPage';
 import ListYourKitchenContainer from 'pages/ListYourKitchenPage/ListYourKitchenContainer';
@@ -44,7 +44,7 @@ function App() {
             <Route
               exact
               path={ROUTES.HOST.MAIN}
-              component={Auth(HostContainer, true)}
+              component={Auth(HostPage, true)}
             />
             <Route
               exact

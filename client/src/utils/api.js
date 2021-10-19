@@ -7,3 +7,6 @@ export const SHOW_EVENT_DETAIL = eventId =>
 export const SHOW_KITCHENS = '/api/kitchens/show-kitchens';
 export const SHOW_KITCHEN_DETAIL = kitchenId =>
   `/api/kitchens/kitchens_by_id?id=${kitchenId}&type=single`;
+
+/* hosts */
+export const SHOW_HOSTS = '/api/hosts/showHosts';
