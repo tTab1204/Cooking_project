@@ -9,7 +9,11 @@ Cooking 사이트 이용을 위한 테스트용 아이디와 비밀번호입니�
 
 **❝현재 Presenter/Container 컴포넌트 디자인 패턴을 적용했던 디렉토리 구조를 제거하는 리팩토링을 진행 중입니다.** <br />바뀐 디렉토리 구조를 확인하려면 <strong>[여기]()</strong>를 클릭하세요.❞
 
-## Features
+### 💁🏻 Wiki 
+- 🌐 [Skill Spec]()
+- 📁 [디렉토리 구조]()
+
+## 주요 기능
 - 로그인/회원가입
 - JWT Authorization
 - 이벤트 검색 (이름, 날짜)
@@ -19,7 +23,7 @@ Cooking 사이트 이용을 위한 테스트용 아이디와 비밀번호입니�
 - Styled Components
 - 반응형 웹 페이지
 
-## Tools
+## 사용 기술
 - React
 - Redux
 - Node
@@ -27,18 +31,20 @@ Cooking 사이트 이용을 위한 테스트용 아이디와 비밀번호입니�
 - Mongoose
 - Heroku
 
-## Installation
+## 설치
 ```
 $ npm install
 ```
 
-## Running
+## 실행
 ```javascript
  "scripts": {
     "start": "node server/index.js",
     "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\"",
   }
 ```
+- 루트 디렉토리에서 `npm run dev`라고 실행하면 서버와 클라이언트를 동시에 실행할 수 있다.
+- 따로 켜고 싶다면, 루트 디렉토리에서 `npm start`라고 실행하면 서버가 실행되고, `client` 디렉토리에서 `npm start`라고 실행하면 `client` 폴더가 실행된다.
 
 
 ## Deployment
