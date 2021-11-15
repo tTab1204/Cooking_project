@@ -148,8 +148,6 @@ router.post('/remove-cart-item', auth, (req, res) => {
 router.post('/payment-success', auth, (req, res) => {
   let history = [];
 
-  console.log(req.body.cartDetail);
-
   let cartDetail = req.body.cartDetail;
 
   cartDetail.forEach(item => {

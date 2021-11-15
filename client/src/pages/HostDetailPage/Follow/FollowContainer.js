@@ -3,11 +3,11 @@ import { LoadingOutlined } from '@ant-design/icons';
 import Axios from 'axios';
 import FollowPresenter from './FollowPresenter';
 
-function FollowContainer({ detail, url }) {
+function FollowContainer({ detail, url, followers }) {
   const userFrom = localStorage.getItem('userId');
 
   const [loading, setloading] = useState(true);
-  const [FollowNumber, setFollowNumber] = useState(0);
+  const [FollowNumber, setFollowNumber] = useState(followers);
   const [Followed, setFollowed] = useState(false);
 
   const variables = {
@@ -18,7 +18,7 @@ function FollowContainer({ detail, url }) {
 
   const onClickFollow = () => {
     if (Followed) {
-      Axios.post('/api/follow/removeFollow', variables).then((response) => {
+      Axios.post('/api/follow/removeFollow', variables).then(response => {
         if (response.data.success) {
           setFollowNumber(FollowNumber - 1);
           setFollowed(!Followed);
@@ -27,7 +27,7 @@ function FollowContainer({ detail, url }) {
         }
       });
     } else {
-      Axios.post('/api/follow/addFollow', variables).then((response) => {
+      Axios.post('/api/follow/addFollow', variables).then(response => {
         if (response.data.success) {
           setFollowNumber(FollowNumber + 1);
           setFollowed(!Followed);
@@ -39,12 +39,11 @@ function FollowContainer({ detail, url }) {
   };
 
   useEffect(() => {
-    Axios.post('/api/follow/follow-number', variables).then((response) => {
+    Axios.post('/api/follow/follow-number', variables).then(response => {
       setFollowNumber(response.data.followNumber);
       setloading(false);
     });
-
-    Axios.post('/api/follow/followed', variables).then((response) => {
+    Axios.post('/api/follow/followed', variables).then(response => {
       if (response.data.success) {
         setFollowed(response.data.followed);
         setloading(false);
@@ -61,16 +60,14 @@ function FollowContainer({ detail, url }) {
         </div>
       )}
 
-      {!loading && (
-        <FollowPresenter
-          userFrom={userFrom}
-          detail={detail}
-          FollowNumber={FollowNumber}
-          Followed={Followed}
-          url={url}
-          onClickFollow={onClickFollow}
-        />
-      )}
+      <FollowPresenter
+        userFrom={userFrom}
+        detail={detail}
+        FollowNumber={FollowNumber}
+        Followed={Followed}
+        url={url}
+        onClickFollow={onClickFollow}
+      />
     </>
   );
 }

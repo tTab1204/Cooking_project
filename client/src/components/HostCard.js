@@ -10,20 +10,20 @@ import { HOST_CLIENT } from 'utils/config';
 const { Title } = Typography;
 
 const HostCard = ({ host, index }) => {
-  const { _id, name, food_nation, description } = host;
+  const { _id, name, food_nation, description, image } = host;
 
   return (
     <>
       <Link to={`${HOST_CLIENT}/${_id}`} style={removeLinkColor} key={index}>
         <HostCarouselCard>
-          <HostCardIcon src={getImage(host.image[0])} />
+          <HostCardIcon src={getImage(image[0])} />
           <Title level={3}>
             {name}
             {FOOD_NATION[food_nation]}
           </Title>
 
           <Divider style={dividerStyle} />
-          <FollowContainer detail={host} />
+          <FollowContainer detail={host} followers={10} />
 
           <Row style={rowStyle}>
             <HostCardP>{description}</HostCardP>

@@ -10,6 +10,7 @@ import {
 } from '@ant-design/icons';
 import { color } from 'styles/Theme';
 import { getImage } from 'utils/getImage';
+import { production } from 'utils/constants';
 
 const EventCard = ({ datas, url }) => {
   const { EVENTS, KITCHENS } = ROUTES;
@@ -18,6 +19,8 @@ const EventCard = ({ datas, url }) => {
   const isKitchen = url === KITCHENS.MAIN;
 
   const path = isEvent ? EVENTS.MAIN : KITCHENS.MAIN;
+  
+  console.log('production: ', production);
 
   return (
     <WholeCardContainer>

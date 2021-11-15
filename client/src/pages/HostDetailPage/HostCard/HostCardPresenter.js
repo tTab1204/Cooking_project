@@ -5,6 +5,7 @@ import China from 'assets/china.png';
 import Korea from 'assets/south-korea.png';
 import japan from 'assets/japan.png';
 import FollowContainer from '../Follow/FollowContainer';
+import { getImage } from 'utils/getImage';
 
 const { Title } = Typography;
 
@@ -34,7 +35,7 @@ function HostCardPresenter({ detail, url, userId }) {
                     width: '150px',
                     height: '150px',
                   }}
-                  src={`http://localhost:5000/${image[0]}`}
+                  src={getImage(image[0])}
                   alt="host-main-image"
                 />
               </CardAvatarStyle>
