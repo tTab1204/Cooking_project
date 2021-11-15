@@ -1,5 +1,6 @@
-import { LOCAL_SERVER } from './config';
+import { LOCAL_SERVER, PROD_SERVER } from './config';
+import { production } from './constants';
 
 export const getImage = imgName => {
-  return `${LOCAL_SERVER}${imgName}`;
+  return production ? `${PROD_SERVER}${imgName}` : `${LOCAL_SERVER}${imgName}`;
 };

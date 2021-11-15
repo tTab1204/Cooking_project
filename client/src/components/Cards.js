@@ -19,8 +19,6 @@ const EventCard = ({ datas, url }) => {
   const isKitchen = url === KITCHENS.MAIN;
 
   const path = isEvent ? EVENTS.MAIN : KITCHENS.MAIN;
-  
-  console.log('production: ', production);
 
   return (
     <WholeCardContainer>
@@ -42,6 +40,7 @@ const EventCard = ({ datas, url }) => {
                   isEventExpired={isExpiredEvent}
                   src={getImage(data.images[0])}
                 />
+
                 <CardBody>
                   <CardTitleWrapper>
                     <CardTitle>{data.name}</CardTitle>
