@@ -10,7 +10,8 @@
 **❝현재 Presenter/Container 컴포넌트 디자인 패턴을 적용했던 디렉토리 구조를 제거하는 리팩토링을 진행 중입니다.** <br />바뀐 디렉토리 구조를 확인하려면 <strong>[여기]()</strong>를 클릭하세요.❞
 
 ### 💁🏻 Wiki 
-- 🌐 [Skill Spec]()
+- 🌐 [Skill Spec [FE]]()
+- 🛠 [Skill Spec [BE]]()
 - 📁 [디렉토리 구조]()
 
 ## 🔨 Web Architecture
@@ -51,4 +52,4 @@ $ npm install
 
 
 ## Deployment
-Heroku
+Heroku, awsS3
