@@ -48,10 +48,8 @@ const upload = multer({
 });
 
 router.post('/upload-image', auth, (req, res) => {
-  // 노드서버에 파일을 저장하기 위한 dependency를 설치한다.(multer)
-  // npm install multer --save
-
   //upload 변수를 불러온다.
+
   upload(req, res, err => {
     if (err) {
       return res.json({ success: false, err });
@@ -59,7 +57,6 @@ router.post('/upload-image', auth, (req, res) => {
 
     return res.json({
       success: true,
-      // 클라이언트(프론트)에 image, fileName 정보를 보내준다.
       image: res.req.file.location,
       fileName: res.req.file.filename,
     });

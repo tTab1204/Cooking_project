@@ -1,6 +1,6 @@
 // SERVER
 export const LOCAL_SERVER = 'http://localhost:5000/';
-export const PROD_SERVER = '';
+export const PROD_SERVER = 'https://cooking-with.herokuapp.com/';
 export const USER_SERVER = '/api/users';
 export const EVENTS_SERVER = '/api/events/';
 export const HOST_SERVER = '/api/hosts';
