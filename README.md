@@ -16,6 +16,10 @@
 - 🛠 [Skill Spec [BE]]()
 - 📁 [디렉토리 구조]()
 
+
+## 🤹‍♂ Tech Stack
+저는 프로젝트를 진행하며 다음과 같은 기술 스택을 사용했습니다. 😁
+
 ## 🔨 Web Architecture
 <img src="https://user-images.githubusercontent.com/66458836/141753350-77e4e0df-d07e-44ca-8565-98996540dd03.jpg" width="70%" height="50%" />
 
