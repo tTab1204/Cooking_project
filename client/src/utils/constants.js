@@ -90,4 +90,4 @@ export const FOOD_NATION = {
   ),
 };
 
-export const production = process.env.MONGO_URI ==='production'
+export const production = process.env.NODE_ENV ==='production'
