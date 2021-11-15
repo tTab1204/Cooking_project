@@ -13,6 +13,9 @@ Cooking 사이트 이용을 위한 테스트용 아이디와 비밀번호입니�
 - 🌐 [Skill Spec]()
 - 📁 [디렉토리 구조]()
 
+## 🔨 Web Architecture
+<img src="https://user-images.githubusercontent.com/66458836/141753350-77e4e0df-d07e-44ca-8565-98996540dd03.jpg" width="70%" height="50%" />
+
 ## 주요 기능
 - 로그인/회원가입
 - JWT Authorization
