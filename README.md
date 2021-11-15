@@ -1,8 +1,13 @@
 # :curry: Cooking (MERN stack)
 ### 요리 공유 플랫폼!
-- 사용자들이 호스트의 요리 이벤트를 예매하고, 요리사들이 호스트로 등록되는 MERN stack 웹사이트 (ES6)
-- test ID: test@gmail.com
-- test PW: 1234567
+> **Cooking**은 사용자들이 호스트의 요리 이벤트를 예매하고, 요리사들이 호스트로 등록되는 MERN stack 웹사이트입니다. (ES6)
+
+#### 테스트 ID/PW
+Cooking 사이트 이용을 위한 테스트용 아이디와 비밀번호입니다.
+> - ID: test@gmail.com 
+> - PW: 1234567
+
+**❝현재 Presenter/Container 컴포넌트 구조의 디렉토리 구조를 제거하는 리팩토링을 진행 중입니다.** 바뀐 디렉토리 구조를 확인하려면 **[여기]()**를 클릭하세요.❞
 
 ## Features
 - 로그인/회원가입
