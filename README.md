@@ -43,13 +43,9 @@ $ npm install
     "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\"",
   }
 ```
-- 루트 디렉토리에서 `npm run dev`라고 실행하면 서버와 클라이언트를 동시에 실행할 수 있다.
-- 따로 켜고 싶다면, 루트 디렉토리에서 `npm start`라고 실행하면 서버가 실행되고, `client` 디렉토리에서 `npm start`라고 실행하면 `client` 폴더가 실행된다.
+- 루트 디렉토리에서 `npm run dev`라고 실행하면 서버와 클라이언트를 동시에 실행할 수 있습니다.
+- 서버와 클라이언트를 따로 실행하고 싶다면, 루트 디렉토리에서 `npm start`라고 실행하면 서버가 실행되고, `client` 디렉토리에서 `npm start`라고 실행하면 `client` 폴더가 실행됩니다.
 
 
 ## Deployment
 Heroku
-
-
-## About
-- Project Link: https://cooking-with.herokuapp.com/
