@@ -7,7 +7,7 @@ Cooking 사이트 이용을 위한 테스트용 아이디와 비밀번호입니�
 - ID: test@gmail.com 
 - PW: 1234567
 
-**❝현재 Presenter/Container 컴포넌트 구조의 디렉토리 구조를 제거하는 리팩토링을 진행 중입니다.** <br />바뀐 디렉토리 구조를 확인하려면 <strong>[👉여기]()</strong>를 클릭하세요.❞
+**❝현재 Presenter/Container 컴포넌트 구조의 디렉토리 구조를 제거하는 리팩토링을 진행 중입니다.** <br />바뀐 디렉토리 구조를 확인하려면 <strong>[여기]()</strong>를 클릭하세요.❞
 
 ## Features
 - 로그인/회원가입
