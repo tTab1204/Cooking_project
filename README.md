@@ -41,5 +41,4 @@ Heroku
 
 
 ## About
-- Project Detail: https://www.notion.so/Cooking-d6f93e1cac5d47e3b6709a3028782245
 - Project Link: https://cooking-with.herokuapp.com/
