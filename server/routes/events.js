@@ -12,7 +12,7 @@ AWS.config.update({
   region: 'ap-northeast-2',
 });
 
-// ---------------- multer----------------------//
+// ---------------- local code----------------------//
 // let storage = multer.diskStorage({
 //   // destination: 어디에 파일을 저장할 지
 //   destination: (req, file, cb) => {
@@ -56,8 +56,6 @@ router.post('/upload-image', auth, (req, res) => {
     if (err) {
       return res.json({ success: false, err });
     }
-
-    console.log('업로드한 이미지 :', res.req.file.path);
 
     return res.json({
       success: true,

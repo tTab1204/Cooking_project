@@ -1,37 +1,57 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const { auth } = require("../middleware/auth");
-const { Host } = require("../models/Host");
-const multer = require("multer");
+const { auth } = require('../middleware/auth');
+const { Host } = require('../models/Host');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+const AWS = require('aws-sdk');
 
-// ----------------------- multer --------------------------//
-let storage = multer.diskStorage({
-  // destination: 어디에 파일을 저장할 지
-  destination: (req, file, cb) => {
-    // destination: uploads폴더가 된다. uploads 폴더에 사진 저장.
-    cb(null, "uploads/");
-  },
-  // 파일 이름
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}_${file.originalname}`);
-  },
-  // 파일 형식은 png 또는 jpg 등, 즉 사진만 가능
-  fileFilter: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    if (ext !== ".png" || ext !== ".jpg") {
-      return cb(res.status(400).end("only png, jpg is allowed"), false);
-    }
-    cb(null, true);
-  },
+AWS.config.update({
+  accessKeyId: process.env.S3_ACCESS_KEY_ID,
+  secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
+  region: 'ap-northeast-2',
 });
 
-const upload = multer({ storage: storage }).single("file");
+// ---------------- local code----------------------//
+// let storage = multer.diskStorage({
+//   // destination: 어디에 파일을 저장할 지
+//   destination: (req, file, cb) => {
+//     // destination: uploads폴더가 된다. uploads 폴더에 사진 저장.
+//     cb(null, 'uploads/');
+//   },
+//   // 파일 이름
+//   filename: (req, file, cb) => {
+//     cb(null, `${Date.now()}_${file.originalname}`);
+//   },
+//   // 파일 형식은 png 또는 jpg 등, 즉 사진만 가능
+//   fileFilter: (req, file, cb) => {
+//     const ext = path.extname(file.originalname);
+//     if (ext !== '.png' || ext !== '.jpg') {
+//       return cb(res.status(400).end('only png, jpg is allowed'), false);
+//     }
+//     cb(null, true);
+//   },
+// });
 
-router.post("/upload-image", auth, (req, res) => {
+// const upload = multer({ storage: storage }).single('file');
+
+const upload = multer({
+  storage: multerS3({
+    s3: new AWS.S3(),
+    bucket: 'cooking-aws-s3',
+    key(req, file, cb) {
+      cb(null, `original/${Date.now()}_${path.basename(file.originalname)}`);
+      // original이란 폴더를 만들고 그 곳에 넣는 것
+    },
+  }),
+  limits: { fileSize: 20 * 1024 * 1024 },
+});
+
+router.post('/upload-image', auth, (req, res) => {
   // 노드서버에 파일을 저장하기 위한 dependency를 설치한다.(multer)
 
   //upload 변수를 불러온다.
-  upload(req, res, (err) => {
+  upload(req, res, err => {
     if (err) {
       return res.json({ success: false, err });
     }
@@ -39,14 +59,14 @@ router.post("/upload-image", auth, (req, res) => {
     return res.json({
       success: true,
       // 클라이언트(프론트)에 image, fileName 정보를 보내준다.
-      image: res.req.file.path,
+      image: res.req.file.location,
       fileName: res.req.file.filename,
     });
   });
 });
 
 // ------------------- Become a Host ---------------------- //
-router.post("/become-a-host", (req, res) => {
+router.post('/become-a-host', (req, res) => {
   const host = new Host(req.body);
 
   host.save((err, doc) => {
@@ -56,9 +76,9 @@ router.post("/become-a-host", (req, res) => {
 });
 
 // ------------------- Show Hosts ---------------------- //
-router.get("/showHosts", (req, res) => {
+router.get('/showHosts', (req, res) => {
   Host.find()
-    .populate("writer")
+    .populate('writer')
     .exec((err, hosts) => {
       if (err) return res.status(400).send(err);
       res.status(200).json({ success: true, hosts });
@@ -66,12 +86,12 @@ router.get("/showHosts", (req, res) => {
 });
 
 // --------------- get Host's Detail ----------------//
-router.get("/hosts_by_id", (req, res) => {
+router.get('/hosts_by_id', (req, res) => {
   let type = req.query.type;
   let hostId = req.query.id;
 
   Host.find({ _id: hostId })
-    .populate("writer")
+    .populate('writer')
     .exec((err, host) => {
       if (err) return res.status(400).send(err);
       res.status(200).json({ success: true, host });
