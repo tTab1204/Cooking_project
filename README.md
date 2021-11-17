@@ -46,18 +46,6 @@
 - MyTicketPage(=cart)에서 상품 추가/제거
 - 상품을 추가, 삭제함에 따라 DB내의 User 스키마의 cart 필드 변화
 
-- Ant Des
-- Styled Components
-- 반응형 웹 페이지
-
-## 사용 기술
-- React
-- Redux
-- Node
-- Express
-- Mongoose
-- Heroku
-
 ## 설치
 ```
 $ npm install
