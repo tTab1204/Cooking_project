@@ -15,7 +15,7 @@
 
 
 ### 💁🏻 Wiki 
-- 🌐 [Skill Spec [FE]]()
+- 🌐 [Skill Spec [FE]](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%8C%90-Skill-Spec-%5BFrontEnd%5D)
 - 🛠 [Skill Spec [BE]]()
 - 📁 [디렉토리 구조]()
 
