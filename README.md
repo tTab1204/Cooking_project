@@ -27,7 +27,7 @@
 ## 🔨 Web Architecture
 <img src="https://user-images.githubusercontent.com/66458836/141753350-77e4e0df-d07e-44ca-8565-98996540dd03.jpg" width="70%" height="50%" />
 
-## 주요 기능
+## 👨🏻‍🏫 주요 기능
 #### 🗝 로그인/회원가입/관리 권한
  - JWT Authorization
  - 토큰 발급/삭제, 토큰 만료기간을 이용한 로그인/로그아웃 구현
