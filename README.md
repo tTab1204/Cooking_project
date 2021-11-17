@@ -17,7 +17,7 @@
 ### 💁🏻 Wiki 
 - 🌐 [Skill Spec [FE]](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%8C%90-Skill-Spec-%5BFrontEnd%5D)
 - 🛠 [Skill Spec [BE]](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%9B%A0-Skill-Spec-%5BBackEnd%5D)
-- 📁 [디렉토리 구조]()
+- 📁 [디렉토리 구조](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%93%81-Directory-Structure)
 
 
 ## 🤹‍♂ Tech Stack
