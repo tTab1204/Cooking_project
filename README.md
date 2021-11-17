@@ -46,18 +46,17 @@
 - MyTicketPage(=cart)에서 상품 추가/제거
 - 상품을 추가, 삭제함에 따라 DB내의 User 스키마의 cart 필드 변화
 
-## 설치
+## 설치 및 실행
 ```
 $ npm install
 ```
-
-## 실행
 ```javascript
  "scripts": {
     "start": "node server/index.js",
     "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\"",
   }
 ```
+- 설치는 `npm install` 명령어를 입력합니다.
 - 루트 디렉토리에서 `npm run dev`라고 실행하면 서버와 클라이언트를 동시에 실행할 수 있습니다.
 - 서버와 클라이언트를 따로 실행하고 싶다면, 루트 디렉토리에서 `npm start`라고 실행하면 서버가 실행되고, `client` 디렉토리에서 `npm start`라고 실행하면 `client` 폴더가 실행됩니다.
 
