@@ -46,7 +46,7 @@
 ## 💪 어려웠던 기술 & 기능 / 해결과정
 > Cooking! 프로젝트를 진행하며 겪었던 기술적인 어려움, 어려움을 해결해 나간 과정에서 적용했던 기술들을 <br />소개드립니다!
 
-### [🔒 인증 관리 전략](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%94%92-HOC-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8(Auth)%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EA%B6%8C%ED%95%9C-%EC%9D%B8%EC%A6%9D)
+### [🔒 인증 관리 전략](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%94%92-%EC%9D%B8%EC%A6%9D-%EA%B4%80%EB%A6%AC-%EC%A0%84%EB%9E%B5)
 ### [🔒 JWT를 이용한 로그인 기능](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%94%92-JWT%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B8%B0%EB%8A%A5)
 ### [🔒 CORS 이슈]()
 ### [🧾 댓글/답글 기능]()
