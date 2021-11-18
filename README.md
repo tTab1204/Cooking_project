@@ -43,7 +43,7 @@
 ## 🔨 Web Architecture
 <img src="https://user-images.githubusercontent.com/66458836/141753350-77e4e0df-d07e-44ca-8565-98996540dd03.jpg" width="70%" height="50%" />
 
-## 💪 어려웠던 기술 & 기능 / 해결과정
+## 💪 어려웠던 기술 & 기능
 > Cooking! 프로젝트를 진행하며 겪었던 기술적인 어려움, 어려움을 해결해 나간 과정에서 적용했던 기술들을 <br />소개드립니다!
 
 ### [🔒 인증 관리 방법(서버)](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%94%92-%EC%9D%B8%EC%A6%9D-%EA%B4%80%EB%A6%AC-%EB%B0%A9%EB%B2%95-(%EC%84%9C%EB%B2%84))
