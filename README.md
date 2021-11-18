@@ -2,7 +2,7 @@
 ### 요리 공유 플랫폼!
 > **Cooking**은 사용자들이 호스트의 요리 이벤트를 예매하고, 요리사들이 호스트로 등록되는 MERN stack (es6) 웹사이트입니다.
 
-**❝현재 Presenter/Container 컴포넌트 디자인 패턴을 적용했던 디렉토리 구조를 제거하는 리팩토링을 진행 중입니다.** <br />바뀐 디렉토리 구조를 확인하려면 <strong>[여기](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%93%81-Directory-Structure)</strong>를 클릭하세요.
+**❝현재 Presenter/Container 컴포넌트 디자인 패턴을 적용했던 디렉토리 구조를 제거하는 리팩토링을 진행 중입니다.❞** <br />바뀐 디렉토리 구조를 확인하려면 <strong>[여기](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%93%81-Directory-Structure)</strong>를 클릭하세요.
 
 #### ✅ 테스트 ID/PW
 | ID | PW |
