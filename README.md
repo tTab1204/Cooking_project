@@ -48,7 +48,7 @@
 
 ### [🔒 인증 관리 방법(서버)](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%94%92-%EC%9D%B8%EC%A6%9D-%EA%B4%80%EB%A6%AC-%EB%B0%A9%EB%B2%95-(%EC%84%9C%EB%B2%84))
 ### [🔒 JWT를 이용한 로그인 기능](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%94%92-JWT%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%EA%B8%B0%EB%8A%A5)
-### [🔒 CORS 이슈]()
+### [🚫 CORS 이슈]()
 
 <hr />
 
