@@ -44,7 +44,7 @@
 <img src="https://user-images.githubusercontent.com/66458836/141753350-77e4e0df-d07e-44ca-8565-98996540dd03.jpg" width="70%" height="50%" />
 
 ## 💪 어려웠던 기술 & 기능 / 해결과정
-> Cooking! 프로젝트를 진행하며 겪었던 기술적인 어려움, 어려움을 해결해 나간 과정에서 적용했던 기술들을 소개드립니다!
+> Cooking! 프로젝트를 진행하며 겪었던 기술적인 어려움, 어려움을 해결해 나간 과정에서 적용했던 기술들을 <br />소개드립니다!
 
 ### [🔒 HOC 컴포넌트(Auth)를 이용한 권한 인증](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%94%92-HOC-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8(Auth)%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EA%B6%8C%ED%95%9C-%EC%9D%B8%EC%A6%9D)
 ### [🔒 JWT를 이용한 로그인 기능]()
