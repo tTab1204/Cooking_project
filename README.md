@@ -73,6 +73,6 @@ $ npm install
 
 
 ## Deployment
-Heroku, awsS3
+Heroku, AWS-S3
 
 **[⬆ 맨 위로 가기](#)**
