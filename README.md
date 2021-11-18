@@ -19,7 +19,7 @@
 
 ## 👨🏻‍🏫 주요 기능
 #### 🔒 로그인/회원가입/관리 권한
- - **JWT Authorization**
+ - **JWT Authorization** - [사용 이유](https://github.com/tTab1204/Cooking_project/wiki/JWT(JSON-Web-Token)%EB%8A%94-%EC%99%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EA%B1%B8%EA%B9%8C%3F)
  - 토큰 발급/삭제, 토큰 만료기간을 이용한 로그인/로그아웃 구현
  - **auth 컴포넌트를 통한(hoc 컴포넌트)** 관리자/일반 유저가 이용할 수 있는 페이지 구분
  
