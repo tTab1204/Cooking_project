@@ -51,6 +51,10 @@
 ### [🔒 CORS 이슈]()
 ### [🧾 댓글/답글 기능]()
 
+### ⚙ 기술 관련 내용 정리
+- [JWT를 왜 사용하는 걸까?](https://github.com/tTab1204/Cooking_project/wiki/JWT(JSON-Web-Token)%EB%8A%94-%EC%99%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EA%B1%B8%EA%B9%8C%3F)
+
+
 
 ## 설치 및 실행
 ```
