@@ -36,14 +36,21 @@
 - MyTicketPage(cart)에서 상품 추가/제거
 - 상품을 추가, 삭제함에 따라 DB내의 User 스키마의 cart 필드 변화
 
-
-
 ## 🤹‍♂ Tech Stack
 - 🌐 [Skill Spec [FE]](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%8C%90-Skill-Spec-%5BFrontEnd%5D)
 - 🛠 [Skill Spec [BE]](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%9B%A0-Skill-Spec-%5BBackEnd%5D)
 
 ## 🔨 Web Architecture
 <img src="https://user-images.githubusercontent.com/66458836/141753350-77e4e0df-d07e-44ca-8565-98996540dd03.jpg" width="70%" height="50%" />
+
+## 💪 어려웠던 기술 & 기능 / 해결과정
+> Cooking! 프로젝트를 진행하며 겪었던 기술적인 어려움, 어려움을 해결해 나간 과정에서 적용했던 기술들을 소개드립니다!
+
+### [🔒 HOC 컴포넌트(Auth)를 이용한 권한 인증]()
+### [🔒 JWT를 이용한 로그인 기능]()
+### [🔒 CORS 이슈]()
+### [🧾 댓글/답글 기능]()
+
 
 ## 설치 및 실행
 ```
