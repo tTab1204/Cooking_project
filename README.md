@@ -17,13 +17,6 @@
 - [📜 REST API Reference](https://github.com/tTab1204/Cooking_project/wiki/REST-API-Reference)
 - 📁 [디렉토리 구조](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%93%81-Directory-Structure)
 
-
-## 🤹‍♂ Tech Stack
-저는 프로젝트를 진행하며 다음과 같은 기술 스택을 사용했습니다.
-
-## 🔨 Web Architecture
-<img src="https://user-images.githubusercontent.com/66458836/141753350-77e4e0df-d07e-44ca-8565-98996540dd03.jpg" width="70%" height="50%" />
-
 ## 👨🏻‍🏫 주요 기능
 #### 🗝 로그인/회원가입/관리 권한
  - **JWT Authorization**
@@ -42,6 +35,14 @@
 #### 🛒 상품 추가/삭제 
 - MyTicketPage(cart)에서 상품 추가/제거
 - 상품을 추가, 삭제함에 따라 DB내의 User 스키마의 cart 필드 변화
+
+
+
+## 🤹‍♂ Tech Stack
+저는 프로젝트를 진행하며 다음과 같은 기술 스택을 사용했습니다.
+
+## 🔨 Web Architecture
+<img src="https://user-images.githubusercontent.com/66458836/141753350-77e4e0df-d07e-44ca-8565-98996540dd03.jpg" width="70%" height="50%" />
 
 ## 설치 및 실행
 ```
