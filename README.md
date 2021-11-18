@@ -39,7 +39,8 @@
 
 
 ## 🤹‍♂ Tech Stack
-저는 프로젝트를 진행하며 다음과 같은 기술 스택을 사용했습니다.
+- 🌐 [Skill Spec [FE]](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%8C%90-Skill-Spec-%5BFrontEnd%5D)
+- 🛠 [Skill Spec [BE]](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%9B%A0-Skill-Spec-%5BBackEnd%5D)
 
 ## 🔨 Web Architecture
 <img src="https://user-images.githubusercontent.com/66458836/141753350-77e4e0df-d07e-44ca-8565-98996540dd03.jpg" width="70%" height="50%" />
