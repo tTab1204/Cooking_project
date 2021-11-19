@@ -1,4 +1,5 @@
-# 👨🏻‍🍳 Cooking (MERN stack) 
+# :curry: Cooking (MERN stack) 
+
 ### 요리 공유 플랫폼!
 > **Cooking**은 사용자들이 호스트의 요리 이벤트를 예매하고, 요리사들이 호스트로 등록되는 MERN stack (es6) 웹사이트입니다.
 
@@ -11,13 +12,13 @@
 
 
 
-### 💁🏻 Wiki 
+### 📝 Wiki 
 - 🌐 [Skill Spec [FE]](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%8C%90-Skill-Spec-%5BFrontEnd%5D)
 - 🛠 [Skill Spec [BE]](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%9B%A0-Skill-Spec-%5BBackEnd%5D)
 - [📜 REST API Reference](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%93%9C-REST-API-Reference)
 - 📁 [디렉토리 구조](https://github.com/tTab1204/Cooking_project/wiki/%F0%9F%93%81-Directory-Structure)
 
-## 👨🏻‍🏫 주요 기능
+## 🧾 주요 기능
 #### 🔒 로그인/회원가입/관리 권한
  - **JWT Authorization** - [사용 이유](https://github.com/tTab1204/Cooking_project/wiki/JWT(JSON-Web-Token)%EB%8A%94-%EC%99%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EA%B1%B8%EA%B9%8C%3F)
  - 토큰 발급/삭제, 토큰 만료기간을 이용한 로그인/로그아웃 구현
