@@ -3,6 +3,9 @@ const router = express.Router();
 const { User } = require('../models/User');
 const { auth } = require('../middleware/auth');
 const { Event } = require('../models/Event');
+const moment = require('moment');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 //=================================
 //             User
@@ -44,32 +47,25 @@ router.post('/login', (req, res) => {
       });
 
     user.comparePassword(req.body.password, (err, isMatch) => {
-      if (!isMatch)
+      if (!isMatch) {
         return res.json({ loginSuccess: false, message: 'Wrong password' });
+      }
 
-      user.generateToken((err, user) => {
-        if (err) return res.status(400).send(err);
-        res.cookie('w_authExp', user.tokenExp);
-        res.cookie('w_auth', user.token).status(200).json({
-          loginSuccess: true,
-          userId: user._id,
-        });
-      });
+      const userId = user._id;
+      const oneHour = moment().add(1, 'hour').valueOf();
+
+      const token = jwt.sign(
+        { exp: oneHour, userId: userId },
+        process.env.JWT_SECRET,
+      );
+
+      res.cookie('w_auth', token).status(200).json({ loginSuccess: true });
     });
   });
 });
 
 router.get('/logout', auth, (req, res) => {
-  User.findOneAndUpdate(
-    { _id: req.user._id },
-    { token: '', tokenExp: '' },
-    (err, doc) => {
-      if (err) return res.json({ success: false, err });
-      return res.status(200).send({
-        success: true,
-      });
-    },
-  );
+  return res.cookie('w_auth', '').status(200).json({ logoutSuccess: true });
 });
 
 router.post('/add-to-cart', auth, (req, res) => {
@@ -93,7 +89,6 @@ router.post('/add-to-cart', auth, (req, res) => {
         (err, userInfo) => {
           if (err) return res.status(400).json({ success: false, err });
           res.status(200).json({ success: true, cart: userInfo.cart });
-          // console.log("중복일 때: ", userInfo.cart.quantity);
         },
       );
 
@@ -114,7 +109,6 @@ router.post('/add-to-cart', auth, (req, res) => {
         (err, userInfo) => {
           if (err) return res.status(400).json({ success: false, err });
           res.status(200).json({ success: true, cart: userInfo.cart });
-          // console.log("중복이 아닐 때: ", userInfo.cart.quantity);
         },
       );
     }
@@ -125,7 +119,6 @@ router.post('/remove-cart-item', auth, (req, res) => {
   let eventId = req.body.eventId;
 
   User.findOneAndUpdate(
-    // auth에서 갖고온 userId
     { _id: req.user._id },
     { $pull: { cart: { id: eventId } } },
     { new: true },
