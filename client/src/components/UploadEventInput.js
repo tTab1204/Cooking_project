@@ -12,7 +12,7 @@ const { TextArea } = Input;
 const { Title } = Typography;
 
 const UploadEventInput = () => {
-  const userId = useSelector(state => state.userData.userId);
+  const userId = useSelector(state => state.user.userData?.userId);
 
   const [name, setName] = useState('');
   const [time, setTime] = useState('');

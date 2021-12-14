@@ -31,8 +31,8 @@ function HostPage() {
           </Title>
           <HostCardContainer>
             <HostCardWrapper>
-              {hosts.map((host, index) => (
-                <HostCard host={host} index={index} />
+              {hosts.map(host => (
+                <HostCard host={host} key={host._id} />
               ))}
             </HostCardWrapper>
           </HostCardContainer>

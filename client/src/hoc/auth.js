@@ -9,6 +9,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
     const dispatch = useDispatch();
 
     useEffect(() => {
+      let mounted = true;
       dispatch(auth()).then(response => {
         if (!response.payload.isAuth) {
           if (option) props.history.push(ROUTES.LOGIN);
@@ -19,6 +20,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
           }
         }
       });
+      return () => (mounted = false);
     }, []);
 
     return <SpecificComponent {...props} user={user} />;

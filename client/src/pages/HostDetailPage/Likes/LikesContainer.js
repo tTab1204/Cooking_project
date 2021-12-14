@@ -28,6 +28,7 @@ const LikesContainer = ({ detail, reviewId }) => {
   }
 
   useEffect(() => {
+    let mounted = true;
     Axios.post('/api/like/number-of-likes', variables).then(response => {
       if (response.data.success) {
         setLikes(response.data.likes.length);
@@ -56,6 +57,8 @@ const LikesContainer = ({ detail, reviewId }) => {
       } else alert('정보를 가져오는 데 실패했습니다.');
     });
     setLoading(false);
+
+    return () => (mounted = false);
   }, []);
 
   const onLike = () => {

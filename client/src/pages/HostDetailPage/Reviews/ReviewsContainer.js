@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import Axios from 'axios';
 import ReviewsPresenter from './ReviewsPresenter';
 import { REVIEW_SERVER } from 'utils/config';
+import { useSelector } from 'react-redux';
+
 function ReviewsContainer({
   hostId,
   reviewList,
   refreshFunction,
   showReviews,
 }) {
+  const userId = useSelector(state => state.user.userData?.userId);
+  console.log('userId: ', userId);
+
   const [ReviewValue, setReviewValue] = useState('');
 
   const handleClick = e => {
@@ -18,7 +23,7 @@ function ReviewsContainer({
     e.preventDefault();
 
     let variables = {
-      writer: localStorage.getItem('userId'),
+      writer: userId,
       hostId: hostId,
       content: ReviewValue,
     };
@@ -34,23 +39,6 @@ function ReviewsContainer({
       console.error(e);
     }
   };
-
-  // const handleScroll = () => {
-  //   const scrollHeight = document.documentElement.scrollHeight;
-
-  //   const scrollTop = document.documentElement.scrollTop;
-
-  //   const clientHeight = document.documentElement.clientHeight;
-
-  //   if (!Fetching && scrollTop + clientHeight >= scrollHeight) fetchMoreData();
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // });
 
   return (
     <>

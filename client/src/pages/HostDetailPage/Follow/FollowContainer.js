@@ -40,6 +40,8 @@ function FollowContainer({ detail, url, followers }) {
   };
 
   useEffect(() => {
+    let mounted = true;
+
     Axios.post('/api/follow/follow-number', variables).then(response => {
       setFollowNumber(response.data.followNumber);
       setloading(false);
@@ -51,6 +53,7 @@ function FollowContainer({ detail, url, followers }) {
       } else alert('정보를 가져오는 데 실패했습니다.');
     });
     setloading(false);
+    return () => (mounted = false);
   }, []);
 
   return (
