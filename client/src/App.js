@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+import React, { lazy, Suspense } from 'react';
 import LandingPage from 'pages/LandingPage/LandingPage.js';
 import LoginPage from 'pages/LoginPage/LoginPage.js';
 import RegisterPage from 'pages/RegisterPage/RegisterPage.js';
@@ -17,10 +17,10 @@ import HostDetailContainer from 'pages/HostDetailPage/HostDetailContainer';
 import KitchenDetailPage from 'pages/KitchenDetailPage';
 import PaymentPage from 'pages/PaymentPage';
 import Footer from 'components/Footer/Footer';
-import Auth from 'components/auth/auth';
+import Auth from 'hoc/auth';
 import { Route, Switch } from 'react-router-dom';
 import { Button } from 'antd';
-import { ROUTES } from 'utils/routes';
+import { ROUTES } from 'routes/routes';
 import { Container, Wrapper } from 'styles/GlobayStyle';
 
 function App() {
@@ -87,17 +87,17 @@ function App() {
             <Route
               exact
               path={ROUTES.UPLOAD_KITCHEN}
-              component={Auth(UploadKitchenPage, true)}
+              component={Auth(UploadKitchenPage, true, true)}
             />
             <Route
               exact
               path={ROUTES.UPLOAD_HOST}
-              component={Auth(UploadHostPage, true)}
+              component={Auth(UploadHostPage, true, true)}
             />
             <Route
               exact
               path={ROUTES.UPLOAD_EVENT}
-              component={Auth(UploadEventPresenter, true)}
+              component={Auth(UploadEventPresenter, true, true)}
             />
             <Route
               exact

@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState } from 'react';
 import styled from 'styled-components';
-import { ROUTES } from 'utils/routes';
+import { ROUTES } from 'routes/routes';
 import { Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { showCartItems } from '_actions/user_actions';

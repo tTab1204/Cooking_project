@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { ROUTES } from 'utils/routes';
+import { ROUTES } from 'routes/routes';
 import { getRemainDay, isExpired } from 'utils/getRemainDay';
 import {
   DollarCircleFilled,

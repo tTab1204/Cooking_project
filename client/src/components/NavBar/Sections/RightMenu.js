@@ -6,7 +6,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { UserOutlined } from '@ant-design/icons';
 import { getTotal } from 'utils/getTotal';
-import { ROUTES } from 'utils/routes';
+import { ROUTES } from 'routes/routes';
 import { color } from 'styles/Theme';
 
 const SubMenu = Menu.SubMenu;

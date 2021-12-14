@@ -4,7 +4,7 @@ import { getImage } from 'utils/getImage';
 import { Link } from 'react-router-dom';
 import FollowContainer from 'pages/HostDetailPage/Follow/FollowContainer';
 import { Typography, Divider, Row } from 'antd';
-import { FOOD_NATION } from 'utils/constants';
+import { FOOD_NATION } from 'constants/constants';
 import { HOST_CLIENT } from 'utils/config';
 
 const { Title } = Typography;

@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import LikesPresenter from './LikesPresenter';
 import Axios from 'axios';
 import { LoadingOutlined } from '@ant-design/icons';
-import { userId } from 'utils/constants';
+import { useSelector } from 'react-redux';
 
 const LikesContainer = ({ detail, reviewId }) => {
+  const userId = useSelector(state => state.userData?.userId);
+
   const [Likes, setLikes] = useState(0);
   const [Liked, setLiked] = useState(false);
   const [Dislikes, setDislikes] = useState(0);

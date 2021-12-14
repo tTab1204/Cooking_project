@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { successMessage } from 'utils/successMessage';
 import { getTotalPrice } from 'utils/getTotal';
 import { onSuccessPay } from '_actions/user_actions';
-import { ROUTES } from 'utils/routes';
+import { ROUTES } from 'routes/routes';
 import Message from 'components/Message';
 import PaymentMethod from 'components/PaymentMethod';
 import PaymentButton from 'components/PaymentButton';

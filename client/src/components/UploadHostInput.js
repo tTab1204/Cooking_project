@@ -6,12 +6,15 @@ import { successMessage } from 'utils/successMessage';
 import ImageUpload from 'components/ImageUpload/ImageUpload';
 import { useRecoilState } from 'recoil';
 import { showSuccessState } from 'atoms/atoms';
-import { host, userId } from 'utils/constants';
+import { host } from 'constants/constants';
+import { useSelector } from 'react-redux';
 
 const { Option } = Select;
 const { TextArea } = Input;
 
 const UploadHostInput = () => {
+  const userId = useSelector(state => state.userData.userId);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [hasCookingExperience, setKitchen_Ex] = useState('');

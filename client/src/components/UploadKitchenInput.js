@@ -3,12 +3,14 @@ import axios from 'axios';
 import UploadContainer from './UploadContainer';
 import ImageUpload from './ImageUpload/ImageUpload';
 import { Button, Form, Input } from 'antd';
-import { userId } from 'utils/constants';
 import { successMessage } from 'utils/successMessage';
+import { useSelector } from 'react-redux';
 
 const { TextArea } = Input;
 
 const UploadKitchenInput = () => {
+  const userId = useSelector(state => state.userData.userId);
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');

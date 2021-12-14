@@ -2,16 +2,18 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { showSuccessState } from 'atoms/atoms';
 import { useRecoilState } from 'recoil';
-import { userId } from 'utils/constants';
 import { successMessage } from 'utils/successMessage';
 import { Button, DatePicker, Form, Input, Typography } from 'antd';
 import ImageUpload from './ImageUpload/ImageUpload';
 import UploadContainer from './UploadContainer';
+import { useSelector } from 'react-redux';
 
 const { TextArea } = Input;
 const { Title } = Typography;
 
 const UploadEventInput = () => {
+  const userId = useSelector(state => state.userData.userId);
+
   const [name, setName] = useState('');
   const [time, setTime] = useState('');
   const [location, setLocation] = useState('');

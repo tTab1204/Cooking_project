@@ -1,6 +1,6 @@
 import React from 'react';
 import { Row } from 'antd';
-import { host } from 'utils/constants';
+import { host } from 'constants/constants';
 import BreadCrumb from 'components/BreadCrumb/BreadCrumb';
 import SuccessBox from 'components/SuccessBox';
 import Inputs from 'components/Inputs/Inputs';

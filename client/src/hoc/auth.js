@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { auth } from '_actions/user_actions';
 import { useSelector, useDispatch } from 'react-redux';
+import { ROUTES } from 'routes/routes';
 
 export default function (SpecificComponent, option, adminRoute = null) {
   function AuthenticationCheck(props) {
@@ -10,7 +11,7 @@ export default function (SpecificComponent, option, adminRoute = null) {
     useEffect(() => {
       dispatch(auth()).then(response => {
         if (!response.payload.isAuth) {
-          if (option) props.history.push('/login');
+          if (option) props.history.push(ROUTES.LOGIN);
         } else {
           if (adminRoute && !response.payload.isAdmin) props.history.push('/');
           else {

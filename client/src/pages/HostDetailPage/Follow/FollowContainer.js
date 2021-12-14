@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { LoadingOutlined } from '@ant-design/icons';
 import Axios from 'axios';
 import FollowPresenter from './FollowPresenter';
+import { useSelector } from 'react-redux';
 
 function FollowContainer({ detail, url, followers }) {
-  const userFrom = localStorage.getItem('userId');
+  const userFrom = useSelector(state => state.userData?.userId);
 
   const [loading, setloading] = useState(true);
   const [FollowNumber, setFollowNumber] = useState(followers);

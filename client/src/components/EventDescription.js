@@ -15,7 +15,7 @@ import {
 } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { isExpired } from 'utils/getRemainDay';
-import { ROUTES } from 'utils/routes';
+import { ROUTES } from 'routes/routes';
 
 const { Title } = Typography;
 

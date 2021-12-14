@@ -7,7 +7,7 @@ import { ticketTabState } from 'atoms/atoms';
 import { useRecoilState } from 'recoil';
 import UsedTickets from 'components/UsedTickets';
 import { color } from 'styles/Theme';
-import { ROUTES } from 'utils/routes';
+import { ROUTES } from 'routes/routes';
 
 const { TabPane } = Tabs;
 const { Title } = Typography;

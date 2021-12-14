@@ -4,8 +4,6 @@ import Korea from 'assets/south-korea.png';
 import japan from 'assets/japan.png';
 import Italy from 'assets/italy.png';
 
-export const userId = localStorage.getItem('userId');
-
 // become-a-host Page
 export const host = {
   page: 'host',
@@ -90,4 +88,4 @@ export const FOOD_NATION = {
   ),
 };
 
-export const production = process.env.NODE_ENV ==='production'
+export const production = process.env.NODE_ENV === 'production';
